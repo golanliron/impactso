@@ -2561,6 +2561,7 @@ footer::after{
 (function(){
   var loader  = document.getElementById('isl');
   var video   = document.getElementById('isl-loader-video');
+  var image   = document.getElementById('isl-loader-image');
   var canvas  = document.getElementById('isl-loader-canvas');
   var stage   = document.getElementById('isl-video-stage');
   var ctx     = canvas ? canvas.getContext('2d', {willReadFrequently:true}) : null;
@@ -2659,7 +2660,31 @@ footer::after{
     progressLoop = requestAnimationFrame(updateLoaderProgress);
   }
 
-  if(video){
+  if(image){
+    var imageStart = performance.now();
+    function runImageLoader(now){
+      if(done || !loader) return;
+      var progress = Math.min(.985, Math.max(.04, (now - imageStart) / 2300));
+      loader.style.setProperty('--loader-progress', progress.toFixed(3));
+      if(progress < .985){
+        progressLoop = requestAnimationFrame(runImageLoader);
+      }else{
+        fallbackTimer = setTimeout(closeLoader, 260);
+      }
+    }
+    function startImageLoader(){
+      if(stage) stage.classList.add('canvas-ready');
+      imageStart = performance.now();
+      progressLoop = requestAnimationFrame(runImageLoader);
+    }
+    if(image.complete){
+      startImageLoader();
+    }else{
+      image.addEventListener('load', startImageLoader, {once:true});
+      image.addEventListener('error', closeLoader, {once:true});
+      fallbackTimer = setTimeout(closeLoader, 4500);
+    }
+  }else if(video){
     video.muted = true;
     video.defaultMuted = true;
     video.playbackRate = 1.28;
@@ -2963,6 +2988,141 @@ footer::after{
 
   items.forEach(function(el){ observer.observe(el); });
 })();
+</script>
+
+<!-- ===== COOKIE BANNER ===== -->
+<style>
+#cookie-banner{
+  position:fixed;bottom:0;left:0;right:0;z-index:8888;
+  padding:16px 20px;
+  background:#fff;
+  border-top:1px solid rgba(6,30,79,0.1);
+  box-shadow:0 -8px 32px rgba(6,30,79,0.08);
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  flex-wrap:wrap;
+  transform:translateY(100%);
+  transition:transform 480ms cubic-bezier(.22,1,.36,1);
+  font-family:'Heebo',sans-serif;
+  direction:rtl;
+}
+#cookie-banner.show{transform:translateY(0)}
+.cookie-text{
+  font-size:14px;color:#444;line-height:1.6;flex:1;min-width:200px;
+}
+.cookie-text a{color:var(--navy);font-weight:600;text-decoration:underline;cursor:pointer;}
+.cookie-actions{display:flex;gap:10px;flex-shrink:0;}
+.cookie-btn{
+  height:40px;padding:0 20px;border-radius:999px;
+  font-family:'Heebo',sans-serif;font-size:14px;font-weight:700;
+  border:none;cursor:pointer;transition:transform 180ms ease,opacity 180ms ease;
+}
+.cookie-btn:hover{opacity:.88;transform:translateY(-1px)}
+.cookie-btn-accept{background:var(--fuchsia);color:#fff;}
+.cookie-btn-decline{background:transparent;color:var(--navy);border:1.5px solid rgba(6,30,79,0.18);}
+
+/* מדיניות פרטיות מודאל */
+#privacy-modal{
+  position:fixed;inset:0;z-index:9000;
+  display:flex;align-items:flex-end;justify-content:center;
+  background:rgba(6,30,79,0.38);
+  opacity:0;pointer-events:none;
+  transition:opacity 320ms ease;
+}
+#privacy-modal.open{opacity:1;pointer-events:all;}
+.privacy-sheet{
+  background:#fff;
+  border-radius:24px 24px 0 0;
+  padding:32px 28px 40px;
+  width:100%;max-width:680px;
+  max-height:85vh;overflow-y:auto;
+  direction:rtl;font-family:'Heebo',sans-serif;
+  transform:translateY(40px);
+  transition:transform 360ms cubic-bezier(.22,1,.36,1);
+}
+#privacy-modal.open .privacy-sheet{transform:translateY(0);}
+.privacy-sheet h2{font-size:22px;font-weight:900;color:var(--navy);margin-bottom:16px;}
+.privacy-sheet p{font-size:14px;color:#555;line-height:1.8;margin-bottom:12px;}
+.privacy-sheet h3{font-size:15px;font-weight:700;color:var(--navy);margin:18px 0 6px;}
+.privacy-close{
+  position:absolute;top:16px;left:20px;
+  background:none;border:none;font-size:22px;cursor:pointer;color:var(--navy);
+  font-family:'Heebo',sans-serif;
+}
+@media(max-width:600px){
+  #cookie-banner{flex-direction:column;align-items:flex-start;padding:18px 16px 24px;}
+  .cookie-actions{width:100%;}
+  .cookie-btn{flex:1;text-align:center;}
+  .privacy-sheet{padding:24px 18px 36px;border-radius:20px 20px 0 0;}
+}
+</style>
+
+<div id="cookie-banner" role="alert" aria-live="polite">
+  <p class="cookie-text">
+    אנחנו משתמשים בקוקיז כדי לשפר את החוויה שלך באתר.
+    <a onclick="openPrivacy()">מדיניות הפרטיות שלנו</a>
+  </p>
+  <div class="cookie-actions">
+    <button class="cookie-btn cookie-btn-decline" onclick="declineCookies()">דחה</button>
+    <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">אני מסכים/ה</button>
+  </div>
+</div>
+
+<div id="privacy-modal" role="dialog" aria-modal="true" aria-label="מדיניות פרטיות">
+  <div class="privacy-sheet">
+    <button class="privacy-close" onclick="closePrivacy()" aria-label="סגור">✕</button>
+    <h2>מדיניות פרטיות</h2>
+    <p>אימפקט OS מכבדת את פרטיותך ומתחייבת לשמור על המידע שלך. מסמך זה מסביר כיצד אנו אוספים, משתמשים ומגנים על המידע האישי שלך.</p>
+
+    <h3>אילו קוקיז אנו משתמשים?</h3>
+    <p>אנו משתמשים בקוקיז טכניים הכרחיים להפעלת האתר, וקוקיז אנליטיים (כגון Google Analytics) לצורך הבנת אופן השימוש באתר ושיפורו.</p>
+
+    <h3>אילו מידע אנו אוספים?</h3>
+    <p>אנו עשויים לאסוף: כתובת IP, סוג דפדפן, עמודים שביקרת בהם, ומידע שמסרת מרצונך בטפסי יצירת קשר.</p>
+
+    <h3>כיצד אנו משתמשים במידע?</h3>
+    <p>המידע משמש לשיפור האתר, מענה לפניות, ושליחת עדכונים רלוונטיים — בהסכמתך בלבד.</p>
+
+    <h3>שיתוף מידע עם צדדים שלישיים</h3>
+    <p>אנו לא מוכרים או משתפים מידע אישי עם צדדים שלישיים, למעט ספקי שירות הכרחיים (אחסון, אנליטיקה) הפועלים בשמנו.</p>
+
+    <h3>זכויותיך</h3>
+    <p>יש לך זכות לעיין, לתקן או למחוק את המידע שלך. לפנייה: <strong>info@impactso.co.il</strong></p>
+
+    <p style="margin-top:20px;font-size:13px;color:#888;">עדכון אחרון: מאי 2026</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var banner = document.getElementById('cookie-banner');
+  if(!banner) return;
+  if(localStorage.getItem('cookie-choice')) return;
+  setTimeout(function(){ banner.classList.add('show'); }, 1200);
+})();
+
+function acceptCookies(){
+  localStorage.setItem('cookie-choice','accepted');
+  hideBanner();
+}
+function declineCookies(){
+  localStorage.setItem('cookie-choice','declined');
+  hideBanner();
+}
+function hideBanner(){
+  var b = document.getElementById('cookie-banner');
+  if(b){ b.style.transform='translateY(100%)'; }
+}
+function openPrivacy(){
+  var m = document.getElementById('privacy-modal');
+  if(m){ m.classList.add('open'); document.body.style.overflow='hidden'; }
+}
+function closePrivacy(){
+  var m = document.getElementById('privacy-modal');
+  if(m){ m.classList.remove('open'); document.body.style.overflow=''; }
+}
+document.getElementById('privacy-modal').addEventListener('click', function(e){
+  if(e.target === this) closePrivacy();
+});
 </script>
 </body>
 </html>
