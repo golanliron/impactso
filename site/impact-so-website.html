@@ -838,12 +838,14 @@ nav{
 @media(max-width:900px){
   .services{padding:72px 0 80px;}
   .services .section-head{padding:0 24px;}
-  .svc-stack-wrap{height:auto; overflow:hidden;}
+  .svc-stack-wrap{height:auto;}
   .svc-stack-stage{
-    position:static;
+    position:relative;
     height:auto;
     display:block;
-    overflow:visible;
+    overflow:hidden;
+    align-items:unset;
+    justify-content:unset;
   }
   /* slider אופקי */
   .svc-grid{
