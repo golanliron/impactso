@@ -747,26 +747,26 @@ nav{
 /* ===== STACKED CARDS ===== */
 .svc-stack-wrap{
   position:relative;
-  height:400vh; /* 4 כרטיסים × 100vh */
+  height:auto;
 }
 .svc-stack-stage{
-  position:sticky;
-  top:108px;
-  height:calc(100vh - 108px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
+  position:static;
+  height:auto;
+  display:block;
+  overflow:visible;
 }
 .svc-grid{
-  position:relative;
+  position:static;
   width:100%;
-  max-width:680px;
-  height:340px;
+  max-width:1200px;
+  margin:0 auto;
+  height:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
 }
 .svc-card{
-  position:absolute;
-  inset:0;
+  position:static;
   background:var(--white);
   border-radius:28px;
   padding:44px 48px;
@@ -774,20 +774,16 @@ nav{
   flex-direction:column;
   align-items:flex-start;
   gap:0;
-  opacity:0;
-  transform:translateY(40px) scale(0.97);
-  transition:
-    opacity 600ms cubic-bezier(.22,1,.36,1),
-    transform 600ms cubic-bezier(.22,1,.36,1);
-  pointer-events:none;
+  opacity:1;
+  transform:none;
+  pointer-events:auto;
   box-shadow:0 12px 48px rgba(6,30,79,0.10);
-  will-change:opacity,transform;
 }
 .svc-card.is-active{
   opacity:1;
-  transform:translateY(0) scale(1);
+  transform:none;
   pointer-events:auto;
-  z-index:2;
+  z-index:auto;
 }
 .svc-card.is-exit{
   opacity:0;
@@ -3125,7 +3121,7 @@ footer::after{
   var grid = document.getElementById('svcGrid');
   var cards = document.querySelectorAll('#svcGrid .svc-card');
   var dots = document.querySelectorAll('#svcIndicator .svc-dot');
-  if(!wrap || !cards.length || reduced || isMobile) return;
+  return; /* cards shown as grid — no JS needed */
 
   var current = 0;
 
