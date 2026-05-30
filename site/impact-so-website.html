@@ -3125,7 +3125,7 @@ footer::after{
   var grid = document.getElementById('svcGrid');
   var cards = document.querySelectorAll('#svcGrid .svc-card');
   var dots = document.querySelectorAll('#svcIndicator .svc-dot');
-  if(!wrap || !cards.length || reduced) return;
+  if(!wrap || !cards.length || reduced || isMobile) return;
 
   var current = 0;
 
