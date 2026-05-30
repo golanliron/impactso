@@ -836,30 +836,49 @@ nav{
 
 /* מובייל — גלילה רגילה */
 @media(max-width:900px){
-  .services{padding:72px 24px 80px;}
+  .services{padding:72px 0 80px;}
+  .services .section-head{padding:0 24px;}
   .svc-stack-wrap{height:auto;}
   .svc-stack-stage{
     position:static;
     height:auto;
     display:block;
+    overflow:hidden;
   }
+  /* slider אופקי */
   .svc-grid{
     position:static;
     height:auto;
-    max-width:100%;
+    max-width:none;
     display:flex;
-    flex-direction:column;
-    gap:16px;
+    flex-direction:row;
+    gap:0;
+    width:400%;
+    transform:translateX(0);
+    transition:transform 480ms cubic-bezier(.22,1,.36,1);
   }
   .svc-card{
     position:static;
     opacity:1;
     transform:none;
     pointer-events:auto;
-    padding:28px 24px;
+    padding:32px 28px 44px;
+    flex:0 0 25%;
+    width:25%;
+    box-sizing:border-box;
+    border-radius:0;
+    box-shadow:none;
+    border-bottom:none;
   }
-  .svc-card::after{transform:scaleX(1);}
-  .svc-indicator{display:none;}
+  .svc-card::after{transform:scaleX(1);border-radius:0;}
+  .svc-indicator{
+    display:flex;
+    position:static;
+    transform:none;
+    justify-content:center;
+    margin-top:24px;
+    left:auto;bottom:auto;
+  }
 }
 
 /* reduced motion */
@@ -867,8 +886,8 @@ nav{
   .svc-card{transition:none!important;}
   .svc-stack-wrap{height:auto;}
   .svc-stack-stage{position:static;height:auto;display:block;}
-  .svc-grid{position:static;height:auto;display:flex;flex-direction:column;gap:16px;}
-  .svc-card{position:static;opacity:1;transform:none;pointer-events:auto;}
+  .svc-grid{position:static;height:auto;display:flex;flex-direction:column;gap:16px;width:100%;transform:none;}
+  .svc-card{position:static;opacity:1;transform:none;pointer-events:auto;flex:none;width:100%;}
   .svc-card::after{transform:scaleX(1);}
   .svc-indicator{display:none;}
 }
@@ -3112,37 +3131,77 @@ footer::after{
 <script>
 (function(){
   var reduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  var mobile = window.matchMedia('(max-width:900px)').matches;
-  if(reduced || mobile) return;
-
+  var isMobile = window.matchMedia('(max-width:900px)').matches;
   var wrap = document.getElementById('svcStackWrap');
+  var grid = document.getElementById('svcGrid');
   var cards = document.querySelectorAll('#svcGrid .svc-card');
   var dots = document.querySelectorAll('#svcIndicator .svc-dot');
-  if(!wrap || !cards.length) return;
+  if(!wrap || !cards.length || reduced) return;
 
-  var current = -1;
+  var current = 0;
 
   function setCard(idx){
-    if(idx === current) return;
-    cards.forEach(function(c, i){
-      c.classList.remove('is-active','is-exit');
-      if(i === idx) c.classList.add('is-active');
-      else if(i === current) c.classList.add('is-exit');
-    });
-    dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+    idx = Math.max(0, Math.min(cards.length-1, idx));
+    if(idx === current && !isMobile) return;
     current = idx;
+    dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+
+    if(isMobile){
+      /* slider — translateX */
+      var pct = idx * (100 / cards.length);
+      grid.style.transform = 'translateX(' + (document.documentElement.dir==='rtl' ? pct : -pct) + '%)';
+    } else {
+      cards.forEach(function(c,i){
+        c.classList.remove('is-active','is-exit');
+        if(i===idx) c.classList.add('is-active');
+        else if(i===current-1||i===current+1) c.classList.add('is-exit');
+      });
+    }
   }
 
+  if(isMobile){
+    /* Swipe */
+    var startX = 0;
+    grid.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;},{passive:true});
+    grid.addEventListener('touchend',function(e){
+      var dx = e.changedTouches[0].clientX - startX;
+      if(Math.abs(dx) < 40) return;
+      /* RTL: swipe ימינה = קדם, שמאלה = הבא */
+      setCard(dx > 0 ? current-1 : current+1);
+    },{passive:true});
+    /* נקודות — לחיצה */
+    dots.forEach(function(d,i){
+      d.addEventListener('click',function(){ setCard(i); });
+      d.style.cursor='pointer';
+      d.style.width='10px';
+      d.style.height='10px';
+    });
+    setCard(0);
+    /* כרטיס ראשון גלוי */
+    grid.style.transform = 'translateX(0)';
+    return;
+  }
+
+  /* Desktop — sticky scroll */
   function onScroll(){
     var rect = wrap.getBoundingClientRect();
     var total = wrap.offsetHeight - window.innerHeight;
     var scrolled = -rect.top;
     var progress = Math.max(0, Math.min(1, scrolled / total));
     var idx = Math.min(cards.length-1, Math.floor(progress * cards.length));
-    setCard(idx);
+    if(idx !== current){
+      cards.forEach(function(c,i){
+        c.classList.remove('is-active','is-exit');
+        if(i===idx) c.classList.add('is-active');
+        else if(i===current) c.classList.add('is-exit');
+      });
+      dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+      current = idx;
+    }
   }
 
-  setCard(0);
+  cards[0].classList.add('is-active');
+  dots[0].classList.add('active');
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
 })();
