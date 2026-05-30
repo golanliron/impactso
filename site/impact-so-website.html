@@ -94,11 +94,12 @@ nav{
 }
 .nav-logo > svg{display:none}
 .brand-logo-svg{
-  display:none !important;
+  display:block !important;
+  width:180px;
+  max-width:28vw;
+  height:auto;
 }
-.nav-logo .brand-lockup{
-  display:flex !important;
-}
+.nav-logo .brand-lockup,
 .nav-logo > svg{
   display:none !important;
 }
@@ -2130,6 +2131,7 @@ footer::after{
 
     <!-- Logo: exact SVG from impactso-logo.svg ג€” no PNG, no background -->
     <a href="#" class="nav-logo impact-logo" aria-label="IMPACT SO">
+      <img class="brand-logo-svg" src="../public/brand/impact-os-logo-nav-teal.png" alt="IMPACT OS">
       <span class="brand-lockup" aria-hidden="true">
         <svg class="brand-lockup-mark" viewBox="0 0 240 284" xmlns="http://www.w3.org/2000/svg" fill="none">
           <g stroke="var(--logo-fingerprint)" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
