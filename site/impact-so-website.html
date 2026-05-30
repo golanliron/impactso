@@ -1718,7 +1718,6 @@ footer::after{
   .hero{grid-template-columns:1fr;min-height:auto}
   .hero-left{padding:110px 40px 48px}
   .hero h1{font-size:clamp(38px,6vw,54px)}
-  .svc-grid{grid-template-columns:repeat(2,1fr)}
   .products-grid{grid-template-columns:repeat(2,1fr)}
   .team-grid{grid-template-columns:repeat(2,1fr)}
   .footer-grid{grid-template-columns:1fr 1fr}
@@ -1750,7 +1749,7 @@ footer::after{
     position:relative;
     z-index:2;
   }
-  .svc-grid,.products-grid{grid-template-columns:1fr}
+  .products-grid{grid-template-columns:1fr}
   .products::before{width:360px;right:-130px;bottom:80px;opacity:.12}
   .product-media{height:220px}
   .product-body{
@@ -2018,7 +2017,7 @@ footer::after{
 <!-- ג•ג•ג• IMPACT LOADER ג•ג•ג• -->
 <div id="isl" role="status" aria-label="טוען IMPACT SO">
   <div id="isl-video-stage" aria-hidden="true">
-    <img id="isl-loader-image" src="../public/media/impact-loader-intro.png?v=os-white-1" alt="">
+    <video id="isl-loader-video" src="../public/media/impact-loader-intro.mp4?v=os-white-1" poster="../public/media/impact-loader-intro.png?v=os-white-1" autoplay muted playsinline preload="auto" crossorigin="anonymous"></video>
     <canvas id="isl-loader-canvas"></canvas>
     <div id="isl-load-ui">
       <div class="isl-load-track"><span class="isl-load-progress"></span></div>
