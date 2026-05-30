@@ -1000,7 +1000,7 @@ nav{
 }
 .product-media.is-adora,
 .product-media.is-goldfish,
-.product-media.is-coming{
+.product-media.is-retzef{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -1016,7 +1016,7 @@ nav{
 }
 .product-media.is-adora::before,
 .product-media.is-goldfish::before,
-.product-media.is-coming::before{
+.product-media.is-retzef::before{
   inset:auto;
   width:156px;
   height:142px;
@@ -1025,10 +1025,10 @@ nav{
 }
 .product-media.is-adora::after,
 .product-media.is-goldfish::after,
-.product-media.is-coming::after{display:none}
+.product-media.is-retzef::after{display:none}
 .adora-logo,
 .goldfish-logo,
-.coming-logo{
+.retzef-logo{
   position:relative;
   z-index:1;
   direction:rtl;
@@ -1081,9 +1081,12 @@ nav{
   border-left:22px solid #F47C26;
   opacity:.76;
 }
-.coming-logo{
-  font-size:30px;
-  color:var(--navy);
+.retzef-logo-img{
+  position:relative;
+  z-index:1;
+  width:min(320px,78%);
+  max-height:86px;
+  object-fit:contain;
 }
 .product-media-text{
   position:relative;
@@ -1100,6 +1103,16 @@ nav{
   font-weight:950;
   color:var(--navy);
   letter-spacing:-.6px;
+}
+.product-front-desc{
+  position:relative;
+  z-index:1;
+  max-width:330px;
+  margin:0 auto;
+  color:var(--gray);
+  font-size:15px;
+  font-weight:700;
+  line-height:1.65;
 }
 .product-status{
   display:inline-flex;
@@ -1154,21 +1167,6 @@ nav{
   color:var(--gray);
   margin:0;
   align-self:center;
-}
-.product-link{
-  margin-top:0;
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  color:var(--navy);
-  font-size:14px;
-  font-weight:800;
-  text-decoration:none;
-  transition:color 220ms var(--motion-ease),transform 220ms var(--motion-ease);
-}
-.product-link:hover{
-  color:var(--fuchsia);
-  transform:translateX(-3px);
 }
 @media (prefers-reduced-motion: reduce){
   .product-card-inner{transition:none;transform:none!important}
@@ -1863,7 +1861,7 @@ footer::after{
 <!-- ג•ג•ג• IMPACT LOADER ג•ג•ג• -->
 <div id="isl" role="status" aria-label="טוען IMPACT SO">
   <div id="isl-video-stage" aria-hidden="true">
-    <video id="isl-loader-video" src="../public/media/impact-loader-intro.mp4?v=loader-white-20260530-2" autoplay muted playsinline preload="auto"></video>
+    <video id="isl-loader-video" src="https://cdn.jsdelivr.net/gh/golanliron/impactso@gh-pages/public/media/impact-loader-intro.mp4" autoplay muted playsinline preload="auto"></video>
     <canvas id="isl-loader-canvas"></canvas>
     <div id="isl-load-ui">
       <div class="isl-load-track"><span class="isl-load-progress"></span></div>
@@ -1915,7 +1913,7 @@ footer::after{
 
     </svg>
 
-    <img id="isl-logo-official" src="../public/brand/impact-so-logo-official-transparent.png?v=pink-1" alt="IMPACT SO טכנולוגיה יוצרת אימפקט">
+    <img id="isl-logo-official" src="../public/brand/impact-os-logo-official-transparent.png?v=os-teal-1" alt="IMPACT OS טכנולוגיה יוצרת אימפקט">
 
     <!-- לוגו מלא ג€” SVG מקורי מחבילת המותג, ללא PNG וללא רקע -->
     <svg id="isl-logo" class="impact-logo" viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IMPACT SO טכנולוגיה יוצרת אימפקט">
@@ -1957,7 +1955,7 @@ footer::after{
 
     <!-- Logo: exact SVG from impactso-logo.svg ג€” no PNG, no background -->
     <a href="#" class="nav-logo impact-logo" aria-label="IMPACT SO">
-      <img id="navLogoImage" class="brand-logo-svg" src="../public/brand/impact-so-logo-nav-teal.png?v=pink-1" alt="IMPACT SO טכנולוגיה יוצרת אימפקט">
+      <img id="navLogoImage" class="brand-logo-svg" src="../public/brand/impact-os-logo-nav-teal.png?v=os-teal-1" alt="IMPACT OS טכנולוגיה יוצרת אימפקט">
       <span class="brand-lockup" aria-hidden="true">
         <svg class="brand-lockup-mark" viewBox="0 0 240 284" xmlns="http://www.w3.org/2000/svg" fill="none">
           <g stroke="var(--logo-fingerprint)" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
@@ -2231,7 +2229,7 @@ footer::after{
         <div class="product-face product-face-front">
           <div class="product-media is-adora" aria-hidden="true">
             <div class="adora-logo"><em>א</em>דורה</div>
-            <div class="product-front-title">אדורה</div>
+            <p class="product-front-desc">לוח מודעות דרושים לעולם החינוך, שמחבר בין אנשי חינוך, בתי ספר וארגונים.</p>
           </div>
         </div>
         <div class="product-face product-face-back">
@@ -2240,11 +2238,6 @@ footer::after{
             <span class="product-kicker">חינוך ותעסוקה</span>
             <h3>מה זה עושה?</h3>
             <p>לוח מודעות דרושים לעולם החינוך, שמחבר בין אנשי חינוך, בתי ספר וארגונים שמחפשים התאמה מדויקת ומשמעותית.</p>
-            <a class="product-link" href="#contact">לפרטי המוצר
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5"/>
-              </svg>
-            </a>
           </div>
         </div>
       </div>
@@ -2256,7 +2249,7 @@ footer::after{
           <div class="product-media is-goldfish" aria-hidden="true">
             <div class="goldfish-icon"></div>
             <div class="goldfish-logo">Goldfish</div>
-            <div class="product-front-title">Goldfish</div>
+            <p class="product-front-desc">כלי חכם לגיוס משאבים לעמותות, שמסייע לאתר מענקים וקולות קוראים.</p>
           </div>
         </div>
         <div class="product-face product-face-back">
@@ -2265,35 +2258,25 @@ footer::after{
             <span class="product-kicker">גיוס משאבים</span>
             <h3>מה זה עושה?</h3>
             <p>כלי חכם לגיוס משאבים לעמותות, שמסייע לאתר הזדמנויות, מענקים וקולות קוראים בלי לטבוע בתוך עומס המידע.</p>
-            <a class="product-link" href="#contact">לפרטי המוצר
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5"/>
-              </svg>
-            </a>
           </div>
         </div>
       </div>
     </article>
 
-    <article class="product-card" tabindex="0" aria-label="מוצר נוסף בדרך, לחצו כדי לראות מה המוצר עושה">
+    <article class="product-card" tabindex="0" aria-label="רצף, לחצו כדי לראות מה המוצר עושה">
       <div class="product-card-inner">
         <div class="product-face product-face-front">
-          <div class="product-media is-coming" aria-hidden="true">
-            <div class="coming-logo">המוצר הבא</div>
-            <div class="product-front-title">בקרוב</div>
+          <div class="product-media is-retzef" aria-hidden="true">
+            <img class="retzef-logo-img" src="../public/products/retzef.png?v=retzef-1" alt="">
+            <p class="product-front-desc">מענים לקהילה האוטיסטית ובני משפחותיהם לאורך כל שלבי החיים.</p>
           </div>
         </div>
         <div class="product-face product-face-back">
           <div class="product-body">
             <span class="product-status">בקרוב</span>
-            <span class="product-kicker">דאטה ואימפקט</span>
+            <span class="product-kicker">רווחה וקהילה</span>
             <h3>מה זה עושה?</h3>
-            <p>מקום שמור למוצר הבא של IMPACT SO. כשתשלחי תמונה, שם ולינק, נכניס אותו לאותה שפה מותגית.</p>
-            <a class="product-link" href="#contact">לפרטי המוצר
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5"/>
-              </svg>
-            </a>
+            <p>מערכת שמרכזת מענים, שירותים ותהליכים עבור הקהילה האוטיסטית ומשפחותיהם לאורך שלבי החיים.</p>
           </div>
         </div>
       </div>
@@ -2617,6 +2600,7 @@ footer::after{
           }
         }
         ctx.putImageData(frame, 0, 0);
+        if(stage) stage.classList.add('canvas-ready');
       }catch(e){
         if(stage) stage.classList.add('video-fallback');
         return;
@@ -2696,11 +2680,11 @@ footer::after{
     "url('../public/brand/impact-fingerprint-scroll-orange.png')"
   ];
   var navLogoImages = [
-    '../public/brand/impact-so-logo-nav-teal.png',
-    '../public/brand/impact-so-logo-nav-fuchsia.png',
-    '../public/brand/impact-so-logo-nav-yellow.png',
-    '../public/brand/impact-so-logo-nav-green.png',
-    '../public/brand/impact-so-logo-nav-orange.png'
+    '../public/brand/impact-os-logo-nav-teal.png',
+    '../public/brand/impact-os-logo-nav-fuchsia.png',
+    '../public/brand/impact-os-logo-nav-yellow.png',
+    '../public/brand/impact-os-logo-nav-green.png',
+    '../public/brand/impact-os-logo-nav-orange.png'
   ];
   var ticking = false;
   var activeLogoIndex = -1;
