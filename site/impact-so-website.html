@@ -732,23 +732,145 @@ nav{
 
 /* ג”€ג”€ג”€ SERVICES ג”€ג”€ג”€ */
 .services{
-  padding:104px 64px;
+  padding:104px 64px 0;
   background:var(--bg);
   position:relative;
   overflow:hidden;
   scroll-margin-top:108px;
 }
-.services .section-head,
-.svc-grid{
+.services .section-head{
   position:relative;
   z-index:2;
 }
 .section-head{margin-bottom:56px}
-.svc-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
+
+/* ===== STACKED CARDS ===== */
+.svc-stack-wrap{
   position:relative;
+  height:400vh; /* 4 כרטיסים × 100vh */
+}
+.svc-stack-stage{
+  position:sticky;
+  top:108px;
+  height:calc(100vh - 108px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.svc-grid{
+  position:relative;
+  width:100%;
+  max-width:680px;
+  height:340px;
+}
+.svc-card{
+  position:absolute;
+  inset:0;
+  background:var(--white);
+  border-radius:28px;
+  padding:44px 48px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:0;
+  opacity:0;
+  transform:translateY(40px) scale(0.97);
+  transition:
+    opacity 600ms cubic-bezier(.22,1,.36,1),
+    transform 600ms cubic-bezier(.22,1,.36,1);
+  pointer-events:none;
+  box-shadow:0 12px 48px rgba(6,30,79,0.10);
+  will-change:opacity,transform;
+}
+.svc-card.is-active{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  pointer-events:auto;
+  z-index:2;
+}
+.svc-card.is-exit{
+  opacity:0;
+  transform:translateY(-28px) scale(1.02);
+  z-index:1;
+}
+
+/* פס תחתון */
+.svc-card::after{
+  content:'';
+  position:absolute;
+  bottom:0;right:0;left:0;
+  height:3px;
+  border-radius:0 0 28px 28px;
+  transform:scaleX(0);
+  transform-origin:right center;
+  transition:transform 600ms 200ms cubic-bezier(.22,.68,0,1.2);
+}
+.svc-card.is-active::after{transform:scaleX(1);}
+.svc-card:nth-child(1)::after{background:linear-gradient(90deg,var(--teal),var(--green))}
+.svc-card:nth-child(2)::after{background:linear-gradient(90deg,var(--fuchsia),var(--orange))}
+.svc-card:nth-child(3)::after{background:linear-gradient(90deg,var(--yellow),var(--green))}
+.svc-card:nth-child(4)::after{background:linear-gradient(90deg,var(--navy),var(--teal))}
+
+/* אינדיקטור */
+.svc-indicator{
+  position:absolute;
+  bottom:32px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:8px;
+  align-items:center;
+  z-index:10;
+}
+.svc-dot{
+  width:6px;height:6px;
+  border-radius:50%;
+  background:rgba(6,30,79,0.18);
+  transition:background 300ms ease, transform 300ms ease;
+}
+.svc-dot.active{
+  background:var(--teal);
+  transform:scale(1.4);
+}
+
+/* מובייל — גלילה רגילה */
+@media(max-width:900px){
+  .services{padding:72px 24px 80px;}
+  .svc-stack-wrap{height:auto;}
+  .svc-stack-stage{
+    position:static;
+    height:auto;
+    display:block;
+  }
+  .svc-grid{
+    position:static;
+    height:auto;
+    max-width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .svc-card{
+    position:static;
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+    padding:28px 24px;
+  }
+  .svc-card::after{transform:scaleX(1);}
+  .svc-indicator{display:none;}
+}
+
+/* reduced motion */
+@media(prefers-reduced-motion:reduce){
+  .svc-card{transition:none!important;}
+  .svc-stack-wrap{height:auto;}
+  .svc-stack-stage{position:static;height:auto;display:block;}
+  .svc-grid{position:static;height:auto;display:flex;flex-direction:column;gap:16px;}
+  .svc-card{position:static;opacity:1;transform:none;pointer-events:auto;}
+  .svc-card::after{transform:scaleX(1);}
+  .svc-indicator{display:none;}
 }
 
 /* קו מחבר SVG */
@@ -2173,19 +2295,9 @@ footer::after{
     <p class="section-sub">אנחנו מאפיינים, מפתחים ומטמיעים מערכות דיגיטליות שמסדרות תהליכים, מחברות נתונים ומאפשרות לארגונים חברתיים וחינוכיים לעבוד בצורה חכמה, מדידה ואפקטיבית יותר.</p>
   </div>
 
-  <div class="svc-grid">
-    <!-- קו מחבר בין הכרטיסים — מונפש עם stroke-dashoffset -->
-    <svg class="svc-connector" viewBox="0 0 900 2" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-      <path d="M0 1 H900" stroke="url(#svc-line-grad)" stroke-width="1.5"/>
-      <defs>
-        <linearGradient id="svc-line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#12C7C7" stop-opacity="0.5"/>
-          <stop offset="35%" stop-color="#F00678" stop-opacity="0.6"/>
-          <stop offset="65%" stop-color="#F4B41B" stop-opacity="0.6"/>
-          <stop offset="100%" stop-color="#061E4F" stop-opacity="0.4"/>
-        </linearGradient>
-      </defs>
-    </svg>
+  <div class="svc-stack-wrap" id="svcStackWrap">
+    <div class="svc-stack-stage">
+      <div class="svc-grid" id="svcGrid">
     <div class="svc-card">
       <div class="svc-icon">
         <!-- ImpactDataIcon ג€” SVG קווי, fingerprint style -->
@@ -2247,7 +2359,15 @@ footer::after{
       <h3>AI למגזר החברתי</h3>
       <p>שילוב חכם של בינה מלאכותית בתהליכי עבודה, כדי לחסוך זמן, לשפר החלטות ולהגדיל את היכולת לעשות יותר עם פחות.</p>
     </div>
-  </div>
+      <div class="svc-indicator" id="svcIndicator" aria-hidden="true">
+        <span class="svc-dot active" data-i="0"></span>
+        <span class="svc-dot" data-i="1"></span>
+        <span class="svc-dot" data-i="2"></span>
+        <span class="svc-dot" data-i="3"></span>
+      </div>
+    </div><!-- /svc-grid -->
+    </div><!-- /svc-stack-stage -->
+  </div><!-- /svc-stack-wrap -->
 </section>
 
 <!-- ג•ג•ג• PRODUCTS ג•ג•ג• -->
@@ -2269,7 +2389,6 @@ footer::after{
         </div>
         <div class="product-face product-face-back">
           <div class="product-body">
-            <span class="product-status">בקרוב</span>
             <span class="product-kicker">חינוך ותעסוקה</span>
             <h3>טביעת האצבע</h3>
             <p>לוח מודעות דרושים לעולם החינוך, שמחבר בין אנשי חינוך, בתי ספר וארגונים שמחפשים התאמה מדויקת ומשמעותית.</p>
@@ -2289,7 +2408,6 @@ footer::after{
         </div>
         <div class="product-face product-face-back">
           <div class="product-body">
-            <span class="product-status">בקרוב</span>
             <span class="product-kicker">גיוס משאבים</span>
             <h3>טביעת האצבע</h3>
             <p>כלי חכם לגיוס משאבים לעמותות, שמסייע לאתר הזדמנויות, מענקים וקולות קוראים בלי לטבוע בתוך עומס המידע.</p>
@@ -2313,7 +2431,6 @@ footer::after{
         </div>
         <div class="product-face product-face-back">
           <div class="product-body">
-            <span class="product-status">בקרוב</span>
             <span class="product-kicker">רווחה וקהילה</span>
             <h3>טביעת האצבע</h3>
             <p>מערכת שמרכזת מענים, שירותים ותהליכים עבור הקהילה האוטיסטית ומשפחותיהם לאורך שלבי החיים.</p>
@@ -2403,7 +2520,7 @@ footer::after{
       <div class="person-photo" data-person="ofir">
         <img src="../public/team/ofir-v2.jpg" alt="אופיר">
       </div>
-      <span class="person-role">חדשנות פדגוגית</span>
+      <span class="person-role">מומחה לאסטרטגיה וחדשנות טכנולוגית</span>
       <h3>אופיר שטיינברג</h3>
       <p>מביא לשולחן חשיבה אסטרטגית נדירה שמחברת בין עולם המוצר הדיגיטלי לעולם החינוך. אופיר הוא זה שרואה את התמונה הגדולה — ויודע בדיוק איפה הטכנולוגיה פוגשת את בני האדם.</p>
     </article>
@@ -2989,6 +3106,46 @@ footer::after{
   }, {threshold:0.16, rootMargin:'0px 0px -8% 0px'});
 
   items.forEach(function(el){ observer.observe(el); });
+})();
+</script>
+
+<!-- ===== STACKED CARDS JS ===== -->
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var mobile = window.matchMedia('(max-width:900px)').matches;
+  if(reduced || mobile) return;
+
+  var wrap = document.getElementById('svcStackWrap');
+  var cards = document.querySelectorAll('#svcGrid .svc-card');
+  var dots = document.querySelectorAll('#svcIndicator .svc-dot');
+  if(!wrap || !cards.length) return;
+
+  var current = -1;
+
+  function setCard(idx){
+    if(idx === current) return;
+    cards.forEach(function(c, i){
+      c.classList.remove('is-active','is-exit');
+      if(i === idx) c.classList.add('is-active');
+      else if(i === current) c.classList.add('is-exit');
+    });
+    dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+    current = idx;
+  }
+
+  function onScroll(){
+    var rect = wrap.getBoundingClientRect();
+    var total = wrap.offsetHeight - window.innerHeight;
+    var scrolled = -rect.top;
+    var progress = Math.max(0, Math.min(1, scrolled / total));
+    var idx = Math.min(cards.length-1, Math.floor(progress * cards.length));
+    setCard(idx);
+  }
+
+  setCard(0);
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
 })();
 </script>
 
