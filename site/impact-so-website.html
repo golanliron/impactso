@@ -95,9 +95,10 @@ nav{
 .nav-logo > svg{display:none}
 .brand-logo-svg{
   display:block !important;
-  width:300px;
-  max-width:38vw;
-  height:auto;
+  height:32px;
+  width:auto;
+  max-width:160px;
+  transition:opacity 220ms var(--motion-ease),filter 220ms var(--motion-ease);
 }
 .nav-logo .brand-lockup,
 .nav-logo > svg{
@@ -141,8 +142,8 @@ nav{
   background:transparent;
 }
 .brand-lockup-mark{
-  width:58px;
-  height:68px;
+  width:42px;
+  height:50px;
   flex:0 0 auto;
   display:block;
   overflow:visible;
@@ -151,33 +152,33 @@ nav{
   display:flex;
   flex-direction:column;
   align-items:flex-start;
-  gap:4px;
+  gap:3px;
   white-space:nowrap;
 }
 .brand-lockup-name{
   display:flex;
   align-items:baseline;
-  gap:8px;
+  gap:6px;
   line-height:.9;
 }
 .brand-lockup-impact{
   color:var(--logo-impact);
-  font-size:34px;
+  font-size:24px;
   font-weight:900;
   letter-spacing:1.5px;
 }
 .brand-lockup-so{
   color:var(--logo-so);
-  font-size:34px;
+  font-size:24px;
   font-weight:900;
   letter-spacing:1px;
 }
 .brand-lockup-tagline{
   color:var(--logo-tagline);
   direction:rtl;
-  font-size:12px;
+  font-size:10px;
   font-weight:700;
-  letter-spacing:4px;
+  letter-spacing:3px;
   line-height:1;
 }
 
@@ -330,7 +331,7 @@ nav{
 
 .fingerprint-signature{
   --signature-draw:0%;
-  --signature-opacity:.16;
+  --signature-opacity:.07;
   --signature-tint:var(--teal);
   --signature-image:url('../public/brand/impact-fingerprint-scroll-teal.png');
   position:fixed;
@@ -744,195 +745,76 @@ nav{
 }
 .section-head{margin-bottom:56px}
 
-/* ===== STACKED CARDS ===== */
-.svc-stack-wrap{
-  position:relative;
-  height:400vh; /* 4 כרטיסים × 100vh */
-}
+/* ===== SERVICES CARDS ===== */
+.svc-stack-wrap,
 .svc-stack-stage{
-  position:sticky;
-  top:108px;
-  height:calc(100vh - 108px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
+  display:contents;
 }
 .svc-grid{
   position:relative;
   width:100%;
-  max-width:680px;
-  height:340px;
+  max-width:1200px;
+  margin:0 auto;
+  height:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  isolation:isolate;
+}
+.svc-indicator{
+  display:none!important;
 }
 .svc-card{
-  position:absolute;
-  inset:0;
   background:var(--white);
   border-radius:28px;
-  padding:44px 48px;
+  padding:44px 48px 50px;
   display:flex;
   flex-direction:column;
   align-items:flex-start;
   gap:0;
+  position:relative;
+  overflow:hidden;
   opacity:0;
-  transform:translateY(40px) scale(0.97);
-  transition:
-    opacity 600ms cubic-bezier(.22,1,.36,1),
-    transform 600ms cubic-bezier(.22,1,.36,1);
-  pointer-events:none;
-  box-shadow:0 12px 48px rgba(6,30,79,0.10);
-  will-change:opacity,transform;
-}
-.svc-card.is-active{
-  opacity:1;
-  transform:translateY(0) scale(1);
+  translate:0 26px;
   pointer-events:auto;
-  z-index:2;
-}
-.svc-card.is-exit{
-  opacity:0;
-  transform:translateY(-28px) scale(1.02);
+  box-shadow:0 12px 48px rgba(6,30,79,0.10);
+  transition:
+    opacity 520ms ease,
+    translate 520ms ease,
+    transform 320ms var(--motion-ease),
+    box-shadow 320ms var(--motion-ease);
   z-index:1;
-}
-
-/* פס תחתון */
-.svc-card::after{
-  content:'';
-  position:absolute;
-  bottom:0;right:0;left:0;
-  height:3px;
-  border-radius:0 0 28px 28px;
-  transform:scaleX(0);
-  transform-origin:right center;
-  transition:transform 600ms 200ms cubic-bezier(.22,.68,0,1.2);
-}
-.svc-card.is-active::after{transform:scaleX(1);}
-.svc-card:nth-child(1)::after{background:linear-gradient(90deg,var(--teal),var(--green))}
-.svc-card:nth-child(2)::after{background:linear-gradient(90deg,var(--fuchsia),var(--orange))}
-.svc-card:nth-child(3)::after{background:linear-gradient(90deg,var(--yellow),var(--green))}
-.svc-card:nth-child(4)::after{background:linear-gradient(90deg,var(--navy),var(--teal))}
-
-/* אינדיקטור */
-.svc-indicator{
-  position:absolute;
-  bottom:32px;
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  gap:8px;
-  align-items:center;
-  z-index:10;
-}
-.svc-dot{
-  width:6px;height:6px;
-  border-radius:50%;
-  background:rgba(6,30,79,0.18);
-  transition:background 300ms ease, transform 300ms ease;
-}
-.svc-dot.active{
-  background:var(--teal);
-  transform:scale(1.4);
-}
-
-/* מובייל — גלילה רגילה */
-@media(max-width:900px){
-  .services{padding:72px 0 80px;}
-  .services .section-head{padding:0 24px;}
-  .svc-stack-wrap{height:auto;}
-  .svc-stack-stage{
-    position:static;
-    height:auto;
-    display:block;
-    overflow:hidden;
-  }
-  /* slider אופקי */
-  .svc-grid{
-    position:static;
-    height:auto;
-    max-width:none;
-    display:flex;
-    flex-direction:row;
-    gap:0;
-    width:400%;
-    transform:translateX(0);
-    transition:transform 480ms cubic-bezier(.22,1,.36,1);
-  }
-  .svc-card{
-    position:static;
-    opacity:1;
-    transform:none;
-    pointer-events:auto;
-    padding:32px 28px 44px;
-    flex:0 0 25%;
-    width:25%;
-    box-sizing:border-box;
-    border-radius:0;
-    box-shadow:none;
-    border-bottom:none;
-  }
-  .svc-card::after{transform:scaleX(1);border-radius:0;}
-  .svc-indicator{
-    display:flex;
-    position:static;
-    transform:none;
-    justify-content:center;
-    margin-top:24px;
-    left:auto;bottom:auto;
-  }
-}
-
-/* reduced motion */
-@media(prefers-reduced-motion:reduce){
-  .svc-card{transition:none!important;}
-  .svc-stack-wrap{height:auto;}
-  .svc-stack-stage{position:static;height:auto;display:block;}
-  .svc-grid{position:static;height:auto;display:flex;flex-direction:column;gap:16px;width:100%;transform:none;}
-  .svc-card{position:static;opacity:1;transform:none;pointer-events:auto;flex:none;width:100%;}
-  .svc-card::after{transform:scaleX(1);}
-  .svc-indicator{display:none;}
 }
 
 /* קו מחבר SVG */
 .svc-connector{
   position:absolute;
-  top:44px;
-  right:0;left:0;
-  height:2px;
+  inset:20px 9% auto;
+  height:calc(100% - 40px);
   pointer-events:none;
   z-index:0;
   overflow:visible;
 }
 .svc-connector path{
+  stroke:rgba(18,199,199,.24);
+  stroke-width:2;
+  fill:none;
   stroke-dasharray:800;
   stroke-dashoffset:800;
-  transition:stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1);
+  transition:stroke-dashoffset 1.35s cubic-bezier(.4,0,.2,1),opacity 420ms ease;
+  opacity:.8;
 }
 .svc-connector.is-visible path{
   stroke-dashoffset:0;
 }
 
 /* כרטיסים — כניסה מדורגת */
-.svc-card{
-  background:var(--white);border-radius:28px;
-  padding:34px 28px;
-  position:relative;overflow:hidden;
-  transition:
-    transform 380ms cubic-bezier(.22,.68,0,1.2),
-    box-shadow 320ms var(--motion-ease),
-    opacity 500ms ease,
-    translate 500ms ease;
-  cursor:default;
-  will-change:transform,opacity;
-  opacity:0;
-  translate:0 28px;
-  z-index:1;
-}
 .svc-card.is-visible{
   opacity:1;
   translate:0 0;
 }
 .svc-card:hover{
-  transform:translateY(-7px);
+  transform:translateY(-6px);
   box-shadow:0 24px 52px rgba(6,30,79,0.13);
 }
 
@@ -949,10 +831,10 @@ nav{
 }
 .svc-card.is-visible::after{transform:scaleX(1);}
 .svc-card:hover::after{transform:scaleX(1) scaleY(1.8);}
-.svc-card:nth-child(1)::after{background:linear-gradient(90deg,var(--teal),var(--green))}
-.svc-card:nth-child(2)::after{background:linear-gradient(90deg,var(--fuchsia),var(--orange))}
-.svc-card:nth-child(3)::after{background:linear-gradient(90deg,var(--yellow),var(--green))}
-.svc-card:nth-child(4)::after{background:linear-gradient(90deg,var(--navy),var(--teal))}
+.svc-card:nth-of-type(1)::after{background:linear-gradient(90deg,var(--teal),var(--green))}
+.svc-card:nth-of-type(2)::after{background:linear-gradient(90deg,var(--fuchsia),var(--orange))}
+.svc-card:nth-of-type(3)::after{background:linear-gradient(90deg,var(--yellow),var(--green))}
+.svc-card:nth-of-type(4)::after{background:linear-gradient(90deg,var(--navy),var(--teal))}
 
 /* אייקון */
 .svc-icon{
@@ -991,14 +873,14 @@ nav{
 }
 .svc-card:hover .svc-icon::before{opacity:.35;transform:scale(1.1)}
 .svc-card:hover .svc-icon svg{transform:translateY(-2px) scale(1.08)}
-.svc-card:nth-child(1) .svc-icon{background:rgba(18,199,199,0.09)}
-.svc-card:nth-child(2) .svc-icon{background:rgba(240,6,120,0.08)}
-.svc-card:nth-child(3) .svc-icon{background:rgba(244,180,27,0.1)}
-.svc-card:nth-child(4) .svc-icon{background:rgba(6,30,79,0.07)}
+.svc-card:nth-of-type(1) .svc-icon{background:rgba(18,199,199,0.09)}
+.svc-card:nth-of-type(2) .svc-icon{background:rgba(240,6,120,0.08)}
+.svc-card:nth-of-type(3) .svc-icon{background:rgba(244,180,27,0.1)}
+.svc-card:nth-of-type(4) .svc-icon{background:rgba(6,30,79,0.07)}
 
 /* כותרת */
 .svc-card h3{
-  font-size:18px;font-weight:800;color:var(--navy);
+  font-size:22px;font-weight:800;color:var(--navy);
   margin-bottom:12px;letter-spacing:-.3px;line-height:1.3;
   opacity:0;translate:0 8px;
   transition:opacity 340ms ease, translate 340ms ease;
@@ -1010,7 +892,7 @@ nav{
 
 /* טקסט */
 .svc-card p{
-  font-size:14px;color:var(--gray);line-height:1.72;
+  font-size:17px;color:var(--gray);line-height:1.8;
   opacity:0;translate:0 6px;
   transition:opacity 320ms ease, translate 320ms ease;
 }
@@ -1028,6 +910,24 @@ nav{
   .svc-card h3,.svc-card p,.svc-icon{opacity:1;translate:0 0}
   .svc-card::after{transform:scaleX(1)}
   .svc-connector path{stroke-dashoffset:0}
+}
+
+@media(max-width:900px){
+  .services{padding:48px 16px 64px;}
+  .services .section-head{padding:0 8px;}
+  .svc-grid{
+    grid-template-columns:1fr;
+    gap:16px;
+    max-width:100%;
+  }
+  .svc-connector{display:none}
+  .svc-card{
+    padding:28px 24px 36px;
+    border-radius:20px;
+    box-shadow:0 2px 16px rgba(6,30,79,.07);
+  }
+  .svc-card h3{font-size:20px}
+  .svc-card p{font-size:16px}
 }
 
 /* ג”€ג”€ג”€ PRODUCTS ג”€ג”€ג”€ */
@@ -1358,9 +1258,9 @@ nav{
   --mani-scroll-y:0px;
   position:absolute;top:50%;left:50%;
   transform:translate(-50%,-50%);
-  width:min(580px,58vw);height:auto;
-  opacity:.09;pointer-events:none;
-  animation:manifestFingerprintMove 1.85s var(--motion-ease) infinite alternate;
+  width:min(660px,64vw);height:auto;
+  opacity:.18;pointer-events:none;
+  animation:manifestFingerprintMove 1.45s var(--motion-ease) infinite alternate;
   will-change:transform;
 }
 .mani-fp .brand-fingerprint-bg{image-rendering:auto;filter:none}
@@ -1640,7 +1540,7 @@ footer::after{
   padding:0;
   box-shadow:none;
 }
-.footer-logo svg{display:none}
+.footer-logo svg{display:block;width:200px;height:auto}
 .footer-logo img{
   display:block;
   width:330px;
@@ -2036,7 +1936,7 @@ footer::after{
 <!-- ג•ג•ג• IMPACT LOADER ג•ג•ג• -->
 <div id="isl" role="status" aria-label="טוען IMPACT OS">
   <div id="isl-video-stage" aria-hidden="true">
-    <video id="isl-loader-video" src="../public/media/impact-loader-intro.mp4?v=os-white-1" poster="../public/media/impact-loader-intro.png?v=os-white-1" autoplay muted playsinline preload="auto" crossorigin="anonymous"></video>
+    <video id="isl-loader-video" src="../public/media/impact-loader-intro.mp4?v=os-video-4" poster="../public/media/impact-loader-intro.png?v=os-video-4" autoplay muted playsinline preload="auto" crossorigin="anonymous"></video>
     <canvas id="isl-loader-canvas"></canvas>
     <div id="isl-load-ui">
       <div class="isl-load-track"><span class="isl-load-progress"></span></div>
@@ -2088,7 +1988,6 @@ footer::after{
 
     </svg>
 
-    <img id="isl-logo-official" src="../public/brand/impact-os-logo-official-transparent.png?v=os-teal-1" alt="IMPACT OS טכנולוגיה יוצרת אימפקט">
 
     <!-- לוגו מלא ג€” SVG מקורי מחבילת המותג, ללא PNG וללא רקע -->
     <svg id="isl-logo" class="impact-logo" viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IMPACT OS טכנולוגיה יוצרת אימפקט">
@@ -2130,7 +2029,7 @@ footer::after{
 
     <!-- Logo: exact SVG from impactso-logo.svg ג€” no PNG, no background -->
     <a href="#" class="nav-logo impact-logo" aria-label="IMPACT OS">
-      <img id="navLogoImage" class="brand-logo-svg" src="../public/brand/impact-os-logo-nav-teal.png?v=os-teal-1" alt="IMPACT OS טכנולוגיה יוצרת אימפקט">
+      <img id="navLogoImage" class="brand-logo-svg" src="../public/brand/impact-os-logo-nav-teal.png?v=os-logo-2" alt="IMPACT OS">
       <span class="brand-lockup" aria-hidden="true">
         <svg class="brand-lockup-mark" viewBox="0 0 240 284" xmlns="http://www.w3.org/2000/svg" fill="none">
           <g stroke="var(--logo-fingerprint)" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
@@ -2229,7 +2128,7 @@ footer::after{
 
   <!-- Watermark fingerprint ג€” SVG inline, no PNG -->
   <div class="hero-fp-watermark" aria-hidden="true">
-    <img class="brand-fingerprint-bg" src="../public/brand/impact-fingerprint-official-watermark-sharp-soft.png" alt="">
+    <img class="brand-fingerprint-bg" src="../public/brand/fingerprint-mark.svg" alt="" loading="lazy">
   </div>
   <svg class="hero-fp-watermark-old" viewBox="0 0 500 580" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <defs>
@@ -2316,6 +2215,9 @@ footer::after{
   <div class="svc-stack-wrap" id="svcStackWrap">
     <div class="svc-stack-stage">
       <div class="svc-grid" id="svcGrid">
+    <svg class="svc-connector" viewBox="0 0 1200 520" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M1040 112 C850 36 728 132 612 260 C492 392 346 466 160 398" />
+    </svg>
     <div class="svc-card">
       <div class="svc-icon">
         <!-- ImpactDataIcon ג€” SVG קווי, fingerprint style -->
@@ -2462,7 +2364,7 @@ footer::after{
 <!-- ג•ג•ג• MANIFESTO ג•ג•ג• -->
 <section class="manifesto">
   <div class="mani-fp" aria-hidden="true">
-    <img class="brand-fingerprint-bg" src="../public/brand/impact-fingerprint-official-watermark-sharp-soft.png" alt="">
+    <img class="brand-fingerprint-bg" src="../public/brand/impact-fingerprint-scroll-white.png" alt="" loading="lazy">
   </div>
   <svg class="mani-fp-old" viewBox="0 0 500 580" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <defs>
@@ -2509,7 +2411,7 @@ footer::after{
   <div class="team-grid">
     <article class="person-card">
       <div class="person-photo" data-person="meital">
-        <img src="../public/team/meital-peleg-v2.jpg" alt="מיטל פלג">
+        <img src="../public/team/meital-peleg.png" alt="מיטל פלג">
       </div>
       <span class="person-role">יזמות חברתית חינוכית</span>
       <h3>מיטל פלג</h3>
@@ -2518,7 +2420,7 @@ footer::after{
 
     <article class="person-card">
       <div class="person-photo" data-person="liron">
-        <img src="../public/team/liron-golan.jpeg" alt="לירון גולן">
+        <img src="../public/team/liron-golan.jpeg" alt="לירון גולן" loading="lazy">
       </div>
       <span class="person-role">אפיון מוצר, מערכות חכמות וחוויית משתמש</span>
       <h3>לירון גולן</h3>
@@ -2527,7 +2429,7 @@ footer::after{
 
     <article class="person-card">
       <div class="person-photo" data-person="amit">
-        <img src="../public/team/amit-avitbol-v2.jpg" alt="עמית אביטבול">
+        <img src="../public/team/amit-avitbol.png" alt="עמית אביטבול">
       </div>
       <span class="person-role">מומחה לפיתוח מערכות חכמות</span>
       <h3>עמית אביטבול</h3>
@@ -2536,7 +2438,7 @@ footer::after{
 
     <article class="person-card">
       <div class="person-photo" data-person="ofir">
-        <img src="../public/team/ofir-v2.jpg" alt="אופיר">
+        <img src="../public/team/ofir.png" alt="אופיר">
       </div>
       <span class="person-role">מומחה לאסטרטגיה וחדשנות טכנולוגית</span>
       <h3>אופיר שטיינברג</h3>
@@ -2627,25 +2529,7 @@ footer::after{
     <div class="footer-brand">
       <!-- Logo in footer ג€” official transparent logo -->
       <div class="footer-logo">
-        <img src="../public/brand/impact-os-logo-footer-transparent.png?v=os-footer-1" alt="IMPACT OS טכנולוגיה יוצרת אימפקט">
-        <svg viewBox="0 0 160 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="IMPACT OS">
-          <defs>
-            <linearGradient id="lgFoot" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#12C7C7"/>
-              <stop offset="100%" stop-color="#F00678"/>
-            </linearGradient>
-          </defs>
-          <g stroke="url(#lgFoot)" stroke-width="2.8" stroke-linecap="round" fill="none">
-            <path d="M22 6C30 6 37 12 37 21C37 30 30 36 22 36"/>
-            <path d="M22 11C28 11 32 16 32 22C32 28 28 33 22 33"/>
-            <path d="M22 16C26 16 29 18.5 29 22C29 26 26 28.5 22 28.5"/>
-            <path d="M12 9.5C14.5 6.5 18 5.5 22 6"/>
-            <path d="M9.5 16.5C11.5 10 16 7.5 22 11"/>
-            <path d="M9 24C9 15 15 9.5 22 16"/>
-          </g>
-          <text x="44" y="28" font-family="Heebo,sans-serif" font-weight="900" font-size="19" fill="rgba(255,255,255,0.9)" letter-spacing="-0.5">IMPACT</text>
-          <text x="128" y="28" font-family="Heebo,sans-serif" font-weight="900" font-size="19" fill="#F00678" letter-spacing="-0.5"> OS</text>
-        </svg>
+        <img src="../public/brand/impact-os-logo-footer-transparent.png?v=os-footer-2" alt="IMPACT OS">
       </div>
       <p>טכנולוגיה עם טביעת אצבע אנושית בשביל עולם שפועל טוב יותר.</p>
     </div>
@@ -2880,11 +2764,11 @@ footer::after{
     "url('../public/brand/impact-fingerprint-scroll-orange.png')"
   ];
   var navLogoImages = [
-    '../public/brand/impact-os-logo-nav-teal.png',
-    '../public/brand/impact-os-logo-nav-fuchsia.png',
-    '../public/brand/impact-os-logo-nav-yellow.png',
-    '../public/brand/impact-os-logo-nav-green.png',
-    '../public/brand/impact-os-logo-nav-orange.png'
+    '../public/brand/impact-os-logo-nav-teal.png?v=os-logo-3',
+    '../public/brand/impact-os-logo-nav-fuchsia.png?v=os-logo-3',
+    '../public/brand/impact-os-logo-nav-yellow.png?v=os-logo-3',
+    '../public/brand/impact-os-logo-nav-green.png?v=os-logo-3',
+    '../public/brand/impact-os-logo-nav-orange.png?v=os-logo-3'
   ];
   var ticking = false;
   var activeLogoIndex = -1;
@@ -3136,7 +3020,7 @@ footer::after{
   var grid = document.getElementById('svcGrid');
   var cards = document.querySelectorAll('#svcGrid .svc-card');
   var dots = document.querySelectorAll('#svcIndicator .svc-dot');
-  if(!wrap || !cards.length || reduced) return;
+  return; /* cards shown as grid — no JS needed */
 
   var current = 0;
 
