@@ -1,4 +1,4 @@
-export { FingerprintMark } from './FingerprintMark'
-export { ImpactSOLogo } from './ImpactSOLogo'
+﻿export { FingerprintMark } from './FingerprintMark'
+export { ImpactOSLogo } from './ImpactOSLogo'
 export { ImpactLoader } from './ImpactLoader'
 export * from './icons'

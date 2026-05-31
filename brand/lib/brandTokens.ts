@@ -1,4 +1,4 @@
-export const brandColors = {
+﻿export const brandColors = {
   navy: '#061E4F',
   fuchsia: '#F00678',
   turquoise: '#12C7C7',
@@ -38,6 +38,6 @@ export const brandLogoDefaults = {
   fingerprint: brandColors.navy,
   heart: brandColors.fuchsia,
   impact: brandColors.navy,
-  so: brandColors.fuchsia,
+  os: brandColors.fuchsia,
   tagline: brandColors.navy,
 } as const

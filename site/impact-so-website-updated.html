@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IMPACT SO | טכנולוגיה יוצרת אימפקט</title>
+<title>IMPACT OS | טכנולוגיה יוצרת אימפקט</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -17,14 +17,14 @@
   --bg:#F8FAFC;
   --white:#FFFFFF;
   --gray:#64748B;
-  --logo-fingerprint:var(--navy);
+  --logo-fingerprint:var(--teal);
   --logo-heart:var(--fuchsia);
   --logo-impact:var(--navy);
   --logo-so:var(--fuchsia);
   --logo-tagline:var(--navy);
 }
 .impact-logo{
-  --logo-fingerprint:var(--navy);
+  --logo-fingerprint:var(--teal);
   --logo-heart:var(--fuchsia);
   --logo-impact:var(--navy);
   --logo-so:var(--fuchsia);
@@ -94,12 +94,14 @@ nav{
 }
 .nav-logo > svg{display:none}
 .brand-logo-svg{
-  display:block;
-  width:286px;
+  display:block !important;
+  width:300px;
+  max-width:38vw;
   height:auto;
-  max-height:72px;
-  background:transparent;
-  transition:opacity 180ms var(--motion-ease),filter 180ms var(--motion-ease);
+}
+.nav-logo .brand-lockup,
+.nav-logo > svg{
+  display:none !important;
 }
 .nav-scroll-badge{
   display:inline-flex;
@@ -132,7 +134,7 @@ nav{
   transform:translateY(0) scale(1);
 }
 .brand-lockup{
-  display:none;
+  display:flex;
   align-items:center;
   gap:12px;
   direction:ltr;
@@ -449,7 +451,7 @@ nav{
   top:50%;left:50%;
   transform:translate(-50%,-50%);
   width:490px;height:auto;
-  opacity:.34;
+  opacity:.14;
   pointer-events:none;z-index:0;
 }
 .hero-fp-watermark .brand-fingerprint-bg{
@@ -712,6 +714,7 @@ nav{
 }
 
 /* ג”€ג”€ג”€ SECTION SHARED ג”€ג”€ג”€ */
+.section-head{text-align:center}
 .section-label{
   font-size:11px;font-weight:700;color:var(--teal);
   letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;
@@ -724,46 +727,248 @@ nav{
 .section-sub{
   font-size:16px;color:var(--gray);line-height:1.75;
   max-width:540px;margin-bottom:0;
+  margin-right:auto;margin-left:auto;
 }
 
 /* ג”€ג”€ג”€ SERVICES ג”€ג”€ג”€ */
 .services{
-  padding:104px 64px;
+  padding:104px 64px 0;
   background:var(--bg);
   position:relative;
   overflow:hidden;
   scroll-margin-top:108px;
 }
-.services .section-head,
-.svc-grid{
+.services .section-head{
   position:relative;
   z-index:2;
 }
 .section-head{margin-bottom:56px}
-.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+
+/* ===== STACKED CARDS ===== */
+.svc-stack-wrap{
+  position:relative;
+  height:400vh; /* 4 כרטיסים × 100vh */
+}
+.svc-stack-stage{
+  position:sticky;
+  top:108px;
+  height:calc(100vh - 108px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.svc-grid{
+  position:relative;
+  width:100%;
+  max-width:680px;
+  height:340px;
+}
 .svc-card{
-  background:var(--white);border-radius:28px;
-  padding:34px 28px;
-  position:relative;overflow:hidden;
-  transition:transform 320ms var(--motion-ease),box-shadow 320ms var(--motion-ease);
-  cursor:default;
-  will-change:transform;
+  position:absolute;
+  inset:0;
+  background:var(--white);
+  border-radius:28px;
+  padding:44px 48px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:0;
+  opacity:0;
+  transform:translateY(40px) scale(0.97);
+  transition:
+    opacity 600ms cubic-bezier(.22,1,.36,1),
+    transform 600ms cubic-bezier(.22,1,.36,1);
+  pointer-events:none;
+  box-shadow:0 12px 48px rgba(6,30,79,0.10);
+  will-change:opacity,transform;
 }
-.svc-card:hover{transform:translateY(-6px);box-shadow:0 22px 48px rgba(6,30,79,0.11)}
+.svc-card.is-active{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  pointer-events:auto;
+  z-index:2;
+}
+.svc-card.is-exit{
+  opacity:0;
+  transform:translateY(-28px) scale(1.02);
+  z-index:1;
+}
+
+/* פס תחתון */
 .svc-card::after{
-  content:'';position:absolute;bottom:0;right:0;left:0;height:3px;
+  content:'';
+  position:absolute;
+  bottom:0;right:0;left:0;
+  height:3px;
   border-radius:0 0 28px 28px;
+  transform:scaleX(0);
+  transform-origin:right center;
+  transition:transform 600ms 200ms cubic-bezier(.22,.68,0,1.2);
 }
+.svc-card.is-active::after{transform:scaleX(1);}
 .svc-card:nth-child(1)::after{background:linear-gradient(90deg,var(--teal),var(--green))}
 .svc-card:nth-child(2)::after{background:linear-gradient(90deg,var(--fuchsia),var(--orange))}
 .svc-card:nth-child(3)::after{background:linear-gradient(90deg,var(--yellow),var(--green))}
 .svc-card:nth-child(4)::after{background:linear-gradient(90deg,var(--navy),var(--teal))}
+
+/* אינדיקטור */
+.svc-indicator{
+  position:absolute;
+  bottom:32px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:8px;
+  align-items:center;
+  z-index:10;
+}
+.svc-dot{
+  width:6px;height:6px;
+  border-radius:50%;
+  background:rgba(6,30,79,0.18);
+  transition:background 300ms ease, transform 300ms ease;
+}
+.svc-dot.active{
+  background:var(--teal);
+  transform:scale(1.4);
+}
+
+/* מובייל — גלילה רגילה */
+@media(max-width:900px){
+  .services{padding:72px 0 80px;}
+  .services .section-head{padding:0 24px;}
+  .svc-stack-wrap{height:auto;}
+  .svc-stack-stage{
+    position:static;
+    height:auto;
+    display:block;
+    overflow:hidden;
+  }
+  /* slider אופקי */
+  .svc-grid{
+    position:static;
+    height:auto;
+    max-width:none;
+    display:flex;
+    flex-direction:row;
+    gap:0;
+    width:400%;
+    transform:translateX(0);
+    transition:transform 480ms cubic-bezier(.22,1,.36,1);
+  }
+  .svc-card{
+    position:static;
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+    padding:32px 28px 44px;
+    flex:0 0 25%;
+    width:25%;
+    box-sizing:border-box;
+    border-radius:0;
+    box-shadow:none;
+    border-bottom:none;
+  }
+  .svc-card::after{transform:scaleX(1);border-radius:0;}
+  .svc-indicator{
+    display:flex;
+    position:static;
+    transform:none;
+    justify-content:center;
+    margin-top:24px;
+    left:auto;bottom:auto;
+  }
+}
+
+/* reduced motion */
+@media(prefers-reduced-motion:reduce){
+  .svc-card{transition:none!important;}
+  .svc-stack-wrap{height:auto;}
+  .svc-stack-stage{position:static;height:auto;display:block;}
+  .svc-grid{position:static;height:auto;display:flex;flex-direction:column;gap:16px;width:100%;transform:none;}
+  .svc-card{position:static;opacity:1;transform:none;pointer-events:auto;flex:none;width:100%;}
+  .svc-card::after{transform:scaleX(1);}
+  .svc-indicator{display:none;}
+}
+
+/* קו מחבר SVG */
+.svc-connector{
+  position:absolute;
+  top:44px;
+  right:0;left:0;
+  height:2px;
+  pointer-events:none;
+  z-index:0;
+  overflow:visible;
+}
+.svc-connector path{
+  stroke-dasharray:800;
+  stroke-dashoffset:800;
+  transition:stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1);
+}
+.svc-connector.is-visible path{
+  stroke-dashoffset:0;
+}
+
+/* כרטיסים — כניסה מדורגת */
+.svc-card{
+  background:var(--white);border-radius:28px;
+  padding:34px 28px;
+  position:relative;overflow:hidden;
+  transition:
+    transform 380ms cubic-bezier(.22,.68,0,1.2),
+    box-shadow 320ms var(--motion-ease),
+    opacity 500ms ease,
+    translate 500ms ease;
+  cursor:default;
+  will-change:transform,opacity;
+  opacity:0;
+  translate:0 28px;
+  z-index:1;
+}
+.svc-card.is-visible{
+  opacity:1;
+  translate:0 0;
+}
+.svc-card:hover{
+  transform:translateY(-7px);
+  box-shadow:0 24px 52px rgba(6,30,79,0.13);
+}
+
+/* פס תחתון */
+.svc-card::after{
+  content:'';
+  position:absolute;
+  bottom:0;right:0;left:0;
+  height:3px;
+  border-radius:0 0 28px 28px;
+  transform:scaleX(0.4);
+  transform-origin:right center;
+  transition:transform 480ms cubic-bezier(.22,.68,0,1.2);
+}
+.svc-card.is-visible::after{transform:scaleX(1);}
+.svc-card:hover::after{transform:scaleX(1) scaleY(1.8);}
+.svc-card:nth-child(1)::after{background:linear-gradient(90deg,var(--teal),var(--green))}
+.svc-card:nth-child(2)::after{background:linear-gradient(90deg,var(--fuchsia),var(--orange))}
+.svc-card:nth-child(3)::after{background:linear-gradient(90deg,var(--yellow),var(--green))}
+.svc-card:nth-child(4)::after{background:linear-gradient(90deg,var(--navy),var(--teal))}
+
+/* אייקון */
 .svc-icon{
   width:62px;height:62px;border-radius:18px;
   display:flex;align-items:center;justify-content:center;
   margin-bottom:24px;
   position:relative;
   overflow:hidden;
+  opacity:0;
+  translate:0 10px;
+  transition:opacity 380ms ease, translate 380ms ease, box-shadow 320ms ease;
+}
+.svc-card.is-visible .svc-icon{
+  opacity:1;
+  translate:0 0;
+  transition-delay:0.08s;
 }
 .svc-icon::before{
   content:'';
@@ -779,16 +984,51 @@ nav{
   z-index:1;
   width:21px;
   height:21px;
-  transition:transform 420ms var(--motion-ease);
+  transition:transform 420ms cubic-bezier(.22,.68,0,1.2);
 }
-.svc-card:hover .svc-icon::before{opacity:.3;transform:scale(1.08)}
-.svc-card:hover .svc-icon svg{transform:translateY(-1px) scale(1.04)}
+.svc-card:hover .svc-icon{
+  box-shadow:0 0 0 6px rgba(6,30,79,0.05);
+}
+.svc-card:hover .svc-icon::before{opacity:.35;transform:scale(1.1)}
+.svc-card:hover .svc-icon svg{transform:translateY(-2px) scale(1.08)}
 .svc-card:nth-child(1) .svc-icon{background:rgba(18,199,199,0.09)}
 .svc-card:nth-child(2) .svc-icon{background:rgba(240,6,120,0.08)}
 .svc-card:nth-child(3) .svc-icon{background:rgba(244,180,27,0.1)}
 .svc-card:nth-child(4) .svc-icon{background:rgba(6,30,79,0.07)}
-.svc-card h3{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:12px;letter-spacing:-.3px;line-height:1.3}
-.svc-card p{font-size:14px;color:var(--gray);line-height:1.72}
+
+/* כותרת */
+.svc-card h3{
+  font-size:18px;font-weight:800;color:var(--navy);
+  margin-bottom:12px;letter-spacing:-.3px;line-height:1.3;
+  opacity:0;translate:0 8px;
+  transition:opacity 340ms ease, translate 340ms ease;
+}
+.svc-card.is-visible h3{
+  opacity:1;translate:0 0;
+  transition-delay:0.18s;
+}
+
+/* טקסט */
+.svc-card p{
+  font-size:14px;color:var(--gray);line-height:1.72;
+  opacity:0;translate:0 6px;
+  transition:opacity 320ms ease, translate 320ms ease;
+}
+.svc-card.is-visible p{
+  opacity:1;translate:0 0;
+  transition-delay:0.28s;
+}
+
+/* reduced motion */
+@media(prefers-reduced-motion:reduce){
+  .svc-card,.svc-card h3,.svc-card p,.svc-icon,.svc-connector path{
+    transition:none!important;animation:none!important;
+  }
+  .svc-card{opacity:1;translate:0 0}
+  .svc-card h3,.svc-card p,.svc-icon{opacity:1;translate:0 0}
+  .svc-card::after{transform:scaleX(1)}
+  .svc-connector path{stroke-dashoffset:0}
+}
 
 /* ג”€ג”€ג”€ PRODUCTS ג”€ג”€ג”€ */
 .products{
@@ -890,7 +1130,7 @@ nav{
   position:absolute;
   inset:22px;
   background:url('../public/brand/impact-fingerprint-official-color.png') center/contain no-repeat;
-  opacity:.2;
+  opacity:.08;
   filter:brightness(0) invert(1);
 }
 .product-media::after{
@@ -901,7 +1141,7 @@ nav{
 }
 .product-media.is-adora,
 .product-media.is-goldfish,
-.product-media.is-coming{
+.product-media.is-retzef{
   display:flex;
   align-items:center;
   justify-content:center;
@@ -909,15 +1149,31 @@ nav{
   gap:14px;
   padding:28px;
   text-align:center;
-  background:
-    radial-gradient(circle at 20% 18%,rgba(18,199,199,0.09),transparent 34%),
-    radial-gradient(circle at 82% 78%,rgba(240,6,120,0.08),transparent 38%),
-    var(--white);
   border-bottom:1px solid rgba(6,30,79,0.08);
+  height:260px;
+  box-sizing:border-box;
+}
+.product-media.is-adora{
+  background:
+    radial-gradient(circle at 20% 18%,rgba(240,6,120,0.13),transparent 40%),
+    radial-gradient(circle at 80% 80%,rgba(240,6,120,0.07),transparent 40%),
+    var(--white);
+}
+.product-media.is-goldfish{
+  background:
+    radial-gradient(circle at 20% 18%,rgba(244,124,38,0.13),transparent 40%),
+    radial-gradient(circle at 80% 80%,rgba(244,124,38,0.07),transparent 40%),
+    var(--white);
+}
+.product-media.is-retzef{
+  background:
+    radial-gradient(circle at 20% 18%,rgba(91,45,158,0.13),transparent 40%),
+    radial-gradient(circle at 80% 80%,rgba(91,45,158,0.07),transparent 40%),
+    var(--white);
 }
 .product-media.is-adora::before,
 .product-media.is-goldfish::before,
-.product-media.is-coming::before{
+.product-media.is-retzef::before{
   inset:auto;
   width:156px;
   height:142px;
@@ -926,10 +1182,10 @@ nav{
 }
 .product-media.is-adora::after,
 .product-media.is-goldfish::after,
-.product-media.is-coming::after{display:none}
+.product-media.is-retzef::after{display:none}
 .adora-logo,
 .goldfish-logo,
-.coming-logo{
+.retzef-logo{
   position:relative;
   z-index:1;
   direction:rtl;
@@ -950,6 +1206,13 @@ nav{
   font-family:Arial, sans-serif;
   font-size:42px;
   direction:ltr;
+}
+.retzef-logo{
+  color:#5B2D9E;
+  font-size:42px;
+  letter-spacing:-1px;
+  direction:rtl;
+  text-align:center;
 }
 .goldfish-icon{
   position:relative;
@@ -982,9 +1245,12 @@ nav{
   border-left:22px solid #F47C26;
   opacity:.76;
 }
-.coming-logo{
-  font-size:30px;
-  color:var(--navy);
+.retzef-logo-img{
+  position:relative;
+  z-index:1;
+  width:min(320px,78%);
+  max-height:86px;
+  object-fit:contain;
 }
 .product-media-text{
   position:relative;
@@ -1001,6 +1267,16 @@ nav{
   font-weight:950;
   color:var(--navy);
   letter-spacing:-.6px;
+}
+.product-front-desc{
+  position:relative;
+  z-index:1;
+  max-width:330px;
+  margin:0 auto;
+  color:var(--gray);
+  font-size:15px;
+  font-weight:700;
+  line-height:1.65;
 }
 .product-status{
   display:inline-flex;
@@ -1056,21 +1332,6 @@ nav{
   margin:0;
   align-self:center;
 }
-.product-link{
-  margin-top:0;
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  color:var(--navy);
-  font-size:14px;
-  font-weight:800;
-  text-decoration:none;
-  transition:color 220ms var(--motion-ease),transform 220ms var(--motion-ease);
-}
-.product-link:hover{
-  color:var(--fuchsia);
-  transform:translateX(-3px);
-}
 @media (prefers-reduced-motion: reduce){
   .product-card-inner{transition:none;transform:none!important}
   .product-face{position:relative;backface-visibility:visible}
@@ -1098,7 +1359,7 @@ nav{
   position:absolute;top:50%;left:50%;
   transform:translate(-50%,-50%);
   width:min(580px,58vw);height:auto;
-  opacity:.2;pointer-events:none;
+  opacity:.09;pointer-events:none;
   animation:manifestFingerprintMove 1.85s var(--motion-ease) infinite alternate;
   will-change:transform;
 }
@@ -1476,7 +1737,6 @@ footer::after{
   .hero{grid-template-columns:1fr;min-height:auto}
   .hero-left{padding:110px 40px 48px}
   .hero h1{font-size:clamp(38px,6vw,54px)}
-  .svc-grid{grid-template-columns:repeat(2,1fr)}
   .products-grid{grid-template-columns:repeat(2,1fr)}
   .team-grid{grid-template-columns:repeat(2,1fr)}
   .footer-grid{grid-template-columns:1fr 1fr}
@@ -1508,7 +1768,7 @@ footer::after{
     position:relative;
     z-index:2;
   }
-  .svc-grid,.products-grid{grid-template-columns:1fr}
+  .products-grid{grid-template-columns:1fr}
   .products::before{width:360px;right:-130px;bottom:80px;opacity:.12}
   .product-media{height:220px}
   .product-body{
@@ -1589,22 +1849,41 @@ footer::after{
   background:rgba(255,255,255,.32);
   mix-blend-mode:screen;
 }
+#isl-video-stage.canvas-ready #isl-loader-video{
+  opacity:0;
+}
+#isl-video-stage.canvas-ready #isl-loader-canvas{
+  display:block;
+}
 #isl-loader-video{
   display:block;
   position:absolute;
   width:min(920px,92vw);
   max-height:82vh;
   height:auto;
-  opacity:0;
+  opacity:1;
   object-fit:contain;
-  z-index:0;
+  z-index:1;
   pointer-events:none;
   background:transparent;
+  filter:brightness(1.04) contrast(1.03) saturate(1.02);
+}
+#isl-loader-image{
+  display:block;
+  position:absolute;
+  width:min(920px,92vw);
+  max-height:82vh;
+  height:auto;
+  opacity:1;
+  object-fit:contain;
+  z-index:1;
+  pointer-events:none;
+  background:#FFFFFF;
 }
 #isl-loader-canvas{
   position:relative;
-  z-index:1;
-  display:block;
+  z-index:2;
+  display:none;
   width:min(920px,92vw);
   max-height:82vh;
   object-fit:contain;
@@ -1755,9 +2034,9 @@ footer::after{
 </div>
 
 <!-- ג•ג•ג• IMPACT LOADER ג•ג•ג• -->
-<div id="isl" role="status" aria-label="טוען IMPACT SO">
+<div id="isl" role="status" aria-label="טוען IMPACT OS">
   <div id="isl-video-stage" aria-hidden="true">
-    <video id="isl-loader-video" src="../public/media/impact-loader-intro.mp4?v=loader-white-20260530-2" autoplay muted playsinline preload="auto"></video>
+    <video id="isl-loader-video" src="../public/media/impact-loader-intro.mp4?v=os-white-1" poster="../public/media/impact-loader-intro.png?v=os-white-1" autoplay muted playsinline preload="auto" crossorigin="anonymous"></video>
     <canvas id="isl-loader-canvas"></canvas>
     <div id="isl-load-ui">
       <div class="isl-load-track"><span class="isl-load-progress"></span></div>
@@ -1766,7 +2045,7 @@ footer::after{
   <div id="isl-box">
 
     <!--
-      טביעת האצבע המקורית של IMPACT SO
+      טביעת האצבע המקורית של IMPACT OS
       paths ו-circles מתוך impactso-logo.svg ג€” viewBox 0 0 248 284
       נייבי #061E4F + לב פוקסיה #F00678
     -->
@@ -1809,10 +2088,10 @@ footer::after{
 
     </svg>
 
-    <img id="isl-logo-official" src="../public/brand/impact-so-logo-official-transparent.png?v=pink-1" alt="IMPACT SO טכנולוגיה יוצרת אימפקט">
+    <img id="isl-logo-official" src="../public/brand/impact-os-logo-official-transparent.png?v=os-teal-1" alt="IMPACT OS טכנולוגיה יוצרת אימפקט">
 
     <!-- לוגו מלא ג€” SVG מקורי מחבילת המותג, ללא PNG וללא רקע -->
-    <svg id="isl-logo" class="impact-logo" viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IMPACT SO טכנולוגיה יוצרת אימפקט">
+    <svg id="isl-logo" class="impact-logo" viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IMPACT OS טכנולוגיה יוצרת אימפקט">
       <g transform="translate(0,8) scale(0.52)">
         <g fill="none" stroke="var(--logo-fingerprint)" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
           <path d="M72 86c24-37 80-42 113-11 24 22 31 56 20 91"/>
@@ -1838,7 +2117,7 @@ footer::after{
         </g>
       </g>
       <text x="150" y="90" font-family="Rubik, Heebo, Arial, sans-serif" font-size="68" font-weight="900" letter-spacing="6" fill="var(--logo-impact)">IMPACT</text>
-      <text x="590" y="90" font-family="Rubik, Heebo, Arial, sans-serif" font-size="68" font-weight="900" letter-spacing="2" fill="var(--logo-so)">SO</text>
+      <text x="590" y="90" font-family="Rubik, Heebo, Arial, sans-serif" font-size="68" font-weight="900" letter-spacing="2" fill="var(--logo-so)">OS</text>
       <text x="165" y="137" font-family="Rubik, Heebo, Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="9" fill="var(--logo-tagline)">טכנולוגיה יוצרת אימפקט</text>
     </svg>
 
@@ -1850,8 +2129,8 @@ footer::after{
   <div class="nav-inner">
 
     <!-- Logo: exact SVG from impactso-logo.svg ג€” no PNG, no background -->
-    <a href="#" class="nav-logo impact-logo" aria-label="IMPACT SO">
-      <img id="navLogoImage" class="brand-logo-svg" src="../public/brand/impact-so-logo-nav-teal.png?v=pink-1" alt="IMPACT SO טכנולוגיה יוצרת אימפקט">
+    <a href="#" class="nav-logo impact-logo" aria-label="IMPACT OS">
+      <img id="navLogoImage" class="brand-logo-svg" src="../public/brand/impact-os-logo-nav-teal.png?v=os-teal-1" alt="IMPACT OS טכנולוגיה יוצרת אימפקט">
       <span class="brand-lockup" aria-hidden="true">
         <svg class="brand-lockup-mark" viewBox="0 0 240 284" xmlns="http://www.w3.org/2000/svg" fill="none">
           <g stroke="var(--logo-fingerprint)" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
@@ -1880,12 +2159,12 @@ footer::after{
         <span class="brand-lockup-text">
           <span class="brand-lockup-name">
             <span class="brand-lockup-impact">IMPACT</span>
-            <span class="brand-lockup-so">SO</span>
+            <span class="brand-lockup-so">OS</span>
           </span>
           <span class="brand-lockup-tagline">טכנולוגיה יוצרת אימפקט</span>
         </span>
       </span>
-      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IMPACT SO logo">
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IMPACT OS logo">
         <g transform="translate(0,8) scale(0.52)">
           <g fill="none" stroke="var(--logo-fingerprint)" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
             <path d="M72 86c24-37 80-42 113-11 24 22 31 56 20 91"/>
@@ -1911,7 +2190,7 @@ footer::after{
           </g>
         </g>
         <text x="150" y="90" font-family="Rubik, Heebo, Arial, sans-serif" font-size="68" font-weight="900" letter-spacing="6" fill="var(--logo-impact)">IMPACT</text>
-        <text x="590" y="90" font-family="Rubik, Heebo, Arial, sans-serif" font-size="68" font-weight="900" letter-spacing="2" fill="var(--logo-so)">SO</text>
+        <text x="590" y="90" font-family="Rubik, Heebo, Arial, sans-serif" font-size="68" font-weight="900" letter-spacing="2" fill="var(--logo-so)">OS</text>
         <text x="165" y="137" font-family="Rubik, Heebo, Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="9" fill="var(--logo-tagline)">טכנולוגיה יוצרת אימפקט</text>
       </svg>
     </a>
@@ -1989,7 +2268,7 @@ footer::after{
     </h1>
 
     <p class="hero-sub">
-      IMPACT SO בונה מערכות דיגיטליות מותאמות לארגונים חברתיים, חינוכיים וציבוריים, כדי להפוך ידע, תהליכים ונתונים לכלים שעובדים באמת בשטח.
+      IMPACT OS בונה מערכות דיגיטליות מותאמות לארגונים חברתיים, חינוכיים וציבוריים, כדי להפוך ידע, תהליכים ונתונים לכלים שעובדים באמת בשטח.
     </p>
 
     <div class="hero-btns">
@@ -2034,7 +2313,9 @@ footer::after{
     <p class="section-sub">אנחנו מאפיינים, מפתחים ומטמיעים מערכות דיגיטליות שמסדרות תהליכים, מחברות נתונים ומאפשרות לארגונים חברתיים וחינוכיים לעבוד בצורה חכמה, מדידה ואפקטיבית יותר.</p>
   </div>
 
-  <div class="svc-grid">
+  <div class="svc-stack-wrap" id="svcStackWrap">
+    <div class="svc-stack-stage">
+      <div class="svc-grid" id="svcGrid">
     <div class="svc-card">
       <div class="svc-icon">
         <!-- ImpactDataIcon ג€” SVG קווי, fingerprint style -->
@@ -2096,7 +2377,15 @@ footer::after{
       <h3>AI למגזר החברתי</h3>
       <p>שילוב חכם של בינה מלאכותית בתהליכי עבודה, כדי לחסוך זמן, לשפר החלטות ולהגדיל את היכולת לעשות יותר עם פחות.</p>
     </div>
-  </div>
+      <div class="svc-indicator" id="svcIndicator" aria-hidden="true">
+        <span class="svc-dot active" data-i="0"></span>
+        <span class="svc-dot" data-i="1"></span>
+        <span class="svc-dot" data-i="2"></span>
+        <span class="svc-dot" data-i="3"></span>
+      </div>
+    </div><!-- /svc-grid -->
+    </div><!-- /svc-stack-stage -->
+  </div><!-- /svc-stack-wrap -->
 </section>
 
 <!-- ג•ג•ג• PRODUCTS ג•ג•ג• -->
@@ -2104,7 +2393,7 @@ footer::after{
   <div class="section-head">
     <div class="section-label">המוצרים שלנו</div>
     <h2 class="section-title">מוצרים טכנולוגיים חכמים<br>עם טביעת אצבע אנושית</h2>
-    <p class="section-sub">כאן נאסוף את המערכות, הפלטפורמות והכלים שפיתחנו עבור ארגונים שרוצים להפוך תהליך מורכב למוצר ברור, שימושי ומדיד.</p>
+    <p class="section-sub">חלק מהמערכות שפיתחנו.</p>
   </div>
 
   <div class="products-grid">
@@ -2113,20 +2402,14 @@ footer::after{
         <div class="product-face product-face-front">
           <div class="product-media is-adora" aria-hidden="true">
             <div class="adora-logo"><em>א</em>דורה</div>
-            <div class="product-front-title">אדורה</div>
+            <p class="product-front-desc">לוח מודעות דרושים לעולם החינוך, שמחבר בין אנשי חינוך, בתי ספר וארגונים.</p>
           </div>
         </div>
         <div class="product-face product-face-back">
           <div class="product-body">
-            <span class="product-status">בקרוב</span>
             <span class="product-kicker">חינוך ותעסוקה</span>
-            <h3>מה זה עושה?</h3>
+            <h3>טביעת האצבע</h3>
             <p>לוח מודעות דרושים לעולם החינוך, שמחבר בין אנשי חינוך, בתי ספר וארגונים שמחפשים התאמה מדויקת ומשמעותית.</p>
-            <a class="product-link" href="#contact">לפרטי המוצר
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5"/>
-              </svg>
-            </a>
           </div>
         </div>
       </div>
@@ -2138,44 +2421,37 @@ footer::after{
           <div class="product-media is-goldfish" aria-hidden="true">
             <div class="goldfish-icon"></div>
             <div class="goldfish-logo">Goldfish</div>
-            <div class="product-front-title">Goldfish</div>
+            <p class="product-front-desc">כלי חכם לגיוס משאבים לעמותות, שמסייע לאתר מענקים וקולות קוראים.</p>
           </div>
         </div>
         <div class="product-face product-face-back">
           <div class="product-body">
-            <span class="product-status">בקרוב</span>
             <span class="product-kicker">גיוס משאבים</span>
-            <h3>מה זה עושה?</h3>
+            <h3>טביעת האצבע</h3>
             <p>כלי חכם לגיוס משאבים לעמותות, שמסייע לאתר הזדמנויות, מענקים וקולות קוראים בלי לטבוע בתוך עומס המידע.</p>
-            <a class="product-link" href="#contact">לפרטי המוצר
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5"/>
-              </svg>
-            </a>
           </div>
         </div>
       </div>
     </article>
 
-    <article class="product-card" tabindex="0" aria-label="מוצר נוסף בדרך, לחצו כדי לראות מה המוצר עושה">
+    <article class="product-card" tabindex="0" aria-label="רצף, לחצו כדי לראות מה המוצר עושה">
       <div class="product-card-inner">
         <div class="product-face product-face-front">
-          <div class="product-media is-coming" aria-hidden="true">
-            <div class="coming-logo">המוצר הבא</div>
-            <div class="product-front-title">בקרוב</div>
+          <div class="product-media is-retzef" aria-hidden="true">
+            <svg width="180" height="80" viewBox="0 0 180 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="display:block;margin:0 auto 8px">
+              <path d="M10 72 C10 30 42 6 90 6 C138 6 170 30 170 72" stroke="#5B2D9E" stroke-width="6" stroke-linecap="round" fill="none"/>
+              <path d="M24 72 C24 36 52 16 90 16 C128 16 156 36 156 72" stroke="#7B4EC8" stroke-width="5" stroke-linecap="round" fill="none"/>
+              <path d="M38 72 C38 42 62 26 90 26 C118 26 142 42 142 72" stroke="#A07EE0" stroke-width="4" stroke-linecap="round" fill="none"/>
+            </svg>
+            <div class="retzef-logo">רָצֶף</div>
+            <p class="product-front-desc">מענים לקהילה האוטיסטית ובני משפחותיהם לאורך כל שלבי החיים.</p>
           </div>
         </div>
         <div class="product-face product-face-back">
           <div class="product-body">
-            <span class="product-status">בקרוב</span>
-            <span class="product-kicker">דאטה ואימפקט</span>
-            <h3>מה זה עושה?</h3>
-            <p>מקום שמור למוצר הבא של IMPACT SO. כשתשלחי תמונה, שם ולינק, נכניס אותו לאותה שפה מותגית.</p>
-            <a class="product-link" href="#contact">לפרטי המוצר
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5"/>
-              </svg>
-            </a>
+            <span class="product-kicker">רווחה וקהילה</span>
+            <h3>טביעת האצבע</h3>
+            <p>מערכת שמרכזת מענים, שירותים ותהליכים עבור הקהילה האוטיסטית ומשפחותיהם לאורך שלבי החיים.</p>
           </div>
         </div>
       </div>
@@ -2211,7 +2487,7 @@ footer::after{
 
   <div class="mani-label">המניפסט שלנו</div>
   <h2>אנחנו מאמינים<br>בטכנולוגיה <em>עם נשמה</em></h2>
-  <p>אנחנו מאמינים שהמגזר החברתי והחינוכי יכול להוביל שינוי אמיתי בעזרת כלים חכמים, מדויקים ונגישים. IMPACT SO נולדה כדי לחבר בין טכנולוגיה, אנשים ואימפקט, ולבנות מערכות שמבינות את השטח, עושות סדר בתהליכים ומאפשרות לארגונים לעשות יותר טוב בעולם.</p>
+  <p>אנחנו מאמינים שהמגזר החברתי והחינוכי יכול להוביל שינוי אמיתי בעזרת כלים חכמים, מדויקים ונגישים. אימפקט OS נולדה כדי לחבר בין טכנולוגיה, אנשים ואימפקט, ולבנות מערכות שמבינות את השטח, עושות סדר בתהליכים ומאפשרות לארגונים לעשות יותר טוב בעולם.</p>
 
   <div class="mani-chips">
     <div class="mani-chip">טכנולוגיה עם כוונה</div>
@@ -2233,38 +2509,38 @@ footer::after{
   <div class="team-grid">
     <article class="person-card">
       <div class="person-photo" data-person="meital">
-        <img src="../public/team/meital-peleg.png" alt="מיטל פלג">
+        <img src="../public/team/meital-peleg-v2.jpg" alt="מיטל פלג">
       </div>
       <span class="person-role">יזמות חברתית חינוכית</span>
       <h3>מיטל פלג</h3>
-      <p>יזמת חברתית חינוכית ומנהלת בית ספר לשעבר, שמובילה תהליכי שינוי במערכת החינוך. מיטל מחברת בין פדגוגיה, אנשים וטכנולוגיה, ומתרגמת צורך מהשטח למערכות שמקדמות עבודה טובה יותר.</p>
+      <p>מומחית לפדגוגיה חדשנית, יזמת חברתית חינוכית ומנהלת בית ספר לשעבר, שמובילה תהליכי שינוי במערכת החינוך. מיטל מחברת בין פדגוגיה, אנשים וטכנולוגיה, ומתרגמת צורך מהשטח למערכות שמקדמות עבודה טובה יותר.</p>
     </article>
 
     <article class="person-card">
       <div class="person-photo" data-person="liron">
         <img src="../public/team/liron-golan.jpeg" alt="לירון גולן">
       </div>
-      <span class="person-role">מוצר, דיגיטל ואימפקט חברתי</span>
+      <span class="person-role">אפיון מוצר, מערכות חכמות וחוויית משתמש</span>
       <h3>לירון גולן</h3>
-      <p>מנכ״לית הופה, תשתית חברתית טכנולוגית ליצירת מוביליות חברתית לנוער וצעירים בסיכון. לירון מגיעה מעולמות פרסום, דיגיטל ובניית מערכות חכמות, ומאמינה בחיבור מדויק בין טכנולוגיה ואנשים.</p>
+      <p>מומחית לאפיון מוצר, בניית מערכות חכמות, פיתוח, עיצוב וחוויות משתמש. לירון מחברת בין אסטרטגיה, דיגיטל וטכנולוגיה כדי להפוך רעיונות למערכות ברורות, שימושיות ומדויקות.</p>
     </article>
 
     <article class="person-card">
       <div class="person-photo" data-person="amit">
-        <img src="../public/team/amit-avitbol.png" alt="עמית אביטבול">
+        <img src="../public/team/amit-avitbol-v2.jpg" alt="עמית אביטבול">
       </div>
-      <span class="person-role">פיתוח מערכות</span>
+      <span class="person-role">מומחה לפיתוח מערכות חכמות</span>
       <h3>עמית אביטבול</h3>
       <p>מתכנת שמביא את שכבת הקוד, המוצר והאינטגרציות. עמית מתרגם רעיונות וצרכים למערכות יציבות, חכמות ונוחות לשימוש, עם תשומת לב לפרטים הקטנים שעושים הבדל גדול.</p>
     </article>
 
     <article class="person-card">
       <div class="person-photo" data-person="ofir">
-        <img src="../public/team/ofir.png" alt="אופיר">
+        <img src="../public/team/ofir-v2.jpg" alt="אופיר">
       </div>
-      <span class="person-role">שותפות טכנולוגית</span>
-      <h3>אופיר</h3>
-      <p>שותף לעשייה הטכנולוגית של אימפקט, עם חשיבה מערכתית ויכולת לחבר בין צורך, מוצר וביצוע. פרטים נוספים ותמונה יתווספו כאן בהמשך.</p>
+      <span class="person-role">מומחה לאסטרטגיה וחדשנות טכנולוגית</span>
+      <h3>אופיר שטיינברג</h3>
+      <p>מביא לשולחן חשיבה אסטרטגית נדירה שמחברת בין עולם המוצר הדיגיטלי לעולם החינוך. אופיר הוא זה שרואה את התמונה הגדולה — ויודע בדיוק איפה הטכנולוגיה פוגשת את בני האדם.</p>
     </article>
   </div>
 </section>
@@ -2330,7 +2606,7 @@ footer::after{
   <div class="cta-inner">
     <div class="cta-label">מוכנים להתחיל?</div>
     <h2>בואו נבנה משהו<br>שעושה <em>הבדל אמיתי</em></h2>
-    <p>שיחת היכרות קצרה שבה נבין ביחד אם ואיך IMPACT SO יכולה לעזור לכם לגדול.</p>
+    <p>שיחת היכרות קצרה שבה נבין ביחד אם ואיך אימפקט OS יכולה לעזור לכם לגדול.</p>
     <div class="cta-btns">
       <a href="mailto:hello@impactso.co.il" class="btn-primary">
         בואו נייצר אימפקט
@@ -2338,7 +2614,7 @@ footer::after{
           <path d="M2 4L8 9L14 4"/><rect x="2" y="4" width="12" height="9" rx="2"/>
         </svg>
       </a>
-      <a href="#products" class="btn-outline">לעבודות שלנו</a>
+      <a href="#products" class="btn-outline">למוצרים שלנו</a>
     </div>
   </div>
 </section>
@@ -2351,8 +2627,8 @@ footer::after{
     <div class="footer-brand">
       <!-- Logo in footer ג€” official transparent logo -->
       <div class="footer-logo">
-        <img src="../public/brand/impact-so-logo-footer-no-fingerprint.png?v=footer-drop-1" alt="IMPACT SO טכנולוגיה יוצרת אימפקט">
-        <svg viewBox="0 0 160 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="IMPACT SO">
+        <img src="../public/brand/impact-os-logo-footer-transparent.png?v=os-footer-1" alt="IMPACT OS טכנולוגיה יוצרת אימפקט">
+        <svg viewBox="0 0 160 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="IMPACT OS">
           <defs>
             <linearGradient id="lgFoot" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stop-color="#12C7C7"/>
@@ -2368,7 +2644,7 @@ footer::after{
             <path d="M9 24C9 15 15 9.5 22 16"/>
           </g>
           <text x="44" y="28" font-family="Heebo,sans-serif" font-weight="900" font-size="19" fill="rgba(255,255,255,0.9)" letter-spacing="-0.5">IMPACT</text>
-          <text x="128" y="28" font-family="Heebo,sans-serif" font-weight="900" font-size="19" fill="#F00678" letter-spacing="-0.5"> SO</text>
+          <text x="128" y="28" font-family="Heebo,sans-serif" font-weight="900" font-size="19" fill="#F00678" letter-spacing="-0.5"> OS</text>
         </svg>
       </div>
       <p>טכנולוגיה עם טביעת אצבע אנושית בשביל עולם שפועל טוב יותר.</p>
@@ -2396,7 +2672,7 @@ footer::after{
   </div>
 
   <div class="footer-bottom">
-    <p>© 2026 IMPACT SO. כל הזכויות שמורות.</p>
+    <p>© 2026 IMPACT OS. כל הזכויות שמורות.</p>
     <svg class="footer-fp-old" viewBox="0 0 60 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <defs>
         <linearGradient id="lgFootFp" x1="0" y1="0" x2="60" y2="72" gradientUnits="userSpaceOnUse">
@@ -2418,10 +2694,11 @@ footer::after{
 
 
 <script>
-/* ג•ג• IMPACT SO LOADER ג•ג• */
+/* ג•ג• IMPACT OS LOADER ג•ג• */
 (function(){
   var loader  = document.getElementById('isl');
   var video   = document.getElementById('isl-loader-video');
+  var image   = document.getElementById('isl-loader-image');
   var canvas  = document.getElementById('isl-loader-canvas');
   var stage   = document.getElementById('isl-video-stage');
   var ctx     = canvas ? canvas.getContext('2d', {willReadFrequently:true}) : null;
@@ -2499,6 +2776,7 @@ footer::after{
           }
         }
         ctx.putImageData(frame, 0, 0);
+        if(stage) stage.classList.add('canvas-ready');
       }catch(e){
         if(stage) stage.classList.add('video-fallback');
         return;
@@ -2519,7 +2797,31 @@ footer::after{
     progressLoop = requestAnimationFrame(updateLoaderProgress);
   }
 
-  if(video){
+  if(image){
+    var imageStart = performance.now();
+    function runImageLoader(now){
+      if(done || !loader) return;
+      var progress = Math.min(.985, Math.max(.04, (now - imageStart) / 2300));
+      loader.style.setProperty('--loader-progress', progress.toFixed(3));
+      if(progress < .985){
+        progressLoop = requestAnimationFrame(runImageLoader);
+      }else{
+        fallbackTimer = setTimeout(closeLoader, 260);
+      }
+    }
+    function startImageLoader(){
+      if(stage) stage.classList.add('canvas-ready');
+      imageStart = performance.now();
+      progressLoop = requestAnimationFrame(runImageLoader);
+    }
+    if(image.complete){
+      startImageLoader();
+    }else{
+      image.addEventListener('load', startImageLoader, {once:true});
+      image.addEventListener('error', closeLoader, {once:true});
+      fallbackTimer = setTimeout(closeLoader, 4500);
+    }
+  }else if(video){
     video.muted = true;
     video.defaultMuted = true;
     video.playbackRate = 1.28;
@@ -2553,7 +2855,7 @@ footer::after{
 })();
 </script>
 <script>
-/* IMPACT SO motion layer */
+/* IMPACT OS motion layer */
 (function(){
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var root = document.documentElement;
@@ -2578,11 +2880,11 @@ footer::after{
     "url('../public/brand/impact-fingerprint-scroll-orange.png')"
   ];
   var navLogoImages = [
-    '../public/brand/impact-so-logo-nav-teal.png',
-    '../public/brand/impact-so-logo-nav-fuchsia.png',
-    '../public/brand/impact-so-logo-nav-yellow.png',
-    '../public/brand/impact-so-logo-nav-green.png',
-    '../public/brand/impact-so-logo-nav-orange.png'
+    '../public/brand/impact-os-logo-nav-teal.png',
+    '../public/brand/impact-os-logo-nav-fuchsia.png',
+    '../public/brand/impact-os-logo-nav-yellow.png',
+    '../public/brand/impact-os-logo-nav-green.png',
+    '../public/brand/impact-os-logo-nav-orange.png'
   ];
   var ticking = false;
   var activeLogoIndex = -1;
@@ -2777,6 +3079,7 @@ footer::after{
 
   var groups = [
     '.services .section-head',
+    '.svc-connector',
     '.svc-card',
     '.mobile-hold .mobile-hold__inner',
     '.products .section-head',
@@ -2823,5 +3126,221 @@ footer::after{
   items.forEach(function(el){ observer.observe(el); });
 })();
 </script>
+
+<!-- ===== STACKED CARDS JS ===== -->
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var isMobile = window.matchMedia('(max-width:900px)').matches;
+  var wrap = document.getElementById('svcStackWrap');
+  var grid = document.getElementById('svcGrid');
+  var cards = document.querySelectorAll('#svcGrid .svc-card');
+  var dots = document.querySelectorAll('#svcIndicator .svc-dot');
+  if(!wrap || !cards.length || reduced) return;
+
+  var current = 0;
+
+  function setCard(idx){
+    idx = Math.max(0, Math.min(cards.length-1, idx));
+    if(idx === current && !isMobile) return;
+    current = idx;
+    dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+
+    if(isMobile){
+      /* slider — translateX */
+      var pct = idx * (100 / cards.length);
+      grid.style.transform = 'translateX(' + (document.documentElement.dir==='rtl' ? pct : -pct) + '%)';
+    } else {
+      cards.forEach(function(c,i){
+        c.classList.remove('is-active','is-exit');
+        if(i===idx) c.classList.add('is-active');
+        else if(i===current-1||i===current+1) c.classList.add('is-exit');
+      });
+    }
+  }
+
+  if(isMobile){
+    /* Swipe */
+    var startX = 0;
+    grid.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;},{passive:true});
+    grid.addEventListener('touchend',function(e){
+      var dx = e.changedTouches[0].clientX - startX;
+      if(Math.abs(dx) < 40) return;
+      /* RTL: swipe ימינה = קדם, שמאלה = הבא */
+      setCard(dx > 0 ? current-1 : current+1);
+    },{passive:true});
+    /* נקודות — לחיצה */
+    dots.forEach(function(d,i){
+      d.addEventListener('click',function(){ setCard(i); });
+      d.style.cursor='pointer';
+      d.style.width='10px';
+      d.style.height='10px';
+    });
+    setCard(0);
+    /* כרטיס ראשון גלוי */
+    grid.style.transform = 'translateX(0)';
+    return;
+  }
+
+  /* Desktop — sticky scroll */
+  function onScroll(){
+    var rect = wrap.getBoundingClientRect();
+    var total = wrap.offsetHeight - window.innerHeight;
+    var scrolled = -rect.top;
+    var progress = Math.max(0, Math.min(1, scrolled / total));
+    var idx = Math.min(cards.length-1, Math.floor(progress * cards.length));
+    if(idx !== current){
+      cards.forEach(function(c,i){
+        c.classList.remove('is-active','is-exit');
+        if(i===idx) c.classList.add('is-active');
+        else if(i===current) c.classList.add('is-exit');
+      });
+      dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+      current = idx;
+    }
+  }
+
+  cards[0].classList.add('is-active');
+  dots[0].classList.add('active');
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+
+<!-- ===== COOKIE BANNER ===== -->
+<style>
+#cookie-banner{
+  position:fixed;bottom:0;left:0;right:0;z-index:8888;
+  padding:16px 20px;
+  background:#fff;
+  border-top:1px solid rgba(6,30,79,0.1);
+  box-shadow:0 -8px 32px rgba(6,30,79,0.08);
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  flex-wrap:wrap;
+  transform:translateY(100%);
+  transition:transform 480ms cubic-bezier(.22,1,.36,1);
+  font-family:'Heebo',sans-serif;
+  direction:rtl;
+}
+#cookie-banner.show{transform:translateY(0)}
+.cookie-text{
+  font-size:14px;color:#444;line-height:1.6;flex:1;min-width:200px;
+}
+.cookie-text a{color:var(--navy);font-weight:600;text-decoration:underline;cursor:pointer;}
+.cookie-actions{display:flex;gap:10px;flex-shrink:0;}
+.cookie-btn{
+  height:40px;padding:0 20px;border-radius:999px;
+  font-family:'Heebo',sans-serif;font-size:14px;font-weight:700;
+  border:none;cursor:pointer;transition:transform 180ms ease,opacity 180ms ease;
+}
+.cookie-btn:hover{opacity:.88;transform:translateY(-1px)}
+.cookie-btn-accept{background:var(--fuchsia);color:#fff;}
+.cookie-btn-decline{background:transparent;color:var(--navy);border:1.5px solid rgba(6,30,79,0.18);}
+
+/* מדיניות פרטיות מודאל */
+#privacy-modal{
+  position:fixed;inset:0;z-index:9000;
+  display:flex;align-items:flex-end;justify-content:center;
+  background:rgba(6,30,79,0.38);
+  opacity:0;pointer-events:none;
+  transition:opacity 320ms ease;
+}
+#privacy-modal.open{opacity:1;pointer-events:all;}
+.privacy-sheet{
+  background:#fff;
+  border-radius:24px 24px 0 0;
+  padding:32px 28px 40px;
+  width:100%;max-width:680px;
+  max-height:85vh;overflow-y:auto;
+  direction:rtl;font-family:'Heebo',sans-serif;
+  transform:translateY(40px);
+  transition:transform 360ms cubic-bezier(.22,1,.36,1);
+}
+#privacy-modal.open .privacy-sheet{transform:translateY(0);}
+.privacy-sheet h2{font-size:22px;font-weight:900;color:var(--navy);margin-bottom:16px;}
+.privacy-sheet p{font-size:14px;color:#555;line-height:1.8;margin-bottom:12px;}
+.privacy-sheet h3{font-size:15px;font-weight:700;color:var(--navy);margin:18px 0 6px;}
+.privacy-close{
+  position:absolute;top:16px;left:20px;
+  background:none;border:none;font-size:22px;cursor:pointer;color:var(--navy);
+  font-family:'Heebo',sans-serif;
+}
+@media(max-width:600px){
+  #cookie-banner{flex-direction:column;align-items:flex-start;padding:18px 16px 24px;}
+  .cookie-actions{width:100%;}
+  .cookie-btn{flex:1;text-align:center;}
+  .privacy-sheet{padding:24px 18px 36px;border-radius:20px 20px 0 0;}
+}
+</style>
+
+<div id="cookie-banner" role="alert" aria-live="polite">
+  <p class="cookie-text">
+    אנחנו משתמשים בקוקיז כדי לשפר את החוויה שלך באתר.
+    <a onclick="openPrivacy()">מדיניות הפרטיות שלנו</a>
+  </p>
+  <div class="cookie-actions">
+    <button class="cookie-btn cookie-btn-decline" onclick="declineCookies()">דחה</button>
+    <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">אני מסכים/ה</button>
+  </div>
+</div>
+
+<div id="privacy-modal" role="dialog" aria-modal="true" aria-label="מדיניות פרטיות">
+  <div class="privacy-sheet">
+    <button class="privacy-close" onclick="closePrivacy()" aria-label="סגור">✕</button>
+    <h2>מדיניות פרטיות</h2>
+    <p>אימפקט OS מכבדת את פרטיותך ומתחייבת לשמור על המידע שלך. מסמך זה מסביר כיצד אנו אוספים, משתמשים ומגנים על המידע האישי שלך.</p>
+
+    <h3>אילו קוקיז אנו משתמשים?</h3>
+    <p>אנו משתמשים בקוקיז טכניים הכרחיים להפעלת האתר, וקוקיז אנליטיים (כגון Google Analytics) לצורך הבנת אופן השימוש באתר ושיפורו.</p>
+
+    <h3>אילו מידע אנו אוספים?</h3>
+    <p>אנו עשויים לאסוף: כתובת IP, סוג דפדפן, עמודים שביקרת בהם, ומידע שמסרת מרצונך בטפסי יצירת קשר.</p>
+
+    <h3>כיצד אנו משתמשים במידע?</h3>
+    <p>המידע משמש לשיפור האתר, מענה לפניות, ושליחת עדכונים רלוונטיים — בהסכמתך בלבד.</p>
+
+    <h3>שיתוף מידע עם צדדים שלישיים</h3>
+    <p>אנו לא מוכרים או משתפים מידע אישי עם צדדים שלישיים, למעט ספקי שירות הכרחיים (אחסון, אנליטיקה) הפועלים בשמנו.</p>
+
+    <h3>זכויותיך</h3>
+    <p>יש לך זכות לעיין, לתקן או למחוק את המידע שלך. לפנייה: <strong>info@impactso.co.il</strong></p>
+
+    <p style="margin-top:20px;font-size:13px;color:#888;">עדכון אחרון: מאי 2026</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var banner = document.getElementById('cookie-banner');
+  if(!banner) return;
+  if(localStorage.getItem('cookie-choice')) return;
+  setTimeout(function(){ banner.classList.add('show'); }, 1200);
+})();
+
+function acceptCookies(){
+  localStorage.setItem('cookie-choice','accepted');
+  hideBanner();
+}
+function declineCookies(){
+  localStorage.setItem('cookie-choice','declined');
+  hideBanner();
+}
+function hideBanner(){
+  var b = document.getElementById('cookie-banner');
+  if(b){ b.style.transform='translateY(100%)'; }
+}
+function openPrivacy(){
+  var m = document.getElementById('privacy-modal');
+  if(m){ m.classList.add('open'); document.body.style.overflow='hidden'; }
+}
+function closePrivacy(){
+  var m = document.getElementById('privacy-modal');
+  if(m){ m.classList.remove('open'); document.body.style.overflow=''; }
+}
+document.getElementById('privacy-modal').addEventListener('click', function(e){
+  if(e.target === this) closePrivacy();
+});
+</script>
 </body>
 </html>
+

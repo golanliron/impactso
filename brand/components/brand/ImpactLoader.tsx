@@ -1,5 +1,5 @@
-import { brandColors } from '../../lib/brandTokens'
-import { ImpactSOLogo } from './ImpactSOLogo'
+﻿import { brandColors } from '../../lib/brandTokens'
+import { ImpactOSLogo } from './ImpactOSLogo'
 
 type ImpactLoaderProps = {
   fingerprintColor?: string
@@ -12,7 +12,7 @@ export function ImpactLoader({
   fingerprintColor = brandColors.navy,
   heartColor = brandColors.fuchsia,
   backgroundColor = brandColors.softWhite,
-  label = 'טוען IMPACT SO',
+  label = '׳˜׳•׳¢׳ IMPACT OS',
 }: ImpactLoaderProps) {
   return (
     <div
@@ -118,7 +118,7 @@ export function ImpactLoader({
             ))}
           </g>
         </svg>
-        <ImpactSOLogo
+        <ImpactOSLogo
           style={{
             position: 'absolute',
             insetInline: 0,

@@ -1,8 +1,8 @@
-/**
- * FingerprintMark — טביעת האצבע המקורית של IMPACT SO
- * paths מתוך assets/impactso-logo.svg (viewBox 0 0 240 284)
- * צבע הקווים נשלט דרך prop `color`.
- * הלב הפנימי נשאר פוקסיה כברירת מחדל, כדי לשמור על זיהוי המותג.
+﻿/**
+ * FingerprintMark ג€” ׳˜׳‘׳™׳¢׳× ׳”׳׳¦׳‘׳¢ ׳”׳׳§׳•׳¨׳™׳× ׳©׳ IMPACT OS
+ * paths ׳׳×׳•׳ assets/impactso-logo.svg (viewBox 0 0 240 284)
+ * ׳¦׳‘׳¢ ׳”׳§׳•׳•׳™׳ ׳ ׳©׳׳˜ ׳“׳¨׳ prop `color`.
+ * ׳”׳׳‘ ׳”׳₪׳ ׳™׳׳™ ׳ ׳©׳׳¨ ׳₪׳•׳§׳¡׳™׳” ׳›׳‘׳¨׳™׳¨׳× ׳׳—׳“׳, ׳›׳“׳™ ׳׳©׳׳•׳¨ ׳¢׳ ׳–׳™׳”׳•׳™ ׳”׳׳•׳×׳’.
  */
 
 import type { CSSProperties } from 'react'
@@ -37,7 +37,7 @@ export function FingerprintMark({
       style={{ display: 'block', overflow: 'visible', background: 'transparent', ...style }}
     >
       {title ? <title>{title}</title> : null}
-      {/* קווי הטביעה — הנתיבים המקוריים מהקובץ */}
+      {/* ׳§׳•׳•׳™ ׳”׳˜׳‘׳™׳¢׳” ג€” ׳”׳ ׳×׳™׳‘׳™׳ ׳”׳׳§׳•׳¨׳™׳™׳ ׳׳”׳§׳•׳‘׳¥ */}
       <g
         stroke={color}
         strokeWidth={strokeWidth}
@@ -60,7 +60,7 @@ export function FingerprintMark({
         <path d="M202 245C221 222 232 196 235 169"/>
       </g>
 
-      {/* לב פנימי */}
+      {/* ׳׳‘ ׳₪׳ ׳™׳׳™ */}
       <g
         stroke={heartColor}
         strokeWidth={strokeWidth}
@@ -72,7 +72,7 @@ export function FingerprintMark({
         <path d="M88 135C102 164 127 184 141 199C156 184 181 163 194 136"/>
       </g>
 
-      {/* נקודות קצה */}
+      {/* ׳ ׳§׳•׳“׳•׳× ׳§׳¦׳” */}
       <g fill={color}>
         <circle cx="62"  cy="75"  r="6.8"/>
         <circle cx="185" cy="60"  r="6.8"/>
