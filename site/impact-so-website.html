@@ -1567,6 +1567,26 @@ footer::after{
   background:transparent;
 }
 .footer-brand p{font-size:15px;line-height:1.8;color:rgba(255,255,255,0.58);max-width:310px}
+.footer-typewriter{
+  min-height:54px;
+  direction:rtl;
+}
+.footer-typewriter span{
+  display:inline;
+}
+.footer-typewriter.is-writing span::after{
+  content:"";
+  display:inline-block;
+  width:2px;
+  height:1.15em;
+  margin-inline-start:4px;
+  vertical-align:-.16em;
+  border-radius:999px;
+  background:rgba(255,255,255,.72);
+  animation:footerCaret 780ms steps(1,end) infinite;
+}
+.footer-typewriter.is-complete span::after{display:none}
+@keyframes footerCaret{50%{opacity:0}}
 .footer-col h4{font-size:15px;font-weight:800;color:var(--white);margin-bottom:18px}
 .footer-col ul{list-style:none}
 .footer-col li{margin-bottom:12px}
@@ -2549,7 +2569,7 @@ footer::after{
       <div class="footer-logo">
         <img src="../public/brand/impact-os-logo-footer-transparent.png?v=os-footer-4" alt="IMPACT OS">
       </div>
-      <p>טכנולוגיה עם טביעת אצבע אנושית בשביל עולם שפועל טוב יותר.</p>
+      <p class="footer-typewriter" data-typewriter="טכנולוגיה עם טביעת אצבע אנושית בשביל עולם שפועל טוב יותר." aria-label="טכנולוגיה עם טביעת אצבע אנושית בשביל עולם שפועל טוב יותר."><span aria-hidden="true"></span></p>
     </div>
 
     <div class="footer-col">
@@ -3031,6 +3051,58 @@ footer::after{
 })();
 </script>
 
+<!-- ===== FOOTER TYPEWRITER ===== -->
+<script>
+(function(){
+  var line = document.querySelector('.footer-typewriter');
+  if(!line) return;
+  var target = line.querySelector('span');
+  var text = line.getAttribute('data-typewriter') || line.textContent.trim();
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var started = false;
+
+  function complete(){
+    target.textContent = text;
+    line.classList.remove('is-writing');
+    line.classList.add('is-complete');
+  }
+
+  function type(){
+    if(started) return;
+    started = true;
+    target.textContent = '';
+    line.classList.add('is-writing');
+    var chars = Array.from(text);
+    var index = 0;
+    function tick(){
+      target.textContent = chars.slice(0, index).join('');
+      index += 1;
+      if(index <= chars.length){
+        window.setTimeout(tick, 34 + (index % 5 === 0 ? 26 : 0));
+      }else{
+        complete();
+      }
+    }
+    tick();
+  }
+
+  if(!target) return;
+  if(reduceMotion || !('IntersectionObserver' in window)){
+    complete();
+    return;
+  }
+  target.textContent = '';
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        type();
+        observer.unobserve(line);
+      }
+    });
+  }, {threshold:.45, rootMargin:'0px 0px -4% 0px'});
+  observer.observe(line);
+})();
+</script>
 <!-- ===== STACKED CARDS JS ===== -->
 <script>
 (function(){
