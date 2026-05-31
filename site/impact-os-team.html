@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IMPACT OS | טכנולוגיה יוצרת IMPACT</title>
+<title>מי אנחנו | IMPACT OS</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --navy:#061E4F;
@@ -2031,6 +2032,18 @@ footer::after{
   #isl-logo-official{transition:opacity .15s ease;clip-path:inset(0 0 0 0)}
 }
 
+.team-page{padding-top:88px;background:var(--white)}
+.team-page .scroll-progress,.team-page #isl,.team-page .fingerprint-signature{display:none!important}
+.team-page .team{display:block!important;min-height:auto;padding-top:72px}
+.team-page .team .section-head{max-width:720px;margin-inline:auto}
+.team-page .team-home-link{display:inline-flex;align-items:center;justify-content:center;margin:0 auto 24px;padding:10px 18px;border-radius:999px;border:1px solid rgba(6,30,79,.14);color:var(--navy);text-decoration:none;font-weight:800;background:rgba(255,255,255,.82)}
+@media(max-width:760px){
+  .team-page{padding-top:90px}
+  .team-page .team{display:block!important;padding:42px 22px 68px}
+  .team-page .section-title{font-size:clamp(34px,10vw,44px)}
+  .team-page .section-sub{font-size:15px;line-height:1.72}
+}
+
 /* Minimal mobile footer */
 .mobile-footer-links{display:none}
 @media(max-width:760px){
@@ -2150,108 +2163,12 @@ footer::after{
   footer .footer-bottom{transform:none}
 }</style>
 </head>
-<body class="home-page">
-<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
-<div class="fingerprint-signature" id="fingerprintSignature" aria-hidden="true">
-  <span class="fingerprint-signature__scan"></span>
-</div>
-
-<!-- ג•ג•ג• IMPACT LOADER ג•ג•ג• -->
-<div id="isl" role="status" aria-label="טוען IMPACT OS">
-  <div id="isl-video-stage" aria-hidden="true">
-    <video id="isl-loader-video" src="../public/media/impact-loader-intro.mp4?v=os-video-6" poster="../public/media/impact-loader-intro.png?v=os-video-6" autoplay muted playsinline preload="auto" crossorigin="anonymous"></video>
-    <canvas id="isl-loader-canvas"></canvas>
-    <div id="isl-load-ui">
-      <div class="isl-load-track"><span class="isl-load-progress"></span></div>
-    </div>
-  </div>
-  <div id="isl-box">
-
-    <!--
-      טביעת האצבע המקורית של IMPACT OS
-      paths ו-circles מתוך impactso-logo.svg ג€” viewBox 0 0 248 284
-      נייבי #061E4F + לב פוקסיה #F00678
-    -->
-    <svg id="isl-fp" viewBox="0 0 240 284" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
-
-      <!-- 13 קווי טביעה, מבחוץ פנימה, מלמעלה למטה -->
-      <path class="ilp" d="M66 76C88 42 139 35 172 60C197 79 207 111 199 146"          style="animation-delay:0s"/>
-      <path class="ilp" d="M45 110C57 55 118 26 171 48C212 65 235 107 230 153"         style="animation-delay:.08s"/>
-      <path class="ilp" d="M19 149C16 79 73 23 142 27C199 30 242 77 240 133"           style="animation-delay:.16s"/>
-      <path class="ilp" d="M51 188C35 103 94 32 174 38"                                 style="animation-delay:.24s"/>
-      <path class="ilp" d="M79 212C52 136 82 70 142 57C180 49 213 72 220 110"          style="animation-delay:.32s"/>
-      <path class="ilp" d="M108 234C83 185 95 130 134 107C160 92 191 101 202 128"      style="animation-delay:.4s"/>
-      <path class="ilp" d="M137 255C110 226 110 183 132 158C149 140 177 143 190 164"   style="animation-delay:.48s"/>
-      <path class="ilp" d="M160 270C145 252 141 232 148 212"                            style="animation-delay:.56s"/>
-      <path class="ilp" d="M39 171C75 148 96 119 108 88"                                style="animation-delay:.64s"/>
-      <path class="ilp" d="M59 218C99 187 119 153 130 115"                              style="animation-delay:.72s"/>
-      <path class="ilp" d="M93 252C123 229 140 203 148 172"                             style="animation-delay:.8s"/>
-      <path class="ilp" d="M185 204C210 170 220 134 209 101"                            style="animation-delay:.88s"/>
-      <path class="ilp" d="M202 245C221 222 232 196 235 169"                            style="animation-delay:.96s"/>
-
-      <!-- 12 נקודות קצה -->
-      <circle class="ild" cx="62"  cy="75"  r="6.8" fill="var(--logo-fingerprint)" style="animation-delay:.05s"/>
-      <circle class="ild" cx="185" cy="60"  r="6.8" fill="var(--logo-fingerprint)" style="animation-delay:.13s"/>
-      <circle class="ild" cx="35"  cy="111" r="6.8" fill="var(--logo-fingerprint)" style="animation-delay:.21s"/>
-      <circle class="ild" cx="222" cy="155" r="6.8" fill="var(--logo-fingerprint)" style="animation-delay:.29s"/>
-      <circle class="ild" cx="65"  cy="218" r="6.8" fill="var(--logo-fingerprint)" style="animation-delay:.37s"/>
-      <circle class="ild" cx="166" cy="269" r="6.8" fill="var(--logo-fingerprint)" style="animation-delay:.61s"/>
-      <circle class="ild" cx="207" cy="203" r="6.8" fill="var(--logo-fingerprint)" style="animation-delay:.69s"/>
-      <circle class="ild" cx="101" cy="253" r="6.8" fill="var(--logo-fingerprint)" style="animation-delay:.53s"/>
-      <circle class="ild" cx="135" cy="97"  r="6.8" fill="var(--logo-fingerprint)" style="animation-delay:.77s"/>
-      <circle class="ild" cx="188" cy="136" r="6.8" fill="var(--logo-fingerprint)" style="animation-delay:.85s"/>
-      <circle class="ild" cx="119" cy="178" r="6.8" fill="var(--logo-fingerprint)" style="animation-delay:.93s"/>
-      <circle class="ild" cx="142" cy="211" r="6.8" fill="var(--logo-fingerprint)" style="animation-delay:1.01s"/>
-
-      <!-- לב פנימי ג€” paths 14+15 מהמקור, פוקסיה -->
-      <g id="isl-heart">
-        <path class="ilh" d="M88 135C100 111 126 112 140 136C154 111 181 111 194 136"/>
-        <path class="ilh" d="M88 135C102 164 127 184 141 199C156 184 181 163 194 136"/>
-      </g>
-
-    </svg>
-
-
-    <!-- לוגו מלא ג€” SVG מקורי מחבילת המותג, ללא PNG וללא רקע -->
-    <svg id="isl-logo" class="impact-logo" viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IMPACT OS טכנולוגיה יוצרת IMPACT">
-      <g transform="translate(0,8) scale(0.52)">
-        <g fill="none" stroke="var(--logo-fingerprint)" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
-          <path d="M72 86c24-37 80-42 113-11 24 22 31 56 20 91"/>
-          <path d="M54 116c13-57 78-88 134-63 42 19 63 66 52 113"/>
-          <path d="M43 153c-3-74 58-134 131-128 58 5 105 54 104 114"/>
-          <path d="M51 196c-15-88 47-164 132-160"/>
-          <path d="M78 220c-30-80 3-151 66-165 38-9 76 14 89 42"/>
-          <path d="M111 242c-28-52-15-112 27-137 27-16 61-7 74 22"/>
-          <path d="M138 264c-28-31-29-77-5-104 17-19 47-17 61 5"/>
-          <path d="M159 282c-16-18-22-42-14-63"/>
-          <path d="M44 180c37-24 59-55 72-90"/>
-          <path d="M64 231c42-33 63-70 76-112"/>
-          <path d="M96 264c31-24 49-53 58-86"/>
-          <path d="M188 218c25-36 36-76 26-112"/>
-          <path d="M204 259c19-24 31-52 35-82"/>
-        </g>
-        <g fill="none" stroke="var(--logo-heart)" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
-          <path d="M91 143c13-25 39-24 52 1 14-24 42-24 54 1"/>
-          <path d="M91 143c15 31 38 51 52 66 15-15 39-38 54-64"/>
-        </g>
-        <g fill="var(--logo-fingerprint)">
-          <circle cx="70" cy="86" r="7"/><circle cx="184" cy="76" r="7"/><circle cx="42" cy="116" r="7"/><circle cx="230" cy="166" r="7"/><circle cx="68" cy="231" r="7"/><circle cx="162" cy="282" r="7"/><circle cx="211" cy="218" r="7"/><circle cx="103" cy="265" r="7"/>
-        </g>
-      </g>
-      <text x="150" y="90" font-family="Rubik, Heebo, Arial, sans-serif" font-size="68" font-weight="900" letter-spacing="6" fill="var(--logo-impact)">IMPACT</text>
-      <text x="590" y="90" font-family="Rubik, Heebo, Arial, sans-serif" font-size="68" font-weight="900" letter-spacing="2" fill="var(--logo-so)">OS</text>
-      <text x="165" y="137" font-family="Rubik, Heebo, Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="9" fill="var(--logo-tagline)">טכנולוגיה יוצרת IMPACT</text>
-    </svg>
-
-  </div>
-</div>
-
-<!-- ג•ג•ג• NAV ג•ג•ג• -->
+<body class="team-page">
 <nav>
   <div class="nav-inner">
 
     <!-- Logo: exact SVG from impactso-logo.svg ג€” no PNG, no background -->
-    <a href="#" class="nav-logo impact-logo" aria-label="IMPACT OS">
+    <a href="./impact-so-website.html?skipIntro=1" class="nav-logo impact-logo" aria-label="חזרה לעמוד הבית">
       <img id="navLogoImage" class="brand-logo-svg" src="../public/brand/impact-os-logo-nav-teal.png?v=os-logo-4" alt="IMPACT OS">
       <span class="brand-lockup" aria-hidden="true">
         <svg class="brand-lockup-mark" viewBox="0 0 240 284" xmlns="http://www.w3.org/2000/svg" fill="none">
@@ -2320,15 +2237,15 @@ footer::after{
 
     <div class="nav-links-wrap">
       <ul class="nav-links">
-        <li><a href="#services">מה אנחנו עושים</a></li>
-        <li><a href="#products">האימפקט שלנו</a></li>
-        <li><a href="#team">מי אנחנו</a></li>
-        <li><a href="#sectors">למי זה מתאים</a></li>
-        <li><a href="#contact">צור קשר</a></li>
+        <li><a href="./impact-so-website.html#services">מה אנחנו עושים</a></li>
+        <li><a href="./impact-so-website.html#products">האימפקט שלנו</a></li>
+        <li><a href="./impact-os-team.html">מי אנחנו</a></li>
+        <li><a href="./impact-so-website.html#sectors">למי זה מתאים</a></li>
+        <li><a href="./impact-so-website.html#contact">צור קשר</a></li>
       </ul>
     </div>
 
-      <a href="#contact" class="nav-cta">בואו נייצר IMPACT</a>
+      <a href="./impact-so-website.html#contact" class="nav-cta">בואו נייצר IMPACT</a>
       <button class="mobile-menu-toggle" type="button" aria-label="פתיחת תפריט" aria-expanded="false" aria-controls="mobileMenu" onclick="window.toggleImpactMenu && window.toggleImpactMenu()">
         <span></span>
         <span></span>
@@ -2337,294 +2254,15 @@ footer::after{
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-  <a href="#services">מה אנחנו עושים</a>
-  <a href="#products">האימפקט שלנו</a>
+  <a href="./impact-so-website.html#services">מה אנחנו עושים</a>
+  <a href="./impact-so-website.html#products">האימפקט שלנו</a>
   <a href="./impact-os-team.html">מי אנחנו</a>
-  <a href="#sectors">למי זה מתאים</a>
-  <a href="#contact">צור קשר</a>
-  <a href="#contact" class="mobile-menu-cta">בואו נייצר IMPACT</a>
+  <a href="./impact-so-website.html#sectors">למי זה מתאים</a>
+  <a href="./impact-so-website.html#contact">צור קשר</a>
+  <a href="./impact-so-website.html#contact" class="mobile-menu-cta">בואו נייצר IMPACT</a>
 </div>
-
-<!-- ג•ג•ג• HERO ג•ג•ג• -->
-<section class="hero">
-  <div class="hero-bg"></div>
-
-  <!-- Watermark fingerprint ג€” SVG inline, no PNG -->
-  <div class="hero-fp-watermark" aria-hidden="true">
-    <img class="brand-fingerprint-bg" src="../public/brand/fingerprint-mark.svg" alt="" loading="lazy">
-  </div>
-  <svg class="hero-fp-watermark-old" viewBox="0 0 500 580" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <defs>
-      <linearGradient id="lgWm" x1="0" y1="0" x2="500" y2="580" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stop-color="#12C7C7"/>
-        <stop offset="100%" stop-color="#F00678"/>
-      </linearGradient>
-    </defs>
-    <g stroke="url(#lgWm)" stroke-width="7" stroke-linecap="round" fill="none">
-      <path d="M250 60 C360 60 440 145 440 255 C440 370 355 440 250 440"/>
-      <path d="M250 90 C342 90 412 168 412 262 C412 358 338 418 250 418"/>
-      <path d="M250 120 C324 120 384 190 384 268 C384 348 320 398 250 398"/>
-      <path d="M250 150 C306 150 356 210 356 275 C356 338 304 378 250 378"/>
-      <path d="M250 180 C288 180 328 228 328 280 C328 332 286 358 250 358"/>
-      <path d="M250 210 C270 210 300 240 300 282 C300 324 270 344 250 344"/>
-      <path d="M250 240 C258 240 272 258 272 284 C272 312 256 330 250 330"/>
-      <path d="M148 110 C186 56 222 42 250 60"/>
-      <path d="M126 156 C166 84 213 68 250 90"/>
-      <path d="M112 208 C144 118 202 90 250 120"/>
-      <path d="M104 268 C124 162 192 118 250 150"/>
-      <path d="M110 330 C112 208 178 150 250 180"/>
-      <path d="M130 390 C108 252 168 170 250 210"/>
-    </g>
-  </svg>
-
-  <!-- Text column -->
-  <div class="hero-left">
-    <div class="hero-tag">
-      <span class="tag-dot"></span>
-      טכנולוגיה עם טביעת אצבע אנושית
-    </div>
-
-    <h1>
-      מערכות חכמות<br>
-      לארגונים <em>שמשנים מציאות</em>
-    </h1>
-
-    <p class="hero-sub">
-      IMPACT OS בונה מערכות טכנולוגיות חכמות מותאמות לארגונים חברתיים, חינוכיים וציבוריים, כדי להפוך ידע, תהליכים ונתונים לכלים שעובדים באמת בשטח. חוויית משתמש חכמה, מערכות גמישות ויעילות עם יכולת התאמה מדויקת לצורכי הארגון.
-    </p>
-
-    <div class="hero-btns">
-      <a href="#contact" class="btn-primary">
-        בואו נבנה מערכת חכמה
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5"/>
-        </svg>
-      </a>
-      <a href="#services" class="btn-outline">טביעת האצבע שלנו</a>
-    </div>
-  </div>
-</section>
-
-<!-- Mobile-only decorative touch-and-hold experience. No biometric data is read or stored. -->
-<section class="mobile-hold" id="mobileFingerprintExperience" aria-label="חוויה עיצובית של טביעת אצבע">
-  <div class="mobile-hold__inner">
-    <div class="mobile-hold__eyebrow">טביעת האצבע שלכם</div>
-    <button class="hold-fingerprint" id="holdFingerprint" type="button" aria-label="הניחו אצבע והחזיקו לרגע">
-      <span class="hold-fingerprint__mark" aria-hidden="true"></span>
-    </button>
-    <div class="mobile-hold__hint">הניחו אצבע והחזיקו לרגע</div>
-    <div class="mobile-hold__progress" aria-hidden="true"><span></span></div>
-
-    <div class="mobile-hold__result" aria-live="polite">
-      <p>כל ארגון הוא טביעת אצבע.<br>גם המערכת שלו צריכה להיות מותאמת אליו.</p>
-      <div class="mobile-hold__steps">
-        <span>מיפוי הצורך</span>
-        <span>בניית מערכת חכמה</span>
-        <span>מדידת IMPACT</span>
-      </div>
-      <a class="mobile-hold__cta" href="#contact">בואו נתחיל לאפיין</a>
-    </div>
-  </div>
-</section>
-
-<!-- ג•ג•ג• SERVICES ג•ג•ג• -->
-<section class="services" id="services">
-  <div class="section-head">
-    <div class="section-label">מה אנחנו בונים</div>
-    <h2 class="section-title">מערכות חכמות שמחברות<br>בין אנשים, מידע והשפעה</h2>
-    <p class="section-sub">אנחנו מאפיינים, מפתחים ומטמיעים מערכות דיגיטליות שמסדרות תהליכים, מחברות נתונים ומאפשרות לארגונים חברתיים וחינוכיים לעבוד בצורה חכמה, מדידה ואפקטיבית יותר.</p>
-  </div>
-
-  <div class="svc-stack-wrap" id="svcStackWrap">
-    <div class="svc-stack-stage">
-      <div class="svc-grid" id="svcGrid">
-    <svg class="svc-connector" viewBox="0 0 1200 520" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M1040 112 C850 36 728 132 612 260 C492 392 346 466 160 398" />
-    </svg>
-    <div class="svc-card">
-      <div class="svc-icon">
-        <!-- ImpactDataIcon ג€” SVG קווי, fingerprint style -->
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#12C7C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="14" cy="14" r="1.5" fill="#12C7C7" stroke="none"/>
-          <path d="M14 4C18.5 4 22 8.5 22 14C22 20 18.5 24 14 24"/>
-          <path d="M14 7C17.5 7 20.5 10.2 20.5 14C20.5 18 17.5 21 14 21"/>
-          <path d="M14 10C16.2 10 18 11.8 18 14C18 16.5 16.2 18 14 18"/>
-          <path d="M7.5 6.5C9.5 4.5 11.5 4 14 4"/>
-          <path d="M5.5 10.5C7 7 10 5.5 14 7"/>
-          <path d="M5 14C5 10.2 8.5 7.2 14 10"/>
-          <path d="M5.5 18C4.5 15 6 10.8 14 13"/>
-        </svg>
-      </div>
-      <h3>אפיון מערכות חברתיות</h3>
-      <p>מחקר עומק, מיפוי תהליכים והבנת הצרכים האמיתיים של הארגון, כדי לבנות מערכת שמתאימה לשטח ולא להפך.</p>
-    </div>
-
-    <div class="svc-card">
-      <div class="svc-icon">
-        <!-- WorkflowFingerprintIcon -->
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#F00678" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="3" width="8" height="8" rx="3"/>
-          <rect x="17" y="3" width="8" height="8" rx="3"/>
-          <rect x="10" y="17" width="8" height="8" rx="3"/>
-          <path d="M11 7h6"/>
-          <path d="M14 11v6"/>
-          <circle cx="14" cy="14" r="1.2" fill="#F00678" stroke="none"/>
-        </svg>
-      </div>
-      <h3>מוצרים טכנולוגיים חכמים</h3>
-      <p>מפיצוח הרעיון ועד מערכת פעילה: ממשק, קוד, תשתיות וחוויית משתמש שמוכנה לעבודה אמיתית בארגון.</p>
-    </div>
-
-    <div class="svc-card">
-      <div class="svc-icon">
-        <!-- EducationFlowIcon -->
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#F4B41B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M4 21L14 8L24 21"/>
-          <path d="M7.5 21L14 11.5L20.5 21"/>
-          <path d="M11 21L14 15L17 21"/>
-          <circle cx="14" cy="8" r="1.5" fill="#F4B41B" stroke="none"/>
-          <path d="M4 23.5h20"/>
-        </svg>
-      </div>
-      <h3>דאטה וIMPACT</h3>
-      <p>לוחות בקרה, מדדים ודוחות שמתרגמים פעילות יומיומית לתמונה ברורה על התקדמות, תוצאות והשפעה.</p>
-    </div>
-
-    <div class="svc-card">
-      <div class="svc-icon">
-        <!-- AiSparkIcon -->
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#061E4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M14 4L15.6 10.4L22 12L15.6 13.6L14 20L12.4 13.6L6 12L12.4 10.4Z"/>
-          <path d="M21.5 19L22.2 21.5L24.5 22.2L22.2 22.9L21.5 25.5L20.8 22.9L18.5 22.2L20.8 21.5Z"/>
-          <circle cx="7" cy="21" r="1.5" fill="#061E4F" stroke="none"/>
-        </svg>
-      </div>
-      <h3>AI למגזר החברתי</h3>
-      <p>שילוב חכם של בינה מלאכותית בתהליכי עבודה, כדי לחסוך זמן, לשפר החלטות ולהגדיל את היכולת לעשות יותר עם פחות.</p>
-    </div>
-      <div class="svc-indicator" id="svcIndicator" aria-hidden="true">
-        <span class="svc-dot active" data-i="0"></span>
-        <span class="svc-dot" data-i="1"></span>
-        <span class="svc-dot" data-i="2"></span>
-        <span class="svc-dot" data-i="3"></span>
-      </div>
-    </div><!-- /svc-grid -->
-    </div><!-- /svc-stack-stage -->
-  </div><!-- /svc-stack-wrap -->
-</section>
-
-<!-- ג•ג•ג• PRODUCTS ג•ג•ג• -->
-<section class="products" id="products">
-  <div class="section-head">
-    <div class="section-label">האימפקט שלנו</div>
-    <h2 class="section-title">מוצרים טכנולוגיים חכמים<br>עם טביעת אצבע אנושית</h2>
-    <p class="section-sub">חלק מהמערכות שפיתחנו.</p>
-  </div>
-
-  <div class="products-grid">
-    <article class="product-card" tabindex="0" aria-label="אַדורה, לחצו כדי לראות מה המוצר עושה">
-      <div class="product-card-inner">
-        <div class="product-face product-face-front">
-          <div class="product-media is-adora" aria-hidden="true">
-            <div class="adora-logo"><em>אַ</em>דורה</div>
-            <p class="product-front-desc">לוח מודעות חכם לדרושים בעולם החינוך, שמחבר בין אנשי חינוך, בתי ספר וארגונים.</p>
-          </div>
-        </div>
-        <div class="product-face product-face-back">
-          <div class="product-body">
-            <span class="product-kicker">חינוך ותעסוקה</span>
-            <h3>טביעת האצבע</h3>
-            <p>לוח מודעות דרושים לעולם החינוך, שמחבר בין אנשי חינוך, בתי ספר וארגונים שמחפשים התאמה מדויקת ומשמעותית.</p>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="product-card" tabindex="0" aria-label="Goldfish, לחצו כדי לראות מה המוצר עושה">
-      <div class="product-card-inner">
-        <div class="product-face product-face-front">
-          <div class="product-media is-goldfish" aria-hidden="true">
-            <div class="goldfish-icon"></div>
-            <div class="goldfish-logo">Goldfish</div>
-            <p class="product-front-desc">כלי חכם לגיוס משאבים לעמותות, שמסייע לאתר מענקים וקולות קוראים.</p>
-          </div>
-        </div>
-        <div class="product-face product-face-back">
-          <div class="product-body">
-            <span class="product-kicker">גיוס משאבים</span>
-            <h3>טביעת האצבע</h3>
-            <p>כלי חכם לגיוס משאבים לעמותות, שמסייע לאתר הזדמנויות, מענקים וקולות קוראים בלי לטבוע בתוך עומס המידע.</p>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="product-card" tabindex="0" aria-label="רצף, לחצו כדי לראות מה המוצר עושה">
-      <div class="product-card-inner">
-        <div class="product-face product-face-front">
-          <div class="product-media is-retzef" aria-hidden="true">
-            <svg width="180" height="80" viewBox="0 0 180 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="display:block;margin:0 auto 8px">
-              <path d="M10 72 C10 30 42 6 90 6 C138 6 170 30 170 72" stroke="#5B2D9E" stroke-width="6" stroke-linecap="round" fill="none"/>
-              <path d="M24 72 C24 36 52 16 90 16 C128 16 156 36 156 72" stroke="#7B4EC8" stroke-width="5" stroke-linecap="round" fill="none"/>
-              <path d="M38 72 C38 42 62 26 90 26 C118 26 142 42 142 72" stroke="#A07EE0" stroke-width="4" stroke-linecap="round" fill="none"/>
-            </svg>
-            <div class="retzef-logo">רָצֶף</div>
-            <p class="product-front-desc">מענים לקהילה האוטיסטית ובני משפחותיהם לאורך כל שלבי החיים.</p>
-          </div>
-        </div>
-        <div class="product-face product-face-back">
-          <div class="product-body">
-            <span class="product-kicker">רווחה וקהילה</span>
-            <h3>טביעת האצבע</h3>
-            <p>מערכת שמרכזת מענים, שירותים ותהליכים עבור הקהילה האוטיסטית ומשפחותיהם לאורך שלבי החיים.</p>
-          </div>
-        </div>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- ג•ג•ג• MANIFESTO ג•ג•ג• -->
-<section class="manifesto">
-  <div class="mani-fp" aria-hidden="true">
-    <img class="brand-fingerprint-bg" src="../public/brand/impact-fingerprint-scroll-white.png" alt="" loading="lazy">
-  </div>
-  <svg class="mani-fp-old" viewBox="0 0 500 580" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <defs>
-      <linearGradient id="lgMani" x1="0" y1="0" x2="500" y2="580" gradientUnits="userSpaceOnUse">
-        <stop offset="0%" stop-color="#12C7C7"/>
-        <stop offset="100%" stop-color="#F00678"/>
-      </linearGradient>
-    </defs>
-    <g stroke="url(#lgMani)" stroke-width="5.5" stroke-linecap="round" fill="none">
-      <path d="M250 60 C360 60 440 145 440 255 C440 370 355 440 250 440"/>
-      <path d="M250 90 C342 90 412 168 412 262 C412 358 338 418 250 418"/>
-      <path d="M250 120 C324 120 384 190 384 268 C384 348 320 398 250 398"/>
-      <path d="M250 150 C306 150 356 210 356 275 C356 338 304 378 250 378"/>
-      <path d="M250 180 C288 180 328 228 328 280 C328 332 286 358 250 358"/>
-      <path d="M148 110 C186 56 222 42 250 60"/>
-      <path d="M126 156 C166 84 213 68 250 90"/>
-      <path d="M112 208 C144 118 202 90 250 120"/>
-      <path d="M104 268 C124 162 192 118 250 150"/>
-      <path d="M110 330 C112 208 178 150 250 180"/>
-    </g>
-  </svg>
-
-  <div class="mani-label">המניפסט שלנו</div>
-  <h2>אנחנו מאמינים<br>בטכנולוגיה <em>עם נשמה</em></h2>
-  <p>אנחנו מאמינים שהמגזר החברתי והחינוכי יכול להוביל שינוי אמיתי בעזרת כלים חכמים, מדויקים ונגישים. IMPACT OS נולדה כדי לחבר בין טכנולוגיה, אנשים וIMPACT, ולבנות מערכות שמבינות את השטח, עושות סדר בתהליכים ומאפשרות לארגונים לעשות יותר טוב בעולם.</p>
-
-  <div class="mani-chips">
-    <div class="mani-chip">טכנולוגיה עם כוונה</div>
-    <div class="mani-chip">עיצוב אנושי</div>
-    <div class="mani-chip">מדידה אמיתית</div>
-    <div class="mani-chip">ליווי לאורך הדרך</div>
-    <div class="mani-chip">IMPACT שניתן לראות</div>
-  </div>
-</section>
-
-<!-- ג•ג•ג• TEAM ג•ג•ג• -->
 <section class="team" id="team">
+  <a class="team-home-link" href="./impact-so-website.html?skipIntro=1">חזרה לעמוד הבית</a>
   <div class="section-head">
     <div class="section-label">מי אנחנו</div>
     <h2 class="section-title">האנשים<br>מאחורי IMPACT</h2>
@@ -2669,82 +2307,6 @@ footer::after{
     </article>
   </div>
 </section>
-
-<!-- ג•ג•ג• SECTORS ג•ג•ג• -->
-<section class="sectors" id="sectors">
-  <div class="section-head">
-    <div class="section-label">למי זה מתאים</div>
-    <h2 class="section-title">מערכות חכמות לארגונים<br>עם שליחות</h2>
-    <p class="section-sub">אנחנו עובדים עם גופים חברתיים, חינוכיים וציבוריים שרוצים לעשות סדר בתהליכים, לחבר בין אנשים ונתונים, ולראות את ההשפעה שלהם בצורה ברורה יותר.</p>
-  </div>
-
-  <div class="sectors-grid">
-    <div class="sector-card">
-      <div class="sector-icon">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#12C7C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="18" cy="18" r="1.8" fill="#12C7C7" stroke="none"/>
-          <path d="M18 6C24 6 30 10.5 30 18C30 25.5 24 30 18 30"/>
-          <path d="M18 10C23 10 27 13.5 27 18C27 22.5 23 26 18 26"/>
-          <path d="M18 14C21 14 24 15.8 24 18C24 20.5 21 22 18 22"/>
-          <path d="M10 8.5C12.5 6.5 15 6 18 6"/>
-          <path d="M8 14C9.5 9.5 13 7.5 18 10"/>
-          <path d="M7 20C7 14.5 11.5 10.5 18 14"/>
-          <path d="M8 26C5.5 22 7 15.5 18 18"/>
-        </svg>
-      </div>
-      <h3>מגזר שלישי ועמותות</h3>
-      <p>ארגונים חברתיים וסביבתיים שצריכים כלים לניהול, גיוס, מדידת IMPACT וקשר עם הקהילה.</p>
-    </div>
-
-    <div class="sector-card">
-      <div class="sector-icon">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#F4B41B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="6" y="16" width="24" height="14" rx="3"/>
-          <path d="M12 16V11C12 8.2 14.7 6 18 6C21.3 6 24 8.2 24 11V16"/>
-          <circle cx="18" cy="23" r="2.5"/>
-          <path d="M18 25.5V28"/>
-        </svg>
-      </div>
-      <h3>מערכת החינוך</h3>
-      <p>בתי ספר, רשתות חינוך ומוסדות אקדמיים עם מערכות שמקלות על המורה ומעצימות את התלמיד.</p>
-    </div>
-
-    <div class="sector-card">
-      <div class="sector-icon">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#F00678" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="4" y="8" width="28" height="20" rx="4"/>
-          <path d="M4 14h28"/>
-          <path d="M12 20h4"/>
-          <path d="M12 24h6"/>
-          <circle cx="25" cy="22" r="3.5"/>
-          <path d="M27.5 24.5L30 27.5"/>
-        </svg>
-      </div>
-      <h3>גופי ממשל ורגולציה</h3>
-      <p>רשויות מקומיות ומשרדי ממשלה שרוצים לשפר שירות, להנגיש מידע ולעבוד חכם יותר עם הנתונים.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ג•ג•ג• CTA ג•ג•ג• -->
-<section class="cta-sec" id="contact">
-  <div class="cta-inner">
-    <div class="cta-label">מוכנים להתחיל?</div>
-    <h2>בואו נבנה משהו<br>שעושה <em>הבדל אמיתי</em></h2>
-    <p>שיחת היכרות קצרה שבה נבין ביחד אם ואיך IMPACT OS יכולה לעזור לכם לגדול.</p>
-    <div class="cta-btns">
-      <a href="https://wa.me/972536256653?text=%D7%94%D7%99%20%D7%A6%D7%95%D7%95%D7%AA%20%D7%90%D7%99%D7%9E%D7%A4%D7%A7%D7%98%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D" class="btn-primary" target="_blank" rel="noopener" aria-label="שליחת וואטסאפ ל-053-6256653">
-        בואו נייצר IMPACT
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M2 4L8 9L14 4"/><rect x="2" y="4" width="12" height="9" rx="2"/>
-        </svg>
-      </a>
-      <a href="#products" class="btn-outline">למוצרים שלנו</a>
-    </div>
-  </div>
-</section>
-
-<!-- ג•ג•ג• FOOTER ג•ג•ג• -->
 <footer>
   <div class="footer-fp" aria-hidden="true"></div>
 
@@ -2759,25 +2321,25 @@ footer::after{
 
     <div class="mobile-footer-links" aria-label="ניווט תחתון">
       <a href="https://wa.me/972536256653?text=%D7%94%D7%99%20%D7%A6%D7%95%D7%95%D7%AA%20%D7%90%D7%99%D7%9E%D7%A4%D7%A7%D7%98%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener" aria-label="שליחת וואטסאפ ל-053-6256653">ליצירת קשר</a>
-      <a href="#products">האימפקט שלנו</a>
+      <a href="./impact-so-website.html#products">האימפקט שלנו</a>
       <a href="./impact-os-team.html">מי אנחנו</a>
     </div>
 <div class="footer-col">
       <h4>מה אנחנו עושים</h4>
       <ul>
-        <li><a href="#services">אפיון מערכות</a></li>
-        <li><a href="#products">מוצרים טכנולוגיים חכמים</a></li>
-        <li><a href="#services">דאטה וIMPACT</a></li>
-        <li><a href="#services">AI למגזר החברתי</a></li>
-        <li><a href="#products">האימפקט שלנו</a></li>
+        <li><a href="./impact-so-website.html#services">אפיון מערכות</a></li>
+        <li><a href="./impact-so-website.html#products">מוצרים טכנולוגיים חכמים</a></li>
+        <li><a href="./impact-so-website.html#services">דאטה וIMPACT</a></li>
+        <li><a href="./impact-so-website.html#services">AI למגזר החברתי</a></li>
+        <li><a href="./impact-so-website.html#products">האימפקט שלנו</a></li>
       </ul>
     </div>
 <div class="footer-col">
       <h4>יצירת קשר</h4>
       <ul>
         <li><a class="footer-whatsapp" href="https://wa.me/972536256653?text=%D7%94%D7%99%20%D7%A6%D7%95%D7%95%D7%AA%20%D7%90%D7%99%D7%9E%D7%A4%D7%A7%D7%98%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener" aria-label="שליחת וואטסאפ ל-053-6256653"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.8a8.4 8.4 0 0 1-12.4 7.4L4 20.5l1.3-4A8.4 8.4 0 1 1 20.5 11.8Z"/><path d="M9.2 8.9c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.6c.1.3.1.5-.1.7l-.4.5c.7 1.2 1.6 2.1 2.9 2.8l.5-.6c.2-.2.4-.3.7-.2l1.6.8c.3.1.4.3.4.6v.4c0 .4-.2.7-.5.9-.6.3-1.4.5-2.3.2-2.8-.8-5.1-3.1-5.9-5.9-.3-.8-.1-1.6.2-2.2Z"/></svg><span>053-6256653</span></a></li>
-        <li><a href="#contact">בואו נייצר IMPACT</a></li>
-        <li><a href="#sectors">למי זה מתאים</a></li>
+        <li><a href="./impact-so-website.html#contact">בואו נייצר IMPACT</a></li>
+        <li><a href="./impact-so-website.html#sectors">למי זה מתאים</a></li>
       </ul>
     </div>
   </div>
@@ -2802,273 +2364,10 @@ footer::after{
     </svg>
   </div>
 </footer>
-
-
 <script>
-/* ג•ג• IMPACT OS LOADER ג•ג• */
 (function(){
-  var loader  = document.getElementById('isl');
-  var video   = document.getElementById('isl-loader-video');
-  var image   = document.getElementById('isl-loader-image');
-  var canvas  = document.getElementById('isl-loader-canvas');
-  var stage   = document.getElementById('isl-video-stage');
-  var ctx     = canvas ? canvas.getContext('2d', {willReadFrequently:true}) : null;
-  var done = false;
-  var fallbackTimer;
-  var frameLoop = 0;
-  var progressLoop = 0;
-  var userSkipped = false;
-
-  function closeLoader(){
-    if(done || !loader) return;
-    done = true;
-    clearTimeout(fallbackTimer);
-    if(frameLoop) cancelAnimationFrame(frameLoop);
-    if(progressLoop) cancelAnimationFrame(progressLoop);
-    if(window.location.hash && !userSkipped){
-      history.replaceState(null, document.title, window.location.pathname + window.location.search);
-    }
-    if(!userSkipped) window.scrollTo({top:0,left:0,behavior:'auto'});
-    loader.classList.add('out');
-    setTimeout(function(){ loader.remove(); }, 500);
-  }
-
-  if(new URLSearchParams(window.location.search).get('skipIntro') === '1'){
-    closeLoader();
-    return;
-  }
-
-  function skipLoader(event){
-    if(done) return;
-    if(event && event.type === 'keydown'){
-      var key = event.key || '';
-      if(key !== 'Escape' && key !== 'Enter' && key !== ' ' && key !== 'ArrowDown' && key !== 'PageDown') return;
-    }
-    userSkipped = true;
-    closeLoader();
-  }
-
-  if(loader){
-    loader.addEventListener('click', skipLoader);
-    loader.addEventListener('pointerdown', skipLoader);
-    window.addEventListener('wheel', skipLoader, {passive:true, once:true});
-    window.addEventListener('touchmove', skipLoader, {passive:true, once:true});
-    window.addEventListener('keydown', skipLoader);
-  }
-
-  function paintWhiteFrame(){
-    if(frameLoop){
-      cancelAnimationFrame(frameLoop);
-      frameLoop = 0;
-    }
-    if(!video || !canvas || !ctx || !stage || !video.videoWidth || !video.videoHeight){
-      if(stage) stage.classList.remove('canvas-ready');
-      return;
-    }
-    var width = video.videoWidth;
-    var height = video.videoHeight;
-    if(canvas.width !== width) canvas.width = width;
-    if(canvas.height !== height) canvas.height = height;
-    try{
-      ctx.fillStyle = '#FFFFFF';
-      ctx.fillRect(0, 0, width, height);
-      ctx.drawImage(video, 0, 0, width, height);
-      var frame = ctx.getImageData(0, 0, width, height);
-      var data = frame.data;
-      for(var i = 0; i < data.length; i += 4){
-        var r = data[i];
-        var g = data[i + 1];
-        var b = data[i + 2];
-        var max = Math.max(r, g, b);
-        var min = Math.min(r, g, b);
-        var avg = (r + g + b) / 3;
-        var chroma = max - min;
-        var isTealInk = g > 82 && b > 90 && b >= r + 24 && g >= r + 22 && chroma > 38;
-        var isPinkInk = r > 112 && r >= g + 40 && r >= b + 14 && chroma > 48;
-        var isNavyInk = avg < 125 && b >= r + 14 && b >= g - 8;
-        var keepLogoInk = isTealInk || isPinkInk || isNavyInk;
-        if(!keepLogoInk){
-          data[i] = 255;
-          data[i + 1] = 255;
-          data[i + 2] = 255;
-          data[i + 3] = 255;
-        }
-      }
-      ctx.putImageData(frame, 0, 0);
-      stage.classList.add('canvas-ready');
-    }catch(error){
-      stage.classList.remove('canvas-ready');
-      return;
-    }
-    if(!done && !video.paused && !video.ended){
-      frameLoop = requestAnimationFrame(paintWhiteFrame);
-    }
-  }
-
-  function updateLoaderProgress(){
-    if(done || !loader || !video) return;
-    var progress = .04;
-    if(isFinite(video.duration) && video.duration > 0){
-      progress = Math.max(.04, Math.min(.985, video.currentTime / video.duration));
-    }
-    loader.style.setProperty('--loader-progress', progress.toFixed(3));
-    progressLoop = requestAnimationFrame(updateLoaderProgress);
-  }
-
-  if(image){
-    var imageStart = performance.now();
-    function runImageLoader(now){
-      if(done || !loader) return;
-      var progress = Math.min(.985, Math.max(.04, (now - imageStart) / 2300));
-      loader.style.setProperty('--loader-progress', progress.toFixed(3));
-      if(progress < .985){
-        progressLoop = requestAnimationFrame(runImageLoader);
-      }else{
-        fallbackTimer = setTimeout(closeLoader, 260);
-      }
-    }
-    function startImageLoader(){
-      if(stage) stage.classList.add('canvas-ready');
-      imageStart = performance.now();
-      progressLoop = requestAnimationFrame(runImageLoader);
-    }
-    if(image.complete){
-      startImageLoader();
-    }else{
-      image.addEventListener('load', startImageLoader, {once:true});
-      image.addEventListener('error', closeLoader, {once:true});
-      fallbackTimer = setTimeout(closeLoader, 4500);
-    }
-  }else if(video){
-    video.muted = true;
-    video.defaultMuted = true;
-    video.playbackRate = 1.28;
-    video.setAttribute('muted', '');
-    video.setAttribute('playsinline', '');
-    function ensureVideoPlay(){
-      if(done || !video || !video.paused) return;
-      video.play().catch(function(){});
-    }
-    video.addEventListener('loadedmetadata', function(){
-      if(isFinite(video.duration) && video.duration > 0){
-        clearTimeout(fallbackTimer);
-        fallbackTimer = setTimeout(closeLoader, (video.duration * 1000) + 900);
-      }
-      ensureVideoPlay();
-      paintWhiteFrame();
-      updateLoaderProgress();
-    }, {once:true});
-    video.addEventListener('loadeddata', ensureVideoPlay, {once:true});
-    video.addEventListener('canplay', paintWhiteFrame, {once:true});
-    video.addEventListener('playing', paintWhiteFrame, {once:true});
-    video.addEventListener('ended', closeLoader, {once:true});
-    video.addEventListener('error', closeLoader, {once:true});
-    ensureVideoPlay();
-    setTimeout(ensureVideoPlay, 250);
-    setTimeout(ensureVideoPlay, 900);
-    fallbackTimer = setTimeout(closeLoader, 11500);
-  }else{
-    closeLoader();
-  }
-})();
-</script>
-<script>
-/* IMPACT OS motion layer */
-(function(){
-  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var root = document.documentElement;
   var menuToggle = document.querySelector('.mobile-menu-toggle');
   var mobileMenu = document.getElementById('mobileMenu');
-  var progressBar = document.getElementById('scrollProgress');
-  var signature = document.getElementById('fingerprintSignature');
-  var navLogoImage = document.getElementById('navLogoImage');
-  var navScrollBadge = document.getElementById('navScrollBadge');
-  var heroTag = document.querySelector('.hero-tag');
-  var manifesto = document.querySelector('.manifesto');
-  var manifestoFingerprint = document.querySelector('.mani-fp');
-  var footerEl = document.querySelector('footer');
-  var holdExperience = document.getElementById('mobileFingerprintExperience');
-  var holdButton = document.getElementById('holdFingerprint');
-  var signatureColors = ['var(--teal)','var(--fuchsia)','var(--yellow)','var(--green)','var(--orange)'];
-  var signatureImages = [
-    "url('../public/brand/impact-fingerprint-scroll-teal.png')",
-    "url('../public/brand/impact-fingerprint-scroll-fuchsia.png')",
-    "url('../public/brand/impact-fingerprint-scroll-yellow.png')",
-    "url('../public/brand/impact-fingerprint-scroll-green.png')",
-    "url('../public/brand/impact-fingerprint-scroll-orange.png')"
-  ];
-  var navLogoImages = [
-    '../public/brand/impact-os-logo-nav-teal.png?v=os-logo-4',
-    '../public/brand/impact-os-logo-nav-fuchsia.png?v=os-logo-4',
-    '../public/brand/impact-os-logo-nav-yellow.png?v=os-logo-4',
-    '../public/brand/impact-os-logo-nav-green.png?v=os-logo-4',
-    '../public/brand/impact-os-logo-nav-orange.png?v=os-logo-4'
-  ];
-  var ticking = false;
-  var activeLogoIndex = -1;
-
-  function updateScrollMotion(){
-    var maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-    var progress = Math.min(1, Math.max(0, window.scrollY / maxScroll));
-    var sectionIndex = Math.min(signatureColors.length - 1, Math.floor(progress * signatureColors.length));
-    if(progressBar){
-      progressBar.style.transform = 'scaleX(' + progress + ')';
-    }
-    if(signature){
-      var draw = Math.max(8, Math.round(progress * 100));
-      var opacity = 0.08 + (progress * 0.10);
-      signature.style.setProperty('--signature-draw', draw + '%');
-      signature.style.setProperty('--signature-tint', signatureColors[sectionIndex]);
-      signature.style.setProperty('--signature-image', signatureImages[sectionIndex]);
-      signature.style.setProperty('--signature-opacity', opacity.toFixed(2));
-    }
-    if(navLogoImage && sectionIndex !== activeLogoIndex){
-      activeLogoIndex = sectionIndex;
-      navLogoImage.src = navLogoImages[sectionIndex];
-    }
-    if(navScrollBadge && heroTag){
-      var tagRect = heroTag.getBoundingClientRect();
-      navScrollBadge.classList.toggle('is-visible', tagRect.bottom < 88 && window.scrollY > 80);
-    }
-    if(manifesto && manifestoFingerprint){
-      var rect = manifesto.getBoundingClientRect();
-      if(rect.top < window.innerHeight && rect.bottom > 0){
-        var localProgress = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
-        var shiftX = Math.sin(localProgress * Math.PI * 2.2) * 62;
-        var shiftY = (localProgress - .5) * 180;
-        manifestoFingerprint.style.setProperty('--mani-scroll-x', shiftX.toFixed(1) + 'px');
-        manifestoFingerprint.style.setProperty('--mani-scroll-y', shiftY.toFixed(1) + 'px');
-      }
-    }
-    if(footerEl){
-      var footerRect = footerEl.getBoundingClientRect();
-      footerEl.classList.toggle('footer-fp-landed', footerRect.top < window.innerHeight * .72);
-    }
-    ticking = false;
-  }
-
-  function requestScrollMotion(){
-    if(!ticking){
-      ticking = true;
-      requestAnimationFrame(updateScrollMotion);
-    }
-  }
-
-  if(reduceMotion){
-    if(progressBar) progressBar.style.transform = 'scaleX(1)';
-    if(signature){
-      signature.style.setProperty('--signature-draw','100%');
-      signature.style.setProperty('--signature-opacity','.16');
-      signature.style.setProperty('--signature-image',"url('../public/brand/impact-fingerprint-scroll-teal.png')");
-    }
-    if(navLogoImage) navLogoImage.src = navLogoImages[0];
-    if(navScrollBadge) navScrollBadge.classList.remove('is-visible');
-  }else{
-    window.addEventListener('scroll', requestScrollMotion, {passive:true});
-    window.addEventListener('resize', requestScrollMotion);
-    updateScrollMotion();
-  }
-
   function setMobileMenu(open){
     if(!menuToggle || !mobileMenu) return;
     menuToggle.classList.toggle('is-open', open);
@@ -3076,230 +2375,31 @@ footer::after{
     document.body.classList.toggle('mobile-menu-open', open);
     menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
-    menuToggle.setAttribute('aria-label', open ? 'סגירת תפריט' : 'פתיחת תפריט');
   }
-
   if(menuToggle && mobileMenu){
-    window.toggleImpactMenu = function(){
-      setMobileMenu(!mobileMenu.classList.contains('is-open'));
-    };
-    mobileMenu.querySelectorAll('a').forEach(function(link){
-      link.addEventListener('click', function(){ setMobileMenu(false); });
-    });
-    document.addEventListener('keydown', function(event){
-      if(event.key === 'Escape') setMobileMenu(false);
-    });
-    window.addEventListener('resize', function(){
-      if(window.innerWidth > 760) setMobileMenu(false);
-    });
+    window.toggleImpactMenu = function(){ setMobileMenu(!mobileMenu.classList.contains('is-open')); };
+    mobileMenu.querySelectorAll('a').forEach(function(link){ link.addEventListener('click', function(){ setMobileMenu(false); }); });
+    document.addEventListener('keydown', function(event){ if(event.key === 'Escape') setMobileMenu(false); });
   }
-
-  function getAnchorOffset(){
-    var nav = document.querySelector('nav');
-    var navHeight = nav ? nav.getBoundingClientRect().height : 0;
-    return Math.max(72, Math.ceil(navHeight + 2));
-  }
-
-  function scrollToSection(target, smooth){
-    if(!target) return;
-    var top = target.getBoundingClientRect().top + window.pageYOffset - getAnchorOffset();
-    window.scrollTo({
-      top: Math.max(0, top),
-      left: 0,
-      behavior: smooth === false ? 'auto' : 'smooth'
-    });
-  }
-
-  document.querySelectorAll('a[href^="#"]').forEach(function(link){
-    link.addEventListener('click', function(event){
-      var hash = link.getAttribute('href');
-      if(!hash || hash === '#') return;
-      var target = document.querySelector(hash);
-      if(!target) return;
-      event.preventDefault();
-      setMobileMenu(false);
-      scrollToSection(target, true);
-      if(history.pushState){
-        history.pushState(null, '', hash);
-      }else{
-        window.location.hash = hash;
-      }
-    });
+  document.querySelectorAll('.person-card, footer .footer-brand, footer .footer-col, footer .footer-bottom').forEach(function(el){
+    el.classList.add('reveal','is-visible');
   });
-
-  window.addEventListener('load', function(){
-    if(!window.location.hash) return;
-    var target = document.querySelector(window.location.hash);
-    if(!target) return;
-    window.setTimeout(function(){ scrollToSection(target, false); }, 60);
-  });
-  document.querySelectorAll('.product-card').forEach(function(card){
-    card.addEventListener('click', function(event){
-      if(event.target.closest('a')) return;
-      document.querySelectorAll('.product-card.is-flipped').forEach(function(openCard){
-        if(openCard !== card) openCard.classList.remove('is-flipped');
-      });
-      card.classList.toggle('is-flipped');
-    });
-    card.addEventListener('keydown', function(event){
-      if(event.key !== 'Enter' && event.key !== ' ') return;
-      event.preventDefault();
-      card.click();
-    });
-  });
-
-  function setupMobileHoldExperience(){
-    if(!holdExperience || !holdButton) return;
-
-    var duration = 1500;
-    var progress = 0;
-    var holding = false;
-    var complete = false;
-    var frame = 0;
-    var lastTime = 0;
-
-    function setHoldProgress(value){
-      progress = Math.min(1, Math.max(0, value));
-      holdExperience.style.setProperty('--hold-reveal', Math.round(progress * 100) + '%');
-      holdExperience.style.setProperty('--hold-angle', Math.round(progress * 360) + 'deg');
-      holdExperience.style.setProperty('--hold-scale', progress.toFixed(3));
-      holdExperience.classList.toggle('is-complete', progress >= 1);
-      holdButton.setAttribute('aria-pressed', progress >= 1 ? 'true' : 'false');
-    }
-
-    function vibrateSoftly(){
-      if(navigator.vibrate){
-        try{ navigator.vibrate(18); }catch(e){}
-      }
-    }
-
-    function animateHold(time){
-      if(!lastTime) lastTime = time;
-      var delta = time - lastTime;
-      lastTime = time;
-
-      if(holding && !complete){
-        setHoldProgress(progress + delta / duration);
-        if(progress >= 1){
-          complete = true;
-          holding = false;
-          vibrateSoftly();
-        }
-      }else if(!complete && progress > 0){
-        setHoldProgress(progress - delta / 520);
-      }
-
-      if((holding && !complete) || (!complete && progress > 0)){
-        frame = requestAnimationFrame(animateHold);
-      }else{
-        frame = 0;
-        lastTime = 0;
-      }
-    }
-
-    function startHold(event){
-      if(complete) return;
-      if(event && event.cancelable) event.preventDefault();
-      holding = true;
-      lastTime = 0;
-      vibrateSoftly();
-      if(!frame) frame = requestAnimationFrame(animateHold);
-    }
-
-    function stopHold(){
-      if(complete) return;
-      holding = false;
-      lastTime = 0;
-      if(!frame && progress > 0) frame = requestAnimationFrame(animateHold);
-    }
-
-    if(reduceMotion){
-      complete = true;
-      setHoldProgress(1);
-      return;
-    }
-
-    holdButton.addEventListener('pointerdown', startHold);
-    holdButton.addEventListener('pointerup', stopHold);
-    holdButton.addEventListener('pointercancel', stopHold);
-    holdButton.addEventListener('pointerleave', stopHold);
-    holdButton.addEventListener('keydown', function(event){
-      if(event.key === ' ' || event.key === 'Enter') startHold(event);
-    });
-    holdButton.addEventListener('keyup', function(event){
-      if(event.key === ' ' || event.key === 'Enter') stopHold();
-    });
-    setHoldProgress(0);
-  }
-
-  setupMobileHoldExperience();
-
-  var groups = [
-    '.services .section-head',
-    '.svc-connector',
-    '.svc-card',
-    '.mobile-hold .mobile-hold__inner',
-    '.products .section-head',
-    '.product-card',
-    '.manifesto .mani-label',
-    '.manifesto h2',
-    '.manifesto p',
-    '.mani-chip',
-    '.team .section-head',
-    '.person-card',
-    '.sectors .section-head',
-    '.sector-card',
-    '.cta-sec h2',
-    '.cta-sec p',
-    '.cta-sec .cta-btns',
-    'footer .footer-brand',
-    'footer .footer-col',
-    'footer .footer-bottom'
-  ];
-  var items = Array.prototype.slice.call(document.querySelectorAll(groups.join(',')));
-  items.forEach(function(el){
-    el.classList.add('reveal');
-    var siblings = Array.prototype.filter.call(el.parentElement ? el.parentElement.children : [], function(node){
-      return items.indexOf(node) !== -1;
-    });
-    var index = Math.max(0, siblings.indexOf(el));
-    el.style.setProperty('--reveal-delay', Math.min(index * 70, 280) + 'ms');
-  });
-
-  if(reduceMotion || !('IntersectionObserver' in window)){
-    items.forEach(function(el){ el.classList.add('is-visible'); });
-    return;
-  }
-
-  var observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting){
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {threshold:0.16, rootMargin:'0px 0px -8% 0px'});
-
-  items.forEach(function(el){ observer.observe(el); });
 })();
 </script>
-
-<!-- ===== FOOTER TYPEWRITER ===== -->
 <script>
 (function(){
   var line = document.querySelector('.footer-typewriter');
   if(!line) return;
   var target = line.querySelector('span');
-  var text = line.getAttribute('data-typewriter') || line.textContent.trim();
+  if(!target) return;
+  var text = line.getAttribute('data-typewriter') || line.getAttribute('aria-label') || '';
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var started = false;
-
   function complete(){
     target.textContent = text;
     line.classList.remove('is-writing');
     line.classList.add('is-complete');
   }
-
   function type(){
     if(started) return;
     started = true;
@@ -3318,13 +2418,10 @@ footer::after{
     }
     tick();
   }
-
-  if(!target) return;
   if(reduceMotion || !('IntersectionObserver' in window)){
     complete();
     return;
   }
-  target.textContent = '';
   var observer = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
       if(entry.isIntersecting){
@@ -3332,224 +2429,9 @@ footer::after{
         observer.unobserve(line);
       }
     });
-  }, {threshold:.45, rootMargin:'0px 0px -4% 0px'});
+  }, {threshold:.35});
   observer.observe(line);
 })();
 </script>
-<!-- ===== STACKED CARDS JS ===== -->
-<script>
-(function(){
-  var reduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-  var isMobile = window.matchMedia('(max-width:900px)').matches;
-  var wrap = document.getElementById('svcStackWrap');
-  var grid = document.getElementById('svcGrid');
-  var cards = document.querySelectorAll('#svcGrid .svc-card');
-  var dots = document.querySelectorAll('#svcIndicator .svc-dot');
-  return; /* cards shown as grid — no JS needed */
-
-  var current = 0;
-
-  function setCard(idx){
-    idx = Math.max(0, Math.min(cards.length-1, idx));
-    if(idx === current && !isMobile) return;
-    current = idx;
-    dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
-
-    if(isMobile){
-      /* slider — translateX */
-      var pct = idx * (100 / cards.length);
-      grid.style.transform = 'translateX(' + (document.documentElement.dir==='rtl' ? pct : -pct) + '%)';
-    } else {
-      cards.forEach(function(c,i){
-        c.classList.remove('is-active','is-exit');
-        if(i===idx) c.classList.add('is-active');
-        else if(i===current-1||i===current+1) c.classList.add('is-exit');
-      });
-    }
-  }
-
-  if(isMobile){
-    /* Swipe */
-    var startX = 0;
-    grid.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;},{passive:true});
-    grid.addEventListener('touchend',function(e){
-      var dx = e.changedTouches[0].clientX - startX;
-      if(Math.abs(dx) < 40) return;
-      /* RTL: swipe ימינה = קדם, שמאלה = הבא */
-      setCard(dx > 0 ? current-1 : current+1);
-    },{passive:true});
-    /* נקודות — לחיצה */
-    dots.forEach(function(d,i){
-      d.addEventListener('click',function(){ setCard(i); });
-      d.style.cursor='pointer';
-      d.style.width='10px';
-      d.style.height='10px';
-    });
-    setCard(0);
-    /* כרטיס ראשון גלוי */
-    grid.style.transform = 'translateX(0)';
-    return;
-  }
-
-  /* Desktop — sticky scroll */
-  function onScroll(){
-    var rect = wrap.getBoundingClientRect();
-    var total = wrap.offsetHeight - window.innerHeight;
-    var scrolled = -rect.top;
-    var progress = Math.max(0, Math.min(1, scrolled / total));
-    var idx = Math.min(cards.length-1, Math.floor(progress * cards.length));
-    if(idx !== current){
-      cards.forEach(function(c,i){
-        c.classList.remove('is-active','is-exit');
-        if(i===idx) c.classList.add('is-active');
-        else if(i===current) c.classList.add('is-exit');
-      });
-      dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
-      current = idx;
-    }
-  }
-
-  cards[0].classList.add('is-active');
-  dots[0].classList.add('active');
-  window.addEventListener('scroll', onScroll, {passive:true});
-  onScroll();
-})();
-</script>
-
-<!-- ===== COOKIE BANNER ===== -->
-<style>
-#cookie-banner{
-  position:fixed;bottom:0;left:0;right:0;z-index:8888;
-  padding:16px 20px;
-  background:#fff;
-  border-top:1px solid rgba(6,30,79,0.1);
-  box-shadow:0 -8px 32px rgba(6,30,79,0.08);
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
-  flex-wrap:wrap;
-  transform:translateY(100%);
-  transition:transform 480ms cubic-bezier(.22,1,.36,1);
-  font-family:'Heebo',sans-serif;
-  direction:rtl;
-}
-#cookie-banner.show{transform:translateY(0)}
-.cookie-text{
-  font-size:14px;color:#444;line-height:1.6;flex:1;min-width:200px;
-}
-.cookie-text a{color:var(--navy);font-weight:600;text-decoration:underline;cursor:pointer;}
-.cookie-actions{display:flex;gap:10px;flex-shrink:0;}
-.cookie-btn{
-  height:40px;padding:0 20px;border-radius:999px;
-  font-family:'Heebo',sans-serif;font-size:14px;font-weight:700;
-  border:none;cursor:pointer;transition:transform 180ms ease,opacity 180ms ease;
-}
-.cookie-btn:hover{opacity:.88;transform:translateY(-1px)}
-.cookie-btn-accept{background:var(--fuchsia);color:#fff;}
-.cookie-btn-decline{background:transparent;color:var(--navy);border:1.5px solid rgba(6,30,79,0.18);}
-
-/* מדיניות פרטיות מודאל */
-#privacy-modal{
-  position:fixed;inset:0;z-index:9000;
-  display:flex;align-items:flex-end;justify-content:center;
-  background:rgba(6,30,79,0.38);
-  opacity:0;pointer-events:none;
-  transition:opacity 320ms ease;
-}
-#privacy-modal.open{opacity:1;pointer-events:all;}
-.privacy-sheet{
-  background:#fff;
-  border-radius:24px 24px 0 0;
-  padding:32px 28px 40px;
-  width:100%;max-width:680px;
-  max-height:85vh;overflow-y:auto;
-  direction:rtl;font-family:'Heebo',sans-serif;
-  transform:translateY(40px);
-  transition:transform 360ms cubic-bezier(.22,1,.36,1);
-}
-#privacy-modal.open .privacy-sheet{transform:translateY(0);}
-.privacy-sheet h2{font-size:22px;font-weight:900;color:var(--navy);margin-bottom:16px;}
-.privacy-sheet p{font-size:14px;color:#555;line-height:1.8;margin-bottom:12px;}
-.privacy-sheet h3{font-size:15px;font-weight:700;color:var(--navy);margin:18px 0 6px;}
-.privacy-close{
-  position:absolute;top:16px;left:20px;
-  background:none;border:none;font-size:22px;cursor:pointer;color:var(--navy);
-  font-family:'Heebo',sans-serif;
-}
-@media(max-width:600px){
-  #cookie-banner{flex-direction:column;align-items:flex-start;padding:18px 16px 24px;}
-  .cookie-actions{width:100%;}
-  .cookie-btn{flex:1;text-align:center;}
-  .privacy-sheet{padding:24px 18px 36px;border-radius:20px 20px 0 0;}
-}
-</style>
-
-<div id="cookie-banner" role="alert" aria-live="polite">
-  <p class="cookie-text">
-    אנחנו משתמשים בקוקיז כדי לשפר את החוויה שלך באתר.
-    <a onclick="openPrivacy()">מדיניות הפרטיות שלנו</a>
-  </p>
-  <div class="cookie-actions">
-    <button class="cookie-btn cookie-btn-decline" onclick="declineCookies()">דחה</button>
-    <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">אני מסכים/ה</button>
-  </div>
-</div>
-
-<div id="privacy-modal" role="dialog" aria-modal="true" aria-label="מדיניות פרטיות">
-  <div class="privacy-sheet">
-    <button class="privacy-close" onclick="closePrivacy()" aria-label="סגור">✕</button>
-    <h2>מדיניות פרטיות</h2>
-    <p>IMPACT OS מכבדת את פרטיותך ומתחייבת לשמור על המידע שלך. מסמך זה מסביר כיצד אנו אוספים, משתמשים ומגנים על המידע האישי שלך.</p>
-
-    <h3>אילו קוקיז אנו משתמשים?</h3>
-    <p>אנו משתמשים בקוקיז טכניים הכרחיים להפעלת האתר, וקוקיז אנליטיים (כגון Google Analytics) לצורך הבנת אופן השימוש באתר ושיפורו.</p>
-
-    <h3>אילו מידע אנו אוספים?</h3>
-    <p>אנו עשויים לאסוף: כתובת IP, סוג דפדפן, עמודים שביקרת בהם, ומידע שמסרת מרצונך בטפסי יצירת קשר.</p>
-
-    <h3>כיצד אנו משתמשים במידע?</h3>
-    <p>המידע משמש לשיפור האתר, מענה לפניות, ושליחת עדכונים רלוונטיים — בהסכמתך בלבד.</p>
-
-    <h3>שיתוף מידע עם צדדים שלישיים</h3>
-    <p>אנו לא מוכרים או משתפים מידע אישי עם צדדים שלישיים, למעט ספקי שירות הכרחיים (אחסון, אנליטיקה) הפועלים בשמנו.</p>
-
-    <h3>זכויותיך</h3>
-    <p>יש לך זכות לעיין, לתקן או למחוק את המידע שלך. לפנייה: <strong>info@impactso.co.il</strong></p>
-
-    <p style="margin-top:20px;font-size:13px;color:#888;">עדכון אחרון: מאי 2026</p>
-  </div>
-</div>
-
-<script>
-(function(){
-  var banner = document.getElementById('cookie-banner');
-  if(!banner) return;
-  if(localStorage.getItem('cookie-choice')) return;
-  setTimeout(function(){ banner.classList.add('show'); }, 1200);
-})();
-
-function acceptCookies(){
-  localStorage.setItem('cookie-choice','accepted');
-  hideBanner();
-}
-function declineCookies(){
-  localStorage.setItem('cookie-choice','declined');
-  hideBanner();
-}
-function hideBanner(){
-  var b = document.getElementById('cookie-banner');
-  if(b){ b.style.transform='translateY(100%)'; }
-}
-function openPrivacy(){
-  var m = document.getElementById('privacy-modal');
-  if(m){ m.classList.add('open'); document.body.style.overflow='hidden'; }
-}
-function closePrivacy(){
-  var m = document.getElementById('privacy-modal');
-  if(m){ m.classList.remove('open'); document.body.style.overflow=''; }
-}
-document.getElementById('privacy-modal').addEventListener('click', function(e){
-  if(e.target === this) closePrivacy();
-});
-</script>
 </body>
 </html>
-
