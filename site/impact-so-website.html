@@ -1325,8 +1325,8 @@ nav{
   padding:18px;
   min-height:100%;
   height:100%;
-  display:flex;
-  flex-direction:column;
+  display:grid;
+  grid-template-rows:auto 42px 42px 1fr;
   text-align:center;
   border:1px solid rgba(6,30,79,0.06);
   transition:transform 320ms var(--motion-ease),box-shadow 320ms var(--motion-ease);
@@ -1338,14 +1338,14 @@ nav{
 }
 .person-photo{
   position:relative;
-  aspect-ratio:1/1.08;
+  aspect-ratio:1/1.06;
   border-radius:18px;
   overflow:hidden;
   background:
     radial-gradient(circle at 30% 20%,rgba(18,199,199,0.18),transparent 34%),
     radial-gradient(circle at 80% 80%,rgba(240,6,120,0.14),transparent 38%),
     #ffffff;
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 .person-photo img{
   width:100%;
@@ -1376,29 +1376,32 @@ nav{
 }
 .person-role{
   display:flex;
-  align-items:flex-end;
+  align-items:center;
   justify-content:center;
   width:100%;
-  min-height:38px;
+  min-width:0;
   color:var(--teal);
   font-size:12px;
   font-weight:800;
-  line-height:1.34;
+  line-height:1.3;
   text-align:center;
-  margin-bottom:10px;
+  white-space:normal;
+  overflow-wrap:normal;
+  margin:0;
 }
 .person-card h3{
-  min-height:34px;
+  min-height:0;
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:22px;
   font-weight:900;
   color:var(--navy);
-  margin-bottom:10px;
+  margin:0;
   letter-spacing:-.3px;
 }
 .person-card p{
+  align-self:start;
   margin:0;
   font-size:14px;
   color:var(--gray);
@@ -1765,10 +1768,10 @@ footer::after{
   mix-blend-mode:screen;
 }
 #isl-video-stage.canvas-ready #isl-loader-video{
-  opacity:1;
+  opacity:0;
 }
 #isl-video-stage.canvas-ready #isl-loader-canvas{
-  display:none;
+  display:block;
 }
 #isl-loader-video{
   display:block;
@@ -1776,7 +1779,7 @@ footer::after{
   width:min(920px,92vw);
   max-height:82vh;
   height:auto;
-  opacity:1;
+  opacity:0;
   object-fit:contain;
   z-index:1;
   pointer-events:none;
@@ -1798,7 +1801,7 @@ footer::after{
 #isl-loader-canvas{
   position:relative;
   z-index:2;
-  display:none;
+  display:block;
   width:min(920px,92vw);
   max-height:82vh;
   object-fit:contain;
@@ -1840,7 +1843,7 @@ footer::after{
   position:static;
   width:min(920px,92vw);
   height:auto;
-  opacity:1;
+  opacity:0;
   z-index:1;
   pointer-events:auto;
   object-fit:contain;
@@ -1861,7 +1864,7 @@ footer::after{
   transform:scale(.985);
   transition:opacity .35s ease, transform .45s ease;
   z-index:2;
-  display:none;
+  display:block;
 }
 #isl.intro-done #isl-box{opacity:0;transform:scale(.985)}
 
@@ -2428,36 +2431,36 @@ footer::after{
       <div class="person-photo" data-person="meital">
         <img src="../public/team/meital-peleg.png" alt="מיטל פלג">
       </div>
-      <span class="person-role">יזמות חברתית חינוכית</span>
+      <span class="person-role">פדגוגיה ויזמות חינוכית</span>
       <h3>מיטל פלג</h3>
-      <p>מומחית לפדגוגיה חדשנית, יזמת חברתית חינוכית ומנהלת בית ספר לשעבר, שמובילה תהליכי שינוי במערכת החינוך. מיטל מחברת בין פדגוגיה, אנשים וטכנולוגיה, ומתרגמת צורך מהשטח למערכות שמקדמות עבודה טובה יותר.</p>
+      <p>מומחית לפדגוגיה חדשנית ולתהליכי שינוי בחינוך. מיטל מחברת בין אנשים, צורך מהשטח וטכנולוגיה, ומתרגמת רעיונות למערכות שמקדמות עבודה טובה יותר.</p>
     </article>
 
     <article class="person-card">
       <div class="person-photo" data-person="liron">
         <img src="../public/team/liron-golan.jpeg" alt="לירון גולן" loading="lazy">
       </div>
-      <span class="person-role">אפיון מוצר, מערכות חכמות וחוויית משתמש</span>
+      <span class="person-role">אפיון מוצר וחוויית משתמש</span>
       <h3>לירון גולן</h3>
-      <p>מומחית לאפיון מוצר, בניית מערכות חכמות, פיתוח, עיצוב וחוויות משתמש. לירון מחברת בין אסטרטגיה, דיגיטל וטכנולוגיה כדי להפוך רעיונות למערכות ברורות, שימושיות ומדויקות.</p>
+      <p>מומחית לאפיון מוצר, מערכות חכמות וחוויית משתמש. לירון מחברת בין אסטרטגיה, דיגיטל וטכנולוגיה, והופכת רעיונות למערכות ברורות, שימושיות ומדויקות.</p>
     </article>
 
     <article class="person-card">
       <div class="person-photo" data-person="amit">
         <img src="../public/team/amit-avitbol.png" alt="עמית אביטבול">
       </div>
-      <span class="person-role">מומחה לפיתוח מערכות חכמות</span>
+      <span class="person-role">פיתוח מערכות חכמות</span>
       <h3>עמית אביטבול</h3>
-      <p>מתכנת שמביא את שכבת הקוד, המוצר והאינטגרציות. עמית מתרגם רעיונות וצרכים למערכות יציבות, חכמות ונוחות לשימוש, עם תשומת לב לפרטים הקטנים שעושים הבדל גדול.</p>
+      <p>מתכנת שמחבר בין קוד, מוצר ואינטגרציות. עמית מתרגם רעיונות וצרכים למערכות יציבות, חכמות ונוחות לשימוש, עם תשומת לב לפרטים שעושים הבדל.</p>
     </article>
 
     <article class="person-card">
       <div class="person-photo" data-person="ofir">
         <img src="../public/team/ofir.png" alt="אופיר">
       </div>
-      <span class="person-role">מומחה לאסטרטגיה וחדשנות טכנולוגית</span>
+      <span class="person-role">אסטרטגיה וחדשנות</span>
       <h3>אופיר שטיינברג</h3>
-      <p>מביא לשולחן חשיבה אסטרטגית נדירה שמחברת בין עולם המוצר הדיגיטלי לעולם החינוך. אופיר הוא זה שרואה את התמונה הגדולה — ויודע בדיוק איפה הטכנולוגיה פוגשת את בני האדם.</p>
+      <p>מביא חשיבה אסטרטגית שמחברת בין מוצר דיגיטלי, חינוך ואנשים. אופיר רואה את התמונה הגדולה, ומזהה איפה טכנולוגיה יכולה ליצור ערך אנושי אמיתי.</p>
     </article>
   </div>
 </section>
@@ -2644,7 +2647,48 @@ footer::after{
       cancelAnimationFrame(frameLoop);
       frameLoop = 0;
     }
-    if(stage) stage.classList.remove('canvas-ready');
+    if(!video || !canvas || !ctx || !stage || !video.videoWidth || !video.videoHeight){
+      if(stage) stage.classList.remove('canvas-ready');
+      return;
+    }
+    var width = video.videoWidth;
+    var height = video.videoHeight;
+    if(canvas.width !== width) canvas.width = width;
+    if(canvas.height !== height) canvas.height = height;
+    try{
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, width, height);
+      ctx.drawImage(video, 0, 0, width, height);
+      var frame = ctx.getImageData(0, 0, width, height);
+      var data = frame.data;
+      for(var i = 0; i < data.length; i += 4){
+        var r = data[i];
+        var g = data[i + 1];
+        var b = data[i + 2];
+        var max = Math.max(r, g, b);
+        var min = Math.min(r, g, b);
+        var avg = (r + g + b) / 3;
+        var chroma = max - min;
+        var isTealInk = g > 82 && b > 90 && b >= r + 24 && g >= r + 22 && chroma > 38;
+        var isPinkInk = r > 112 && r >= g + 40 && r >= b + 14 && chroma > 48;
+        var isNavyInk = avg < 125 && b >= r + 14 && b >= g - 8;
+        var keepLogoInk = isTealInk || isPinkInk || isNavyInk;
+        if(!keepLogoInk){
+          data[i] = 255;
+          data[i + 1] = 255;
+          data[i + 2] = 255;
+          data[i + 3] = 255;
+        }
+      }
+      ctx.putImageData(frame, 0, 0);
+      stage.classList.add('canvas-ready');
+    }catch(error){
+      stage.classList.remove('canvas-ready');
+      return;
+    }
+    if(!done && !video.paused && !video.ended){
+      frameLoop = requestAnimationFrame(paintWhiteFrame);
+    }
   }
 
   function updateLoaderProgress(){
