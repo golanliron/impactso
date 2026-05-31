@@ -745,218 +745,56 @@ nav{
 }
 .section-head{margin-bottom:56px}
 
-/* ===== SERVICES STACKED CARDS ===== */
-.svc-stack-wrap{
-  position:relative;
-  width:100%;
-  max-width:1220px;
-  margin:0 auto;
-  height:360vh;
-  --svc-step:0;
-}
-.svc-stack-stage{
-  position:sticky;
-  top:108px;
-  min-height:calc(100vh - 108px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  isolation:isolate;
-}
+/* ===== SERVICES SYSTEM CARDS ===== */
+.svc-stack-wrap{position:relative;width:100%;max-width:1180px;margin:0 auto}
+.svc-stack-stage{position:relative;min-height:0;overflow:visible;isolation:isolate;padding:0}
 .svc-grid{
-  position:relative;
-  width:100%;
-  max-width:1080px;
-  height:min(650px,calc(100vh - 156px));
-  min-height:540px;
-  margin:0 auto;
-  isolation:isolate;
-  perspective:1200px;
+  position:relative;width:100%;display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:30px;margin:0 auto;isolation:isolate;
 }
 .svc-grid::before{
-  content:'';
-  position:absolute;
-  inset:50% auto auto 50%;
-  width:min(600px,62vw);
-  aspect-ratio:1/1.23;
-  transform:translate(-50%,-50%) rotate(-9deg);
+  content:'';position:absolute;inset:50% auto auto 50%;
+  width:min(620px,54vw);aspect-ratio:1/1.23;
+  transform:translate(-50%,-50%) rotate(-7deg);
   background:url('../public/brand/impact-fingerprint-official-watermark-sharp-soft.png') center/contain no-repeat;
-  opacity:.12;
-  pointer-events:none;
-  z-index:0;
+  opacity:.045;pointer-events:none;z-index:0;
 }
-.svc-indicator{
-  position:absolute;
-  left:50%;
-  bottom:8px;
-  transform:translateX(-50%);
-  display:flex;
-  gap:10px;
-  z-index:8;
-}
-.svc-dot{
-  width:8px;
-  height:8px;
-  border-radius:999px;
-  background:rgba(6,30,79,.18);
-  transition:width 260ms var(--motion-ease),background 260ms var(--motion-ease),transform 260ms var(--motion-ease);
-}
-.svc-dot.active{
-  width:28px;
-  background:linear-gradient(90deg,var(--teal),var(--fuchsia));
-}
+.svc-indicator{display:none}
 .svc-card{
-  --card-x:0px;
-  --card-y:0px;
-  --card-r:0deg;
-  --card-scale:.92;
-  position:absolute;
-  top:50%;
-  right:50%;
-  width:min(620px,calc(100% - 84px));
-  min-height:260px;
-  background:rgba(255,255,255,.93);
-  border:1px solid rgba(255,255,255,.82);
-  border-radius:28px;
-  padding:38px 44px 42px;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  gap:0;
-  overflow:hidden;
-  opacity:0;
-  pointer-events:none;
-  box-shadow:0 30px 80px rgba(6,30,79,0.14);
-  transform:
-    translate(50%,-50%)
-    translate3d(0,36px,0)
-    rotate(var(--card-r))
-    scale(var(--card-scale));
-  transition:
-    opacity 520ms var(--motion-ease),
-    transform 700ms var(--motion-ease),
-    box-shadow 320ms var(--motion-ease),
-    border-color 320ms var(--motion-ease);
-  z-index:1;
-  backdrop-filter:blur(12px);
+  position:relative;z-index:2;min-height:330px;
+  background:rgba(255,255,255,.96);
+  border:1px solid rgba(220,228,238,.88);
+  border-radius:26px;
+  padding:44px 46px 42px;
+  display:flex;flex-direction:column;align-items:flex-start;text-align:right;
+  overflow:hidden;opacity:0;transform:translateY(30px);pointer-events:auto;
+  box-shadow:0 20px 55px rgba(6,30,79,0.08);
+  transition:opacity 560ms var(--motion-ease),transform 760ms var(--motion-ease),box-shadow 320ms var(--motion-ease),border-color 320ms var(--motion-ease);
+  backdrop-filter:blur(10px);
 }
-.svc-card::before{
-  content:'';
-  position:absolute;
-  inset:-1px;
-  background:linear-gradient(135deg,rgba(18,199,199,.08),rgba(240,6,120,.04),rgba(244,180,27,.06));
-  opacity:.42;
-  pointer-events:none;
-}
-.svc-card > *{
-  position:relative;
-  z-index:1;
-}
-.svc-stack-wrap[data-step="0"] .svc-card:nth-of-type(1),
-.svc-stack-wrap[data-step="1"] .svc-card:nth-of-type(-n+2),
-.svc-stack-wrap[data-step="2"] .svc-card:nth-of-type(-n+3),
-.svc-stack-wrap[data-step="3"] .svc-card:nth-of-type(-n+4){
-  opacity:1;
-  pointer-events:auto;
-  transform:
-    translate(50%,-50%)
-    translate3d(var(--card-x),var(--card-y),0)
-    rotate(var(--card-r))
-    scale(1);
-}
-.svc-stack-wrap[data-step="0"] .svc-card:nth-of-type(2),
-.svc-stack-wrap[data-step="1"] .svc-card:nth-of-type(3),
-.svc-stack-wrap[data-step="2"] .svc-card:nth-of-type(4){
-  opacity:.24;
-  transform:translate(50%,-50%) translate3d(-24px,42px,0) rotate(-2deg) scale(.96);
-}
-.svc-card:nth-of-type(1){--card-x:130px;--card-y:-108px;--card-r:2deg;z-index:4}
-.svc-card:nth-of-type(2){--card-x:-112px;--card-y:-34px;--card-r:-1.5deg;z-index:5}
-.svc-card:nth-of-type(3){--card-x:88px;--card-y:86px;--card-r:1.4deg;z-index:6}
-.svc-card:nth-of-type(4){--card-x:-126px;--card-y:158px;--card-r:-2.2deg;z-index:7}
-.svc-card:hover{
-  box-shadow:0 34px 90px rgba(6,30,79,0.18);
-  border-color:rgba(18,199,199,.22);
-}
-
-/* קו מחבר SVG */
-.svc-connector{
-  position:absolute;
-  inset:28px 8% auto;
-  height:calc(100% - 56px);
-  pointer-events:none;
-  z-index:1;
-  overflow:visible;
-  opacity:.34;
-  filter:drop-shadow(0 14px 30px rgba(18,199,199,.12));
-}
-.svc-connector path{
-  stroke:rgba(18,199,199,.28);
-  stroke-width:2;
-  fill:none;
-  stroke-dasharray:800;
-  stroke-dashoffset:800;
-  transition:stroke-dashoffset 1.35s cubic-bezier(.4,0,.2,1),opacity 420ms ease;
-  opacity:.8;
-}
-.svc-connector.is-visible path,
-.svc-stack-wrap[data-step] .svc-connector path{
-  stroke-dashoffset:0;
-}
-
-/* פס תחתון */
-.svc-card::after{
-  content:'';
-  position:absolute;
-  bottom:0;right:0;left:0;
-  height:3px;
-  border-radius:0 0 28px 28px;
-  transform:scaleX(.55);
-  transform-origin:right center;
-  transition:transform 480ms cubic-bezier(.22,.68,0,1.2);
-}
-.svc-card.is-visible::after,
-.svc-stack-wrap[data-step] .svc-card::after{transform:scaleX(1);}
-.svc-card:hover::after{transform:scaleX(1) scaleY(1.8);}
+.svc-card.is-visible,.services.svc-revealed .svc-card{opacity:1;transform:translateY(0)}
+.services.svc-revealed .svc-card:nth-of-type(1){transition-delay:40ms}
+.services.svc-revealed .svc-card:nth-of-type(2){transition-delay:160ms}
+.services.svc-revealed .svc-card:nth-of-type(3){transition-delay:280ms}
+.services.svc-revealed .svc-card:nth-of-type(4){transition-delay:400ms}
+.svc-card::before{content:'';position:absolute;inset:-1px;background:linear-gradient(135deg,rgba(18,199,199,.06),rgba(240,6,120,.026),rgba(244,180,27,.045));opacity:.55;pointer-events:none}
+.svc-card > *{position:relative;z-index:2}
+.svc-card:hover{transform:translateY(-6px);box-shadow:0 30px 72px rgba(6,30,79,0.14);border-color:rgba(18,199,199,.26)}
+.svc-connector{position:absolute;inset:12% 8%;width:84%;height:76%;z-index:1;pointer-events:none;overflow:visible;opacity:0}
+.svc-connector path{fill:none;stroke:url(#svcLineGradient);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:1250;stroke-dashoffset:1250;filter:drop-shadow(0 7px 16px rgba(18,199,199,.08))}
+.services.svc-revealed .svc-connector{opacity:.55;transition:opacity 500ms ease 160ms}
+.services.svc-revealed .svc-connector path{stroke-dashoffset:0;transition:stroke-dashoffset 1200ms cubic-bezier(.22,.68,0,1) 140ms}
+.svc-card::after{content:'';position:absolute;bottom:0;right:0;left:0;height:3px;border-radius:0 0 26px 26px;transform:scaleX(.42);transform-origin:right center;transition:transform 520ms cubic-bezier(.22,.68,0,1.2)}
+.svc-card.is-visible::after,.services.svc-revealed .svc-card::after{transform:scaleX(1)}
+.svc-card:hover::after{transform:scaleX(1) scaleY(1.8)}
 .svc-card:nth-of-type(1)::after{background:linear-gradient(90deg,var(--teal),var(--green))}
 .svc-card:nth-of-type(2)::after{background:linear-gradient(90deg,var(--fuchsia),var(--orange))}
 .svc-card:nth-of-type(3)::after{background:linear-gradient(90deg,var(--yellow),var(--green))}
 .svc-card:nth-of-type(4)::after{background:linear-gradient(90deg,var(--navy),var(--teal))}
-
-/* אייקון */
-.svc-icon{
-  width:62px;height:62px;border-radius:18px;
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:24px;
-  position:relative;
-  overflow:hidden;
-  opacity:0;
-  translate:0 10px;
-  transition:opacity 380ms ease, translate 380ms ease, box-shadow 320ms ease;
-}
-.svc-card.is-visible .svc-icon,
-.svc-stack-wrap[data-step] .svc-icon{
-  opacity:1;
-  translate:0 0;
-  transition-delay:0.08s;
-}
-.svc-icon::before{
-  content:'';
-  position:absolute;
-  inset:8px;
-  background:url('../public/brand/impact-fingerprint-official-color.png') center/contain no-repeat;
-  opacity:.22;
-  transform-origin:center;
-  transition:transform 420ms var(--motion-ease),opacity 420ms var(--motion-ease);
-}
-.svc-icon svg{
-  position:relative;
-  z-index:1;
-  width:21px;
-  height:21px;
-  transition:transform 420ms cubic-bezier(.22,.68,0,1.2);
-}
+.svc-icon{width:62px;height:62px;border-radius:18px;display:flex;align-items:center;justify-content:center;margin-bottom:22px;position:relative;overflow:hidden;opacity:1;translate:0 0;transition:box-shadow 320ms ease}
+.svc-icon::before{content:'';position:absolute;inset:8px;background:url('../public/brand/impact-fingerprint-official-color.png') center/contain no-repeat;opacity:.22;transform-origin:center;transition:transform 420ms var(--motion-ease),opacity 420ms var(--motion-ease)}
+.svc-icon svg{position:relative;z-index:1;width:21px;height:21px;transition:transform 420ms cubic-bezier(.22,.68,0,1.2)}
 .svc-card:hover .svc-icon{box-shadow:0 0 0 6px rgba(6,30,79,0.05)}
 .svc-card:hover .svc-icon::before{opacity:.35;transform:scale(1.1)}
 .svc-card:hover .svc-icon svg{transform:translateY(-2px) scale(1.08)}
@@ -964,86 +802,10 @@ nav{
 .svc-card:nth-of-type(2) .svc-icon{background:rgba(240,6,120,0.08)}
 .svc-card:nth-of-type(3) .svc-icon{background:rgba(244,180,27,0.1)}
 .svc-card:nth-of-type(4) .svc-icon{background:rgba(6,30,79,0.07)}
-
-/* כותרת */
-.svc-card h3{
-  font-size:22px;font-weight:800;color:var(--navy);
-  margin-bottom:12px;letter-spacing:-.3px;line-height:1.3;
-  opacity:0;translate:0 8px;
-  transition:opacity 340ms ease, translate 340ms ease;
-}
-.svc-card.is-visible h3,
-.svc-stack-wrap[data-step] .svc-card h3{
-  opacity:1;translate:0 0;
-  transition-delay:0.18s;
-}
-
-/* טקסט */
-.svc-card p{
-  font-size:17px;color:var(--gray);line-height:1.8;
-  opacity:0;translate:0 6px;
-  transition:opacity 320ms ease, translate 320ms ease;
-}
-.svc-card.is-visible p,
-.svc-stack-wrap[data-step] .svc-card p{
-  opacity:1;translate:0 0;
-  transition-delay:0.28s;
-}
-
-/* reduced motion */
-@media(prefers-reduced-motion:reduce){
-  .svc-stack-wrap{height:auto}
-  .svc-stack-stage{position:relative;top:auto;min-height:0;overflow:visible}
-  .svc-grid{height:auto;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:24px}
-  .svc-card,.svc-card h3,.svc-card p,.svc-icon,.svc-connector path{
-    transition:none!important;animation:none!important;
-  }
-  .svc-card{position:relative;top:auto;right:auto;width:auto;opacity:1;transform:none!important;pointer-events:auto}
-  .svc-card h3,.svc-card p,.svc-icon{opacity:1;translate:0 0}
-  .svc-card::after{transform:scaleX(1)}
-  .svc-connector{display:none}
-}
-
-@media(max-width:900px){
-  .services{padding:48px 16px 64px;overflow:hidden;}
-  .services .section-head{padding:0 8px;margin-bottom:34px;}
-  .svc-stack-wrap{height:auto;max-width:100%;}
-  .svc-stack-stage{position:relative;top:auto;min-height:0;display:block;overflow:visible;}
-  .svc-grid{
-    height:auto;
-    min-height:0;
-    display:flex;
-    flex-direction:column;
-    gap:0;
-    max-width:100%;
-    perspective:none;
-  }
-  .svc-grid::before{display:none}
-  .svc-connector,.svc-indicator{display:none}
-  .svc-card{
-    position:relative;
-    top:auto;
-    right:auto;
-    width:100%;
-    min-height:0;
-    padding:28px 24px 34px;
-    border-radius:22px;
-    opacity:1;
-    transform:none!important;
-    pointer-events:auto;
-    box-shadow:0 18px 42px rgba(6,30,79,.10);
-  }
-  .svc-card + .svc-card{margin-top:-18px;}
-  .svc-card:nth-of-type(1),
-  .svc-card:nth-of-type(2),
-  .svc-card:nth-of-type(3),
-  .svc-card:nth-of-type(4){z-index:auto}
-  .svc-card:nth-of-type(even){transform:translateX(-4px)!important;}
-  .svc-card:nth-of-type(odd){transform:translateX(4px)!important;}
-  .svc-card h3{font-size:20px;opacity:1;translate:0 0;}
-  .svc-card p{font-size:16px;opacity:1;translate:0 0;}
-  .svc-icon{opacity:1;translate:0 0;}
-}
+.svc-card h3{font-size:22px;font-weight:800;color:var(--navy);margin-bottom:12px;letter-spacing:-.3px;line-height:1.3;opacity:1;translate:0 0}
+.svc-card p{font-size:17px;color:var(--gray);line-height:1.78;opacity:1;translate:0 0}
+@media(prefers-reduced-motion:reduce){.svc-card{opacity:1;transform:none!important;transition:none!important}.svc-card::after{transform:scaleX(1)}.svc-connector{opacity:.35}.svc-connector path{stroke-dashoffset:0!important;transition:none!important}}
+@media(max-width:900px){.services{padding:48px 16px 64px;overflow:hidden}.services .section-head{padding:0 8px;margin-bottom:34px}.svc-stack-wrap{max-width:100%}.svc-stack-stage{display:block}.svc-grid{grid-template-columns:1fr;gap:20px;max-width:100%}.svc-grid::before,.svc-connector,.svc-indicator{display:none}.svc-card{min-height:0;padding:28px 24px 34px;border-radius:22px;box-shadow:0 18px 42px rgba(6,30,79,.10)}.svc-card:hover{transform:none}.svc-card h3{font-size:20px}.svc-card p{font-size:16px}}
 
 /* ג”€ג”€ג”€ PRODUCTS ג”€ג”€ג”€ */
 .products{
@@ -2144,7 +1906,7 @@ footer::after{
 
     <!-- Logo: exact SVG from impactso-logo.svg ג€” no PNG, no background -->
     <a href="#" class="nav-logo impact-logo" aria-label="IMPACT OS">
-      <img id="navLogoImage" class="brand-logo-svg" src="../public/brand/impact-os-logo-nav-teal.png?v=os-logo-2" alt="IMPACT OS">
+      <img id="navLogoImage" class="brand-logo-svg" src="../public/brand/impact-os-logo-nav-teal.png?v=os-logo-3" alt="IMPACT OS">
       <span class="brand-lockup" aria-hidden="true">
         <svg class="brand-lockup-mark" viewBox="0 0 240 284" xmlns="http://www.w3.org/2000/svg" fill="none">
           <g stroke="var(--logo-fingerprint)" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
@@ -2331,6 +2093,13 @@ footer::after{
     <div class="svc-stack-stage">
       <div class="svc-grid" id="svcGrid">
     <svg class="svc-connector" viewBox="0 0 1200 520" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="svcLineGradient" x1="0%" y1="50%" x2="100%" y2="50%">
+          <stop offset="0%" stop-color="#12C7C7" stop-opacity=".38"/>
+          <stop offset="52%" stop-color="#F00678" stop-opacity=".28"/>
+          <stop offset="100%" stop-color="#061E4F" stop-opacity=".22"/>
+        </linearGradient>
+      </defs>
       <path d="M1040 112 C850 36 728 132 612 260 C492 392 346 466 160 398" />
     </svg>
     <div class="svc-card">
@@ -3126,64 +2895,45 @@ footer::after{
 })();
 </script>
 
-<!-- ===== STACKED CARDS JS ===== -->
+<!-- ===== SERVICES CARDS REVEAL JS ===== -->
 <script>
 (function(){
   var reduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   var wrap = document.getElementById('svcStackWrap');
   var grid = document.getElementById('svcGrid');
-  if(!wrap || !grid) return;
+  var section = document.getElementById('services');
+  if(!wrap || !grid || !section) return;
 
   var cards = Array.prototype.slice.call(grid.querySelectorAll('.svc-card'));
-  var dots = Array.prototype.slice.call(document.querySelectorAll('#svcIndicator .svc-dot'));
   if(!cards.length) return;
 
-  function isMobile(){ return window.matchMedia('(max-width:900px)').matches; }
+  cards.forEach(function(card){ card.setAttribute('aria-hidden','false'); });
 
-  function setStep(step){
-    step = Math.max(0, Math.min(cards.length - 1, step));
-    wrap.setAttribute('data-step', String(step));
-    cards.forEach(function(card, index){
-      var open = index <= step || isMobile() || reduced;
-      card.classList.toggle('is-open', open);
-      card.setAttribute('aria-hidden', open ? 'false' : 'true');
+  if(reduced || !('IntersectionObserver' in window)){
+    section.classList.add('svc-revealed');
+    cards.forEach(function(card){ card.classList.add('is-visible'); });
+    return;
+  }
+
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        section.classList.add('svc-revealed');
+        cards.forEach(function(card, index){
+          window.setTimeout(function(){
+            card.classList.add('is-visible');
+          }, index * 120);
+        });
+        observer.unobserve(entry.target);
+      }
     });
-    dots.forEach(function(dot, index){ dot.classList.toggle('active', index === step); });
-  }
+  }, {threshold:0.22, rootMargin:'0px 0px -12% 0px'});
 
-  function updateStack(){
-    if(reduced || isMobile()){
-      wrap.removeAttribute('data-step');
-      cards.forEach(function(card){
-        card.classList.add('is-open');
-        card.setAttribute('aria-hidden','false');
-      });
-      dots.forEach(function(dot, index){ dot.classList.toggle('active', index === 0); });
-      return;
-    }
-
-    var rect = wrap.getBoundingClientRect();
-    var travel = Math.max(1, wrap.offsetHeight - window.innerHeight);
-    var progress = Math.min(1, Math.max(0, -rect.top / travel));
-    var step = Math.min(cards.length - 1, Math.floor(progress * cards.length));
-    setStep(step);
-  }
-
-  var ticking = false;
-  function requestUpdate(){
-    if(ticking) return;
-    ticking = true;
-    requestAnimationFrame(function(){
-      ticking = false;
-      updateStack();
-    });
-  }
-
-  window.addEventListener('scroll', requestUpdate, {passive:true});
-  window.addEventListener('resize', requestUpdate);
-  updateStack();
+  observer.observe(section);
 })();
 </script>
+
+
 
 <!-- ===== COOKIE BANNER ===== -->
 <style>
