@@ -1,0 +1,29 @@
+<svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IMPACT OS logo">
+  <g transform="translate(0,8) scale(0.52)">
+    <g fill="none" stroke="#061E4F" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
+      <path d="M72 86c24-37 80-42 113-11 24 22 31 56 20 91"/>
+      <path d="M54 116c13-57 78-88 134-63 42 19 63 66 52 113"/>
+      <path d="M43 153c-3-74 58-134 131-128 58 5 105 54 104 114"/>
+      <path d="M51 196c-15-88 47-164 132-160"/>
+      <path d="M78 220c-30-80 3-151 66-165 38-9 76 14 89 42"/>
+      <path d="M111 242c-28-52-15-112 27-137 27-16 61-7 74 22"/>
+      <path d="M138 264c-28-31-29-77-5-104 17-19 47-17 61 5"/>
+      <path d="M159 282c-16-18-22-42-14-63"/>
+      <path d="M44 180c37-24 59-55 72-90"/>
+      <path d="M64 231c42-33 63-70 76-112"/>
+      <path d="M96 264c31-24 49-53 58-86"/>
+      <path d="M188 218c25-36 36-76 26-112"/>
+      <path d="M204 259c19-24 31-52 35-82"/>
+    </g>
+    <g fill="none" stroke="#F00678" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
+      <path d="M91 143c13-25 39-24 52 1 14-24 42-24 54 1"/>
+      <path d="M91 143c15 31 38 51 52 66 15-15 39-38 54-64"/>
+    </g>
+    <g fill="#061E4F">
+      <circle cx="70" cy="86" r="7"/><circle cx="184" cy="76" r="7"/><circle cx="42" cy="116" r="7"/><circle cx="230" cy="166" r="7"/><circle cx="68" cy="231" r="7"/><circle cx="162" cy="282" r="7"/><circle cx="211" cy="218" r="7"/><circle cx="103" cy="265" r="7"/>
+    </g>
+  </g>
+  <text x="150" y="90" font-family="Rubik, Heebo, Arial, sans-serif" font-size="68" font-weight="900" letter-spacing="6" fill="#061E4F">IMPACT</text>
+  <text x="590" y="90" font-family="Rubik, Heebo, Arial, sans-serif" font-size="68" font-weight="900" letter-spacing="2" fill="#F00678">OS</text>
+  <text x="165" y="137" font-family="Rubik, Heebo, Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="9" fill="#061E4F">טכנולוגיה יוצרת אימפקט</text>
+</svg>

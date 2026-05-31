@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IMPACT SO | טכנולוגיה יוצרת אימפקט</title>
+<title>IMPACT OS | טכנולוגיה יוצרת אימפקט</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -95,9 +95,9 @@ nav{
 .nav-logo > svg{display:none}
 .brand-logo-svg{
   display:block !important;
-  height:32px;
-  width:auto;
-  max-width:160px;
+  width:300px;
+  max-width:38vw;
+  height:auto;
 }
 .nav-logo .brand-lockup,
 .nav-logo > svg{
@@ -141,8 +141,8 @@ nav{
   background:transparent;
 }
 .brand-lockup-mark{
-  width:42px;
-  height:50px;
+  width:58px;
+  height:68px;
   flex:0 0 auto;
   display:block;
   overflow:visible;
@@ -151,33 +151,33 @@ nav{
   display:flex;
   flex-direction:column;
   align-items:flex-start;
-  gap:3px;
+  gap:4px;
   white-space:nowrap;
 }
 .brand-lockup-name{
   display:flex;
   align-items:baseline;
-  gap:6px;
+  gap:8px;
   line-height:.9;
 }
 .brand-lockup-impact{
   color:var(--logo-impact);
-  font-size:24px;
+  font-size:34px;
   font-weight:900;
   letter-spacing:1.5px;
 }
 .brand-lockup-so{
   color:var(--logo-so);
-  font-size:24px;
+  font-size:34px;
   font-weight:900;
   letter-spacing:1px;
 }
 .brand-lockup-tagline{
   color:var(--logo-tagline);
   direction:rtl;
-  font-size:10px;
+  font-size:12px;
   font-weight:700;
-  letter-spacing:3px;
+  letter-spacing:4px;
   line-height:1;
 }
 
@@ -330,7 +330,7 @@ nav{
 
 .fingerprint-signature{
   --signature-draw:0%;
-  --signature-opacity:.07;
+  --signature-opacity:.16;
   --signature-tint:var(--teal);
   --signature-image:url('../public/brand/impact-fingerprint-scroll-teal.png');
   position:fixed;
@@ -747,26 +747,26 @@ nav{
 /* ===== STACKED CARDS ===== */
 .svc-stack-wrap{
   position:relative;
-  height:auto;
+  height:400vh; /* 4 כרטיסים × 100vh */
 }
 .svc-stack-stage{
-  position:static;
-  height:auto;
-  display:block;
-  overflow:visible;
+  position:sticky;
+  top:108px;
+  height:calc(100vh - 108px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
 }
 .svc-grid{
-  position:static;
+  position:relative;
   width:100%;
-  max-width:1200px;
-  margin:0 auto;
-  height:auto;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:24px;
+  max-width:680px;
+  height:340px;
 }
 .svc-card{
-  position:static;
+  position:absolute;
+  inset:0;
   background:var(--white);
   border-radius:28px;
   padding:44px 48px;
@@ -774,16 +774,20 @@ nav{
   flex-direction:column;
   align-items:flex-start;
   gap:0;
-  opacity:1;
-  transform:none;
-  pointer-events:auto;
+  opacity:0;
+  transform:translateY(40px) scale(0.97);
+  transition:
+    opacity 600ms cubic-bezier(.22,1,.36,1),
+    transform 600ms cubic-bezier(.22,1,.36,1);
+  pointer-events:none;
   box-shadow:0 12px 48px rgba(6,30,79,0.10);
+  will-change:opacity,transform;
 }
 .svc-card.is-active{
   opacity:1;
-  transform:none;
+  transform:translateY(0) scale(1);
   pointer-events:auto;
-  z-index:auto;
+  z-index:2;
 }
 .svc-card.is-exit{
   opacity:0;
@@ -832,40 +836,49 @@ nav{
 
 /* מובייל — גלילה רגילה */
 @media(max-width:900px){
-  .services{padding:48px 16px 64px;}
-  .services .section-head{padding:0 8px;}
+  .services{padding:72px 0 80px;}
+  .services .section-head{padding:0 24px;}
   .svc-stack-wrap{height:auto;}
   .svc-stack-stage{
     position:static;
     height:auto;
     display:block;
-    overflow:visible;
+    overflow:hidden;
   }
+  /* slider אופקי */
   .svc-grid{
-    position:static !important;
-    height:auto !important;
-    width:100% !important;
-    max-width:100% !important;
-    display:flex !important;
-    flex-direction:column !important;
-    gap:16px !important;
-    transform:none !important;
-    transition:none !important;
+    position:static;
+    height:auto;
+    max-width:none;
+    display:flex;
+    flex-direction:row;
+    gap:0;
+    width:400%;
+    transform:translateX(0);
+    transition:transform 480ms cubic-bezier(.22,1,.36,1);
   }
   .svc-card{
-    position:static !important;
-    opacity:1 !important;
-    transform:none !important;
-    pointer-events:auto !important;
-    flex:none !important;
-    width:100% !important;
+    position:static;
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+    padding:32px 28px 44px;
+    flex:0 0 25%;
+    width:25%;
     box-sizing:border-box;
-    padding:28px 24px 36px;
-    border-radius:20px;
-    box-shadow:0 2px 16px rgba(6,30,79,.07);
+    border-radius:0;
+    box-shadow:none;
+    border-bottom:none;
   }
-  .svc-card::after{transform:scaleX(1);}
-  .svc-indicator{display:none !important;}
+  .svc-card::after{transform:scaleX(1);border-radius:0;}
+  .svc-indicator{
+    display:flex;
+    position:static;
+    transform:none;
+    justify-content:center;
+    margin-top:24px;
+    left:auto;bottom:auto;
+  }
 }
 
 /* reduced motion */
@@ -1346,7 +1359,7 @@ nav{
   position:absolute;top:50%;left:50%;
   transform:translate(-50%,-50%);
   width:min(580px,58vw);height:auto;
-  opacity:.05;pointer-events:none;
+  opacity:.09;pointer-events:none;
   animation:manifestFingerprintMove 1.85s var(--motion-ease) infinite alternate;
   will-change:transform;
 }
@@ -1627,7 +1640,7 @@ footer::after{
   padding:0;
   box-shadow:none;
 }
-.footer-logo svg{display:block;width:200px;height:auto}
+.footer-logo svg{display:none}
 .footer-logo img{
   display:block;
   width:330px;
@@ -2021,7 +2034,7 @@ footer::after{
 </div>
 
 <!-- ג•ג•ג• IMPACT LOADER ג•ג•ג• -->
-<div id="isl" role="status" aria-label="טוען IMPACT SO">
+<div id="isl" role="status" aria-label="טוען IMPACT OS">
   <div id="isl-video-stage" aria-hidden="true">
     <video id="isl-loader-video" src="../public/media/impact-loader-intro.mp4?v=os-white-1" poster="../public/media/impact-loader-intro.png?v=os-white-1" autoplay muted playsinline preload="auto" crossorigin="anonymous"></video>
     <canvas id="isl-loader-canvas"></canvas>
@@ -2032,7 +2045,7 @@ footer::after{
   <div id="isl-box">
 
     <!--
-      טביעת האצבע המקורית של IMPACT SO
+      טביעת האצבע המקורית של IMPACT OS
       paths ו-circles מתוך impactso-logo.svg ג€” viewBox 0 0 248 284
       נייבי #061E4F + לב פוקסיה #F00678
     -->
@@ -2075,9 +2088,10 @@ footer::after{
 
     </svg>
 
+    <img id="isl-logo-official" src="../public/brand/impact-os-logo-official-transparent.png?v=os-teal-1" alt="IMPACT OS טכנולוגיה יוצרת אימפקט">
 
     <!-- לוגו מלא ג€” SVG מקורי מחבילת המותג, ללא PNG וללא רקע -->
-    <svg id="isl-logo" class="impact-logo" viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IMPACT SO טכנולוגיה יוצרת אימפקט">
+    <svg id="isl-logo" class="impact-logo" viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IMPACT OS טכנולוגיה יוצרת אימפקט">
       <g transform="translate(0,8) scale(0.52)">
         <g fill="none" stroke="var(--logo-fingerprint)" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
           <path d="M72 86c24-37 80-42 113-11 24 22 31 56 20 91"/>
@@ -2115,8 +2129,8 @@ footer::after{
   <div class="nav-inner">
 
     <!-- Logo: exact SVG from impactso-logo.svg ג€” no PNG, no background -->
-    <a href="#" class="nav-logo impact-logo" aria-label="IMPACT SO">
-      <img class="brand-logo-svg" src="../public/brand/impact-os-logo-nav-teal.png" alt="IMPACT OS">
+    <a href="#" class="nav-logo impact-logo" aria-label="IMPACT OS">
+      <img id="navLogoImage" class="brand-logo-svg" src="../public/brand/impact-os-logo-nav-teal.png?v=os-teal-1" alt="IMPACT OS טכנולוגיה יוצרת אימפקט">
       <span class="brand-lockup" aria-hidden="true">
         <svg class="brand-lockup-mark" viewBox="0 0 240 284" xmlns="http://www.w3.org/2000/svg" fill="none">
           <g stroke="var(--logo-fingerprint)" stroke-width="9.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
@@ -2150,7 +2164,7 @@ footer::after{
           <span class="brand-lockup-tagline">טכנולוגיה יוצרת אימפקט</span>
         </span>
       </span>
-      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IMPACT SO logo">
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IMPACT OS logo">
         <g transform="translate(0,8) scale(0.52)">
           <g fill="none" stroke="var(--logo-fingerprint)" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
             <path d="M72 86c24-37 80-42 113-11 24 22 31 56 20 91"/>
@@ -2215,7 +2229,7 @@ footer::after{
 
   <!-- Watermark fingerprint ג€” SVG inline, no PNG -->
   <div class="hero-fp-watermark" aria-hidden="true">
-    <img class="brand-fingerprint-bg" src="../public/brand/fingerprint-mark.svg" alt="" loading="lazy">
+    <img class="brand-fingerprint-bg" src="../public/brand/impact-fingerprint-official-watermark-sharp-soft.png" alt="">
   </div>
   <svg class="hero-fp-watermark-old" viewBox="0 0 500 580" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <defs>
@@ -2448,7 +2462,7 @@ footer::after{
 <!-- ג•ג•ג• MANIFESTO ג•ג•ג• -->
 <section class="manifesto">
   <div class="mani-fp" aria-hidden="true">
-    <img class="brand-fingerprint-bg" src="../public/brand/fingerprint-mark.svg" alt="" loading="lazy">
+    <img class="brand-fingerprint-bg" src="../public/brand/impact-fingerprint-official-watermark-sharp-soft.png" alt="">
   </div>
   <svg class="mani-fp-old" viewBox="0 0 500 580" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <defs>
@@ -2504,7 +2518,7 @@ footer::after{
 
     <article class="person-card">
       <div class="person-photo" data-person="liron">
-        <img src="../public/team/liron-golan.jpeg" alt="לירון גולן" loading="lazy">
+        <img src="../public/team/liron-golan.jpeg" alt="לירון גולן">
       </div>
       <span class="person-role">אפיון מוצר, מערכות חכמות וחוויית משתמש</span>
       <h3>לירון גולן</h3>
@@ -2613,7 +2627,8 @@ footer::after{
     <div class="footer-brand">
       <!-- Logo in footer ג€” official transparent logo -->
       <div class="footer-logo">
-        <svg viewBox="0 0 240 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="IMPACT OS">
+        <img src="../public/brand/impact-os-logo-footer-transparent.png?v=os-footer-1" alt="IMPACT OS טכנולוגיה יוצרת אימפקט">
+        <svg viewBox="0 0 160 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="IMPACT OS">
           <defs>
             <linearGradient id="lgFoot" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
               <stop offset="0%" stop-color="#12C7C7"/>
@@ -2629,7 +2644,7 @@ footer::after{
             <path d="M9 24C9 15 15 9.5 22 16"/>
           </g>
           <text x="44" y="28" font-family="Heebo,sans-serif" font-weight="900" font-size="19" fill="rgba(255,255,255,0.9)" letter-spacing="-0.5">IMPACT</text>
-          <text x="130" y="28" font-family="Heebo,sans-serif" font-weight="900" font-size="19" fill="#F00678" letter-spacing="-0.5">OS</text>
+          <text x="128" y="28" font-family="Heebo,sans-serif" font-weight="900" font-size="19" fill="#F00678" letter-spacing="-0.5"> OS</text>
         </svg>
       </div>
       <p>טכנולוגיה עם טביעת אצבע אנושית בשביל עולם שפועל טוב יותר.</p>
@@ -2657,7 +2672,7 @@ footer::after{
   </div>
 
   <div class="footer-bottom">
-    <p>© 2026 IMPACT SO. כל הזכויות שמורות.</p>
+    <p>© 2026 IMPACT OS. כל הזכויות שמורות.</p>
     <svg class="footer-fp-old" viewBox="0 0 60 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <defs>
         <linearGradient id="lgFootFp" x1="0" y1="0" x2="60" y2="72" gradientUnits="userSpaceOnUse">
@@ -2679,7 +2694,7 @@ footer::after{
 
 
 <script>
-/* ג•ג• IMPACT SO LOADER ג•ג• */
+/* ג•ג• IMPACT OS LOADER ג•ג• */
 (function(){
   var loader  = document.getElementById('isl');
   var video   = document.getElementById('isl-loader-video');
@@ -2840,7 +2855,7 @@ footer::after{
 })();
 </script>
 <script>
-/* IMPACT SO motion layer */
+/* IMPACT OS motion layer */
 (function(){
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var root = document.documentElement;
@@ -3121,7 +3136,7 @@ footer::after{
   var grid = document.getElementById('svcGrid');
   var cards = document.querySelectorAll('#svcGrid .svc-card');
   var dots = document.querySelectorAll('#svcIndicator .svc-dot');
-  return; /* cards shown as grid — no JS needed */
+  if(!wrap || !cards.length || reduced) return;
 
   var current = 0;
 

@@ -1,20 +1,20 @@
-/**
- * ImpactSOLogo — הלוגו המלא של IMPACT SO
+﻿/**
+ * ImpactOSLogo ג€” ׳”׳׳•׳’׳• ׳”׳׳׳ ׳©׳ IMPACT OS
  *
  * Props:
- *   fingerprintColor  — צבע טביעת האצבע (ברירת מחדל: navy)
- *   heartColor        — צבע הלב הפנימי (ברירת מחדל: fuchsia)
- *   impactColor       — צבע המילה IMPACT (ברירת מחדל: navy)
- *   soColor           — צבע SO (ברירת מחדל: fuchsia)
- *   taglineColor      — צבע הסלוגן (ברירת מחדל: navy)
- *   showTagline       — האם להציג את הסלוגן (ברירת מחדל: true)
- *   variant           — 'horizontal' (עם סלוגן) | 'compact' (ללא סלוגן, טביעה קטנה יותר)
- *   className         — class חיצוני לגודל ומיקום
+ *   fingerprintColor  ג€” ׳¦׳‘׳¢ ׳˜׳‘׳™׳¢׳× ׳”׳׳¦׳‘׳¢ (׳‘׳¨׳™׳¨׳× ׳׳—׳“׳: navy)
+ *   heartColor        ג€” ׳¦׳‘׳¢ ׳”׳׳‘ ׳”׳₪׳ ׳™׳׳™ (׳‘׳¨׳™׳¨׳× ׳׳—׳“׳: fuchsia)
+ *   impactColor       ג€” ׳¦׳‘׳¢ ׳”׳׳™׳׳” IMPACT (׳‘׳¨׳™׳¨׳× ׳׳—׳“׳: navy)
+ *   osColor           ג€” ׳¦׳‘׳¢ OS (׳‘׳¨׳™׳¨׳× ׳׳—׳“׳: fuchsia)
+ *   taglineColor      ג€” ׳¦׳‘׳¢ ׳”׳¡׳׳•׳’׳ (׳‘׳¨׳™׳¨׳× ׳׳—׳“׳: navy)
+ *   showTagline       ג€” ׳”׳׳ ׳׳”׳¦׳™׳’ ׳׳× ׳”׳¡׳׳•׳’׳ (׳‘׳¨׳™׳¨׳× ׳׳—׳“׳: true)
+ *   variant           ג€” 'horizontal' (׳¢׳ ׳¡׳׳•׳’׳) | 'compact' (׳׳׳ ׳¡׳׳•׳’׳, ׳˜׳‘׳™׳¢׳” ׳§׳˜׳ ׳” ׳™׳•׳×׳¨)
+ *   className         ג€” class ׳—׳™׳¦׳•׳ ׳™ ׳׳’׳•׳“׳ ׳•׳׳™׳§׳•׳
  *
- * כללים קבועים:
- *   - ברירת המחדל תמיד נאמנה למותג
- *   - וריאציות צבע הן מפורשות ונשלטות דרך props
- *   - SVG שקוף בלבד, ללא PNG וללא רקע
+ * ׳›׳׳׳™׳ ׳§׳‘׳•׳¢׳™׳:
+ *   - ׳‘׳¨׳™׳¨׳× ׳”׳׳—׳“׳ ׳×׳׳™׳“ ׳ ׳׳׳ ׳” ׳׳׳•׳×׳’
+ *   - ׳•׳¨׳™׳׳¦׳™׳•׳× ׳¦׳‘׳¢ ׳”׳ ׳׳₪׳•׳¨׳©׳•׳× ׳•׳ ׳©׳׳˜׳•׳× ׳“׳¨׳ props
+ *   - SVG ׳©׳§׳•׳£ ׳‘׳׳‘׳“, ׳׳׳ PNG ׳•׳׳׳ ׳¨׳§׳¢
  */
 
 import type { CSSProperties } from 'react'
@@ -23,29 +23,29 @@ import { FingerprintMark } from './FingerprintMark'
 
 type LogoVariant = 'horizontal' | 'compact'
 
-type ImpactSOLogoProps = {
+type ImpactOSLogoProps = {
   className?: string
   fingerprintColor?: string
   heartColor?: string
   impactColor?: string
-  soColor?: string
+  osColor?: string
   taglineColor?: string
   showTagline?: boolean
   variant?: LogoVariant
   style?: CSSProperties
 }
 
-export function ImpactSOLogo({
+export function ImpactOSLogo({
   className,
   fingerprintColor = brandLogoDefaults.fingerprint,
   heartColor = brandLogoDefaults.heart,
   impactColor = brandLogoDefaults.impact,
-  soColor = brandLogoDefaults.so,
+  osColor = brandLogoDefaults.os,
   taglineColor = brandLogoDefaults.tagline,
   showTagline = true,
   variant = 'horizontal',
   style,
-}: ImpactSOLogoProps) {
+}: ImpactOSLogoProps) {
   const isCompact = variant === 'compact'
 
   return (
@@ -55,13 +55,13 @@ export function ImpactSOLogo({
         display: 'flex',
         alignItems: 'center',
         gap: isCompact ? '10px' : '14px',
-        direction: 'ltr', // לוגו תמיד LTR
+        direction: 'ltr', // ׳׳•׳’׳• ׳×׳׳™׳“ LTR
         flexShrink: 0,
         background: 'transparent',
         ...style,
       }}
     >
-      {/* טביעת האצבע — SVG קווי, צבע מ-prop */}
+      {/* ׳˜׳‘׳™׳¢׳× ׳”׳׳¦׳‘׳¢ ג€” SVG ׳§׳•׳•׳™, ׳¦׳‘׳¢ ׳-prop */}
       <FingerprintMark
         color={fingerprintColor}
         heartColor={heartColor}
@@ -73,7 +73,7 @@ export function ImpactSOLogo({
         }}
       />
 
-      {/* טקסט הלוגו */}
+      {/* ׳˜׳§׳¡׳˜ ׳”׳׳•׳’׳• */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1px' }}>
         <div
           style={{
@@ -103,7 +103,7 @@ export function ImpactSOLogo({
               fontFamily: 'Heebo, Rubik, Arial, sans-serif',
               fontWeight: 900,
               fontSize: isCompact ? '22px' : '28px',
-              color: soColor,
+              color: osColor,
               letterSpacing: '-0.5px',
               lineHeight: 1,
             }}
@@ -112,7 +112,7 @@ export function ImpactSOLogo({
           </span>
         </div>
 
-        {/* סלוגן */}
+        {/* ׳¡׳׳•׳’׳ */}
         {showTagline && !isCompact && (
           <span
             style={{
@@ -127,7 +127,7 @@ export function ImpactSOLogo({
               unicodeBidi: 'embed',
             }}
           >
-            טכנולוגיה יוצרת אימפקט
+            ׳˜׳›׳ ׳•׳׳•׳’׳™׳” ׳™׳•׳¦׳¨׳× ׳׳™׳׳₪׳§׳˜
           </span>
         )}
       </div>
