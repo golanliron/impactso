@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -657,7 +657,7 @@ nav{
   transition:max-height 460ms var(--motion-ease),opacity 320ms var(--motion-ease),transform 320ms var(--motion-ease);
 }
 .mobile-hold.is-complete .mobile-hold__result{
-  max-height:420px;
+  max-height:620px;
   opacity:1;
   transform:translateY(0);
 }
@@ -962,14 +962,14 @@ nav{
   align-items:stretch;
 }
 .product-card{
-  min-height:410px;
+  min-height:340px;
   perspective:1200px;
   cursor:pointer;
   outline:none;
 }
 .product-card-inner{
   position:relative;
-  min-height:410px;
+  min-height:340px;
   height:100%;
   transform-style:preserve-3d;
   transition:transform 680ms cubic-bezier(.2,.7,.2,1),filter 320ms var(--motion-ease);
@@ -983,7 +983,7 @@ nav{
 .product-face{
   position:absolute;
   inset:0;
-  min-height:410px;
+  min-height:340px;
   display:flex;
   flex-direction:column;
   overflow:hidden;
@@ -1046,11 +1046,11 @@ nav{
   align-items:center;
   justify-content:center;
   flex-direction:column;
-  gap:14px;
-  padding:28px;
+  gap:10px;
+  padding:24px;
   text-align:center;
   border-bottom:1px solid rgba(6,30,79,0.08);
-  height:260px;
+  height:220px;
   box-sizing:border-box;
 }
 .product-media.is-adora{
@@ -1075,8 +1075,8 @@ nav{
 .product-media.is-goldfish::before,
 .product-media.is-retzef::before{
   inset:auto;
-  width:156px;
-  height:142px;
+  width:132px;
+  height:120px;
   opacity:.055;
   filter:none;
 }
@@ -1093,7 +1093,7 @@ nav{
   font-weight:900;
 }
 .adora-logo{
-  font-size:43px;
+  font-size:38px;
   letter-spacing:-1px;
   color:#111;
 }
@@ -1104,12 +1104,12 @@ nav{
 .goldfish-logo{
   color:#F47C26;
   font-family:Arial, sans-serif;
-  font-size:42px;
+  font-size:38px;
   direction:ltr;
 }
 .retzef-logo{
   color:#5B2D9E;
-  font-size:42px;
+  font-size:38px;
   letter-spacing:-1px;
   direction:rtl;
   text-align:center;
@@ -1117,8 +1117,8 @@ nav{
 .goldfish-icon{
   position:relative;
   z-index:1;
-  width:74px;
-  height:44px;
+  width:62px;
+  height:38px;
   border-radius:55% 48% 50% 45%;
   background:#F47C26;
 }
@@ -1192,10 +1192,10 @@ nav{
 .product-body{
   position:relative;
   z-index:1;
-  padding:36px 30px 34px;
+  padding:28px 24px 26px;
   display:grid;
   grid-template-rows:auto auto auto 1fr auto;
-  row-gap:13px;
+  row-gap:10px;
   justify-items:center;
   text-align:center;
   flex:1;
@@ -1216,7 +1216,7 @@ nav{
 .product-card:nth-child(2) .product-kicker{background:rgba(240,6,120,0.08);color:var(--fuchsia)}
 .product-card:nth-child(3) .product-kicker{background:rgba(244,180,27,0.12);color:#C98600}
 .product-card h3{
-  font-size:26px;
+  font-size:23px;
   font-weight:900;
   color:var(--navy);
   letter-spacing:-.4px;
@@ -1226,8 +1226,8 @@ nav{
 }
 .product-card p{
   max-width:300px;
-  font-size:15px;
-  line-height:1.82;
+  font-size:14px;
+  line-height:1.68;
   color:var(--gray);
   margin:0;
   align-self:center;
@@ -1371,7 +1371,7 @@ nav{
   position:relative;
   z-index:1;
   color:var(--navy);
-  font-size:42px;
+  font-size:38px;
   font-weight:900;
 }
 .person-role{
@@ -1719,16 +1719,18 @@ footer::after{
     position:relative;
     z-index:2;
   }
-  .products-grid{grid-template-columns:1fr}
+  .products-grid{grid-template-columns:1fr;gap:16px;margin-top:34px}
+  .product-card,.product-card-inner,.product-face{min-height:320px}
   .products::before{width:360px;right:-130px;bottom:80px;opacity:.12}
-  .product-media{height:220px}
+  .product-media{height:200px}
+  .product-media.is-adora,.product-media.is-goldfish,.product-media.is-retzef{height:200px;padding:22px;gap:9px}
   .product-body{
-    padding:24px 22px 28px;
+    padding:24px 22px 26px;
     grid-template-rows:auto auto auto auto auto;
-    row-gap:12px;
+    row-gap:10px;
   }
-  .adora-logo,.goldfish-logo{font-size:36px}
-  .goldfish-icon{width:62px;height:38px}
+  .adora-logo,.goldfish-logo,.retzef-logo{font-size:34px}
+  .goldfish-icon{width:58px;height:36px}
   .mani-chips{display:grid;grid-template-columns:1fr;gap:12px;max-width:360px;margin:0 auto}
   .mani-chip{justify-content:center;min-height:46px}
   .team-grid{grid-template-columns:1fr}
@@ -2370,22 +2372,20 @@ footer::after{
     </div>
 
     <h1>
-      מערכות חכמות<br>
-      לארגונים <em>שמשנים מציאות</em>
+      מערכות דיגיטליות חכמות<br>
+      לארגונים חברתיים, חינוכיים וציבוריים
     </h1>
 
-    <p class="hero-sub">
-      IMPACT OS בונה מערכות טכנולוגיות חכמות מותאמות לארגונים חברתיים, חינוכיים וציבוריים, כדי להפוך ידע, תהליכים ונתונים לכלים שעובדים באמת בשטח. חוויית משתמש חכמה, מערכות גמישות ויעילות עם יכולת התאמה מדויקת לצורכי הארגון.
-    </p>
+    <p class="hero-sub">אנחנו עוזרים לארגונים להפוך רעיונות, תהליכים ונתונים מפוזרים למערכות עבודה חכמות, ברורות ושימושיות. מאפיון ועד מערכת פעילה: דאטה, אוטומציות, בינה מלאכותית, דשבורדים וחוויית משתמש שמותאמת לאנשים שעובדים בשטח.</p>
 
     <div class="hero-btns">
-      <a href="#contact" class="btn-primary">
-        בואו נבנה מערכת חכמה
+      <a href="https://wa.me/972536256653?text=%D7%94%D7%99%20%D7%A6%D7%95%D7%95%D7%AA%20%D7%90%D7%99%D7%9E%D7%A4%D7%A7%D7%98%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D" class="btn-primary" target="_blank" rel="noopener" aria-label="שליחת וואטסאפ ל-053-6256653">
+        בואו נדבר
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 8h10M8.5 3.5L13 8l-4.5 4.5"/>
+          <path d="M2 4L8 9L14 4"/><rect x="2" y="4" width="12" height="9" rx="2"/>
         </svg>
       </a>
-      <a href="#services" class="btn-outline">טביעת האצבע שלנו</a>
+      <a href="#services" class="btn-outline">לראות איך זה עובד</a>
     </div>
   </div>
 </section>
@@ -2393,7 +2393,7 @@ footer::after{
 <!-- Mobile-only decorative touch-and-hold experience. No biometric data is read or stored. -->
 <section class="mobile-hold" id="mobileFingerprintExperience" aria-label="חוויה עיצובית של טביעת אצבע">
   <div class="mobile-hold__inner">
-    <div class="mobile-hold__eyebrow">טביעת האצבע שלכם</div>
+    <div class="mobile-hold__eyebrow">טביעת האצבע של הארגון שלכם</div>
     <button class="hold-fingerprint" id="holdFingerprint" type="button" aria-label="הניחו אצבע והחזיקו לרגע">
       <span class="hold-fingerprint__mark" aria-hidden="true"></span>
     </button>
@@ -2401,11 +2401,11 @@ footer::after{
     <div class="mobile-hold__progress" aria-hidden="true"><span></span></div>
 
     <div class="mobile-hold__result" aria-live="polite">
-      <p>כל ארגון הוא טביעת אצבע.<br>גם המערכת שלו צריכה להיות מותאמת אליו.</p>
+      <p>כל ארגון עובד אחרת.<br>יש לו אנשים, תהליכים, אתגרים, שפה ודרך משלו.<br><br>לכן אנחנו לא מתחילים ממערכת מוכנה.<br>אנחנו מתחילים מהשטח, מבינים איך הארגון באמת עובד, ורק אז בונים פתרון דיגיטלי שמתאים לו.</p>
       <div class="mobile-hold__steps">
-        <span>מיפוי הצורך</span>
-        <span>בניית מערכת חכמה</span>
-        <span>מדידת IMPACT</span>
+        <span>ממפים את הצורך</span>
+        <span>בונים מערכת מותאמת</span>
+        <span>מודדים את ההשפעה</span>
       </div>
       <a class="mobile-hold__cta" href="#contact">בואו נתחיל לאפיין</a>
     </div>
@@ -2415,9 +2415,9 @@ footer::after{
 <!-- ג•ג•ג• SERVICES ג•ג•ג• -->
 <section class="services" id="services">
   <div class="section-head">
-    <div class="section-label">מה אנחנו בונים</div>
-    <h2 class="section-title">מערכות חכמות שמחברות<br>בין אנשים, מידע והשפעה</h2>
-    <p class="section-sub">אנחנו מאפיינים, מפתחים ומטמיעים מערכות דיגיטליות שמסדרות תהליכים, מחברות נתונים ומאפשרות לארגונים חברתיים וחינוכיים לעבוד בצורה חכמה, מדידה ואפקטיבית יותר.</p>
+    <div class="section-label">מה אפשר לבנות איתנו</div>
+    <h2 class="section-title">הופכים תהליכים מורכבים<br>למערכות שעובדות באמת</h2>
+    <p class="section-sub">אנחנו עוזרים לארגונים חברתיים, חינוכיים וציבוריים לקחת תהליכים שמנוהלים היום באקסלים, טפסים, וואטסאפ ומיילים, ולהפוך אותם למערכת דיגיטלית אחת, ברורה ונוחה לשימוש.<br>המערכת נבנית סביב הצורך האמיתי של הארגון: ניהול מידע, מעקב, אוטומציות, דוחות, מדידת אימפקט ושימוש חכם בבינה מלאכותית.</p>
   </div>
 
   <div class="svc-stack-wrap" id="svcStackWrap">
@@ -2440,8 +2440,8 @@ footer::after{
           <path d="M5.5 18C4.5 15 6 10.8 14 13"/>
         </svg>
       </div>
-      <h3>אפיון מערכות חברתיות</h3>
-      <p>מחקר עומק, מיפוי תהליכים והבנת הצרכים האמיתיים של הארגון, כדי לבנות מערכת שמתאימה לשטח ולא להפך.</p>
+      <h3>אפיון מערכת מאפס</h3>
+      <p>ממפים את הצורך, את המשתמשים, את הנתונים ואת תהליך העבודה, והופכים רעיון לאפיון ברור שאפשר לבנות ממנו מערכת אמיתית.</p>
     </div>
 
     <div class="svc-card">
@@ -2456,8 +2456,8 @@ footer::after{
           <circle cx="14" cy="14" r="1.2" fill="#F00678" stroke="none"/>
         </svg>
       </div>
-      <h3>מוצרים טכנולוגיים חכמים</h3>
-      <p>מפיצוח הרעיון ועד מערכת פעילה: ממשק, קוד, תשתיות וחוויית משתמש שמוכנה לעבודה אמיתית בארגון.</p>
+      <h3>בניית מערכות דיגיטליות</h3>
+      <p>בונים מערכות עבודה מותאמות לארגונים חברתיים, חינוכיים וציבוריים: ממשקים, טפסים, אזורי משתמש, דשבורדים, הרשאות ותהליכי עבודה.</p>
     </div>
 
     <div class="svc-card">
@@ -2471,8 +2471,8 @@ footer::after{
           <path d="M4 23.5h20"/>
         </svg>
       </div>
-      <h3>דאטה ו-IMPACT</h3>
-      <p>לוחות בקרה, מדדים ודוחות שמתרגמים פעילות יומיומית לתמונה ברורה על התקדמות, תוצאות והשפעה.</p>
+      <h3>דאטה ומדידת אימפקט</h3>
+      <p>מחברים מידע מפוזר לתמונה אחת ברורה, עם מדדים, דוחות ולוחות בקרה שעוזרים לארגון להבין מה קורה ומה משתנה.</p>
     </div>
 
     <div class="svc-card">
@@ -2484,8 +2484,8 @@ footer::after{
           <circle cx="7" cy="21" r="1.5" fill="#061E4F" stroke="none"/>
         </svg>
       </div>
-      <h3>AI למגזר החברתי</h3>
-      <p>שילוב חכם של בינה מלאכותית בתהליכי עבודה, כדי לחסוך זמן, לשפר החלטות ולהגדיל את היכולת לעשות יותר עם פחות.</p>
+      <h3>בינה מלאכותית לארגונים</h3>
+      <p>משלבים כלי AI בתוך תהליכי עבודה קיימים, כדי לחסוך זמן, לשפר מענה, לארגן ידע ולעזור לצוותים לעבוד חכם יותר.</p>
     </div>
       <div class="svc-indicator" id="svcIndicator" aria-hidden="true">
         <span class="svc-dot active" data-i="0"></span>
@@ -2501,9 +2501,9 @@ footer::after{
 <!-- ג•ג•ג• PRODUCTS ג•ג•ג• -->
 <section class="products" id="products">
   <div class="section-head">
-    <div class="section-label">האימפקט שלנו</div>
-    <h2 class="section-title">מוצרים טכנולוגיים חכמים<br>עם טביעת אצבע אנושית</h2>
-    <p class="section-sub">חלק מהמערכות שפיתחנו.</p>
+    <div class="section-label">מערכות שפיתחנו</div>
+    <h2 class="section-title">מוצרים דיגיטליים שנבנו<br>מתוך צורך אמיתי</h2>
+    <p class="section-sub">חלק מהמערכות שבנינו עבור עולמות החינוך, הרווחה, הקהילה והמגזר החברתי.<br>כל מערכת התחילה מצורך שעלה מהשטח, והפכה לכלי עבודה ברור, שימושי ומותאם לאנשים שאמורים לעבוד איתו.</p>
   </div>
 
   <div class="products-grid">
@@ -2518,7 +2518,7 @@ footer::after{
         <div class="product-face product-face-back">
           <div class="product-body">
             <span class="product-kicker">חינוך ותעסוקה</span>
-            <h3>טביעת האצבע</h3>
+            <h3>מה המערכת עושה</h3>
             <p>לוח מודעות דרושים לעולם החינוך, שמחבר בין אנשי חינוך, בתי ספר וארגונים שמחפשים התאמה מדויקת ומשמעותית.</p>
           </div>
         </div>
@@ -2537,8 +2537,8 @@ footer::after{
         <div class="product-face product-face-back">
           <div class="product-body">
             <span class="product-kicker">גיוס משאבים</span>
-            <h3>טביעת האצבע</h3>
-            <p>כלי חכם לגיוס משאבים לעמותות, שמסייע לאתר הזדמנויות, מענקים וקולות קוראים בלי לטבוע בתוך עומס המידע.</p>
+            <h3>מה המערכת עושה</h3>
+            <p>מרכזת קולות קוראים, מענקים והזדמנויות מימון, ועוזרת לעמותות להבין מה רלוונטי עבורן ואיך להתקדם להגשה בצורה מסודרת.</p>
           </div>
         </div>
       </div>
@@ -2560,7 +2560,7 @@ footer::after{
         <div class="product-face product-face-back">
           <div class="product-body">
             <span class="product-kicker">רווחה וקהילה</span>
-            <h3>טביעת האצבע</h3>
+            <h3>מה המערכת עושה</h3>
             <p>מערכת שמרכזת מענים, שירותים ותהליכים עבור הקהילה האוטיסטית ומשפחותיהם לאורך שלבי החיים.</p>
           </div>
         </div>
@@ -2595,16 +2595,16 @@ footer::after{
     </g>
   </svg>
 
-  <div class="mani-label">המניפסט שלנו</div>
-  <h2>אנחנו מאמינים<br>בטכנולוגיה <em>עם נשמה</em></h2>
-  <p>אנחנו מאמינים שהמגזר החברתי והחינוכי יכול להוביל שינוי אמיתי בעזרת כלים חכמים, מדויקים ונגישים. IMPACT OS נולדה כדי לחבר בין טכנולוגיה, אנשים ו-IMPACT, ולבנות מערכות שמבינות את השטח, עושות סדר בתהליכים ומאפשרות לארגונים לעשות יותר טוב בעולם.</p>
+  <div class="mani-label">הגישה שלנו</div>
+  <h2>טכנולוגיה שמתחילה<br><em>מהשטח</em></h2>
+  <p>אנחנו מאמינים שמערכת טובה לא מתחילה מהטכנולוגיה, אלא מהאנשים שאמורים להשתמש בה. לכן בכל פרויקט אנחנו מתחילים בהבנת הצורך האמיתי: איך הארגון עובד, איפה המידע נתקע, מה גוזל זמן מהצוות, ואיזה שינוי המערכת צריכה לייצר. רק אחרי שמבינים את השטח, בונים פתרון דיגיטלי חכם, פשוט לשימוש, מדיד ועם ערך אמיתי לארגון.</p>
 
   <div class="mani-chips">
     <div class="mani-chip">טכנולוגיה עם כוונה</div>
     <div class="mani-chip">עיצוב אנושי</div>
     <div class="mani-chip">מדידה אמיתית</div>
     <div class="mani-chip">ליווי לאורך הדרך</div>
-    <div class="mani-chip">IMPACT שניתן לראות</div>
+    <div class="mani-chip">השפעה שאפשר לראות</div>
   </div>
 </section>
 
@@ -2612,8 +2612,8 @@ footer::after{
 <section class="team" id="team">
   <div class="section-head">
     <div class="section-label">מי אנחנו</div>
-    <h2 class="section-title">האנשים<br>מאחורי IMPACT</h2>
-    <p class="section-sub">צוות שמחבר חינוך, חברה, מוצר וטכנולוגיה כדי לבנות מערכות שמרגישות אנושיות ומייצרות שינוי מדיד.</p>
+    <h2 class="section-title">צוות שמחבר בין שטח,<br>מוצר וטכנולוגיה</h2>
+    <p class="section-sub">אנחנו מגיעים מהעולמות של חינוך, חברה, מוצר, דאטה ופיתוח.<br>החיבור הזה מאפשר לנו להבין לעומק את הצורך הארגוני, לתרגם אותו למערכת ברורה, ולבנות פתרונות שהצוותים באמת יכולים להשתמש בהם ביום יום.</p>
   </div>
 
   <div class="team-grid">
@@ -2659,8 +2659,8 @@ footer::after{
 <section class="sectors" id="sectors">
   <div class="section-head">
     <div class="section-label">למי זה מתאים</div>
-    <h2 class="section-title">מערכות חכמות לארגונים<br>עם שליחות</h2>
-    <p class="section-sub">אנחנו עובדים עם גופים חברתיים, חינוכיים וציבוריים שרוצים לעשות סדר בתהליכים, לחבר בין אנשים ונתונים, ולראות את ההשפעה שלהם בצורה ברורה יותר.</p>
+    <h2 class="section-title">לארגונים שיש להם שליחות,<br>אבל צריכים מערכת שתעזור לה לגדול</h2>
+    <p class="section-sub">אנחנו עובדים עם ארגונים חברתיים, חינוכיים וציבוריים שיש להם עשייה משמעותית, אבל גם הרבה מידע, תהליכים, אנשים ומשימות שמתפזרים בין אקסלים, טפסים, וואטסאפ ומיילים.<br><br>אנחנו עוזרים להפוך את העשייה הזאת למערכת ברורה: כזו שמרכזת מידע, משפרת עבודה יומיומית, מאפשרת מעקב ומציגה תמונת מצב שאפשר לפעול לפיה.</p>
   </div>
 
   <div class="sectors-grid">
@@ -2678,7 +2678,7 @@ footer::after{
         </svg>
       </div>
       <h3>מגזר שלישי ועמותות</h3>
-      <p>ארגונים חברתיים וסביבתיים שצריכים כלים לניהול, גיוס, מדידת IMPACT וקשר עם הקהילה.</p>
+      <p>לעמותות וארגונים חברתיים שרוצים לנהל מידע, לעקוב אחרי פעילות, למדוד השפעה, להגיש טוב יותר לקרנות ולחזק את הקשר עם קהילות, תורמים ושותפים.</p>
     </div>
 
     <div class="sector-card">
@@ -2691,7 +2691,7 @@ footer::after{
         </svg>
       </div>
       <h3>מערכת החינוך</h3>
-      <p>בתי ספר, רשתות חינוך ומוסדות אקדמיים עם מערכות שמקלות על המורה ומעצימות את התלמיד.</p>
+      <p>לבתי ספר, רשתות חינוך, מוסדות ותוכניות חינוכיות שצריכים מערכות פשוטות לניהול תלמידים, תהליכים, מענים, נתונים, תוכן ופעילות בשטח.</p>
     </div>
 
     <div class="sector-card">
@@ -2705,8 +2705,8 @@ footer::after{
           <path d="M27.5 24.5L30 27.5"/>
         </svg>
       </div>
-      <h3>גופי ממשל ורגולציה</h3>
-      <p>רשויות מקומיות ומשרדי ממשלה שרוצים לשפר שירות, להנגיש מידע ולעבוד חכם יותר עם הנתונים.</p>
+      <h3>גופים ציבוריים ורשויות</h3>
+      <p>לרשויות, משרדי ממשלה וגופים ציבוריים שרוצים להנגיש מידע, לייעל שירותים, לחבר בין מחלקות ולעבוד בצורה חכמה יותר עם נתונים.</p>
     </div>
   </div>
 </section>
@@ -2714,17 +2714,17 @@ footer::after{
 <!-- ג•ג•ג• CTA ג•ג•ג• -->
 <section class="cta-sec" id="contact">
   <div class="cta-inner">
-    <div class="cta-label">מוכנים להתחיל?</div>
-    <h2>בואו נבנה משהו<br>שעושה <em>הבדל אמיתי</em></h2>
-    <p>שיחת היכרות קצרה שבה נבין ביחד אם ואיך IMPACT OS יכולה לעזור לכם לגדול.</p>
+    <div class="cta-label">רוצים להפוך רעיון למערכת שעובדת באמת?</div>
+    <h2>בואו נבין יחד<br>מה נכון לבנות</h2>
+    <p>שיחת היכרות קצרה שבה נבין את הצורך, את התהליך ואת האפשרות להפוך אותו למערכת דיגיטלית חכמה שמתאימה לארגון שלכם.</p>
     <div class="cta-btns">
       <a href="https://wa.me/972536256653?text=%D7%94%D7%99%20%D7%A6%D7%95%D7%95%D7%AA%20%D7%90%D7%99%D7%9E%D7%A4%D7%A7%D7%98%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D" class="btn-primary" target="_blank" rel="noopener" aria-label="שליחת וואטסאפ ל-053-6256653">
-        בואו נייצר IMPACT
+        בואו נדבר
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M2 4L8 9L14 4"/><rect x="2" y="4" width="12" height="9" rx="2"/>
         </svg>
       </a>
-      <a href="#products" class="btn-outline">למוצרים שלנו</a>
+      <a href="#services" class="btn-outline">לראות איך זה עובד</a>
     </div>
   </div>
 </section>
