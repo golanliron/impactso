@@ -1695,7 +1695,7 @@ footer::after{
 @media(max-width:760px){
   body.home-page .team{display:none!important}
 
-  nav{height:104px}
+  nav{height:90px}
   .nav-inner{padding:0 24px}
   .mobile-menu{
     top:90px;
@@ -2047,28 +2047,13 @@ footer::after{
 /* Minimal mobile footer */
 .mobile-footer-links{display:none}
 @media(max-width:760px){
-  nav{height:104px;align-items:flex-start;padding-top:10px}
-  .nav-inner{height:64px;align-items:center}
-  nav .nav-scroll-badge{
-    display:inline-flex;
-    position:absolute;
-    left:50%;
-    right:auto;
-    top:72px;
-    max-width:calc(100vw - 44px);
-    justify-content:center;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    padding:6px 12px;
-    font-size:10.5px;
-    line-height:1;
-    z-index:3;
-    opacity:0;
-    transform:translate(-50%, -6px) scale(.96);
-  }
+  nav{height:90px;align-items:center;padding-top:0}
+  .nav-inner{height:auto;align-items:center}
+  nav .nav-scroll-badge,
   nav .nav-scroll-badge.is-visible{
-    opacity:1;
-    transform:translate(-50%, 0) scale(1);
+    display:none!important;
+    opacity:0!important;
+    transform:none!important;
   }
   footer{
     min-height:300px;
@@ -2316,7 +2301,7 @@ footer::after{
       <div class="footer-logo">
         <img src="../public/brand/impact-os-logo-footer-transparent.png?v=os-footer-4" alt="IMPACT OS">
       </div>
-      <p class="footer-typewriter" data-typewriter="טכנולוגיה עם טביעת אצבע אנושית בשביל עולם שפועל טוב יותר." aria-label="טכנולוגיה עם טביעת אצבע אנושית בשביל עולם שפועל טוב יותר."><span aria-hidden="true"></span></p>
+      <p class="footer-typewriter" data-typewriter="עבור ארגונים שהופכים את העולם לטוב יותר." aria-label="עבור ארגונים שהופכים את העולם לטוב יותר."><span aria-hidden="true"></span></p>
     </div>
 
     <div class="mobile-footer-links" aria-label="ניווט תחתון">
@@ -2329,7 +2314,7 @@ footer::after{
       <ul>
         <li><a href="./impact-so-website.html#services">אפיון מערכות</a></li>
         <li><a href="./impact-so-website.html#products">מוצרים טכנולוגיים חכמים</a></li>
-        <li><a href="./impact-so-website.html#services">דאטה וIMPACT</a></li>
+        <li><a href="./impact-so-website.html#services">דאטה ו-IMPACT</a></li>
         <li><a href="./impact-so-website.html#services">AI למגזר החברתי</a></li>
         <li><a href="./impact-so-website.html#products">האימפקט שלנו</a></li>
       </ul>
