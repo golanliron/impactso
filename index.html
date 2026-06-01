@@ -3,10 +3,22 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index, follow" />
+    <title>IMPACT OS</title>
+    <script>
+      (function(){
+        var target = 'site/impact-so-website.html' + window.location.search + window.location.hash;
+        window.location.replace(target);
+      })();
+    </script>
     <meta http-equiv="refresh" content="0; url=site/impact-so-website.html" />
-    <title>Impact OS</title>
+    <style>
+      html,body{margin:0;min-height:100%;background:#fff;font-family:Arial,sans-serif;color:#061e4f}
+      body{display:grid;place-items:center}
+      a{color:#061e4f;font-weight:700}
+    </style>
   </head>
   <body>
-    <a href="site/impact-so-website.html">Open Impact OS website</a>
+    <noscript><a href="site/impact-so-website.html">כניסה לאתר IMPACT OS</a></noscript>
   </body>
 </html>
