@@ -7,7 +7,7 @@ Open locally:
 
 Main brand rules:
 - Use IMPACT OS branding only in this project.
-- Do not mix Hopa branding unless explicitly requested.
+- NEVER publish any Hopa product, program, screenshot, logo, or client content on this site. Hopa is a client, not a portfolio. Check images as well as text.
 - Keep the fingerprint motif subtle, human, technological, and readable.
 - Keep brand colors: navy, turquoise, fuchsia, with light supporting tones.
 
