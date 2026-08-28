@@ -2239,6 +2239,94 @@ footer::after{
   footer .mobile-footer-links,
   footer .footer-bottom{transform:none}
 }</style>
+
+<style id="domains-css">
+/* ===== תחומים ומוצרים ===== */
+.domains{padding:96px 0 40px;position:relative}
+.domains .section-head{margin-bottom:52px}
+.domain{
+  --d:var(--teal);
+  background:var(--white);border-radius:30px;padding:34px 34px 30px;margin-bottom:26px;
+  box-shadow:0 12px 48px rgba(6,30,79,.10);position:relative;overflow:hidden;
+}
+.domain::before{
+  content:'';position:absolute;inset:0 0 auto 0;height:4px;
+  background:linear-gradient(90deg,var(--d),transparent);
+}
+.domain-head{display:flex;align-items:flex-start;gap:18px;margin-bottom:26px;flex-wrap:wrap}
+.domain-icon{
+  width:54px;height:62px;border-radius:18px;display:grid;place-items:center;flex:none;
+  background:color-mix(in srgb,var(--d) 12%,var(--white));font-size:1.6rem;
+}
+.domain-head h3{
+  font-size:clamp(1.4rem,2.8vw,1.9rem);font-weight:900;letter-spacing:-.025em;margin:0 0 6px;
+}
+.domain-head p{margin:0;color:var(--gray);max-width:62ch;font-size:1rem}
+.domain-label{
+  font-size:.76rem;font-weight:800;letter-spacing:.09em;color:var(--d);
+  text-transform:uppercase;margin-bottom:6px;display:block;
+}
+.domain-menu{display:grid;grid-template-columns:repeat(auto-fill,minmax(252px,1fr));gap:16px}
+.dprod{
+  display:block;text-decoration:none;color:inherit;border-radius:22px;overflow:hidden;
+  background:var(--bg);border:1.5px solid rgba(6,30,79,.07);
+  transition:transform var(--motion-ease) 320ms,box-shadow var(--motion-ease) 320ms,border-color var(--motion-ease) 320ms;
+}
+.dprod:hover,.dprod:focus-visible{
+  transform:translateY(-5px);border-color:color-mix(in srgb,var(--d) 40%,transparent);
+  box-shadow:0 18px 44px rgba(6,30,79,.14);
+}
+.dprod-thumb{aspect-ratio:16/10;overflow:hidden;background:#e8eef6}
+.dprod-thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;
+  transition:transform var(--motion-ease) 620ms}
+.dprod:hover .dprod-thumb img{transform:scale(1.05)}
+.dprod-body{padding:18px 20px 20px}
+.dprod-body h4{font-size:1.08rem;font-weight:800;margin:0 0 6px;letter-spacing:-.015em}
+.dprod-body p{margin:0 0 12px;color:var(--gray);font-size:.94rem;line-height:1.6}
+.dprod-more{
+  font-size:.88rem;font-weight:800;color:var(--d);display:inline-flex;align-items:center;gap:7px;
+}
+.dprod-more span{transition:transform var(--motion-ease) 260ms;display:inline-block}
+.dprod:hover .dprod-more span{transform:translateX(-5px)}
+/* ===== קפיצה לתחום מתוך ה-hero ===== */
+.hero-sectors{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px;
+}
+.hero-sectors-label{
+  font-size:.86rem;font-weight:700;color:var(--gray);margin-inline-end:2px;
+}
+.sector-jump{
+  --s:var(--teal);
+  display:inline-flex;align-items:center;gap:9px;text-decoration:none;
+  font-size:.92rem;font-weight:800;color:var(--navy);
+  background:var(--white);border:1.5px solid rgba(6,30,79,.10);
+  border-radius:999px;padding:9px 20px;
+  transition:border-color var(--motion-ease) 220ms,transform var(--motion-ease) 220ms,box-shadow var(--motion-ease) 220ms;
+}
+.sector-jump:hover,.sector-jump:focus-visible{
+  border-color:color-mix(in srgb,var(--s) 55%,transparent);
+  transform:translateY(-2px);
+  box-shadow:0 10px 26px rgba(6,30,79,.10);
+}
+.sector-jump .sector-dot{
+  width:9px;height:9px;border-radius:50%;background:var(--s);flex:none;
+}
+.sector-jump .sector-arrow{
+  display:inline-block;color:var(--s);font-weight:900;
+  transition:transform var(--motion-ease) 260ms;
+}
+.sector-jump:hover .sector-arrow{transform:translateX(-4px)}
+.domain{scroll-margin-top:96px}
+#products{scroll-margin-top:80px}
+@media(max-width:640px){
+  .hero-sectors{margin-top:18px;gap:8px}
+  .hero-sectors-label{width:100%;margin-bottom:2px}
+}
+@media(max-width:640px){
+  .domains{padding:64px 0 24px}
+  .domain{padding:24px 20px 22px;border-radius:24px}
+}
+</style>
 </head>
 <body class="home-page">
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -2411,7 +2499,7 @@ footer::after{
     <div class="nav-links-wrap">
       <ul class="nav-links">
         <li><a href="#services">מה אנחנו עושים</a></li>
-        <li><a href="#products">מערכות שפיתחנו</a></li>
+        <li><a href="#products">מוצרים ותחומים</a></li>
         <li><a href="#approach">הגישה שלנו</a></li>
         <li><a href="#team">מי אנחנו</a></li>
         <li><a href="#sectors">למי זה מתאים</a></li>
@@ -2429,7 +2517,7 @@ footer::after{
 </nav>
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <a href="#services">מה אנחנו עושים</a>
-  <a href="#products">מערכות שפיתחנו</a>
+  <a href="#products">מוצרים ותחומים</a>
   <a href="#approach">הגישה שלנו</a>
   <a href="site/impact-os-team.html">מי אנחנו</a>
   <a href="#sectors">למי זה מתאים</a>
@@ -2492,6 +2580,17 @@ footer::after{
       </a>
       <a href="#services" class="btn-outline">לראות איך זה עובד</a>
     </div>
+      <div class="hero-sectors">
+        <span class="hero-sectors-label">קפיצה לתחום:</span>
+        <a class="sector-jump" href="#sector-education" style="--s:var(--fuchsia)">
+          <span class="sector-dot" aria-hidden="true"></span>חינוך
+          <span class="sector-arrow" aria-hidden="true">&#8592;</span>
+        </a>
+        <a class="sector-jump" href="#sector-third" style="--s:var(--teal)">
+          <span class="sector-dot" aria-hidden="true"></span>מגזר שלישי
+          <span class="sector-arrow" aria-hidden="true">&#8592;</span>
+        </a>
+      </div>
   </div>
 </section>
 
@@ -2604,13 +2703,125 @@ footer::after{
 </section>
 
 <!-- ג•ג•ג• PRODUCTS ג•ג•ג• -->
-<section class="products" id="products">
+<!-- ••• DOMAINS + PRODUCTS ••• -->
+<section class="domains" id="products">
   <div class="section-head">
-    <div class="section-label">מערכות שפיתחנו</div>
-    <h2 class="section-title">מוצרים דיגיטליים שנבנו<br>מתוך צורך אמיתי</h2>
-    <p class="section-sub">חלק מהמערכות שבנינו עבור עולמות החינוך, הרווחה, הקהילה והמגזר החברתי. כל מערכת התחילה מצורך שעלה מהשטח, והפכה לכלי עבודה ברור, שימושי ומותאם לאנשים שאמורים לעבוד איתו.</p>
+    <div class="section-label">תחומים ומוצרים</div>
+    <h2 class="section-title">שלושה תחומים,<br>מוצרים שאפשר להתחיל איתם מחר</h2>
+    <p class="section-sub">כל מוצר כאן נבנה מתוך צורך אמיתי שעלה מהשטח, ורץ היום אצל ארגון אמיתי. בחרו תחום, והיכנסו לדף המוצר כדי לראות מסכים אמיתיים ומה המערכת עושה בפועל.</p>
   </div>
 
+  <article class="domain" id="sector-third" style="--d:var(--teal)">
+    <div class="domain-head">
+      <div class="domain-icon" aria-hidden="true">&#129309;</div>
+      <div>
+        <span class="domain-label">תחום</span>
+        <h3>מגזר שלישי</h3>
+        <p>עמותות, מלכ״רים ותוכניות חברתיות. הכלים כאן נועדו לארגונים שיש להם הרבה מה לעשות ומעט ידיים — גיוס משאבים, נוכחות ברשתות, ואתר שאנשים באמת מוצאים בו את מה שהם צריכים.</p>
+      </div>
+    </div>
+    <div class="domain-menu">
+      <a class="dprod" href="site/products/goldfish.html">
+        <div class="dprod-thumb"><img src="public/products/goldfish/home.webp" alt="Goldfish" loading="lazy"></div>
+        <div class="dprod-body">
+          <h4>Goldfish</h4>
+          <p>סוכן AI לגיוס משאבים — מוצא קולות קוראים שמתאימים לכם ומכין טיוטת הגשה.</p>
+          <span class="dprod-more">לדף המוצר <span aria-hidden="true">&#8592;</span></span>
+        </div>
+      </a>
+      <a class="dprod" href="site/products/websites.html">
+        <div class="dprod-thumb"><img src="public/products/websites/home.webp" alt="בניית אתרים" loading="lazy"></div>
+        <div class="dprod-body">
+          <h4>בניית אתרים</h4>
+          <p>אתר שאנשים עובדים איתו: תוכן שמוצאים, כלים בתוך העמוד ונגישות.</p>
+          <span class="dprod-more">לדף המוצר <span aria-hidden="true">&#8592;</span></span>
+        </div>
+      </a>
+      <a class="dprod" href="site/products/scheduler.html">
+        <div class="dprod-thumb"><img src="public/products/scheduler/queue.webp" alt="תזמון פוסטים" loading="lazy"></div>
+        <div class="dprod-body">
+          <h4>תזמון פוסטים</h4>
+          <p>תור פרסום לפייסבוק ואינסטגרם — אתם מאשרים, המערכת מפרסמת לבד.</p>
+          <span class="dprod-more">לדף המוצר <span aria-hidden="true">&#8592;</span></span>
+        </div>
+      </a>
+    </div>
+  </article>
+
+  <article class="domain" id="sector-education" style="--d:var(--fuchsia)">
+    <div class="domain-head">
+      <div class="domain-icon" aria-hidden="true">&#127891;</div>
+      <div>
+        <span class="domain-label">תחום</span>
+        <h3>חינוך</h3>
+        <p>מערכות למידה שמזהות איפה כל ילד.ה נמצא.ת ובונות מסלול אישי — ולצידן הכלים שמאפשרים לארגון החינוכי לספר את הסיפור שלו החוצה.</p>
+      </div>
+    </div>
+    <div class="domain-menu">
+      <a class="dprod" href="site/products/noni.html">
+        <div class="dprod-thumb"><img src="public/products/noni/gate.webp" alt="נוני · אבני יסוד" loading="lazy"></div>
+        <div class="dprod-body">
+          <h4>נוני · אבני יסוד</h4>
+          <p>למידת קריאה בכיתה א׳ — מסלול אישי שנבנה לפי מה שכל ילד.ה באמת צריך.ה.</p>
+          <span class="dprod-more">לדף המוצר <span aria-hidden="true">&#8592;</span></span>
+        </div>
+      </a>
+      <a class="dprod" href="site/products/mishmish.html">
+        <div class="dprod-thumb"><img src="public/products/mishmish/gate.webp" alt="מישמיש" loading="lazy"></div>
+        <div class="dprod-body">
+          <h4>מישמיש</h4>
+          <p>עברית כשפה שנייה לגילאי 5–8 במגזר הערבי. שמיעתי-קודם, בלי מבחנים.</p>
+          <span class="dprod-more">לדף המוצר <span aria-hidden="true">&#8592;</span></span>
+        </div>
+      </a>
+      <a class="dprod" href="site/products/websites.html">
+        <div class="dprod-thumb"><img src="public/products/websites/home.webp" alt="בניית אתרים" loading="lazy"></div>
+        <div class="dprod-body">
+          <h4>בניית אתרים</h4>
+          <p>אתר שאנשים עובדים איתו: תוכן שמוצאים, כלים בתוך העמוד ונגישות.</p>
+          <span class="dprod-more">לדף המוצר <span aria-hidden="true">&#8592;</span></span>
+        </div>
+      </a>
+      <a class="dprod" href="site/products/scheduler.html">
+        <div class="dprod-thumb"><img src="public/products/scheduler/queue.webp" alt="תזמון פוסטים" loading="lazy"></div>
+        <div class="dprod-body">
+          <h4>תזמון פוסטים</h4>
+          <p>תור פרסום לפייסבוק ואינסטגרם — אתם מאשרים, המערכת מפרסמת לבד.</p>
+          <span class="dprod-more">לדף המוצר <span aria-hidden="true">&#8592;</span></span>
+        </div>
+      </a>
+    </div>
+  </article>
+
+  <article class="domain" id="sector-tools" style="--d:var(--green)">
+    <div class="domain-head">
+      <div class="domain-icon" aria-hidden="true">&#128736;</div>
+      <div>
+        <span class="domain-label">תחום</span>
+        <h3>כלי ניהול</h3>
+        <p>הכלים שמנהלת בית ספר צריכה ביום-יום. לא פלטפורמה אחת ענקית — קטלוג שמרכיבים ממנו בדיוק את מה שחסר.</p>
+      </div>
+    </div>
+    <div class="domain-menu">
+      <a class="dprod" href="site/products/apps-farm.html">
+        <div class="dprod-thumb"><img src="public/products/apps-farm/home.webp" alt="חוות האפליקציות" loading="lazy"></div>
+        <div class="dprod-body">
+          <h4>חוות האפליקציות</h4>
+          <p>63 מערכות ניהול לבית ספר ב־11 תחומים — בוחרים רק את מה שצריך.</p>
+          <span class="dprod-more">לדף המוצר <span aria-hidden="true">&#8592;</span></span>
+        </div>
+      </a>
+    </div>
+  </article>
+</section>
+
+<!-- ••• MORE SYSTEMS ••• -->
+<section class="products" id="more-systems">
+  <div class="section-head">
+    <div class="section-label">מערכות נוספות</div>
+    <h2 class="section-title">עוד מערכות שבנינו<br>מתוך צורך אמיתי</h2>
+    <p class="section-sub">מערכות שרצות היום בשטח בעולמות החינוך, התעסוקה, הרווחה והקהילה. לחצו על כרטיס כדי לראות מה המערכת עושה.</p>
+  </div>
   <div class="products-grid">
     <article class="product-card" tabindex="0" aria-label="אַדורה, לחצו כדי לראות מה המוצר עושה">
       <div class="product-card-inner">
@@ -2625,25 +2836,6 @@ footer::after{
             <span class="product-kicker">חינוך ותעסוקה</span>
             <h3>מה המערכת עושה</h3>
             <p>לוח מודעות דרושים לעולם החינוך, שמחבר בין אנשי חינוך, בתי ספר וארגונים שמחפשים התאמה מדויקת ומשמעותית.</p>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="product-card" tabindex="0" aria-label="Goldfish, לחצו כדי לראות מה המוצר עושה">
-      <div class="product-card-inner">
-        <div class="product-face product-face-front">
-          <div class="product-media is-goldfish" aria-hidden="true">
-            <div class="goldfish-icon"></div>
-            <div class="goldfish-logo">Goldfish</div>
-            <p class="product-front-desc">כלי חכם לגיוס משאבים לעמותות, שמסייע לאתר מענקים וקולות קוראים.</p>
-          </div>
-        </div>
-        <div class="product-face product-face-back">
-          <div class="product-body">
-            <span class="product-kicker">גיוס משאבים</span>
-            <h3>מה המערכת עושה</h3>
-            <p>מרכזת קולות קוראים, מענקים והזדמנויות מימון, ועוזרת לעמותות להבין מה רלוונטי עבורן ואיך להתקדם להגשה בצורה מסודרת.</p>
           </div>
         </div>
       </div>
@@ -2673,8 +2865,6 @@ footer::after{
     </article>
   </div>
 </section>
-
-<!-- ג•ג•ג• MANIFESTO ג•ג•ג• -->
 <section class="manifesto" id="approach">
   <div class="mani-fp" aria-hidden="true">
     <img class="brand-fingerprint-bg" src="public/brand/impact-fingerprint-scroll-white.png" alt="" loading="lazy">
@@ -2849,7 +3039,7 @@ footer::after{
 
     <div class="mobile-footer-links" aria-label="ניווט תחתון">
       <a href="#services">מה אנחנו עושים</a>
-      <a href="#products">מערכות שפיתחנו</a>
+      <a href="#products">מוצרים ותחומים</a>
       <a href="#approach">הגישה שלנו</a>
       <a href="site/impact-os-team.html">מי אנחנו</a>
       <a href="#sectors">למי זה מתאים</a>
@@ -2862,7 +3052,7 @@ footer::after{
         <li><a href="#products">בניית מערכות דיגיטליות</a></li>
         <li><a href="#services">דאטה ומדידת אימפקט</a></li>
         <li><a href="#services">בינה מלאכותית לארגונים</a></li>
-        <li><a href="#products">מערכות שפיתחנו</a></li>
+        <li><a href="#products">מוצרים ותחומים</a></li>
       </ul>
     </div>
 <div class="footer-col">
