@@ -2288,6 +2288,18 @@ footer::after{
 }
 .dprod-more span{transition:transform var(--motion-ease) 260ms;display:inline-block}
 .dprod:hover .dprod-more span{transform:translateX(-5px)}
+/* ===== מערכות לשימוש חופשי ===== */
+.free-systems{padding:20px 0 90px}
+.free-systems .section-head{margin-bottom:40px}
+.free-menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.free-menu .dprod-body h4{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.free-domain{
+  font-size:.72rem;font-weight:800;letter-spacing:.03em;direction:ltr;
+  color:var(--d);background:color-mix(in srgb,var(--d) 11%,var(--white));
+  border-radius:999px;padding:3px 10px;
+}
+@media(max-width:640px){.free-systems{padding:8px 0 64px}}
+
 /* ===== קפיצה לתחום מתוך ה-hero ===== */
 .hero-sectors{
   display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px;
@@ -2799,54 +2811,38 @@ footer::after{
   </article>
 </section>
 
-<!-- ••• MORE SYSTEMS ••• -->
-<section class="products" id="more-systems">
+<!-- ••• FREE SYSTEMS ••• -->
+<section class="domains free-systems" id="more-systems">
   <div class="section-head">
-    <div class="section-label">מערכות נוספות</div>
-    <h2 class="section-title">עוד מערכות שבנינו<br>מתוך צורך אמיתי</h2>
-    <p class="section-sub">מערכות שרצות היום בשטח בעולמות החינוך, התעסוקה, הרווחה והקהילה. לחצו על כרטיס כדי לראות מה המערכת עושה.</p>
+    <div class="section-label">לשימוש חופשי</div>
+    <h2 class="section-title">מערכות נוספות לאימפקט<br>חברתי וחינוכי</h2>
+    <p class="section-sub">מערכות שבנינו וששחררנו לשימוש חופשי — כל אחד יכול להיכנס ולהשתמש, בלי הרשמה ובלי תשלום. הן חיות באוויר ומתעדכנות כל הזמן.</p>
   </div>
-  <div class="products-grid">
-    <article class="product-card" tabindex="0" aria-label="אַדורה, לחצו כדי לראות מה המוצר עושה">
-      <div class="product-card-inner">
-        <div class="product-face product-face-front">
-          <div class="product-media is-adora" aria-hidden="true">
-            <div class="adora-logo"><em>אַ</em>דורה</div>
-            <p class="product-front-desc">לוח מודעות חכם לדרושים בעולם החינוך, שמחבר בין אנשי חינוך, בתי ספר וארגונים.</p>
-          </div>
+  <div class="domain-menu free-menu">
+      <a class="dprod" href="https://lerani.co.il/" target="_blank" rel="noopener" style="--d:var(--fuchsia)">
+        <div class="dprod-thumb"><img src="public/products/websites/learni.webp" alt="Learni AI" loading="lazy"></div>
+        <div class="dprod-body">
+          <h4>Learni AI <span class="free-domain">lerani.co.il</span></h4>
+          <p>הדרכות וכלי בינה מלאכותית — 20+ הדרכות מעשיות, 29 כלי AI מומלצים, 24 פרומפטים מוכנים ומחוללים, לחינוך ולניהול.</p>
+          <span class="dprod-more">לאתר <span aria-hidden="true">&#8592;</span></span>
         </div>
-        <div class="product-face product-face-back">
-          <div class="product-body">
-            <span class="product-kicker">חינוך ותעסוקה</span>
-            <h3>מה המערכת עושה</h3>
-            <p>לוח מודעות דרושים לעולם החינוך, שמחבר בין אנשי חינוך, בתי ספר וארגונים שמחפשים התאמה מדויקת ומשמעותית.</p>
-          </div>
+      </a>
+      <a class="dprod" href="https://rezef.co.il/" target="_blank" rel="noopener" style="--d:var(--teal)">
+        <div class="dprod-thumb"><img src="public/products/websites/rezef.webp" alt="רצף" loading="lazy"></div>
+        <div class="dprod-body">
+          <h4>רצף <span class="free-domain">rezef.co.il</span></h4>
+          <p>המדריך המקיף למענים, תוכניות ושירותים לאנשים על הספקטרום האוטיסטי ולמשפחותיהם — 997+ מענים, לפי גיל, צורך ומקום.</p>
+          <span class="dprod-more">לאתר <span aria-hidden="true">&#8592;</span></span>
         </div>
-      </div>
-    </article>
-
-    <article class="product-card" tabindex="0" aria-label="רצף, לחצו כדי לראות מה המוצר עושה">
-      <div class="product-card-inner">
-        <div class="product-face product-face-front">
-          <div class="product-media is-retzef" aria-hidden="true">
-            <svg width="180" height="80" viewBox="0 0 180 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="display:block;margin:0 auto 8px">
-              <path d="M10 72 C10 30 42 6 90 6 C138 6 170 30 170 72" stroke="#5B2D9E" stroke-width="6" stroke-linecap="round" fill="none"/>
-              <path d="M24 72 C24 36 52 16 90 16 C128 16 156 36 156 72" stroke="#7B4EC8" stroke-width="5" stroke-linecap="round" fill="none"/>
-              <path d="M38 72 C38 42 62 26 90 26 C118 26 142 42 142 72" stroke="#A07EE0" stroke-width="4" stroke-linecap="round" fill="none"/>
-            </svg>
-            <div class="retzef-logo">רֶצֶף</div>
-            <p class="product-front-desc">מענים לקהילה האוטיסטית ובני משפחותיהם לאורך כל שלבי החיים.</p>
-          </div>
+      </a>
+      <a class="dprod" href="https://edura.co.il/" target="_blank" rel="noopener" style="--d:var(--green)">
+        <div class="dprod-thumb"><img src="public/products/websites/edura.webp" alt="אדורה" loading="lazy"></div>
+        <div class="dprod-body">
+          <h4>אדורה <span class="free-domain">edura.co.il</span></h4>
+          <p>לוח דרושים חכם לעולם החינוך, שמחבר בין אנשי חינוך למשרות לפי אזור, תפקיד, ניסיון ותחום — ובין בתי ספר למורים.</p>
+          <span class="dprod-more">לאתר <span aria-hidden="true">&#8592;</span></span>
         </div>
-        <div class="product-face product-face-back">
-          <div class="product-body">
-            <span class="product-kicker">רווחה וקהילה</span>
-            <h3>מה המערכת עושה</h3>
-            <p>מערכת שמרכזת מענים, שירותים ותהליכים עבור הקהילה האוטיסטית ומשפחותיהם לאורך שלבי החיים.</p>
-          </div>
-        </div>
-      </div>
-    </article>
+      </a>
   </div>
 </section>
 <section class="manifesto" id="approach">
