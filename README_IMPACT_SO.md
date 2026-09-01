@@ -13,6 +13,10 @@ Main brand rules:
   - 29.8.2026: Meytal was shown that rule and explicitly approved restoring the
     page, so the earlier "unless explicitly requested" wording stands. If the
     Hopa material needs to come down again, talk to Meytal and Liron first.
+  - 1.9.2026: Meytal confirmed the rule herself: Hopa must NOT appear anywhere
+    on this site unless she explicitly approves it. The post-scheduler product
+    page stays, but its demo screenshots and copy now use Learni AI
+    (lerani.co.il) — our own training brand — instead of Hopa.
 - Keep the fingerprint motif subtle, human, technological, and readable.
 - Keep brand colors: navy, turquoise, fuchsia, with light supporting tones.
 
