@@ -3483,6 +3483,17 @@ document.getElementById('privacy-modal').addEventListener('click', function(e){
   if(e.target === this) closePrivacy();
 });
 </script>
+<script>
+/* מונה כניסות — (יום, דף) בלבד: בלי קוקיז ובלי מידע אישי */
+(function(){try{
+  var K='sb_publishable_rb8KDlA3TBSOdAUaxZwYZg_7s1Sxs_p';
+  fetch('https://rllbiktbrkzhzsjhahxb.supabase.co/rest/v1/rpc/log_site_visit',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','apikey':K,'Authorization':'Bearer '+K},
+    body:JSON.stringify({p_page:location.pathname}),keepalive:true
+  }).catch(function(){});
+}catch(e){}})();
+</script>
 </body>
 </html>
 

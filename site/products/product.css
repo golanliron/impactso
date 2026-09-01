@@ -176,3 +176,33 @@ a{color:inherit}
   content:'';position:absolute;inset-inline-start:0;top:.62em;
   width:7px;height:7px;border-radius:50%;background:var(--accent);
 }
+
+/* ===== טופס ערכת התנסות (לידים) ===== */
+.plead-form-sec{padding:10px 0 56px}
+.lead-card{
+  background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 7%,#fff),#fff 60%);
+  border:2px solid color-mix(in srgb,var(--accent) 30%,transparent);
+  border-radius:26px;padding:38px 34px;position:relative;overflow:hidden;
+  box-shadow:0 14px 44px rgba(6,30,79,.10);
+}
+.lead-card::before{content:'';position:absolute;inset:0 0 auto 0;height:5px;background:linear-gradient(90deg,var(--accent),transparent)}
+.lead-kicker{display:inline-flex;align-items:center;gap:8px;background:color-mix(in srgb,var(--accent) 12%,#fff);color:var(--accent);font-weight:800;font-size:.85rem;border-radius:999px;padding:6px 16px;margin-bottom:14px}
+.lead-card h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:900;letter-spacing:-.02em;margin:0 0 8px}
+.lead-card h2 em{font-style:normal;color:var(--accent)}
+.lead-card>p{color:#5b6b85;margin:0 0 22px;max-width:60ch;line-height:1.7}
+.lead-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:16px}
+.lead-fields label{display:block;font-weight:700;font-size:.88rem;margin-bottom:6px}
+.lead-fields input{
+  width:100%;height:48px;border-radius:14px;border:1.5px solid rgba(6,30,79,.14);
+  background:#fff;padding:0 16px;font-family:inherit;font-size:1rem;color:inherit;
+}
+.lead-fields input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent)}
+.lead-submit{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.lead-submit .btn-primary{border:none;cursor:pointer;font-family:inherit;font-size:1rem}
+.lead-privacy{font-size:.82rem;color:#8494ad;margin:0}
+.lead-msg{margin-top:16px;border-radius:14px;padding:14px 18px;font-size:.98rem;line-height:1.6}
+.lead-msg.ok{background:#e6f8ee;color:#0f8a4d}
+.lead-msg.err{background:#fff4dd;color:#8a5a06}
+.lead-msg a{color:inherit;font-weight:800}
+.phero-cta{margin:20px 0 26px}
+@media(max-width:640px){.lead-card{padding:26px 20px}}

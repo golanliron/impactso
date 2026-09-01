@@ -2637,7 +2637,7 @@ footer::after{
   <div class="section-head">
     <div class="section-label">המוצרים שלנו למגזר השלישי</div>
     <h2 class="section-title">כלים שעושים את העבודה,<br>גם כשאין מספיק ידיים</h2>
-    <p class="section-sub">כל מוצר כאן נבנה מתוך צורך אמיתי שעלה מהשטח, ורץ היום אצל ארגון אמיתי. היכנסו לדף המוצר כדי לראות מסכים אמיתיים ומה המערכת עושה בפועל.</p>
+    <p class="section-sub">כל מוצר כאן נבנה מתוך צורך אמיתי שעלה מהשטח. היכנסו לדף המוצר כדי לראות מסכים אמיתיים ומה המערכת עושה בפועל.</p>
   </div>
 
   <article class="domain" id="sector-third" style="--d:var(--teal)">
@@ -2663,6 +2663,14 @@ footer::after{
         <div class="dprod-body">
           <h4>גְּרַנְטָה</h4>
           <p>Google Grants בלי איש קמפיינים — מנהלת לעמותה את מענק הפרסום של גוגל.</p>
+          <span class="dprod-more">לדף המוצר <span aria-hidden="true">&#8592;</span></span>
+        </div>
+      </a>
+      <a class="dprod" href="/site/products/anyday.html">
+        <div class="dprod-thumb"><img src="/public/products/anyday/home.webp" alt="AnyDay" loading="lazy"></div>
+        <div class="dprod-body">
+          <h4>AnyDay</h4>
+          <p>ל-Monday של הארגון — דשבורד אוטומטי, תובנות ועדכון בשפה חופשית.</p>
           <span class="dprod-more">לדף המוצר <span aria-hidden="true">&#8592;</span></span>
         </div>
       </a>
@@ -3454,6 +3462,17 @@ function closePrivacy(){
 document.getElementById('privacy-modal').addEventListener('click', function(e){
   if(e.target === this) closePrivacy();
 });
+</script>
+<script>
+/* מונה כניסות — (יום, דף) בלבד: בלי קוקיז ובלי מידע אישי */
+(function(){try{
+  var K='sb_publishable_rb8KDlA3TBSOdAUaxZwYZg_7s1Sxs_p';
+  fetch('https://rllbiktbrkzhzsjhahxb.supabase.co/rest/v1/rpc/log_site_visit',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','apikey':K,'Authorization':'Bearer '+K},
+    body:JSON.stringify({p_page:location.pathname}),keepalive:true
+  }).catch(function(){});
+}catch(e){}})();
 </script>
 </body>
 </html>

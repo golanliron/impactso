@@ -2763,7 +2763,7 @@ footer::after{
       <h3>מגזר שלישי</h3>
       <p>כלים לעמותות וארגונים חברתיים שיש להם הרבה מה לעשות ומעט ידיים — גיוס משאבים, פרסום, רשתות ואתר שעובד.</p>
       <div class="gate-chips">
-        <span>Goldfish</span><span>גְּרַנְטָה</span><span>בניית אתרים</span><span>תזמון פוסטים</span>
+        <span>Goldfish</span><span>גְּרַנְטָה</span><span>AnyDay</span><span>בניית אתרים</span><span>תזמון פוסטים</span>
       </div>
       <span class="dprod-more">לעמוד המגזר השלישי <span aria-hidden="true">&#8592;</span></span>
     </a>
@@ -3776,6 +3776,17 @@ function closePrivacy(){
 document.getElementById('privacy-modal').addEventListener('click', function(e){
   if(e.target === this) closePrivacy();
 });
+</script>
+<script>
+/* מונה כניסות — (יום, דף) בלבד: בלי קוקיז ובלי מידע אישי */
+(function(){try{
+  var K='sb_publishable_rb8KDlA3TBSOdAUaxZwYZg_7s1Sxs_p';
+  fetch('https://rllbiktbrkzhzsjhahxb.supabase.co/rest/v1/rpc/log_site_visit',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','apikey':K,'Authorization':'Bearer '+K},
+    body:JSON.stringify({p_page:location.pathname}),keepalive:true
+  }).catch(function(){});
+}catch(e){}})();
 </script>
 </body>
 </html>
