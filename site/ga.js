@@ -3,7 +3,7 @@
    כדי להפעיל: ליצור נכס GA4 ב-analytics.google.com, להעתיק את המזהה
    (מתחיל ב-G-) ולהדביק אותו בשורה הבאה במקום המחרוזת הריקה. */
 (function () {
-  var GA_ID = '';                       /* ← להדביק כאן, למשל 'G-XXXXXXXXXX' */
+  var GA_ID = 'G-H1EF65WN3E';           /* נכס IMPACT OS · analytics.google.com */
   if (!GA_ID) return;                   /* אין מזהה — לא נטען כלום */
   var consent;
   try { consent = localStorage.getItem('cookie-choice'); } catch (e) { return; }
