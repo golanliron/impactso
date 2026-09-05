@@ -1554,6 +1554,36 @@ nav{
 .cta-sec h2 em{font-style:normal;color:var(--fuchsia)}
 .cta-sec p{font-size:17px;color:var(--gray);line-height:1.78;margin-bottom:48px}
 .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.contact-form{max-width:620px;margin:0 auto;text-align:right}
+.cf-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cf-field{display:flex;flex-direction:column;gap:6px}
+.cf-wide{grid-column:1 / -1}
+.cf-field label{font-size:13px;font-weight:700;color:var(--navy);letter-spacing:-.2px}
+.cf-req{color:var(--fuchsia)}
+.cf-field input,.cf-field textarea{
+  width:100%;box-sizing:border-box;
+  font-family:'Heebo',sans-serif;font-size:15px;color:var(--navy);
+  background:var(--white);border:1.5px solid rgba(6,30,79,0.14);border-radius:14px;
+  padding:12px 14px;
+  transition:border-color var(--motion-fast) var(--motion-ease),box-shadow var(--motion-fast) var(--motion-ease);
+}
+.cf-field textarea{resize:vertical;min-height:86px;line-height:1.6}
+.cf-field input::placeholder,.cf-field textarea::placeholder{color:#94A3B8}
+.cf-field input:focus,.cf-field textarea:focus{
+  outline:none;border-color:var(--fuchsia);box-shadow:0 0 0 4px rgba(240,6,120,0.12);
+}
+.cf-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.cf-actions .btn-primary[disabled]{opacity:.62;cursor:progress;transform:none;box-shadow:none}
+.cf-note{font-size:13px;color:var(--gray);line-height:1.7;text-align:center;margin-top:16px}
+.cf-status{margin-top:18px;padding:14px 16px;border-radius:14px;font-size:15px;line-height:1.72;text-align:center}
+.cf-status.ok{background:rgba(123,203,82,0.12);color:#3D6A21;border:1.5px solid rgba(123,203,82,0.42)}
+.cf-status.err{background:rgba(240,6,120,0.07);color:var(--navy);border:1.5px solid rgba(240,6,120,0.28)}
+.cf-status a{color:var(--fuchsia);font-weight:700}
+@media (max-width:640px){
+  .cf-grid{grid-template-columns:1fr}
+  .cf-actions{flex-direction:column;align-items:stretch}
+  .cf-actions .btn-primary,.cf-actions .btn-outline{justify-content:center}
+}
 .btn-whatsapp{
   background:#25D366;
   box-shadow:0 8px 28px rgba(37,211,102,0.24);
@@ -2501,7 +2531,7 @@ footer::after{
     <p class="hero-sub">כלים לארגונים שיש להם הרבה מה לעשות ומעט ידיים: גיוס משאבים, מענק הפרסום של גוגל, נוכחות ברשתות ואתר שאנשים באמת מוצאים בו את מה שהם צריכים. מאפיון ועד מערכת פעילה בשטח.</p>
 
     <div class="hero-btns">
-      <a href="https://wa.me/972536256653?text=%D7%94%D7%99%20%D7%A6%D7%95%D7%95%D7%AA%20%D7%90%D7%99%D7%9E%D7%A4%D7%A7%D7%98%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D" class="btn-primary" target="_blank" rel="noopener" aria-label="שליחת וואטסאפ ל-053-6256653">
+      <a href="#contact" class="btn-primary">
         בואו נדבר
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M2 4L8 9L14 4"/><rect x="2" y="4" width="12" height="9" rx="2"/>
@@ -2809,15 +2839,36 @@ footer::after{
     <div class="cta-label">רוצים להפוך רעיון למערכת שעובדת באמת?</div>
     <h2><span class="title-nowrap">בואו נבין יחד</span><br><span class="title-nowrap">מה נכון לבנות</span></h2>
     <p>שיחת היכרות קצרה שבה נבין את הצורך, את התהליך ואת האפשרות להפוך אותו למערכת דיגיטלית חכמה שמתאימה לארגון שלכם.</p>
-    <div class="cta-btns">
-      <a href="https://wa.me/972536256653?text=%D7%94%D7%99%20%D7%A6%D7%95%D7%95%D7%AA%20%D7%90%D7%99%D7%9E%D7%A4%D7%A7%D7%98%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D" class="btn-primary" target="_blank" rel="noopener" aria-label="שליחת וואטסאפ ל-053-6256653">
-        בואו נדבר
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M2 4L8 9L14 4"/><rect x="2" y="4" width="12" height="9" rx="2"/>
-        </svg>
-      </a>
-      <a href="#services" class="btn-outline">לראות איך זה עובד</a>
-    </div>
+    <form class="contact-form" data-product="site-nonprofits" novalidate>
+      <div class="cf-grid">
+        <div class="cf-field">
+          <label for="cf-name">שם מלא <span class="cf-req" aria-hidden="true">*</span></label>
+          <input id="cf-name" name="full_name" type="text" autocomplete="name" maxlength="120" required>
+        </div>
+        <div class="cf-field">
+          <label for="cf-org">ארגון</label>
+          <input id="cf-org" name="org_name" type="text" autocomplete="organization" maxlength="160">
+        </div>
+        <div class="cf-field">
+          <label for="cf-email">אימייל</label>
+          <input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="160">
+        </div>
+        <div class="cf-field">
+          <label for="cf-phone">טלפון</label>
+          <input id="cf-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="40">
+        </div>
+        <div class="cf-field cf-wide">
+          <label for="cf-message">במה מדובר?</label>
+          <textarea id="cf-message" name="message" rows="3" maxlength="2000" placeholder="כמה מילים על הארגון ועל מה שהייתם רוצים לבנות"></textarea>
+        </div>
+      </div>
+      <div class="cf-actions">
+        <button type="submit" class="btn-primary">בואו נדבר <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4L8 9L14 4"/><rect x="2" y="4" width="12" height="9" rx="2"/></svg></button>
+        <a href="#services" class="btn-outline">לראות איך זה עובד</a>
+      </div>
+      <div class="cf-note">הפנייה נשלחת ישירות למייל שלנו. משאירים אימייל או טלפון — ואנחנו חוזרים אליכם.</div>
+      <div class="cf-status" role="status" aria-live="polite" hidden></div>
+    </form>
   </div>
 </section>
 
@@ -2840,7 +2891,7 @@ footer::after{
       <a href="#approach">הגישה שלנו</a>
       <a href="/site/impact-os-team.html">מי אנחנו</a>
       <a href="/?skipIntro=1#sectors">למי זה מתאים</a>
-      <a href="https://wa.me/972536256653?text=%D7%94%D7%99%20%D7%A6%D7%95%D7%95%D7%AA%20%D7%90%D7%99%D7%9E%D7%A4%D7%A7%D7%98%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D" target="_blank" rel="noopener" aria-label="שליחת וואטסאפ ל-053-6256653">צור קשר</a>
+      <a href="#contact">צור קשר</a>
     </div>
 <div class="footer-col">
       <h4>מה אנחנו עושים</h4>
@@ -3164,7 +3215,7 @@ footer::after{
     '.sector-card',
     '.cta-sec h2',
     '.cta-sec p',
-    '.cta-sec .cta-btns',
+    '.cta-sec .contact-form',
     'footer .footer-brand',
     'footer .footer-col',
     'footer .footer-bottom'
@@ -3474,6 +3525,7 @@ document.getElementById('privacy-modal').addEventListener('click', function(e){
   }).catch(function(){});
 }catch(e){}})();
 </script>
+<script src="/site/contact-form.js" defer></script>
 <script src="/site/ga.js" defer></script>
 </body>
 </html>
