@@ -55,12 +55,10 @@
   /* ── עוד יום בשבוע ── */
   .day{background:var(--deep);color:#fff;text-align:center;padding:120px 0}
   .day h2{color:#fff;font-size:clamp(34px,5.4vw,70px)}
-  .day .rot{display:block;height:1.15em;overflow:hidden;color:var(--yellow)}
-  .day .rot span{display:block;animation:rot 12s infinite}
-  @keyframes rot{
-    0%,15%{transform:translateY(0)} 20%,35%{transform:translateY(-100%)} 40%,55%{transform:translateY(-200%)}
-    60%,75%{transform:translateY(-300%)} 80%,95%{transform:translateY(-400%)} 100%{transform:translateY(-500%)}}
-  .day .rot em{display:block;font-style:normal;height:1.15em}
+  .day .rot{display:block;height:1.2em;color:var(--yellow);position:relative}
+  .day .rot em{display:block;font-style:normal;transition:opacity .45s ease, transform .45s cubic-bezier(.2,.8,.2,1)}
+  .day .rot em.out{opacity:0;transform:translateY(-.4em)}
+  .day .rot em.pre{opacity:0;transform:translateY(.4em);transition:none}
   .day p{max-width:760px;margin:26px auto 0;font-size:21px;color:#C6D3EC}
 
   /* ── מספרים ── */
@@ -181,7 +179,8 @@
     .float-cta.show{display:block}
   }
   @media (prefers-reduced-motion:reduce){
-    .shard,.rays,.ring,.day .rot span,.spots::before{animation:none!important}
+    .shard,.rays,.ring,.spots::before{animation:none!important}
+    .day .rot em{transition:none}
     .reveal{opacity:1;transform:none;transition:none}
   }
 </style>
@@ -223,9 +222,7 @@
 <section class="day">
   <div class="wrap reveal">
     <h2>נכנסתם לתפקיד כדי
-      <span class="rot" aria-label="להוביל, לפגוש אנשים, לחשוב קדימה, לחלום בגדול, ללכת הביתה בזמן"><span>
-        <em>להוביל.</em><em>לפגוש אנשים.</em><em>לחשוב קדימה.</em><em>לחלום בגדול.</em><em>ללכת הביתה בזמן.</em><em>להוביל.</em>
-      </span></span>
+      <span class="rot" aria-live="off"><em id="rotw">להוביל.</em></span>
     </h2>
     <p>ובפועל? טפסים, אקסלים, תזכורות, "שלחת?", "מי מעדכן?", ודוחות שמישהו צריך לאסוף ידנית. הזמן שלכם הולך על מה שמערכת יכולה לעשות במקומכם — ובמקרה הזה, המערכת היא אנחנו.</p>
   </div>
@@ -394,6 +391,17 @@
 <script src="burst.js"></script>
 <script>
 (function(){
+  // המילה המתחלפת ב"נכנסתם לתפקיד כדי…"
+  var W = ['להוביל.', 'לפגוש אנשים.', 'לחשוב קדימה.', 'לחלום בגדול.', 'ללכת הביתה בזמן.'], wi = 0, rw = document.getElementById('rotw');
+  setInterval(function(){
+    rw.classList.add('out');
+    setTimeout(function(){
+      wi = (wi + 1) % W.length; rw.textContent = W[wi];
+      rw.classList.remove('out'); rw.classList.add('pre');
+      void rw.offsetWidth; rw.classList.remove('pre');
+    }, 450);
+  }, 2400);
+
   // חשיפה בגלילה
   var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(es){
     es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
