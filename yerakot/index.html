@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://impactos.co.il/yerakot/">
+<meta property="og:title" content="מלפפון או עגבנייה?">
+<meta property="og:description" content="12 שאלות של או-או: מלפפון, קישוא, פלפל או עגבנייה? ומה זה אומר עליכם בעבודה.">
+<meta property="og:locale" content="he_IL">
+<title>מלפפון או עגבנייה</title>
+<meta name="description" content="12 שאלות של או-או: מלפפון, קישוא, פלפל או עגבנייה? ומה זה אומר עליכם בעבודה.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Assistant:wght@400;600;800&display=swap">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; }
+  [hidden] { display: none !important; }
+  :root {
+    --ground: #F1F4E8;
+    --paper: #FFFFFF;
+    --ink: #1F2A1E;
+    --muted: #5B6A56;
+    --line: #D6DEC7;
+    --cucumber: #2F6B35;
+    --kishu: #7FA646;
+    --pepper: #E8930C;
+    --tomato: #D2362B;
+    --chip: #E6ECD8;
+    --shadow: 0 1px 0 rgba(31,42,30,.06), 0 10px 30px -14px rgba(31,42,30,.25);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --ground: #141A13;
+      --paper: #1D251C;
+      --ink: #EEF2E6;
+      --muted: #A3B09C;
+      --line: #2F3A2D;
+      --cucumber: #6FB66F;
+      --kishu: #A8CC6A;
+      --pepper: #F5AA35;
+      --tomato: #F0584C;
+      --chip: #263024;
+      --shadow: 0 10px 30px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ground: #141A13;
+    --paper: #1D251C;
+    --ink: #EEF2E6;
+    --muted: #A3B09C;
+    --line: #2F3A2D;
+    --cucumber: #6FB66F;
+    --kishu: #A8CC6A;
+    --pepper: #F5AA35;
+    --tomato: #F0584C;
+    --chip: #263024;
+    --shadow: 0 10px 30px -14px rgba(0,0,0,.6);
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Assistant", "Segoe UI", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  #app {
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 20px 16px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .display {
+    font-family: "Karantina", "Assistant", Arial, sans-serif;
+    font-weight: 700;
+    line-height: .95;
+    letter-spacing: .5px;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  /* ---------- the axis: cucumber ↔ tomato ---------- */
+  .axis {
+    background: var(--paper);
+    border-radius: 18px;
+    padding: 14px 14px 10px;
+    box-shadow: var(--shadow);
+  }
+  .axis-veg {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: end;
+    text-align: center;
+  }
+  .axis-veg figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; transition: transform .3s, opacity .3s; }
+  .axis-veg svg { width: 52px; height: 52px; }
+  .axis-veg figcaption { font-family: "Karantina", Arial, sans-serif; font-size: 22px; font-weight: 700; line-height: 1; }
+  .axis-veg figure.dim { opacity: .35; }
+  .axis-veg figure.hit { transform: translateY(-4px) scale(1.12); opacity: 1; }
+  .track {
+    position: relative;
+    height: 8px;
+    border-radius: 99px;
+    margin: 10px 8px 6px;
+    background: linear-gradient(to left, var(--cucumber), var(--kishu) 35%, var(--pepper) 65%, var(--tomato));
+  }
+  .marker {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    width: 20px; height: 20px;
+    margin-right: -10px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    transition: right .45s cubic-bezier(.3,1.4,.5,1);
+  }
+
+  /* ---------- screens ---------- */
+  .card {
+    background: var(--paper);
+    border-radius: 22px;
+    padding: 26px 22px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .kicker { font-size: 14px; font-weight: 600; color: var(--muted); margin: 0; }
+  .intro h1 { font-size: clamp(54px, 15vw, 76px); }
+  .intro h1 .c { color: var(--cucumber); }
+  .intro h1 .t { color: var(--tomato); }
+  .intro p { margin: 0; max-width: 62ch; }
+  .fine { font-size: 13px; color: var(--muted); }
+
+  .btn {
+    font: inherit;
+    font-weight: 800;
+    font-size: 18px;
+    border: 0;
+    border-radius: 14px;
+    padding: 15px 20px;
+    cursor: pointer;
+    background: var(--ink);
+    color: var(--ground);
+    transition: transform .12s;
+  }
+  .btn:active { transform: scale(.98); }
+  .btn:focus-visible, .opt:focus-visible, .link-btn:focus-visible { outline: 3px solid var(--pepper); outline-offset: 3px; }
+  .btn.ghost { background: transparent; color: var(--ink); border: 2px solid var(--line); }
+
+  .progress { display: flex; gap: 5px; }
+  .progress span { flex: 1; height: 5px; border-radius: 3px; background: var(--line); transition: background .3s; }
+  .progress span.done-c { background: var(--cucumber); }
+  .progress span.done-t { background: var(--tomato); }
+  .progress span.now { background: var(--ink); }
+
+  .q h2 { font-size: clamp(40px, 11vw, 54px); }
+  .opts { display: grid; gap: 12px; }
+  .opt {
+    font: inherit;
+    font-size: 19px;
+    font-weight: 600;
+    text-align: right;
+    color: var(--ink);
+    background: var(--chip);
+    border: 2px solid transparent;
+    border-radius: 16px;
+    padding: 18px 18px;
+    cursor: pointer;
+    transition: border-color .15s, transform .12s, background .15s;
+  }
+  .opt:hover { border-color: var(--ink); }
+  .opt:active { transform: scale(.985); }
+  .opt small { display: block; font-weight: 400; font-size: 14px; color: var(--muted); }
+  .opt.picked { background: var(--ink); color: var(--ground); }
+  .opt.picked small { color: inherit; opacity: .75; }
+  .q-foot { display: flex; justify-content: space-between; align-items: center; }
+  .link-btn { font: inherit; font-size: 14px; background: none; border: 0; color: var(--muted); cursor: pointer; text-decoration: underline; padding: 4px; }
+
+  /* ---------- result ---------- */
+  .result { border-top: 8px solid var(--res); }
+  .res-head { display: flex; gap: 16px; align-items: center; }
+  .res-head svg { width: 110px; height: 110px; flex: none; }
+  .res-head h2 { font-size: clamp(58px, 17vw, 82px); color: var(--res); }
+  .res-tag { font-weight: 800; font-size: 19px; margin: 4px 0 0; }
+  .split { font-variant-numeric: tabular-nums; font-weight: 600; font-size: 15px; color: var(--muted); margin: 0; }
+  .split b { color: var(--ink); }
+  .result p { margin: 0; }
+  .facts { display: grid; gap: 10px; margin: 0; }
+  .facts div { background: var(--chip); border-radius: 14px; padding: 12px 14px; }
+  .facts dt { font-size: 13px; font-weight: 800; color: var(--muted); letter-spacing: .3px; }
+  .facts dd { margin: 2px 0 0; font-weight: 600; }
+  .salad {
+    font-family: "Karantina", Arial, sans-serif;
+    font-size: 28px;
+    line-height: 1.1;
+    text-align: center;
+    border-block: 2px dashed var(--line);
+    padding: 14px 4px;
+  }
+  .work { display: flex; flex-direction: column; gap: 10px; border-top: 2px solid var(--line); padding-top: 16px; }
+  .work h3 { font-size: 40px; color: var(--res); }
+  .tips-title { font-weight: 800; font-size: 15px; }
+  .tips { margin: 0; padding: 0; list-style: none; counter-reset: tip; display: grid; gap: 8px; }
+  .tips li { counter-increment: tip; display: flex; gap: 10px; align-items: baseline; background: var(--chip); border-radius: 14px; padding: 11px 14px; font-weight: 600; }
+  .tips li::before { content: counter(tip); font-family: "Karantina", Arial, sans-serif; font-size: 28px; line-height: 1; color: var(--res); flex: none; }
+  .share { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .share .btn { font-size: 16px; padding: 13px 10px; text-align: center; text-decoration: none; }
+  .share .wide { grid-column: 1 / -1; }
+  .share .wa { background: #1F8F4E; color: #fff; }
+  .share .fb { background: #1B5FC9; color: #fff; }
+  .toast { text-align: center; font-size: 14px; color: var(--muted); min-height: 1.4em; margin: 0; }
+
+  .author {
+    display: flex; gap: 12px; align-items: center;
+    font-size: 15px; color: var(--muted);
+    padding: 4px 6px;
+  }
+  .author svg { width: 40px; height: 40px; flex: none; }
+  .author b { color: var(--ink); }
+  .author a { color: var(--ink); font-weight: 800; }
+
+  .enter { animation: enter .35s ease both; }
+  @keyframes enter { from { opacity: .001; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .enter { animation: none; }
+    .marker, .axis-veg figure, .progress span { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="app" dir="rtl" lang="he">
+  <section class="axis" aria-label="איפה אתם על הציר">
+    <div class="axis-veg" id="axisVeg"></div>
+    <div class="track" aria-hidden="true"><div class="marker" id="marker"></div></div>
+  </section>
+
+  <main id="screen"></main>
+
+  <footer class="author">
+    <span id="authorVeg"></span>
+    <span><b>מיטל פלג</b>, עגבנייה מובהקת שבונה מערכות.<br>
+    מבית <a href="https://impactos.co.il" target="_blank" rel="noopener">אימפקט.OS</a></span>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const SITE = "https://impactos.co.il/yerakot/";
+
+  // ---------- vegetable drawings ----------
+  const SVG = {
+    cucumber: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><g transform="rotate(-35 60 60)"><rect x="12" y="44" width="96" height="32" rx="16" fill="#2F6B35"/><path d="M22 54h76M24 66h72" stroke="#4E8F48" stroke-width="3" stroke-linecap="round"/><g fill="#CFE3B8"><circle cx="32" cy="50" r="1.8"/><circle cx="50" cy="71" r="1.8"/><circle cx="66" cy="49" r="1.8"/><circle cx="84" cy="70" r="1.8"/><circle cx="96" cy="52" r="1.8"/><circle cx="42" cy="60" r="1.6"/><circle cx="76" cy="60" r="1.6"/></g><rect x="104" y="56" width="10" height="8" rx="3" fill="#6A4A2A"/></g></svg>`,
+    kishu: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><g transform="rotate(-30 60 60)"><path d="M18 60c0-14 12-22 30-22h26c18 0 30 10 30 22s-12 22-30 22H48c-18 0-30-8-30-22z" fill="#8DB255"/><path d="M28 52h66M26 62h72M30 72h62" stroke="#A9C977" stroke-width="3" stroke-linecap="round"/><g fill="#EEF5DF"><circle cx="40" cy="47" r="2"/><circle cx="60" cy="76" r="2"/><circle cx="80" cy="46" r="2"/><circle cx="92" cy="68" r="2"/></g><path d="M102 54c6-2 10 0 12 4-2 5-6 7-12 6z" fill="#4E7A2A"/></g></svg>`,
+    pepper: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><path d="M60 40c-4-10 2-20 12-24" stroke="#3E7A2E" stroke-width="7" fill="none" stroke-linecap="round"/><ellipse cx="42" cy="72" rx="22" ry="32" fill="#E8930C"/><ellipse cx="78" cy="72" rx="22" ry="32" fill="#E8930C"/><ellipse cx="60" cy="75" rx="18" ry="33" fill="#F2A831"/><ellipse cx="40" cy="62" rx="5" ry="12" fill="#FFD27A" opacity=".7"/><path d="M42 44c10-8 26-8 36 0" stroke="#3E7A2E" stroke-width="8" fill="none" stroke-linecap="round"/></svg>`,
+    tomato: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><ellipse cx="60" cy="68" rx="42" ry="38" fill="#D2362B"/><path d="M34 60c4-10 12-16 20-18" stroke="#F07A6E" stroke-width="6" fill="none" stroke-linecap="round"/><path d="M60 30l7 10 12-4-6 11 12 5-14 3 1 12-12-8-12 8 1-12-14-3 12-5-6-11 12 4z" fill="#3E7A2E"/><path d="M60 32c0-8 3-13 8-16" stroke="#3E7A2E" stroke-width="5" fill="none" stroke-linecap="round"/></svg>`
+  };
+
+  // ---------- types ----------
+  const TYPES = {
+    cucumber: {
+      name: "מלפפון", color: "--cucumber", hex: "#2F6B35",
+      tag: "הזהיר המלא",
+      text: "המלפפון לא קופץ למים. הוא בודק את הטמפרטורה, קורא את השלט של המציל, ואז נכנס עד הברכיים. הוא יציב, מתכנן, מגיע בזמן וזוכר בדיוק איפה הדרכון. והוא לא קמצן, הוא פשוט אחראי.",
+      power: "כשכולם מתלהבים, הוא שואל \"ומה אם זה נופל?\". ובזכותו זה לא נופל.",
+      needs: "עגבנייה אחת, שתגיד לו מדי פעם \"יאללה, ננסה\".",
+      work: "הוא זה שמחזיק את המערכת: לוחות זמנים, נהלים, בקרה. כשמשהו עומד ליפול, הוא ראה את זה ראשון. הסיכון: להישאר עם מה שעובד גם כשכבר הפסיק לעבוד.",
+      tips: ["ניסוי קטן בשבוע: דבר אחד שעושים אחרת, בגודל שלא מפחיד.", "לקבוע מראש כמה מידע \"מספיק\", ולהתחיל לזוז כשמגיעים אליו.", "להזמין עגבנייה לפגישת התכנון, ולתת לה לדבר ראשונה."]
+    },
+    kishu: {
+      name: "קישוא", color: "--kishu", hex: "#6E9A36",
+      tag: "מלפפון שמוכן להיכנס לסיר",
+      text: "מבחוץ הוא נראה כמו מלפפון: מסודר, רגוע, צפוי. אבל תכניסו אותו לסיר והוא מפתיע. ממלאים אותו, ופתאום הוא הדבר הכי טוב על השולחן של שבת. הקישוא אוהב תוכנית, ויודע לסטות ממנה כשיש סיבה טובה.",
+      power: "סיכון מחושב. הוא יעז, אחרי שבדק שיש רשת.",
+      needs: "פלפל, שיזכיר לו שלפעמים לא צריך רשת.",
+      work: "הוא המתרגם בין החולמים למבצעים: לוקח רעיון פרוע והופך אותו לתוכנית שאפשר להריץ. הסיכון: לחכות לרשת ביטחון גם במקומות שלא צריך אותה.",
+      tips: ["לסמן איפה הרשת באמת נחוצה, ואיפה היא רק הרגל.", "להגיד כן לפרויקט אחד שעוד לא ברור איך הוא נגמר.", "לשתף תוכנית כשהיא עדיין טיוטה, לפני שהיא מושלמת."]
+    },
+    pepper: {
+      name: "פלפל", color: "--pepper", hex: "#D9820A",
+      tag: "נראה רגוע, יש בו אש",
+      text: "הפלפל פריך, צבעוני ונראה די רגוע. ואז נוגסים. הוא אוהב שינויים ומחפש את הדבר הבא, אבל לא קופץ בעיניים עצומות. קודם מסתכל, אחר כך קופץ.",
+      power: "להזיז דברים בלי לשבור אותם.",
+      needs: "קישוא, שיחזיק את התוכנית כשהוא כבר רץ לרעיון הבא.",
+      work: "הוא מוביל שינוי שאנשים מסכימים ללכת אחריו: מספיק אומץ כדי להתחיל, מספיק בדיקה כדי שזה יחזיק. הסיכון: יותר מדי רעיונות פתוחים במקביל.",
+      tips: ["לסגור לפני שפותחים: רעיון חדש נכנס רק אחרי שהקודם יצא לדרך.", "לכתוב \"איך נדע שזה עבד?\" לפני שמתחילים.", "להעביר את התחזוקה למי שנהנה ממנה, ולהודות לו בקול."]
+    },
+    tomato: {
+      name: "עגבנייה", color: "--tomato", hex: "#D2362B",
+      tag: "קופצת למים לפני שבדקה את העומק",
+      text: "העגבנייה תוססת, סקרנית ואופטימית ברמה שמעצבנת מלפפונים. היא אוהבת שינויים, מתחילה דברים חדשים, ומשתעממת מהר ממה שכבר עובד. בכל ארוחת שישי יש לה רעיון חדש, ובדרך כלל גם מתכון מטיקטוק.",
+      power: "להתחיל. דברים קורים כי היא לא חיכתה שיהיה מוכן.",
+      needs: "מלפפון. בלעדיו הרעיון המבריק שלה קורס ביום השני.",
+      work: "היא מזיזה את מה שתקוע, פותחת דלתות ומביאה אנרגיה לחדר. הסיכון: להתחיל הרבה יותר ממה שמסיימים.",
+      tips: ["לפני שקופצים: דקה אחת לשאלה \"ומה אם זה נופל?\". לא יותר.", "לקבוע מראש מי מחזיק את הדבר אחרי שהוא עובד.", "לשים מלפפון בחדר, ולהקשיב לו גם כשזה מעצבן."]
+    }
+  };
+  const ORDER = ["cucumber", "kishu", "pepper", "tomato"];
+
+  // c = cucumber answer, t = tomato answer
+  const QUESTIONS = [
+    { q: "יום חופש באוגוסט", c: "ים", t: "בריכה" },
+    { q: "יוצא סרט שכולם מדברים עליו", c: "מחכים שיעלה לנטפליקס. ספה, שמיכה, פופקורן", t: "רק בקולנוע. מסך ענק, שורה חמישית" },
+    { q: "משהו השתבש. המשפט הראשון שעולה לך", c: "\"יהיה בסדר? נראה...\"", t: "\"יהיה בסדר!\"" },
+    { q: "המשכורת נכנסה", c: "קודם כל להעביר לחיסכון", t: "יש סייל, וזה לא יחזור" },
+    { q: "השולחן שלך, עכשיו", c: "נקי ומסודר. לכל דבר יש מקום", t: "קצת בלגן לא יזיק. אני יודע/ת איפה הכול" },
+    { q: "חופשה", c: "מתוכננת חצי שנה מראש, כולל אקסל", t: "דיל של הרגע האחרון" },
+    { q: "בעבודה, מה נותן לך אנרגיה?", c: "שעה שקטה מול המחשב", t: "חדר מלא אנשים" },
+    { q: "בדרך לאירוע בעיר לא מוכרת", c: "וייז, בלי ויכוחים", t: "\"אני מכיר/ה קיצור דרך\"" },
+    { q: "טיול בחו\"ל", c: "מקום שכבר היינו בו ואהבנו", t: "יעד שאף אחד לא שמע עליו" },
+    { q: "טיסה ב-06:00", c: "בנתב\"ג שלוש שעות לפני", t: "מגיעים כשהשער נסגר" },
+    { q: "הגיעה חבילה מאיקאה", c: "קוראים את ההוראות, מסדרים את הברגים לפי סוג", t: "מרכיבים, ורואים מה נשאר" },
+    { q: "ארוחת שישי", c: "המתכון של אמא. למה לשנות מה שעובד?", t: "מתכון שראיתי אתמול בטיקטוק" }
+  ];
+
+  const $ = (s) => document.querySelector(s);
+  const screen = $("#screen");
+  let answers = [];   // "c" | "t"
+  let flips = [];     // random order of options per question
+
+  function typeFor(t) {
+    // t = number of tomato answers out of 12
+    if (t <= 3) return "cucumber";
+    if (t <= 6) return "kishu";
+    if (t <= 9) return "pepper";
+    return "tomato";
+  }
+
+  // ---------- axis ----------
+  $("#axisVeg").innerHTML = ORDER.map(k =>
+    `<figure data-k="${k}">${SVG[k]}<figcaption>${TYPES[k].name}</figcaption></figure>`).join("");
+  $("#authorVeg").innerHTML = SVG.tomato;
+
+  function setAxis(highlight) {
+    const n = answers.length;
+    const t = answers.filter(a => a === "t").length;
+    const ratio = n ? t / n : 0.5;
+    // RTL: cucumber on the right (0%), tomato on the left (100%)
+    $("#marker").style.right = (ratio * 100) + "%";
+    document.querySelectorAll(".axis-veg figure").forEach(f => {
+      f.classList.toggle("hit", f.dataset.k === highlight);
+      f.classList.toggle("dim", !!highlight && f.dataset.k !== highlight);
+    });
+  }
+
+  // ---------- screens ----------
+  function intro() {
+    answers = [];
+    flips = QUESTIONS.map(() => Math.random() < 0.5);
+    setAxis(null);
+    screen.innerHTML = `
+      <section class="card intro enter">
+        <h1 class="display"><span class="c">מלפפון</span> או <span class="t">עגבנייה?</span></h1>
+        <p>12 שאלות של "או-או", ותגלו איזה ירק אתם, מה זה אומר עליכם בעבודה, ואיך לחזק את מה שחסר.</p>
+        <button class="btn" id="go">גלו מה אתם · 12 שאלות</button>
+        <p class="fine">בלי הרשמה ובלי לשמור שום דבר. רק לבחור מה מתאים לכם יותר.</p>
+      </section>`;
+    $("#go").onclick = () => ask(0);
+  }
+
+  function ask(i) {
+    const Q = QUESTIONS[i];
+    const pair = flips[i] ? [["t", Q.t], ["c", Q.c]] : [["c", Q.c], ["t", Q.t]];
+    const bars = QUESTIONS.map((_, j) =>
+      `<span class="${j < i ? "done-" + answers[j] : j === i ? "now" : ""}"></span>`).join("");
+    screen.innerHTML = `
+      <section class="card q enter" aria-live="polite">
+        <div class="progress" aria-hidden="true">${bars}</div>
+        <p class="kicker">שאלה ${i + 1} מתוך ${QUESTIONS.length}</p>
+        <h2 class="display">${Q.q}</h2>
+        <div class="opts">
+          ${pair.map(([k, txt], n) => `<button class="opt" id="opt-${i}-${n}" data-k="${k}">${txt}</button>`).join("")}
+        </div>
+        <div class="q-foot">
+          ${i > 0 ? `<button class="link-btn" id="back">חזרה לשאלה הקודמת</button>` : `<span></span>`}
+          <span class="fine">אין תשובה נכונה. יש רק ירקות.</span>
+        </div>
+      </section>`;
+    screen.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+      b.classList.add("picked");
+      screen.querySelectorAll(".opt").forEach(x => x.disabled = true);
+      answers[i] = b.dataset.k;
+      answers.length = i + 1;
+      setAxis(null);
+      setTimeout(() => (i + 1 < QUESTIONS.length ? ask(i + 1) : result()), 260);
+    });
+    const back = $("#back");
+    if (back) back.onclick = () => { answers.length = i - 1; setAxis(null); ask(i - 1); };
+    screen.querySelector(".opt").focus({ preventScroll: true });
+  }
+
+  function result() {
+    const t = answers.filter(a => a === "t").length;
+    const k = typeFor(t);
+    const T = TYPES[k];
+    const pctT = Math.round(t / QUESTIONS.length * 100);
+    setAxis(k);
+    const shareText = `יצאתי ${T.name} (${T.tag}) בשאלון המלפפון והעגבנייה. ואתם?`;
+    screen.innerHTML = `
+      <section class="card result enter" style="--res: var(${T.color})">
+        <p class="kicker">יצא לך</p>
+        <div class="res-head">
+          ${SVG[k]}
+          <div>
+            <h2 class="display">${T.name}</h2>
+            <p class="res-tag">${T.tag}</p>
+          </div>
+        </div>
+        <p class="split"><b>${pctT}%</b> עגבנייה · <b>${100 - pctT}%</b> מלפפון</p>
+        <p>${T.text}</p>
+        <dl class="facts">
+          <div><dt>כוח העל</dt><dd>${T.power}</dd></div>
+          <div><dt>מה צריך לידו${k === "tomato" ? "ה" : ""}</dt><dd>${T.needs}</dd></div>
+        </dl>
+        <div class="work">
+          <h3 class="display">ובעבודה?</h3>
+          <p>${T.work}</p>
+          <p class="tips-title">3 דרכים לחזק את מה שחסר</p>
+          <ol class="tips">${T.tips.map(x => `<li>${x}</li>`).join("")}</ol>
+        </div>
+        <div class="salad">עגבנייה בלי מלפפון: רעיון שקורס ביום השני.<br>מלפפון בלי עגבנייה: תוכנית שלא יוצאת לדרך.<br>ביחד? סלט.</div>
+        <div class="share">
+          <button class="btn wide" id="story">תמונה לסטורי</button>
+          <a class="btn wa" id="wa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(shareText + " " + SITE)}">וואטסאפ</a>
+          <a class="btn fb" id="fb" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(SITE)}">פייסבוק</a>
+          <button class="btn ghost" id="copy">העתקת קישור</button>
+          <button class="btn ghost" id="again">עוד פעם</button>
+        </div>
+        <p class="toast" id="toast" role="status"></p>
+      </section>`;
+    $("#again").onclick = intro;
+    $("#copy").onclick = async () => {
+      try { await navigator.clipboard.writeText(shareText + " " + SITE); toast("הקישור הועתק. עכשיו להדביק בקבוצה של המשפחה."); }
+      catch { toast(SITE); }
+    };
+    $("#story").onclick = () => storyImage(k, pctT);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function toast(msg) { const el = $("#toast"); if (el) el.textContent = msg; }
+
+  // ---------- story image (1080×1920) ----------
+  async function storyImage(k, pctT) {
+    const T = TYPES[k];
+    toast("מכינה תמונה...");
+    try { await document.fonts.load('700 100px "Karantina"'); await document.fonts.load('800 40px "Assistant"'); } catch {}
+    const c = document.createElement("canvas");
+    c.width = 1080; c.height = 1920;
+    const x = c.getContext("2d");
+    x.fillStyle = "#F1F4E8"; x.fillRect(0, 0, 1080, 1920);
+    x.fillStyle = T.hex; x.fillRect(0, 0, 1080, 28);
+    x.direction = "rtl"; x.textAlign = "center"; x.fillStyle = "#1F2A1E";
+
+    x.font = '800 54px "Assistant", Arial';
+    x.fillText("יצאתי", 540, 300);
+
+    const img = new Image();
+    img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(SVG[k]);
+    await img.decode().catch(() => {});
+    x.drawImage(img, 290, 360, 500, 500);
+
+    x.fillStyle = T.hex;
+    x.font = '700 300px "Karantina", Arial';
+    x.fillText(T.name, 540, 1150);
+    x.fillStyle = "#1F2A1E";
+    x.font = '800 58px "Assistant", Arial';
+    x.fillText(T.tag, 540, 1260);
+    x.font = '600 44px "Assistant", Arial';
+    x.fillStyle = "#5B6A56";
+    x.fillText(`${pctT}% עגבנייה · ${100 - pctT}% מלפפון`, 540, 1350);
+
+    // axis
+    const grad = x.createLinearGradient(140, 0, 940, 0);
+    grad.addColorStop(0, "#D2362B"); grad.addColorStop(.35, "#E8930C"); grad.addColorStop(.65, "#7FA646"); grad.addColorStop(1, "#2F6B35");
+    x.fillStyle = grad; x.beginPath(); x.roundRect(140, 1460, 800, 22, 11); x.fill();
+    const mx = 940 - (pctT / 100) * 800;
+    x.fillStyle = "#fff"; x.strokeStyle = "#1F2A1E"; x.lineWidth = 8;
+    x.beginPath(); x.arc(mx, 1471, 26, 0, Math.PI * 2); x.fill(); x.stroke();
+    x.fillStyle = "#1F2A1E"; x.font = '700 64px "Karantina", Arial';
+    x.textAlign = "right"; x.fillText("מלפפון", 940, 1570);
+    x.textAlign = "left"; x.fillText("עגבנייה", 140, 1570);
+
+    x.textAlign = "center";
+    x.font = '800 52px "Assistant", Arial';
+    x.fillText("ואתם? 12 שאלות:", 540, 1720);
+    x.font = '600 44px "Assistant", Arial';
+    x.fillStyle = "#5B6A56";
+    x.fillText("impactos.co.il/yerakot", 540, 1790);
+
+    const blob = await new Promise(r => c.toBlob(r, "image/png"));
+    const file = new File([blob], `yerakot-${k}.png`, { type: "image/png" });
+    try {
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({ files: [file], text: "ואתם? " + SITE });
+        toast("");
+        return;
+      }
+    } catch (e) { if (e && e.name === "AbortError") { toast(""); return; } }
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = file.name;
+    document.body.appendChild(a); a.click(); a.remove();
+    toast("התמונה נשמרה. אפשר להעלות אותה לסטורי.");
+  }
+
+  intro();
+})();
+</script>
+
+</body>
+</html>
