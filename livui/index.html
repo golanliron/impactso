@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>תנו לנו את הבלגן · IMPACT OS</title>
+<meta name="description" content="תנו לנו את הבלגן. קחו בחזרה את הזמן. 100 פגישות ייעוץ ללא עלות למנהלים בחינוך, בעמותות ובכל ארגון.">
+<meta property="og:title" content="תנו לנו את הבלגן. קחו בחזרה את הזמן.">
+<meta property="og:image" content="https://impactos.co.il/livui/posters/og-1200x630.png">
+<meta property="og:url" content="https://impactos.co.il/livui/">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:description" content="100 פגישות ייעוץ ללא עלות למנהלים — ממפים מה גוזל לכם זמן ויוצאים עם פתרונות.">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="burst.css">
+<style>
+  :root{
+    --navy:#061E4F; --deep:#020B22; --fuchsia:#F00678; --teal:#12C7C7; --green:#7BCB52;
+    --yellow:#F4B41B; --orange:#FF7A1A; --slate:#64748B; --soft:#F8FAFC; --line:#E2E8F0; --ink:#0F1B3D;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:Heebo,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+  .ico{width:30px;height:30px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;cursor:pointer;font:inherit;font-weight:900;text-decoration:none;border-radius:999px;transition:transform .15s, box-shadow .15s}
+  .btn-main{background:var(--fuchsia);color:#fff;padding:18px 40px;font-size:21px;box-shadow:0 16px 40px -12px rgba(240,6,120,.75)}
+  .btn-main:hover{transform:translateY(-3px);box-shadow:0 20px 44px -12px rgba(240,6,120,.9)}
+  .eyebrow{display:inline-block;color:var(--fuchsia);font-weight:900;font-size:16px;letter-spacing:.4px;margin:0 0 10px}
+  h2{font-size:clamp(32px,4.6vw,56px);line-height:1.08;margin:0 0 18px;color:var(--navy);font-weight:900;letter-spacing:-.02em}
+  .sub{font-size:20px;color:var(--slate);max-width:760px;margin:0 0 48px}
+  section{padding:110px 0}
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ── HERO: הפיצוץ ── */
+  .hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 20px 90px}
+  .hero .logo{position:absolute;top:28px;left:50%;transform:translateX(-50%);height:44px;filter:brightness(0) invert(1)}
+  .hero .core{position:relative;max-width:1100px;padding:24px 20px;
+    background:radial-gradient(ellipse at center,rgba(2,11,34,.8) 0%,rgba(2,11,34,.5) 55%,transparent 75%)}
+  .hero .kick{font-size:clamp(20px,2.6vw,30px);font-weight:700;color:#BFD0EE;margin:0 0 14px}
+  .hero h1{margin:0;font-weight:900;line-height:.98;letter-spacing:-.03em;font-size:clamp(46px,8.6vw,120px);text-shadow:0 12px 50px rgba(0,0,0,.6)}
+  .hero h1 span{display:block;white-space:nowrap}
+  .hero h1 .l2{color:var(--teal)}
+  .hero h1 i{font-style:normal;color:var(--fuchsia)}
+  .hero .offer{margin:34px 0 26px;font-size:clamp(18px,2vw,24px);color:#fff;font-weight:700}
+  .hero .offer b{background:linear-gradient(transparent 58%,rgba(240,6,120,.75) 58%);padding:0 4px}
+  .hero .fine{margin-top:16px;font-size:15px;color:#9FB2D6}
+  .scroll-cue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);width:26px;height:42px;border:2px solid rgba(255,255,255,.4);border-radius:14px}
+  .scroll-cue::after{content:"";position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:#fff;animation:cue 1.8s infinite}
+  @keyframes cue{0%{opacity:0;transform:translateY(0)}40%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
+
+  /* ── עוד יום בשבוע ── */
+  .day{background:var(--deep);color:#fff;text-align:center;padding:120px 0}
+  .day h2{color:#fff;font-size:clamp(34px,5.4vw,70px)}
+  .day .rot{display:block;height:1.15em;overflow:hidden;color:var(--yellow)}
+  .day .rot span{display:block;animation:rot 12s infinite}
+  @keyframes rot{
+    0%,15%{transform:translateY(0)} 20%,35%{transform:translateY(-100%)} 40%,55%{transform:translateY(-200%)}
+    60%,75%{transform:translateY(-300%)} 80%,95%{transform:translateY(-400%)} 100%{transform:translateY(-500%)}}
+  .day .rot em{display:block;font-style:normal;height:1.15em}
+  .day p{max-width:760px;margin:26px auto 0;font-size:21px;color:#C6D3EC}
+
+  /* ── מספרים ── */
+  .proof{background:linear-gradient(180deg,var(--deep) 0%,var(--navy) 100%);color:#fff;padding:40px 0 120px}
+  .proof .head{text-align:center;max-width:860px;margin:0 auto 56px}
+  .proof h2{color:#fff}
+  .proof .head p{font-size:20px;color:#C6D3EC;margin:0}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .stat{border-radius:26px;padding:34px 24px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);text-align:center}
+  .stat .n{font-size:clamp(46px,5.4vw,72px);font-weight:900;line-height:1;letter-spacing:-.02em}
+  .stat:nth-child(1) .n{color:var(--teal)} .stat:nth-child(2) .n{color:var(--fuchsia)}
+  .stat:nth-child(3) .n{color:var(--yellow)} .stat:nth-child(4) .n{color:var(--green)}
+  .stat .t{margin-top:12px;font-size:18px;font-weight:700;color:#DCE6F7}
+
+  /* ── מה המערכות עושות ── */
+  .caps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .cap{position:relative;border-radius:26px;padding:30px 24px 26px;background:var(--soft);border:1px solid var(--line);overflow:hidden;transition:transform .25s, box-shadow .25s}
+  .cap:hover{transform:translateY(-6px);box-shadow:0 26px 50px -30px rgba(6,30,79,.45)}
+  .cap .ico{color:var(--c);width:40px;height:40px}
+  .cap::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:var(--c)}
+  .cap h3{margin:16px 0 10px;font-size:21px;line-height:1.25;color:var(--navy)}
+  .cap .was{margin:0;color:var(--slate);font-size:15px;text-decoration:line-through;text-decoration-color:rgba(240,6,120,.6)}
+  .cap .now{margin:6px 0 0;font-weight:700;font-size:16px}
+
+  /* ── שלושה רווחים ── */
+  .gains{background:var(--soft)}
+  .gain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .gain{border-radius:30px;padding:44px 34px;color:#fff;position:relative;overflow:hidden;min-height:300px}
+  .gain:nth-child(1){background:linear-gradient(145deg,#0A9E9E,#12C7C7)}
+  .gain:nth-child(2){background:linear-gradient(145deg,#C10060,#F00678)}
+  .gain:nth-child(3){background:linear-gradient(145deg,#061E4F,#16408F)}
+  .gain .big{font-size:clamp(54px,6vw,84px);font-weight:900;line-height:1;letter-spacing:-.03em}
+  .gain p{font-size:19px;margin:18px 0 0;opacity:.95}
+  .gain::after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;left:-80px;bottom:-110px;background:rgba(255,255,255,.12)}
+
+  /* ── הפגישה ── */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .step{border-radius:28px;padding:36px 30px;border:2px solid var(--line);background:#fff;position:relative}
+  .step .num{font-size:90px;font-weight:900;line-height:.8;color:transparent;-webkit-text-stroke:2px var(--c);margin-bottom:18px}
+  .step h3{margin:0 0 10px;font-size:24px;color:var(--navy)}
+  .step p{margin:0;color:var(--slate);font-size:17px}
+
+  /* ── אי אפשר ── */
+  .never{text-align:center;padding:130px 0}
+  .never h2{font-size:clamp(40px,7vw,96px)}
+  .never h2 s{color:var(--slate);text-decoration-color:var(--fuchsia);text-decoration-thickness:.09em}
+  .never h2 span{display:block;color:var(--fuchsia)}
+  .never p{max-width:800px;margin:10px auto 0;font-size:21px;color:#334155}
+
+  /* ── למי ── */
+  .who{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .who > div{border-radius:28px;padding:34px 30px;color:var(--navy)}
+  .who > div:nth-child(1){background:#E3FAFA} .who > div:nth-child(2){background:#FFEAF4} .who > div:nth-child(3){background:#FEF3D6}
+  .who h3{margin:14px 0 8px;font-size:24px}
+  .who p{margin:0;color:#334155;font-size:17px}
+
+  /* ── הרשמה ── */
+  .signup{padding:0}
+  .signup .burst{padding:110px 0}
+  .signup .wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center}
+  .signup h2{color:#fff;font-size:clamp(34px,4.6vw,60px)}
+  .signup .lead{font-size:20px;color:#C6D3EC;margin:0 0 26px}
+  .signup ul{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+  .signup li{display:flex;gap:12px;align-items:center;font-weight:700;font-size:18px}
+  .signup li .ico{color:var(--green);width:26px;height:26px}
+  .spots{display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;background:rgba(244,180,27,.15);border:1px solid rgba(244,180,27,.5);color:var(--yellow);font-weight:900;padding:8px 18px;border-radius:999px}
+  .spots::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 0 rgba(244,180,27,.7);animation:pulse 1.6s infinite}
+  @keyframes pulse{70%{box-shadow:0 0 0 12px rgba(244,180,27,0)}100%{box-shadow:0 0 0 0 rgba(244,180,27,0)}}
+  form{background:#fff;color:var(--ink);border-radius:28px;padding:34px;box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+  .field{display:grid;gap:6px;margin-bottom:16px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  label{font-weight:700;font-size:15px;color:var(--navy)}
+  label small{font-weight:500;color:var(--slate)}
+  input,textarea{font:inherit;font-size:16px;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);width:100%}
+  input:focus,textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px rgba(18,199,199,.15)}
+  textarea{min-height:92px;resize:vertical}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chips label{font-weight:600;font-size:15px;border:1.5px solid var(--line);border-radius:999px;padding:7px 16px;cursor:pointer;color:var(--ink)}
+  .chips input{position:absolute;opacity:0;pointer-events:none;width:1px}
+  .chips label:has(input:checked){background:var(--navy);border-color:var(--navy);color:#fff}
+  form .btn-main{width:100%;margin-top:6px}
+  .privacy{font-size:13px;color:var(--slate);margin:12px 0 0}
+  .msg{display:none;border-radius:14px;padding:16px 18px;margin-top:14px;font-weight:600}
+  .msg.ok{display:block;background:#EEF8E8;color:#2E6414}
+  .msg.err{display:block;background:#FFF0F7;color:#9A0350}
+  .msg a{font-weight:800;color:inherit}
+
+  /* ── שאלות ── */
+  details{border-bottom:1px solid var(--line);padding:20px 0}
+  summary{cursor:pointer;font-weight:800;font-size:19px;color:var(--navy);list-style:none;display:flex;justify-content:space-between;gap:12px}
+  summary::after{content:"+";color:var(--fuchsia);font-size:26px;line-height:1}
+  details[open] summary::after{content:"–"}
+  details p{margin:10px 0 0;color:#334155;font-size:17px}
+
+  footer{background:var(--deep);color:#AFC0DE;padding:40px 0;font-size:15px}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+  footer a{color:#fff;font-weight:700}
+
+  /* כפתור הרשמה צף בנייד */
+  .float-cta{position:fixed;bottom:14px;left:16px;right:16px;z-index:30;display:none}
+  .float-cta .btn{width:100%;padding:15px;font-size:18px}
+
+  @media (max-width:1000px){
+    .caps{grid-template-columns:repeat(2,1fr)}
+    .stats{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:820px){
+    section{padding:80px 0}
+    .gain-grid,.steps,.who{grid-template-columns:1fr}
+    .signup .wrap{grid-template-columns:1fr}
+    .gain{min-height:0}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 16px}
+    .caps,.two{grid-template-columns:1fr}
+    .hero h1 span{white-space:normal}
+    form{padding:22px}
+    .float-cta.show{display:block}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .shard,.rays,.ring,.day .rot span,.spots::before{animation:none!important}
+    .reveal{opacity:1;transform:none;transition:none}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/><path d="M10 6.5h4a3 3 0 0 1 3 3V14"/></symbol>
+  <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M3 12h4l3-7 4 14 3-7h4"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="i-merge" viewBox="0 0 24 24"><path d="M6 3v6a6 6 0 0 0 6 6h0a6 6 0 0 1 6 6"/><path d="M18 3v6a6 6 0 0 1-3 5.2"/><circle cx="6" cy="3" r="1"/><circle cx="18" cy="3" r="1"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3 10 14"/><path d="m21 3-7 18-4-7-7-4z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></symbol>
+  <symbol id="i-plan" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M7 14h4M7 17h7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol>
+  <symbol id="i-school" viewBox="0 0 24 24"><path d="m3 9 9-5 9 5-9 5z"/><path d="M7 11v5c0 1.5 2.5 3 5 3s5-1.5 5-3v-5"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10"/></symbol>
+  <symbol id="i-team" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3.3 2.7-5 6-5s6 1.7 6 5M15 14.5c3 0 6 1.3 6 4.5"/></symbol>
+</svg>
+
+<!-- ═══ HERO ═══ -->
+<header class="burst hero" id="top">
+  <div class="rays"></div><div class="flash"></div>
+  <div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div>
+  <div class="shards" data-avoid=".hero .core h1, .hero .core .kick, .hero .core .offer, .hero .core .btn, .hero .logo" data-spread-x=".95" data-spread-y=".9"></div>
+  <img class="logo" src="https://impactos.co.il/public/brand/impact-os-logo-official-transparent.png" alt="IMPACT OS">
+  <div class="core">
+    <p class="kick">מה הייתם עושים עם עוד יום בשבוע?</p>
+    <h1><span>תנו לנו את הבלגן<i>.</i></span><span class="l2">קחו בחזרה את הזמן<i>.</i></span></h1>
+    <p class="offer"><b>100 פגישות ייעוץ ללא עלות</b> למנהלים בחינוך, בעמותות ובכל ארגון</p>
+    <a class="btn btn-main" href="#signup">אני רוצה את הזמן שלי בחזרה</a>
+    <p class="fine">בלי עלות · בלי התחייבות · לפי סדר ההרשמה</p>
+  </div>
+  <span class="scroll-cue" aria-hidden="true"></span>
+</header>
+
+<!-- ═══ עוד יום בשבוע ═══ -->
+<section class="day">
+  <div class="wrap reveal">
+    <h2>נכנסתם לתפקיד כדי
+      <span class="rot" aria-label="להוביל, לפגוש אנשים, לחשוב קדימה, לחלום בגדול, ללכת הביתה בזמן"><span>
+        <em>להוביל.</em><em>לפגוש אנשים.</em><em>לחשוב קדימה.</em><em>לחלום בגדול.</em><em>ללכת הביתה בזמן.</em><em>להוביל.</em>
+      </span></span>
+    </h2>
+    <p>ובפועל? טפסים, אקסלים, תזכורות, "שלחת?", "מי מעדכן?", ודוחות שמישהו צריך לאסוף ידנית. הזמן שלכם הולך על מה שמערכת יכולה לעשות במקומכם — ובמקרה הזה, המערכת היא אנחנו.</p>
+  </div>
+</section>
+
+<!-- ═══ מספרים ═══ -->
+<section class="proof">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">לא הבטחה. מערכות שכבר רצות.</span>
+      <h2>מעל 100 ארגונים ובתי ספר כבר עובדים פחות קשה</h2>
+      <p>בנינו מערכות ניהול לרשתות חינוך, לבתי ספר ולעמותות — והן עובדות היום, כל יום, בשביל מנהלים, צוותים ומשתמשים שכבר לא חוזרים לאקסל.</p>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><div class="n" dir="ltr">100+</div><div class="t">ארגונים ובתי ספר משתמשים במערכות שלנו</div></div>
+      <div class="stat"><div class="n">מאות</div><div class="t">מורים, מדריכים ואנשי צוות ביום-יום</div></div>
+      <div class="stat"><div class="n">אלפי</div><div class="t">משתמשי קצה — תלמידים, בוגרים, משתתפים</div></div>
+      <div class="stat"><div class="n">24/7</div><div class="t">תזכורות, דוחות ופרסומים שיוצאים לבד</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ מה המערכות עושות ═══ -->
+<section>
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">מה המערכות שלנו לוקחות מכם</span>
+      <h2>כל מה שחוזר על עצמו —<br>יכול לקרות לבד.</h2>
+      <p class="sub">לא משנה אם אתם מנהלים בית ספר, רשת, עמותה או צוות. הכאבים דומים להפליא, וגם הפתרונות.</p>
+    </div>
+    <div class="caps reveal">
+      <div class="cap" style="--c:var(--teal)"><svg class="ico"><use href="#i-flow"/></svg><h3>טפסים ואישורים שזורמים לבד</h3><p class="was">שרשראות מיילים ורדיפה אחרי חתימות</p><p class="now">טופס אחד שמגיע לאדם הנכון ומאושר בקליק</p></div>
+      <div class="cap" style="--c:var(--fuchsia)"><svg class="ico"><use href="#i-pulse"/></svg><h3>נוכחות ומעקב בזמן אמת</h3><p class="was">רשימות על נייר וקבצים שמתאחדים בסוף החודש</p><p class="now">כל אחד מסמן, כולם רואים — מיד</p></div>
+      <div class="cap" style="--c:var(--yellow)"><svg class="ico"><use href="#i-bell"/></svg><h3>תזכורות ודוחות שיוצאים לבד</h3><p class="was">ימים של טלפונים ו"רק מזכירה…"</p><p class="now">המערכת מזכירה, מסכמת ושולחת בזמן</p></div>
+      <div class="cap" style="--c:var(--green)"><svg class="ico"><use href="#i-chart"/></svg><h3>תמונת מצב חיה למנהלים</h3><p class="was">לבקש דוח ולחכות שבוע</p><p class="now">דשבורד שעונה על השאלה בשניות</p></div>
+      <div class="cap" style="--c:var(--orange)"><svg class="ico"><use href="#i-merge"/></svg><h3>מידע מפוזר — למקור אחד</h3><p class="was">אותו נתון בשלושה קבצים, כולם לא מעודכנים</p><p class="now">רשימה אחת נקייה, בלי כפילויות</p></div>
+      <div class="cap" style="--c:var(--teal)"><svg class="ico"><use href="#i-send"/></svg><h3>פרסום ותקשורת אוטומטיים</h3><p class="was">"צריך להעלות פוסט" שנדחה שוב</p><p class="now">אתם מאשרים — המערכת מפרסמת</p></div>
+      <div class="cap" style="--c:var(--fuchsia)"><svg class="ico"><use href="#i-chat"/></svg><h3>עוזר חכם שעונה לצוות</h3><p class="was">אותן שאלות, שוב ושוב, בטלפון שלכם</p><p class="now">פורטל ידע ועוזר שזמין תמיד</p></div>
+      <div class="cap" style="--c:var(--yellow)"><svg class="ico"><use href="#i-plan"/></svg><h3>תוכניות עבודה ולוחות שנה</h3><p class="was">מסמך וורד שאף אחד לא פותח</p><p class="now">לוח משותף שכל אחד רואה בו את החלק שלו</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ שלושה רווחים ═══ -->
+<section class="gains">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center">
+      <span class="eyebrow">מה אתם מקבלים בחזרה</span>
+      <h2>שלושה דברים שכל מנהל חסר</h2>
+      <p class="sub" style="margin-inline:auto">וכל מי שעבד איתנו קיבל בחזרה.</p>
+    </div>
+    <div class="gain-grid reveal">
+      <div class="gain"><div class="big">זמן.</div><p>השעות שהלכו על העתקה, איסוף ומעקב חוזרות אליכם — כל שבוע מחדש.</p></div>
+      <div class="gain"><div class="big">שקט.</div><p>פחות "שלחת?", פחות טעויות, פחות דברים שנופלים בין הכיסאות. המערכת זוכרת במקומכם.</p></div>
+      <div class="gain"><div class="big">ראש פנוי.</div><p>לדברים שבשבילם נכנסתם לתפקיד: האנשים, החזון, העשייה. ולפעמים — פשוט ללכת הביתה בזמן.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ הפגישה ═══ -->
+<section>
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">מה קורה בפגישה</span>
+      <h2>פגישה אחת. מפה שלמה.</h2>
+      <p class="sub">אתם מגיעים עם השבוע שלכם. אנחנו מגיעים עם ניסיון של מערכות שכבר עובדות. יוצאים עם תוכנית.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step" style="--c:var(--teal)"><div class="num">1</div><h3>ממפים את הכאבים</h3><p>עוברים יחד על מה שגוזל לכם זמן: מה חוזר, מה נתקע, איפה המידע הולך לאיבוד ומה הכי מתסכל.</p></div>
+      <div class="step" style="--c:var(--fuchsia)"><div class="num">2</div><h3>בוחרים מה משנה הכי הרבה</h3><p>לא הכל צריך מערכת. מסמנים את הדברים שהפתרון שלהם ישנה לכם את השבוע.</p></div>
+      <div class="step" style="--c:var(--green)"><div class="num">3</div><h3>יוצאים עם פתרונות</h3><p>מה אפשר לשפר כבר מחר עם מה שיש לכם, ומה שווה לבנות — ואיך זה ייראה אצלכם.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ אי אפשר ═══ -->
+<section class="never gains">
+  <div class="wrap reveal">
+    <h2><s>אי אפשר</s><span>הכל אפשרי.</span></h2>
+    <p>אם זה חוזר על עצמו — אפשר לעשות את זה אוטומטי. אם המידע מפוזר — אפשר לרכז אותו. אם אף אחד לא רואה את התמונה המלאה — אפשר לבנות אותה. ספרו לנו מה מציק לכם. נמצא לזה דרך.</p>
+  </div>
+</section>
+
+<!-- ═══ למי ═══ -->
+<section>
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">למי זה מתאים</span>
+      <h2>לכל מי שמנהל אנשים, תהליכים ומידע</h2>
+      <p class="sub">לא צריך להיות "טכנולוגי". מספיק לדעת מה מציק לכם — את השאר אנחנו עושים.</p>
+    </div>
+    <div class="who reveal">
+      <div><svg class="ico"><use href="#i-school"/></svg><h3>מנהלים בחינוך</h3><p>מנהלי בתי ספר ורשתות, מפקחים ורכזים: צוותים, השתלמויות, תוכניות עבודה, מעקב ודיווח.</p></div>
+      <div><svg class="ico"><use href="#i-heart"/></svg><h3>מנהלי עמותות</h3><p>משתתפים, מתנדבים, בוגרים, תורמים ודיווחים לגופים מממנים — בלי לחיות בתוך אקסלים.</p></div>
+      <div><svg class="ico"><use href="#i-team"/></svg><h3>כל מי שמנהל צוות</h3><p>עסקים, מחלקות וארגונים: טפסים, אישורים, תזכורות ודוחות שחוזרים כל שבוע ומחכים למישהו.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ הרשמה ═══ -->
+<section class="signup" id="signup">
+  <div class="burst">
+    <div class="rays"></div><div class="flash"></div>
+    <div class="wrap">
+      <div class="reveal">
+        <span class="spots">100 מקומות בלבד</span>
+        <h2>הזמן שלכם מחכה.<br>שריינו פגישה.</h2>
+        <p class="lead">משאירים פרטים, ואנחנו חוזרים אליכם לתאם מועד. הפגישות ניתנות לפי סדר ההרשמה.</p>
+        <ul>
+          <li><svg class="ico"><use href="#i-check"/></svg>מיפוי של מה שגוזל לכם זמן</li>
+          <li><svg class="ico"><use href="#i-check"/></svg>פתרונות שאפשר ליישם כבר מחר</li>
+          <li><svg class="ico"><use href="#i-check"/></svg>תמונה ברורה של מה שאפשר לבנות</li>
+          <li><svg class="ico"><use href="#i-check"/></svg>בלי עלות ובלי התחייבות</li>
+        </ul>
+      </div>
+
+      <form id="f" novalidate>
+        <div class="two">
+          <div class="field"><label for="n">שם מלא</label><input id="n" name="full_name" required maxlength="120" autocomplete="name"></div>
+          <div class="field"><label for="ph">טלפון</label><input id="ph" name="phone" type="tel" required maxlength="40" autocomplete="tel" dir="ltr" style="text-align:right"></div>
+        </div>
+        <div class="two">
+          <div class="field"><label for="o">תפקיד וארגון</label><input id="o" name="org_name" required maxlength="160" placeholder="מנהלת בית ספר / מנכ״ל עמותה"></div>
+          <div class="field"><label for="em">מייל <small>(לא חובה)</small></label><input id="em" name="email" type="email" maxlength="160" autocomplete="email" dir="ltr" style="text-align:right"></div>
+        </div>
+        <div class="field">
+          <label>התחום שלכם</label>
+          <div class="chips">
+            <label><input type="radio" name="sector" value="חינוך" checked>חינוך</label>
+            <label><input type="radio" name="sector" value="עמותה">עמותה</label>
+            <label><input type="radio" name="sector" value="עסק / ארגון">עסק / ארגון</label>
+            <label><input type="radio" name="sector" value="אחר">אחר</label>
+          </div>
+        </div>
+        <div class="field"><label for="m">מה הכי גוזל לכם זמן היום? <small>(לא חובה — עוזר לנו להתכונן)</small></label><textarea id="m" name="message" maxlength="1500"></textarea></div>
+        <button class="btn btn-main" type="submit" id="go">שריינו לי מקום</button>
+        <p class="privacy">הפרטים משמשים רק כדי לחזור אליכם ולתאם את הפגישה. לא נעביר אותם לאף אחד.</p>
+        <div class="msg" id="msg" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ שאלות ═══ -->
+<section>
+  <div class="wrap" style="max-width:840px">
+    <span class="eyebrow">שאלות</span>
+    <h2>לפני שנרשמים</h2>
+    <details><summary>זה באמת בלי עלות?</summary><p>כן. פגישת הייעוץ ניתנת ללא עלות ל-100 הנרשמים הראשונים, ואין שום התחייבות להמשך.</p></details>
+    <details><summary>אני לא אדם טכנולוגי. זה מתאים לי?</summary><p>בדיוק לכם. מדברים על העבודה שלכם, לא על טכנולוגיה. אתם מספרים מה מציק — אנחנו מתרגמים את זה לפתרון.</p></details>
+    <details><summary>צריך להכין משהו מראש?</summary><p>לא חובה. אם יש לכם דקה, רשמו שלושה דברים שחוזרים כל שבוע ומוציאים לכם את הנשמה. זה הכל.</p></details>
+    <details><summary>ומה קורה אחרי הפגישה?</summary><p>אתם יוצאים עם מפת כאבים ופתרונות, והיא שלכם. אם תרצו שנבנה את הפתרונות ונלווה אתכם בהטמעה — נציע לכם את זה. אם לא — קיבלתם כיוון ברור.</p></details>
+    <details><summary>אתם עובדים עם הכלים שכבר יש לנו?</summary><p>כן, ככל שאפשר. הרבה פעמים הפתרון יושב מעל גוגל שיטס, מאנדיי או הטפסים שכבר קיימים אצלכם — בלי להחליף הכל.</p></details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img src="https://impactos.co.il/public/brand/impact-os-logo-official-transparent.png" alt="IMPACT OS" style="height:32px;filter:brightness(0) invert(1);opacity:.9">
+    <span>שאלות? <a href="https://wa.me/972536256653">וואטסאפ 053-6256653</a> · <a href="mailto:mlypeleg@gmail.com">mlypeleg@gmail.com</a></span>
+  </div>
+</footer>
+
+<div class="float-cta" id="fc"><a class="btn btn-main" href="#signup">שריינו פגישה ללא עלות</a></div>
+
+<script src="burst.js"></script>
+<script>
+(function(){
+  // חשיפה בגלילה
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .15 }) : null;
+  document.querySelectorAll('.reveal').forEach(function(el){ io ? io.observe(el) : el.classList.add('in'); });
+
+  // כפתור צף בנייד — מופיע אחרי הפתיחה ונעלם ליד הטופס
+  var fc = document.getElementById('fc'), hero = document.getElementById('top'), su = document.getElementById('signup');
+  function onScroll(){
+    var y = window.scrollY, past = y > hero.offsetHeight * .7;
+    var near = su.getBoundingClientRect().top < window.innerHeight && su.getBoundingClientRect().bottom > 0;
+    fc.classList.toggle('show', past && !near);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // טופס → site_leads (אותו צינור של טפסי האתר, כולל התראת המייל)
+  var SB = 'https://rllbiktbrkzhzsjhahxb.supabase.co';
+  var KEY = 'sb_publishable_rb8KDlA3TBSOdAUaxZwYZg_7s1Sxs_p';
+  var PRODUCT = 'livui-menahalim';
+  var WA = 'https://wa.me/972536256653';
+
+  var form = document.getElementById('f'), msg = document.getElementById('msg'), go = document.getElementById('go');
+  function show(kind, html){ msg.className = 'msg ' + kind; msg.innerHTML = html; }
+  function val(id){ return document.getElementById(id).value.trim(); }
+  function esc(s){ return s.replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = val('n'), phone = val('ph'), org = val('o'), email = val('em'), text = val('m');
+    var sector = (form.querySelector('input[name=sector]:checked') || {}).value || '';
+    if (!name || !org || phone.replace(/\D/g,'').length < 9) {
+      show('err', 'חסר שם, תפקיד וארגון או מספר טלפון תקין.');
+      return;
+    }
+    var message = 'תחום: ' + sector + (text ? '\nמה גוזל זמן: ' + text : '');
+    var body = { product: PRODUCT, full_name: name, org_name: org, phone: phone,
+                 email: email || null, message: message, source_page: location.href.slice(0, 300) };
+
+    go.disabled = true; go.textContent = 'שולח…';
+    var sb = window.supabase.createClient(SB, KEY);
+    sb.from('site_leads').insert(body).then(function(r){
+      if (r.error) throw r.error;
+      form.querySelectorAll('input,textarea,button').forEach(function(x){ x.disabled = true; });
+      go.textContent = 'נרשמתם';
+      show('ok', 'תודה, ' + esc(name.split(' ')[0]) + '! המקום שלכם שמור. נחזור אליכם בימים הקרובים לתאם מועד.');
+    }).catch(function(){
+      go.disabled = false; go.textContent = 'שריינו לי מקום';
+      var wa = WA + '?text=' + encodeURIComponent('היי, אשמח לשריין פגישת ייעוץ.\nשם: ' + name + '\nתפקיד וארגון: ' + org + '\nטלפון: ' + phone + '\n' + message);
+      show('err', 'משהו השתבש בשליחה. אפשר לנסות שוב, או <a href="' + wa + '" target="_blank" rel="noopener">לשלוח לנו את הפרטים בוואטסאפ</a>.');
+    });
+  });
+})();
+</script>
+</body>
+</html>
