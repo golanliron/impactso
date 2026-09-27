@@ -1,0 +1,60 @@
+/* הפיצוץ — הבלגן היומיומי עף החוצה מהמרכז. משותף לדף הנחיתה ולפוסטרים. */
+.burst{position:relative;overflow:hidden;isolation:isolate;color:#fff;
+  background:radial-gradient(ellipse at 50% 48%,#12367F 0%,#061E4F 46%,#020B22 100%)}
+.burst .rays{position:absolute;inset:-60%;z-index:-3;
+  background:repeating-conic-gradient(from 3deg at 50% 50%,
+    rgba(240,6,120,.20) 0deg 4deg, transparent 4deg 13deg,
+    rgba(18,199,199,.16) 13deg 16deg, transparent 16deg 27deg,
+    rgba(244,180,27,.12) 27deg 29deg, transparent 29deg 40deg);
+  -webkit-mask:radial-gradient(circle at 50% 50%,#000 0%,#000 18%,transparent 58%);
+          mask:radial-gradient(circle at 50% 50%,#000 0%,#000 18%,transparent 58%);
+  animation:burst-spin 90s linear infinite}
+.burst .flash{position:absolute;left:50%;top:50%;width:62%;aspect-ratio:1;z-index:-2;transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(255,255,255,.22) 0%,rgba(240,6,120,.28) 22%,rgba(18,199,199,.10) 45%,transparent 68%);
+  filter:blur(8px)}
+.burst .ring{position:absolute;left:50%;top:50%;border-radius:50%;z-index:-2;transform:translate(-50%,-50%);
+  border:2px solid rgba(18,199,199,.35);width:46%;aspect-ratio:1;animation:burst-ring 4.5s ease-out infinite}
+.burst .ring.r2{animation-delay:1.5s;border-color:rgba(240,6,120,.35)}
+.burst .ring.r3{animation-delay:3s;border-color:rgba(244,180,27,.3)}
+@keyframes burst-spin{to{transform:rotate(360deg)}}
+@keyframes burst-ring{0%{width:10%;opacity:.9}100%{width:140%;opacity:0}}
+
+/* רסיסים — כרטיסי בלגן */
+.shards{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.shard{position:absolute;left:50%;top:50%;font-family:Heebo,Arial,sans-serif;direction:rtl;
+  transform:translate(-50%,-50%) translate(var(--x),var(--y)) rotate(var(--r)) scale(var(--s,1));
+  filter:blur(var(--b,0));opacity:var(--o,1);
+  animation:shard-fly 1.4s cubic-bezier(.12,.8,.2,1) both;animation-delay:var(--d,0s)}
+.shard::after{content:"";position:absolute;top:50%;left:50%;width:140%;height:2px;z-index:-1;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35));
+  transform-origin:0 50%;transform:rotate(var(--trail,180deg)) translateX(40%);opacity:.5}
+@keyframes shard-fly{
+  from{transform:translate(-50%,-50%) translate(0,0) rotate(0deg) scale(.15);opacity:0}
+  35%{opacity:1}}
+.static .shard,.static .rays,.static .ring{animation:none!important}
+.static .ring{display:none}
+
+.sh-card{background:#fff;color:#1E293B;border-radius:14px;box-shadow:0 22px 40px -14px rgba(0,0,0,.65);
+  padding:12px 14px;font-size:15px;line-height:1.35;min-width:170px}
+.sh-card b{display:block;font-size:12px;color:#64748B;font-weight:700;margin-bottom:4px}
+.sh-mail b{color:#F00678}
+.sh-mail{border-top:5px solid #F00678}
+.sh-sticky{background:#FDE68A;color:#713F12;font-weight:800;border-radius:4px;min-width:150px;
+  box-shadow:0 18px 30px -12px rgba(0,0,0,.6);font-size:17px;padding:16px 14px}
+.sh-notif{background:rgba(255,255,255,.95);border-radius:18px;display:flex;gap:10px;align-items:center}
+.sh-notif i{width:30px;height:30px;border-radius:9px;background:#F00678;flex:none;display:grid;place-items:center;color:#fff;font-style:normal;font-weight:900}
+.sh-wa{background:#DCF8C6;color:#14532D;border-radius:14px 14px 3px 14px;font-weight:600}
+.sh-xls{padding:0;overflow:hidden;min-width:0}
+.sh-xls .hd{background:#1D6F42;color:#fff;font-size:12px;font-weight:700;padding:5px 10px;direction:ltr;text-align:left}
+.sh-xls table{border-collapse:collapse;font-size:12px;direction:ltr}
+.sh-xls td{border:1px solid #E2E8F0;padding:3px 8px;min-width:38px;height:20px;color:#334155}
+.sh-xls td.err{color:#DC2626;font-weight:800;background:#FEF2F2}
+.sh-xls td.h{background:#F1F5F9;color:#94A3B8}
+.sh-cal{padding:10px;min-width:150px}
+.sh-cal div{height:18px;border-radius:5px;margin-top:5px;font-size:11px;color:#fff;padding:1px 8px;font-weight:700}
+.sh-file{display:flex;gap:10px;align-items:center;direction:ltr;font-weight:700;font-size:14px}
+.sh-file i{width:26px;height:32px;border-radius:4px;background:#1D6F42;flex:none}
+.sh-form .bar{height:8px;border-radius:9px;background:#E2E8F0;margin-top:8px;overflow:hidden}
+.sh-form .bar span{display:block;height:100%;width:11%;background:#F00678}
+.sh-big{font-size:46px;font-weight:900;color:#F4B41B;text-shadow:0 8px 30px rgba(0,0,0,.5);letter-spacing:-1px}
+.sh-big small{display:block;font-size:15px;font-weight:700;color:#DCE6F7;letter-spacing:0;margin-top:-4px}
