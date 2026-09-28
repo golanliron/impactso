@@ -32,6 +32,9 @@
   .lk button{font:inherit;font-size:13px;font-weight:800;border:1.5px solid var(--line);background:#fff;color:var(--navy);border-radius:99px;padding:3px 12px;cursor:pointer}
   .lk button.done{background:#3F7A1E;color:#fff;border-color:#3F7A1E}
   .go{display:inline-flex;align-items:center;gap:8px;background:var(--fuchsia);color:#fff;text-decoration:none;font-weight:900;border-radius:99px;padding:12px 26px;font-size:17px}
+  .btns{display:flex;flex-wrap:wrap;gap:10px}
+  .go.ghost{background:#fff;color:var(--navy);border:2px solid var(--line)}
+  .note+.btns{margin-top:4px}
   .go.off{background:#E2E8F0;color:var(--slate)}
   .path{direction:ltr;text-align:left;font-family:Consolas,monospace;font-size:13px;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:4px 0 10px;word-break:break-all}
   .note{font-size:14px;color:var(--slate)}
@@ -55,9 +58,10 @@
       <h2>"תנו לנו את הבלגן. קחו בחזרה את הזמן."</h2>
       <p>100 פגישות ייעוץ ללא עלות למנהלים בחינוך, בעמותות ובכל ארגון. הפוסטים מובילים לדף הרשמה לפגישה.</p>
       <div class="links">
-        <div class="lk"><b>דף ההרשמה (ציבורי)</b><a href="https://impactos.co.il/livui/" target="_blank">impactos.co.il/livui</a><button data-copy="https://impactos.co.il/livui">העתקה</button></div>
+        <div class="lk"><b>דף הנחיתה המלא (ציבורי)</b><a href="https://impactos.co.il/livui/" target="_blank">impactos.co.il/livui</a><button data-copy="https://impactos.co.il/livui">העתקה</button></div>
       </div>
-      <a class="go" href="livui/">לערכת ההפצה ←</a>
+      <p class="note">דף הנחיתה הארוך — הפיצוץ, "נכנסתם לתפקיד כדי…", המספרים, 8 היכולות, זמן · שקט · ראש פנוי, והטופס להרשמה. זה הדף שכל הפוסטים של הקמפיין הזה מובילים אליו.</p>
+      <div class="btns"><a class="go" href="livui/">לערכת ההפצה ←</a><a class="go ghost" href="https://impactos.co.il/livui/" target="_blank">לצפייה בדף הנחיתה</a></div>
     </div>
   </article>
 
@@ -71,7 +75,7 @@
         <div class="lk"><b>דף הבקשה (ציבורי)</b><a href="https://impactos.co.il/mapa/" target="_blank">impactos.co.il/mapa</a><button data-copy="https://impactos.co.il/mapa">העתקה</button></div>
         <div class="lk secret"><b>🔒 השאלון — רק בפרטי</b><a href="https://impactos.co.il/mapa/me2ae28/" target="_blank">impactos.co.il/mapa/me2ae28</a><button data-copy="https://impactos.co.il/mapa/me2ae28/">העתקה</button></div>
       </div>
-      <a class="go" href="mapa/">לערכת ההפצה ←</a>
+      <div class="btns"><a class="go" href="mapa/">לערכת ההפצה ←</a><a class="go ghost" href="https://impactos.co.il/mapa/" target="_blank">לצפייה בדף הבקשה</a></div>
     </div>
   </article>
 
