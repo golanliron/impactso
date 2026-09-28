@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>מפת הכאבים · IMPACT OS</title>
-<meta name="description" content="גם אתם אומרים 'אין לי זמן'? זה רק קצה הקרחון. בקשו את מפת הכאבים האישית שלכם — 12 שאלות, 3 דקות, ללא עלות.">
-<meta property="og:title" content="גם אתם אומרים 'אין לי זמן'? זה רק קצה הקרחון.">
-<meta property="og:description" content="מפת כאבים אישית למנהלים — 12 שאלות, 3 דקות, ללא עלות. השאירו פרטים ונשלח לכם אישית.">
+<meta name="description" content="גם אני אמרתי 'אין לי זמן'. זה היה רק קצה הקרחון. בקשו את מפת הכאבים האישית שלכם — 12 שאלות, 3 דקות, ללא עלות.">
+<meta property="og:title" content="גם אני אמרתי 'אין לי זמן'. זה היה רק קצה הקרחון.">
+<meta property="og:description" content="מיטל פלג, מנהלת בית ספר: מפת כאבים אישית למנהלים — 12 שאלות, 3 דקות, ללא עלות. השאירו פרטים ואשלח לכם אישית.">
 <meta property="og:image" content="https://impactos.co.il/mapa/og-1200x630.png">
 <meta property="og:url" content="https://impactos.co.il/mapa/">
 <meta name="twitter:card" content="summary_large_image">
@@ -61,6 +61,12 @@
   .msg.ok{display:block;background:#EEF8E8;color:#2E6414}
   .msg.err{display:block;background:#FFF0F7;color:#9A0350}
   .msg a{color:inherit;font-weight:800}
+  .me{display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:start;max-width:880px;margin:0 auto;padding:10px 0 90px;color:#DCE6F7;font-size:18px}
+  .me img{width:150px;height:150px;border-radius:50%;object-fit:cover;border:4px solid rgba(255,255,255,.85);box-shadow:0 20px 40px -16px rgba(0,0,0,.6);background:#fff}
+  .me p{margin:0 0 12px}
+  .me .hi{font-size:30px;font-weight:900;color:#fff;margin-bottom:8px}
+  .me b{color:#fff}
+  @media (max-width:620px){.me{grid-template-columns:1fr;justify-items:center;text-align:center}.me img{width:120px;height:120px}}
   .why{color:#DCE6F7;text-align:center;max-width:760px;margin:0 auto;padding:0 0 80px;font-size:19px}
   .why b{color:#fff}
   @media (max-width:860px){
@@ -82,8 +88,8 @@
   <svg class="wave" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 Q 25 8 50 20 T 100 20 T 150 20 T 200 20 T 250 20 T 300 20 T 350 20 T 400 20 T 450 20 T 500 20 T 550 20 T 600 20 T 650 20 T 700 20 T 750 20 T 800 20 T 850 20 T 900 20 T 950 20 T 1000 20" fill="none" stroke="#fff" stroke-width="3" opacity=".9"/></svg>
   <div class="wrap">
     <header>
-      <p class="kick">גם אתם אומרים "אין לי זמן"?</p>
-      <h1>זה רק <em>קצה הקרחון.</em></h1>
+      <p class="kick">גם אני אמרתי "אין לי זמן".</p>
+      <h1>זה היה רק <em>קצה הקרחון.</em></h1>
     </header>
     <div class="grid">
       <div class="berg" id="berg" aria-hidden="true">
@@ -111,7 +117,7 @@
 
       <div class="card">
         <h2>בקשו את מפת הכאבים האישית שלכם</h2>
-        <p class="lead">השאירו פרטים, ונשלח לכם את המפה באופן אישי.</p>
+        <p class="lead">השאירו פרטים, ואשלח לכם את המפה באופן אישי.</p>
         <ul class="pts">
           <li><b>12</b>שאלות קצרות על השבוע שלכם</li>
           <li><b>3</b>דקות, מכל מכשיר</li>
@@ -131,7 +137,15 @@
         <p class="privacy">ללא עלות וללא התחייבות. הפרטים משמשים רק כדי לשלוח לכם את המפה.</p>
       </div>
     </div>
-    <p class="why"><b>למה באופן אישי?</b> כי אנחנו לא מחפשים עוד טופס שממלאים ושוכחים. מי שמבקש את המפה מקבל אותה מאיתנו ישירות — ואם ירצה, גם שיחה על מה שיצא.</p>
+    <div class="me">
+      <img src="https://impactos.co.il/public/team/meital-peleg.png" alt="מיטל פלג">
+      <div>
+        <p class="hi">אני מיטל.</p>
+        <p>כמנהלת בית ספר, הייתי בטוחה שהבעיה שלי היא שאין לי זמן. עניתי על אותן שאלות שוב ושוב, בניתי דוחות מאפס, והרגשתי שאם אני לא שם — דברים נעצרים.</p>
+        <p>כשהתחלתי לפרק את זה, תהליך אחרי תהליך, התברר ש"אין לי זמן" היה רק קצה הקרחון. מתחתיו היו עשרות דברים קטנים — וכמעט את כולם אפשר היה לפתור.</p>
+        <p><b>היום זו השליחות שלי:</b> לעזור למנהלים ומנהלות בחינוך ובעמותות לעבוד פחות קשה, ולהחזיר את הזמן לדברים שבשבילם נכנסו לתפקיד. מפת הכאבים היא הצעד הראשון — ואני שולחת אותה לכל אחד באופן אישי.</p>
+      </div>
+    </div>
   </div>
 </div>
 
