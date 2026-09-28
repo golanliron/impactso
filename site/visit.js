@@ -3,6 +3,7 @@
    המקור: utm_source/utm_campaign מהקישור, ואם אין — הדומיין שממנו הגיעו
    (google, linkedin…), ואם גם זה אין — direct. נרשם פעם אחת בביקור
    (sessionStorage), רק בדף הנחיתה, כך שמעבר בין דפי האתר לא נספר כמקור.
+   ?me=1 מסמן מכשיר של הצוות — לא נספר (ראו למטה).
    data-source-only על תגית הסקריפט = לא לספור את הדף (כבר נספר בדף עצמו). */
 (function () {
   'use strict';
@@ -41,6 +42,15 @@
     if (/mail\.|outlook\./.test(host)) return 'email';
     return clean(host);
   }
+
+  /* מכשיר של הצוות: פותחים פעם אחת את האתר עם ?me=1 בכל דפדפן/טלפון,
+     ומאותו רגע הכניסות ממנו לא נספרות. ?me=0 מבטל את הסימון. */
+  try {
+    var mq = new URLSearchParams(location.search).get('me');
+    if (mq === '1') localStorage.setItem('impact-me', '1');
+    if (mq === '0') localStorage.removeItem('impact-me');
+    if (localStorage.getItem('impact-me') === '1') return;
+  } catch (e) {}
 
   if (!sourceOnly) log(location.pathname);
 

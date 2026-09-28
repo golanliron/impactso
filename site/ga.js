@@ -8,6 +8,7 @@
   var consent;
   try { consent = localStorage.getItem('cookie-choice'); } catch (e) { return; }
   if (consent !== 'accepted') return;   /* המבקר לא אישר קוקיז אנליטיים */
+  try { if (/[?&]me=1/.test(location.search) || localStorage.getItem('impact-me') === '1') return; } catch (e) {} /* מכשיר של הצוות */
 
   var s = document.createElement('script');
   s.async = true;

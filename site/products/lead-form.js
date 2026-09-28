@@ -17,7 +17,9 @@
   }
 
   /* ── מונה כניסות: (יום, דף) בלבד — בלי קוקיז ובלי מידע אישי ── */
-  try {
+  var teamDevice = false; // מכשיר של הצוות (סימון דרך ?me=1) — לא נספר
+  try { teamDevice = /[?&]me=1/.test(location.search) || localStorage.getItem('impact-me') === '1'; } catch (e) {}
+  if (!teamDevice) try {
     fetch(SB_URL + '/rest/v1/rpc/log_site_visit', {
       method: 'POST',
       headers: sbHeaders(),

@@ -195,6 +195,7 @@ body{
 <script>
 /* מונה כניסות — (יום, דף) בלבד: בלי קוקיז ובלי מידע אישי */
 (function(){try{
+  if(/[?&]me=1/.test(location.search)||localStorage.getItem('impact-me')==='1')return; /* מכשיר של הצוות — לא נספר */
   var K='sb_publishable_rb8KDlA3TBSOdAUaxZwYZg_7s1Sxs_p';
   fetch('https://rllbiktbrkzhzsjhahxb.supabase.co/rest/v1/rpc/log_site_visit',{
     method:'POST',
