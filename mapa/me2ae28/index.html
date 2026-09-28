@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מפת הכאבים · IMPACT OS</title>
+<meta name="description" content="12 שאלות, 3 דקות — ומפת כאבים אישית עם הפתרונות שמתאימים לארגון שלכם.">
+<meta property="og:title" content="הכאבים שלא ידעתם שיש לכם.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:description" content="בדיקה של 3 דקות למנהלים — ומפת כאבים אישית עם הפתרונות שמתאימים לכם.">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="burst.css">
+<style>
+  :root{
+    --navy:#061E4F; --deep:#020B22; --fuchsia:#F00678; --teal:#12C7C7; --green:#7BCB52;
+    --yellow:#F4B41B; --orange:#FF7A1A; --slate:#64748B; --soft:#F8FAFC; --line:#E2E8F0; --ink:#0F1B3D;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Heebo,Arial,sans-serif;color:var(--ink);background:var(--soft);line-height:1.6;-webkit-font-smoothing:antialiased}
+  button{font:inherit;cursor:pointer}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;font-weight:900;text-decoration:none;border-radius:999px;transition:transform .15s, box-shadow .15s}
+  .btn-main{background:var(--fuchsia);color:#fff;padding:18px 40px;font-size:21px;box-shadow:0 16px 40px -12px rgba(240,6,120,.75)}
+  .btn-main:hover{transform:translateY(-3px)}
+  .btn-ghost{background:transparent;color:var(--navy);border:2px solid var(--line);padding:10px 22px;font-size:16px;font-weight:800}
+  .screen{display:none}
+  .screen.on{display:block}
+  .ico{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+  /* ── פתיחה ── */
+  #intro .burst{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:110px 20px 70px}
+  #intro .logo{position:absolute;top:26px;left:50%;transform:translateX(-50%);height:42px;filter:brightness(0) invert(1)}
+  #intro .core{max-width:980px;padding:20px;background:radial-gradient(ellipse at center,rgba(2,11,34,.82) 0%,rgba(2,11,34,.5) 55%,transparent 75%)}
+  #intro .kick{font-size:clamp(19px,2.4vw,27px);font-weight:700;color:#BFD0EE;margin:0 0 12px}
+  #intro h1{margin:0;font-weight:900;line-height:1;letter-spacing:-.03em;font-size:clamp(40px,7.2vw,104px);text-shadow:0 12px 50px rgba(0,0,0,.6)}
+  #intro h1 b{display:block;white-space:nowrap;font-weight:900}
+  @media (max-width:560px){#intro h1 b{white-space:normal}}
+  #intro h1 span{display:block;color:var(--teal)}
+  #intro h1 i{font-style:normal;color:var(--fuchsia)}
+  #intro .lead{font-size:clamp(18px,2vw,23px);color:#fff;margin:26px auto 30px;max-width:680px;font-weight:500}
+  #intro .meta{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:22px;color:#9FB2D6;font-size:15px;font-weight:700}
+  #intro .meta span{display:flex;align-items:center;gap:6px}
+  #intro .meta .ico{width:18px;height:18px}
+
+  /* ── שאלה ── */
+  #quiz{min-height:100svh;display:none;flex-direction:column}
+  #quiz.on{display:flex}
+  .qtop{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+  .qtop .in{max-width:820px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:16px}
+  .qtop img{height:26px}
+  .bar{flex:1;height:10px;background:#EEF2F7;border-radius:99px;overflow:hidden}
+  .bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--fuchsia));border-radius:99px;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+  .qcount{font-weight:800;color:var(--slate);font-size:14px;white-space:nowrap}
+  .qbody{flex:1;max-width:820px;width:100%;margin:0 auto;padding:44px 20px 40px}
+  .qarea{display:inline-block;font-size:14px;font-weight:900;color:var(--c,var(--fuchsia));background:color-mix(in srgb,var(--c,var(--fuchsia)) 12%,#fff);padding:4px 14px;border-radius:99px;margin-bottom:14px}
+  .qtext{font-size:clamp(26px,3.6vw,38px);line-height:1.2;font-weight:900;color:var(--navy);margin:0 0 10px;letter-spacing:-.01em}
+  .qhint{color:var(--slate);font-size:17px;margin:0 0 28px}
+  .opts{display:grid;gap:12px}
+  .opt{display:flex;align-items:center;gap:16px;text-align:right;width:100%;background:#fff;border:2px solid var(--line);border-radius:18px;padding:18px 20px;font-size:18px;font-weight:600;color:var(--ink);transition:border-color .15s, transform .15s, box-shadow .15s}
+  .opt:hover{border-color:var(--teal);transform:translateY(-2px);box-shadow:0 14px 30px -20px rgba(6,30,79,.5)}
+  .opt .k{width:34px;height:34px;border-radius:10px;background:var(--soft);border:1.5px solid var(--line);display:grid;place-items:center;font-weight:900;color:var(--slate);font-size:15px;flex:none}
+  .opt.sel{border-color:var(--navy);background:var(--navy);color:#fff}
+  .opt.sel .k{background:var(--fuchsia);border-color:var(--fuchsia);color:#fff}
+  .qnav{display:flex;justify-content:space-between;margin-top:26px}
+  .qanim{animation:qin .45s cubic-bezier(.2,.8,.2,1)}
+  @keyframes qin{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+
+  /* ── חישוב ── */
+  #calc{min-height:100svh;display:none;align-items:center;justify-content:center;text-align:center;background:var(--deep);color:#fff;padding:20px}
+  #calc.on{display:flex}
+  .scan{width:120px;height:120px;border-radius:50%;margin:0 auto 26px;border:4px solid rgba(255,255,255,.12);border-top-color:var(--teal);border-left-color:var(--fuchsia);animation:spin 1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  #calc h2{font-size:30px;margin:0 0 8px}
+  #calc p{color:#9FB2D6;margin:0;font-size:18px;min-height:1.6em}
+
+  /* ── תוצאה ── */
+  #result .top{background:var(--deep);color:#fff;padding:70px 20px 120px;text-align:center;position:relative;overflow:hidden}
+  #result .top .logo{height:34px;filter:brightness(0) invert(1);margin-bottom:34px}
+  #result .top .kick{color:var(--yellow);font-weight:900;font-size:17px;margin:0 0 8px}
+  #result .top h1{font-size:clamp(34px,5.4vw,64px);margin:0 auto;line-height:1.08;font-weight:900;max-width:900px;letter-spacing:-.02em}
+  #result .top h1 em{font-style:normal;color:var(--teal)}
+  .gauge{position:relative;width:240px;height:130px;margin:34px auto 0}
+  .gauge svg{width:240px;height:130px;overflow:visible}
+  .gauge .val{position:absolute;inset:auto 0 0 0;text-align:center;font-size:48px;font-weight:900;line-height:1}
+  .gauge .lbl{font-size:14px;color:#9FB2D6;font-weight:700;margin-top:8px}
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px}
+  .cardx{background:#fff;border-radius:26px;border:1px solid var(--line);box-shadow:0 30px 60px -40px rgba(6,30,79,.45);padding:32px}
+  .lift{margin-top:-80px;position:relative}
+  h2.sec{font-size:clamp(26px,3.4vw,38px);color:var(--navy);margin:0 0 6px;font-weight:900;letter-spacing:-.01em}
+  p.secsub{color:var(--slate);margin:0 0 24px;font-size:17px}
+  .rows{display:grid;gap:14px}
+  .arow{display:grid;grid-template-columns:210px 1fr 110px;gap:16px;align-items:center}
+  .arow .n{font-weight:800;color:var(--navy);display:flex;align-items:center;gap:10px}
+  .arow .n .ico{color:var(--c);width:24px;height:24px}
+  .track{height:14px;background:#EEF2F7;border-radius:99px;overflow:hidden}
+  .track span{display:block;height:100%;width:0;border-radius:99px;background:var(--c);transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+  .tag{font-size:13px;font-weight:900;padding:4px 10px;border-radius:99px;text-align:center}
+  .tag.hot{background:#FFE4F0;color:#B0035A}
+  .tag.warm{background:#FEF3D6;color:#8A6200}
+  .tag.ok{background:#E8F6DF;color:#3F7A1E}
+  .hours{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .hours div{border-radius:20px;padding:22px;text-align:center;background:var(--soft)}
+  .hours b{display:block;font-size:40px;font-weight:900;color:var(--navy);line-height:1.1}
+  .hours span{color:var(--slate);font-weight:700;font-size:15px}
+  .hidden-pain{margin-top:26px;border-radius:22px;padding:24px 26px;background:linear-gradient(135deg,#061E4F,#16408F);color:#fff;display:flex;gap:18px;align-items:flex-start}
+  .hidden-pain .ico{color:var(--yellow);width:36px;height:36px}
+  .hidden-pain h3{margin:0 0 6px;font-size:21px}
+  .hidden-pain p{margin:0;color:#D5E0F4}
+
+  .sols{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .sol{border-radius:24px;padding:28px 24px;background:#fff;border:1px solid var(--line);position:relative;overflow:hidden;display:flex;flex-direction:column}
+  .sol::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:var(--c)}
+  .sol .rank{font-size:13px;font-weight:900;color:var(--c)}
+  .sol .ico{color:var(--c);width:40px;height:40px;margin:10px 0 6px}
+  .sol h3{margin:0 0 8px;font-size:22px;color:var(--navy);line-height:1.25}
+  .sol p{margin:0 0 12px;color:#334155}
+  .sol .ex{margin-top:auto;font-size:15px;background:var(--soft);border-radius:14px;padding:12px 14px;color:var(--navy)}
+  .sol .ex b{color:var(--c)}
+
+  .meet{background:var(--deep);color:#fff;border-radius:30px;padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+  .meet h2{font-size:clamp(28px,3.6vw,44px);margin:0 0 12px;line-height:1.1}
+  .meet h2 em{font-style:normal;color:var(--yellow)}
+  .meet p{color:#C6D3EC;margin:0 0 10px;font-size:18px}
+  .spots{display:inline-flex;align-items:center;gap:10px;margin-bottom:16px;background:rgba(244,180,27,.15);border:1px solid rgba(244,180,27,.5);color:var(--yellow);font-weight:900;padding:7px 16px;border-radius:999px;font-size:15px}
+  form{background:#fff;color:var(--ink);border-radius:22px;padding:26px}
+  .field{display:grid;gap:5px;margin-bottom:13px}
+  label{font-weight:700;font-size:14px;color:var(--navy)}
+  label small{font-weight:500;color:var(--slate)}
+  input{font:inherit;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;width:100%}
+  input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 4px rgba(18,199,199,.15)}
+  form .btn-main{width:100%;font-size:19px;padding:16px}
+  .privacy{font-size:12.5px;color:var(--slate);margin:22px 0 0}
+  .msg{display:none;border-radius:14px;padding:14px 16px;margin-top:12px;font-weight:600}
+  .msg.ok{display:block;background:#EEF8E8;color:#2E6414}
+  .msg.err{display:block;background:#FFF0F7;color:#9A0350}
+  .msg a{color:inherit;font-weight:800}
+  .share{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;margin:40px 0 70px;color:var(--slate);font-weight:700}
+  .share a,.share button{background:#fff;border:2px solid var(--line);color:var(--navy);border-radius:99px;padding:10px 20px;font-weight:800;text-decoration:none;font-size:15px}
+
+  @media (max-width:820px){
+    .sols,.hours{grid-template-columns:1fr}
+    .meet{grid-template-columns:1fr;padding:30px 22px}
+    .arow{grid-template-columns:1fr 90px;gap:8px 12px}
+    .arow .track{grid-column:1 / -1;grid-row:2}
+    .cardx{padding:24px 20px}
+  }
+  @media (max-width:520px){
+    .opt{font-size:17px;padding:15px 16px}
+    .qbody{padding-top:28px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .shard,.rays,.ring,.scan,.qanim{animation:none!important}
+    .track span,.bar span{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 3 3h1V4z"/><path d="M15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-3 3h-1V4z"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M21 3 10 14"/><path d="m21 3-7 18-4-7-7-4z"/></symbol>
+  <symbol id="i-brand" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="10" r="1.3"/><circle cx="12" cy="7.5" r="1.3"/><circle cx="15.5" cy="10" r="1.3"/><path d="M12 21a3 3 0 0 1 0-6h1.5a2.5 2.5 0 0 0 0-5"/></symbol>
+  <symbol id="i-flow" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/><path d="M10 6.5h4a3 3 0 0 1 3 3V14"/></symbol>
+  <symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3.3 2.7-5 6-5s6 1.7 6 5M15 14.5c3 0 6 1.3 6 4.5"/></symbol>
+  <symbol id="i-tasks" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 2 2 3-3M7 15h10"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 8v13M12 8S10 3 7.5 4.5 9 8 12 8zM12 8s2-5 4.5-3.5S15 8 12 8z"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12"/><circle cx="12" cy="12" r="3"/></symbol>
+</svg>
+
+<!-- ═══ פתיחה ═══ -->
+<section class="screen on" id="intro">
+  <div class="burst">
+    <div class="rays"></div><div class="flash"></div>
+    <div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div>
+    <div class="shards" data-avoid="#intro .core h1, #intro .core .kick, #intro .core .lead, #intro .core .btn, #intro .core .meta, #intro .logo" data-spread-x=".95" data-spread-y=".9"></div>
+    <img class="logo" src="https://impactos.co.il/public/brand/impact-os-logo-official-transparent.png" alt="IMPACT OS">
+    <div class="core">
+      <p class="kick">בדיקה של 3 דקות למנהלים</p>
+      <h1><b>הכאבים שלא ידעתם</b><span>שיש לכם<i>.</i></span></h1>
+      <p class="lead">12 שאלות קצרות על השבוע שלכם — ומפת כאבים אישית: איפה הולך לכם הזמן, ואילו מערכות יכולות להחזיר אותו.</p>
+      <button class="btn btn-main" id="start" type="button">מתחילים את הבדיקה</button>
+      <div class="meta">
+        <span><svg class="ico"><use href="#i-clock"/></svg>3 דקות</span>
+        <span><svg class="ico"><use href="#i-lock"/></svg>בלי הרשמה כדי לראות תוצאה</span>
+        <span><svg class="ico"><use href="#i-gift"/></svg>ללא עלות</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ שאלון ═══ -->
+<section class="screen" id="quiz">
+  <div class="qtop"><div class="in">
+    <img src="https://impactos.co.il/public/brand/impact-os-logo-official-transparent.png" alt="IMPACT OS">
+    <div class="bar"><span id="bar"></span></div>
+    <span class="qcount" id="qcount"></span>
+  </div></div>
+  <div class="qbody" id="qbody"></div>
+</section>
+
+<!-- ═══ חישוב ═══ -->
+<section class="screen" id="calc">
+  <div><div class="scan"></div><h2>מרכיבים את מפת הכאבים שלכם</h2><p id="calcline"></p></div>
+</section>
+
+<!-- ═══ תוצאה ═══ -->
+<section class="screen" id="result">
+  <div class="top burst">
+    <div class="rays"></div><div class="flash"></div>
+    <img class="logo" src="https://impactos.co.il/public/brand/impact-os-logo-official-transparent.png" alt="IMPACT OS">
+    <p class="kick">מפת הכאבים שלכם</p>
+    <h1 id="rtitle"></h1>
+    <div class="gauge">
+      <svg viewBox="0 0 240 130" aria-hidden="true">
+        <path d="M20 120 A100 100 0 0 1 220 120" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="18" stroke-linecap="round"/>
+        <path id="garc" d="M20 120 A100 100 0 0 1 220 120" fill="none" stroke="url(#gg)" stroke-width="18" stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="314" style="transition:stroke-dashoffset 1.4s cubic-bezier(.2,.8,.2,1)"/>
+        <defs><linearGradient id="gg" x1="1" x2="0"><stop offset="0" stop-color="#7BCB52"/><stop offset=".5" stop-color="#F4B41B"/><stop offset="1" stop-color="#F00678"/></linearGradient></defs>
+      </svg>
+      <div class="val"><span id="gval">0</span><div class="lbl">מדד העומס הנסתר</div></div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="cardx lift">
+      <h2 class="sec">איפה זה כואב</h2>
+      <p class="secsub">לפי מה שסיפרתם — מהתחום הכי כואב לפחות כואב.</p>
+      <div class="rows" id="rows"></div>
+      <div class="hours" id="hours"></div>
+      <div class="hidden-pain" id="hidden"></div>
+    </div>
+
+    <div style="margin-top:56px">
+      <h2 class="sec">מה יכול לעבוד בשבילכם</h2>
+      <p class="secsub">מערכות שכבר רצות היום בבתי ספר, בעמותות ובארגונים — אלה שמתאימות לכאבים שלכם.</p>
+      <div class="sols" id="sols"></div>
+    </div>
+
+    <div class="meet burst" style="margin-top:56px" id="meet">
+      <div class="rays"></div>
+      <div>
+        <span class="spots">100 פגישות ייעוץ ללא עלות</span>
+        <h2>רוצים שנעבור על <em>המפה שלכם</em> יחד?</h2>
+        <p>פגישה אחת: נעבור על הכאבים שעלו, נבחר מה שהכי שווה לפתור, ותצאו עם תוכנית ברורה — מה אפשר לשפר כבר מחר ומה שווה לבנות.</p>
+        <p style="font-size:15px;color:#9FB2D6">התשובות שלכם יגיעו אלינו יחד עם הפרטים, כך שנגיע לפגישה מוכנים.</p>
+      </div>
+      <form id="f" novalidate>
+        <div class="field"><label for="n">שם מלא</label><input id="n" required maxlength="120" autocomplete="name"></div>
+        <div class="field"><label for="ph">טלפון</label><input id="ph" type="tel" required maxlength="40" autocomplete="tel" dir="ltr" style="text-align:right"></div>
+        <div class="field"><label for="o">תפקיד וארגון</label><input id="o" required maxlength="160" placeholder="מנהלת בית ספר / מנכ״ל עמותה"></div>
+        <div class="field"><label for="em">מייל <small>(לא חובה)</small></label><input id="em" type="email" maxlength="160" autocomplete="email" dir="ltr" style="text-align:right"></div>
+        <button class="btn btn-main" type="submit" id="go">שריינו לי פגישה</button>
+        <p class="privacy">הפרטים והתשובות משמשים רק כדי לתאם את הפגישה ולהתכונן אליה. לא נעביר אותם לאף אחד.</p>
+        <div class="msg" id="msg" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+
+    <div class="share">
+      <span>מכירים מנהל או מנהלת שזה בשבילם?</span>
+      <a id="wa-share" href="#" target="_blank" rel="noopener">שליחה בווטסאפ</a>
+      <button type="button" id="again">לעשות את הבדיקה שוב</button>
+    </div>
+  </div>
+</section>
+
+<script src="burst.js"></script>
+<script>
+(function(){
+  // ── תחומים ומערכות ─────────────────────────────────────────
+  // כל תחום ממופה למערכת שכבר קיימת ועובדת. ex = דוגמה לפי סוג הארגון.
+  var AREAS = {
+    data:   { name:'נתונים ודוחות', c:'var(--teal)', ico:'i-chart',
+              sol:'דשבורד חי ודוחות בלחיצה',
+              what:'מתחבר ללוחות ולגיליונות שכבר יש לכם, ומציג תמונת מצב חיה — מי, כמה, איפה ומה השתנה. דוח לתורם או למפקח יוצא בלחיצה.',
+              ex:{ school:'כמה תלמידים בסיכון, מי לא הגיש, איך כל שכבה מתקדמת — במסך אחד.', network:'כל בתי הספר ברשת זה לצד זה, בלי לאסוף קבצים מאף אחד.', org:'דוח לתורם בדקה במקום בשבוע — מאותם נתונים שכבר נאספים.', biz:'מדדים של הצוות והלקוחות בזמן אמת, בלי לבקש דוח.' } },
+    know:   { name:'ידע ושאלות חוזרות', c:'var(--fuchsia)', ico:'i-brain',
+              sol:'סוכן ידע אישי',
+              what:'עוזר חכם שמכיר את הנהלים, הקבצים והתשובות של הארגון שלכם — ועונה לצוות בכל שעה, בשפה פשוטה. הידע נשאר בארגון גם כשאנשים מתחלפים.',
+              ex:{ school:'מורה חדשה שואלת "מה הנוהל ביציאה לסיור?" ומקבלת תשובה מיד — בלי לעבור דרככם.', network:'רכזים ומנהלים מקבלים תשובה אחידה מכל הנהלים של הרשת.', org:'מתנדב חדש מקבל את כל מה שצריך לדעת בלי חפיפה של שבוע.', biz:'עובד חדש מוצא תשובות בעצמו — מהמסמכים שכבר קיימים.' } },
+    publish:{ name:'פרסום ונראות', c:'var(--orange)', ico:'i-send',
+              sol:'תור פרסום אוטומטי',
+              what:'הפוסטים מוכנים מראש לכמה שבועות, אתם מאשרים במשפט אחד — והמערכת מפרסמת לבד בפייסבוק ובאינסטגרם, בשעות הנכונות.',
+              ex:{ school:'ההורים והקהילה רואים מה קורה בבית הספר כל שבוע — בלי שמישהו "יזכור להעלות".', network:'כל בתי הספר מופיעים ברשתות בקביעות, באותה שפה.', org:'נוכחות קבועה ברשתות גם בשבועות העמוסים — מה שתורמים ושותפים רואים.', biz:'נוכחות שיווקית קבועה בלי לשלם לסוכנות.' } },
+    brand:  { name:'מיתוג ושפה אחידה', c:'var(--yellow)', ico:'i-brand',
+              sol:'ערכת מותג חיה',
+              what:'שפה אחת לכל מה שיוצא מכם: תבניות מצגת, חתימות מייל, פוסטים, מסמכים ופליירים — שנראים כמו משפחה אחת, וכל אחד בצוות יכול להשתמש בהם.',
+              ex:{ school:'מצגת פתיחת שנה, מכתב להורים ופוסט — כולם נראים כמו בית הספר שלכם.', network:'זהות אחידה לכל בתי הספר ברשת, בלי לאבד את הייחוד של כל אחד.', org:'עמותה שנראית מקצועית מול תורמים — מהחתימה במייל ועד המצגת.', biz:'כל עובד שולח מצגת וחתימה ממותגות, בלי מעצב.' } },
+    forms:  { name:'טפסים ואישורים', c:'var(--green)', ico:'i-flow',
+              sol:'טפסים חכמים וזרימת אישורים',
+              what:'טופס אחד שמגיע לבד לאדם הנכון, מאושר בקליק, ונשמר במקום אחד — עם דף מעקב שמראה מה אושר ומה ממתין. בלי שרשראות מיילים ובלי הקלדה כפולה.',
+              ex:{ school:'בקשת השתלמות, יציאה לסיור או רכש — עוברת לבד למאשר ונשמרת.', network:'עשרות בתי ספר מגישים, ודף אחד מראה מי הגיש ומה חסר.', org:'טופס קליטת משתתף שממלא את הרשימה לבד — בלי להקליד מחדש.', biz:'אישורי חופשה והוצאות בלי מיילים הלוך ושוב.' } },
+    people: { name:'מעקב אחרי אנשים', c:'#8B5CF6', ico:'i-people',
+              sol:'מעקב אנשים ונוכחות',
+              what:'כל תלמיד, משתתף, בוגר או איש צוות במקום אחד — מי הגיע, מי נעלם ומי צריך יחס. המערכת מתריעה לפני שמישהו נופל בין הכיסאות.',
+              ex:{ school:'נוכחות, מפגשים ושיחות — והתרעה כשתלמיד מתחיל להיעלם.', network:'מאות מורים בהדרכות ובהשתלמויות, כל אחד רואה את שלו.', org:'רשימת בוגרים ומשתתפים אחת נקייה, עם סימון של מי צריך קשר.', biz:'הלקוחות וההתקשרויות במקום אחד, בלי לפספס אף אחד.' } },
+    tasks:  { name:'משימות ותיאום', c:'#0EA5E9', ico:'i-tasks',
+              sol:'לוח משימות ותוכניות עבודה',
+              what:'לוח משותף שבו כל אחד רואה את החלק שלו, והמנהל רואה את הכל — אחוז התקדמות, מה תקוע ותזכורת בווטסאפ בלחיצה. בלי ישיבות "רק לעדכון".',
+              ex:{ school:'תוכנית עבודה שנתית שכל רכז רואה בה את המשימות שלו.', network:'קליטת בית ספר חדש: עשרות משימות, כל בעל תפקיד בלשונית משלו.', org:'אירוע, גיוס או פרויקט — כולם על אותו לוח, בלי לשאול "איפה זה עומד?".', biz:'פרויקטים בצוות בלי קבוצות ווטסאפ ובלי קבצים מקבילים.' } }
+  };
+
+  // ── שאלות ─────────────────────────────────────────────────
+  // s = ניקוד 0–3 לכל תשובה; a = לאיזה תחום זה נספר
+  var Q = [
+    { id:'sector', area:null, t:'איפה אתם מנהלים?', h:'כדי שהדוגמאות יתאימו לכם.',
+      o:[['בית ספר','school'],['רשת, פיקוח או מטה חינוכי','network'],['עמותה או ארגון חברתי','org'],['עסק או ארגון אחר','biz']] },
+    { id:'size', area:null, t:'כמה אנשים תלויים בכם — צוות, משתתפים, תלמידים?', h:'בערך.',
+      o:[['עד 20',1],['20–100',2],['100–500',3],['יותר מ-500',4]] },
+    { id:'q1', area:'data', t:'שואלים אתכם: "כמה פעילים יש לנו החודש?" כמה זמן לוקח לענות?',
+      o:[['שנייה — זה מול העיניים שלי',0],['כמה דקות של חיפוש בקובץ',1],['צריך לבקש ממישהו שיבדוק',2],['"אחזור אליך מחר"',3]] },
+    { id:'q2', area:'data', t:'כמה פעמים בשנה אתם מכינים דוח לגורם חיצוני — תורם, משרד, מפקח, ועד?',
+      o:[['כמעט אף פעם',0],['פעם-פעמיים, וזה בסדר',1],['כמה פעמים, וכל פעם זה כאב ראש',2],['הרבה — וכל פעם מתחילים מאפס',3]] },
+    { id:'q3', area:'know', t:'כמה פעמים בשבוע אתם עונים על אותה שאלה? "איפה הטופס?", "מה הנוהל?"',
+      o:[['כמעט אף פעם',0],['פעם-פעמיים',1],['כל יום',2],['אני המוקד הטלפוני של הארגון',3]] },
+    { id:'q4', area:'know', t:'מישהו מרכזי יוצא לחופשה של שבועיים. מה קורה?',
+      o:[['הכל ממשיך כרגיל',0],['קצת יותר איטי',1],['מתקשרים אליו באמצע החופשה',2],['דברים פשוט נעצרים',3]] },
+    { id:'q5', area:'publish', t:'מתי פרסמתם לאחרונה משהו ברשתות או בניוזלטר?',
+      o:[['השבוע — יש לנו שגרה קבועה',0],['לפני כמה שבועות',1],['לא בטוח/ה שאני זוכר/ת',2],['"צריך להעלות משהו" נמצא ברשימה כבר חודשים',3]] },
+    { id:'q6', area:'brand', t:'פותחים 3 מצגות של הארגון מהשנה האחרונה. הן נראות…',
+      o:[['כמו משפחה אחת — אותה שפה, אותם צבעים',0],['די דומות',1],['כל אחת מעולם אחר',2],['כל אחד בצוות גם חותם במייל אחרת',3]] },
+    { id:'q7', area:'forms', t:'בקשה צריכה אישור — חופשה, רכש, אירוע, השתלמות. איך היא עוברת?',
+      o:[['טופס שמגיע לבד למי שמאשר',0],['מייל, ומחכים',1],['מייל, תזכורת, טלפון, ועוד תזכורת',2],['תלוי מי זוכר',3]] },
+    { id:'q8', area:'people', t:'איך אתם יודעים מי השתתף, מי נעלם ומי צריך יחס?',
+      o:[['מערכת מראה לי את זה',0],['בודקים בקבצים כשצריך',1],['כל אחד בצוות יודע על "שלו"',2],['מגלים כשכבר מאוחר',3]] },
+    { id:'q9', area:'tasks', t:'העברתם משימה לאחד מאנשי הצוות. איך אתם יודעים איפה היא עומדת?',
+      o:[['רואים בלוח משותף',0],['שואלים',1],['מחכים לישיבה הבאה',2],['"חשבתי שזה אצלך"',3]] },
+    { id:'hours', area:null, t:'כמה שעות בשבוע אתם עצמכם על "עבודה שחורה" — העתקה, איסוף, תזכורות, דוחות?', h:'הערכה גסה מספיקה.',
+      o:[['פחות משעתיים',1],['3–5 שעות',4],['6–10 שעות',8],['יותר מ-10',12]] }
+  ];
+
+  var ans = {}, i = 0;
+  var $ = function(id){ return document.getElementById(id); };
+  function show(id){ document.querySelectorAll('.screen').forEach(function(s){ s.classList.toggle('on', s.id === id); }); window.scrollTo(0, 0); }
+
+  $('start').onclick = function(){ show('quiz'); renderQ(); };
+
+  function renderQ(){
+    var q = Q[i], ar = q.area ? AREAS[q.area] : null;
+    $('bar').style.width = (i / Q.length * 100) + '%';
+    $('qcount').textContent = (i + 1) + ' מתוך ' + Q.length;
+    var h = '<div class="qanim">';
+    if (ar) h += '<span class="qarea" style="--c:' + ar.c + '">' + ar.name + '</span>';
+    h += '<h2 class="qtext">' + q.t + '</h2>' + (q.h ? '<p class="qhint">' + q.h + '</p>' : '<p class="qhint">בחרו את מה שהכי קרוב למציאות — לא למה שהייתם רוצים.</p>');
+    h += '<div class="opts">';
+    q.o.forEach(function(o, k){
+      var sel = ans[q.id] !== undefined && ans[q.id] === k;
+      h += '<button type="button" class="opt' + (sel ? ' sel' : '') + '" data-k="' + k + '"><span class="k">' + (k + 1) + '</span>' + o[0] + '</button>';
+    });
+    h += '</div><div class="qnav">' + (i > 0 ? '<button type="button" class="btn btn-ghost" id="back">→ הקודמת</button>' : '<span></span>') + '<span></span></div></div>';
+    $('qbody').innerHTML = h;
+    $('qbody').querySelectorAll('.opt').forEach(function(b){ b.onclick = function(){ pick(+b.dataset.k); }; });
+    if ($('back')) $('back').onclick = function(){ i--; renderQ(); };
+  }
+
+  var locked = false;
+  function pick(k){
+    if (locked) return; locked = true;
+    ans[Q[i].id] = k;
+    $('qbody').querySelectorAll('.opt').forEach(function(b){ b.classList.toggle('sel', +b.dataset.k === k); });
+    setTimeout(function(){
+      locked = false;
+      if (i < Q.length - 1) { i++; renderQ(); } else { calc(); }
+    }, 280);
+  }
+  document.addEventListener('keydown', function(e){
+    if (!$('quiz').classList.contains('on')) return;
+    var n = parseInt(e.key, 10); if (n >= 1 && n <= 4) pick(n - 1);
+  });
+
+  // ── חישוב ─────────────────────────────────────────────────
+  var R;
+  function calc(){
+    show('calc');
+    var lines = ['סופרים שאלות שחוזרות על עצמן…', 'מחפשים איפה המידע הולך לאיבוד…', 'בודקים מה אפשר לעשות אוטומטי…', 'מתאימים מערכות…'], li = 0;
+    $('calcline').textContent = lines[0];
+    var t = setInterval(function(){ li++; if (li < lines.length) $('calcline').textContent = lines[li]; }, 650);
+    var val = function(id){ var q = Q.filter(function(x){ return x.id === id; })[0]; return q.o[ans[id]][1]; };
+    var sum = {}, max = {};
+    Q.forEach(function(q){ if (!q.area) return; sum[q.area] = (sum[q.area] || 0) + q.o[ans[q.id]][1]; max[q.area] = (max[q.area] || 0) + 3; });
+    var areas = Object.keys(AREAS).map(function(k){ return { k:k, p: Math.round(sum[k] / max[k] * 100) }; })
+      .sort(function(a, b){ return b.p - a.p; });
+    var total = Math.round(areas.reduce(function(s, a){ return s + a.p; }, 0) / areas.length);
+    R = { sector: val('sector'), size: ans.size, hours: val('hours'), areas: areas, total: total };
+    setTimeout(function(){ clearInterval(t); renderResult(); }, 2700);
+  }
+
+  function level(p){ return p >= 67 ? ['hot','כאב פעיל'] : p >= 34 ? ['warm','כדאי לבדוק'] : ['ok','עובד טוב']; }
+
+  function renderResult(){
+    show('result');
+    var hot = R.areas.filter(function(a){ return a.p >= 67; }).length;
+    $('rtitle').innerHTML = R.total >= 60 ? 'הרבה מהזמן שלכם הולך על <em>דברים שמערכת יכולה לעשות</em>'
+      : R.total >= 30 ? 'יש לכם <em>' + (hot || 'כמה') + ' ' + (hot === 1 ? 'כאב' : 'כאבים') + '</em> שאפשר לפתור כבר עכשיו'
+      : 'אתם מנוהלים טוב — <em>ועדיין יש מה לשפר</em>';
+
+    // מד
+    setTimeout(function(){
+      $('garc').style.strokeDashoffset = 314 - 314 * R.total / 100;
+      var n = 0, g = $('gval'), st = setInterval(function(){ n += 2; if (n >= R.total) { n = R.total; clearInterval(st); } g.textContent = n; }, 22);
+    }, 250);
+
+    // שורות תחומים
+    $('rows').innerHTML = R.areas.map(function(a){
+      var A = AREAS[a.k], L = level(a.p);
+      return '<div class="arow" style="--c:' + A.c + '"><div class="n"><svg class="ico"><use href="#' + A.ico + '"/></svg>' + A.name + '</div>'
+        + '<div class="track"><span data-w="' + Math.max(a.p, 4) + '"></span></div><span class="tag ' + L[0] + '">' + L[1] + '</span></div>';
+    }).join('');
+    setTimeout(function(){ document.querySelectorAll('.track span').forEach(function(s){ s.style.width = s.dataset.w + '%'; }); }, 350);
+
+    // שעות — חשבון פשוט ממה שהם אמרו, לא הבטחה
+    var wk = R.hours, yr = wk * 42, days = Math.round(yr / 8);
+    $('hours').innerHTML =
+      '<div><b>' + (wk === 12 ? '10+' : wk) + '</b><span>שעות בשבוע על עבודה שחורה</span></div>'
+      + '<div><b>' + yr + '</b><span>שעות בשנת עבודה, בערך</span></div>'
+      + '<div><b>' + days + '</b><span>ימי עבודה מלאים בשנה</span></div>';
+
+    // הכאב הנסתר — תחום שנראה "קטן" בשאלה אחת אבל גבוה בסיכום, או פשוט התחום המוביל
+    var top = R.areas[0], A = AREAS[top.k];
+    var hiddenTxt = {
+      data:'הנתונים קיימים אצלכם — הם פשוט לא מגיעים אליכם בזמן. כל החלטה שמתקבלת על סמך תחושה במקום תמונה, עולה ביוקר.',
+      know:'אתם, או מישהו אחד בצוות, משמשים כ"מאגר הידע" של הארגון. זה גוזל זמן כל יום — ומסוכן כשהאדם הזה לא זמין.',
+      publish:'כשאין שגרת פרסום, מה שאתם עושים פשוט לא נראה. תורמים, הורים ושותפים שופטים לפי מה שהם רואים.',
+      brand:'כשכל מסמך נראה אחרת, הארגון נראה פחות מקצועי ממה שהוא באמת — ומישהו מבזבז זמן לעצב מאפס בכל פעם.',
+      forms:'כל אישור שעובר במייל נתקע בממוצע אצל מישהו. הזמן לא הולך על האישור — הוא הולך על המרדף אחריו.',
+      people:'מי שהכי צריך אתכם הוא בדיוק מי שקל לפספס כשאין מעקב. זה הכאב שהכי קשה לראות — עד שמאוחר.',
+      tasks:'כשאין תמונה משותפת, ישיבות הופכות לדיווח במקום לחשיבה, ודברים נופלים בין "חשבתי שזה אצלך".'
+    };
+    $('hidden').innerHTML = '<svg class="ico"><use href="#i-eye"/></svg><div><h3>הכאב שכנראה לא ראיתם: ' + A.name + '</h3><p>' + hiddenTxt[top.k] + '</p></div>';
+
+    // פתרונות — שלושת התחומים המובילים
+    var picks = R.areas.filter(function(a){ return a.p >= 34; }).slice(0, 3);
+    if (picks.length < 3) picks = R.areas.slice(0, 3);
+    $('sols').innerHTML = picks.map(function(a, n){
+      var S = AREAS[a.k];
+      return '<div class="sol" style="--c:' + S.c + '"><span class="rank">' + ['הכי דחוף','מיד אחריו','כדאי גם'][n] + '</span>'
+        + '<svg class="ico"><use href="#' + S.ico + '"/></svg><h3>' + S.sol + '</h3><p>' + S.what + '</p>'
+        + '<div class="ex"><b>אצלכם זה ייראה ככה: </b>' + S.ex[R.sector] + '</div></div>';
+    }).join('');
+
+    var share = 'עשיתי את "מפת הכאבים" — בדיקה של 3 דקות למנהלים. שווה לך לבקש אותה: https://impactos.co.il/mapa';
+    $('wa-share').href = 'https://wa.me/?text=' + encodeURIComponent(share);
+  }
+
+  $('again').onclick = function(){ ans = {}; i = 0; show('intro'); };
+
+  // ── טופס → site_leads, יחד עם סיכום התשובות ─────────────────
+  var SB = 'https://rllbiktbrkzhzsjhahxb.supabase.co', KEY = 'sb_publishable_rb8KDlA3TBSOdAUaxZwYZg_7s1Sxs_p';
+  var WA = 'https://wa.me/972536256653';
+  function esc(s){ return s.replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function summary(){
+    var sec = Q[0].o[ans.sector][0], size = Q[1].o[ans.size][0];
+    var lines = ['מהשאלון "מפת הכאבים"', 'סוג: ' + sec + ' · היקף: ' + size, 'מדד עומס: ' + R.total + '/100 · עבודה שחורה: ' + Q[Q.length - 1].o[ans.hours][0] + ' בשבוע', 'תחומים:'];
+    R.areas.forEach(function(a){ lines.push('• ' + AREAS[a.k].name + ' ' + a.p + '%'); });
+    lines.push('תשובות:');
+    Q.forEach(function(q){ if (q.area) lines.push('• ' + q.t + ' → ' + q.o[ans[q.id]][0]); });
+    return lines.join('\n').slice(0, 1990);
+  }
+  var form = $('f'), msg = $('msg'), go = $('go');
+  function say(kind, html){ msg.className = 'msg ' + kind; msg.innerHTML = html; }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var v = function(id){ return $(id).value.trim(); };
+    var name = v('n'), phone = v('ph'), org = v('o'), email = v('em');
+    if (!name || !org || phone.replace(/\D/g, '').length < 9) { say('err', 'חסר שם, תפקיד וארגון או מספר טלפון תקין.'); return; }
+    var message = summary();
+    go.disabled = true; go.textContent = 'שולח…';
+    window.supabase.createClient(SB, KEY).from('site_leads').insert({
+      product: 'mapat-keevim', full_name: name, org_name: org, phone: phone, email: email || null,
+      message: message, source_page: location.href.slice(0, 300)
+    }).then(function(r){
+      if (r.error) throw r.error;
+      form.querySelectorAll('input,button').forEach(function(x){ x.disabled = true; });
+      go.textContent = 'נרשמתם';
+      say('ok', 'תודה, ' + esc(name.split(' ')[0]) + '! המפה שלכם אצלנו. נחזור אליכם בימים הקרובים לתאם פגישה.');
+    }).catch(function(){
+      go.disabled = false; go.textContent = 'שריינו לי פגישה';
+      var wa = WA + '?text=' + encodeURIComponent('היי, עשיתי את הבדיקה ואשמח לפגישה.\nשם: ' + name + '\nתפקיד וארגון: ' + org + '\nטלפון: ' + phone + '\n\n' + message);
+      say('err', 'משהו השתבש בשליחה. אפשר לנסות שוב, או <a href="' + wa + '" target="_blank" rel="noopener">לשלוח לנו את המפה בוואטסאפ</a>.');
+    });
+  });
+})();
+</script>
+</body>
+</html>
