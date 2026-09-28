@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ערכת הפצה · מפת הכאבים</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#061E4F;--fuchsia:#F00678;--teal:#12C7C7;--sea:#0E6E8C;--slate:#64748B;--line:#D6EEF3}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Heebo,Arial,sans-serif;background:linear-gradient(180deg,#F4FBFE 0,#E4F6FA 340px,#F7FBFC 341px);color:#0F1B3D;line-height:1.7}
+  .wrap{max-width:900px;margin:0 auto;padding:36px 16px 60px}
+  h1{color:var(--navy);font-size:34px;margin:0 0 6px;font-weight:900}
+  h1 em{font-style:normal;color:var(--fuchsia)}
+  .intro{color:var(--sea);margin:0 0 22px;font-weight:600}
+  .how{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:26px}
+  .how div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;font-size:15px;font-weight:600}
+  .how b{display:block;color:var(--fuchsia);font-size:22px;font-weight:900;line-height:1}
+  .links{background:#fff;border:2px solid var(--teal);border-radius:18px;padding:16px 20px;margin-bottom:30px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .links b{color:var(--navy)}
+  .links a{font-weight:800;color:var(--fuchsia);font-size:18px}
+  .links small{color:var(--slate);flex-basis:100%}
+  .links.secret{border-color:#F4B41B;background:#FFFBEB}
+  h2.grp{color:var(--sea);font-size:15px;letter-spacing:.3px;margin:34px 0 12px;font-weight:900}
+  .card{background:#fff;border:1px solid var(--line);border-radius:20px;margin-bottom:20px;overflow:hidden}
+  .card header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line)}
+  .card h3{margin:0;font-size:19px;color:var(--navy)}
+  .card h3 span{font-weight:600;color:var(--slate);font-size:15px}
+  .card .body{display:grid;grid-template-columns:220px 1fr}
+  .card.noimg .body{grid-template-columns:1fr}
+  .card .pic{padding:16px;border-left:1px solid var(--line);background:#F4FBFE;display:flex;flex-direction:column;gap:10px;align-items:center}
+  .card .pic img{width:100%;border-radius:10px;box-shadow:0 10px 24px -14px rgba(0,0,0,.45)}
+  .card .pic .lbl{font-size:13px;font-weight:800;color:var(--slate);text-align:center}
+  .card .pic a{display:block;text-align:center;text-decoration:none;font-weight:800;border-radius:999px;padding:8px 16px;background:var(--navy);color:#fff;font-size:14px;width:100%}
+  .card pre{margin:0;padding:18px 20px;white-space:pre-wrap;font:inherit;font-size:16px}
+  button{font:inherit;font-weight:800;border:0;border-radius:999px;padding:8px 20px;background:var(--fuchsia);color:#fff;cursor:pointer;white-space:nowrap}
+  button.done{background:#3F7A1E}
+  .tips{background:#fff;border-radius:20px;padding:20px 24px;border:1px solid var(--line);margin-top:30px}
+  .tips h2{margin:0 0 8px;color:var(--navy);font-size:19px}
+  .tips li{margin-bottom:6px}
+  @media (max-width:680px){.how{grid-template-columns:repeat(2,1fr)}.card .body{grid-template-columns:1fr}.card .pic{border-left:0;border-bottom:1px solid var(--line)}.card .pic img{max-width:240px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p style="margin:0 0 10px"><a href="../" style="color:#0E6E8C;font-weight:800;text-decoration:none">→ לכל הקמפיינים</a></p>
+  <h1>ערכת הפצה · <em>מפת הכאבים</em></h1>
+  <p class="intro">הקמפיין "קצה הקרחון" — בקול אישי. הפוסטים מובילים לדף בקשה; את השאלון עצמו שולחים רק למי שביקש. מורידים את התמונה, מעתיקים את הטקסט, ומפרסמים.</p>
+
+  <div class="links">
+    <b>לפרסום (ציבורי) — דף הבקשה:</b>
+    <a href="https://impactos.co.il/mapa" target="_blank" dir="ltr">impactos.co.il/mapa</a>
+    <button type="button" data-copy="https://impactos.co.il/mapa">העתקה</button>
+  </div>
+  <div class="links secret">
+    <b>🔒 השאלון עצמו — רק בפרטי:</b>
+    <a href="https://impactos.co.il/mapa/me2ae28/" target="_blank" dir="ltr">impactos.co.il/mapa/me2ae28</a>
+    <button type="button" data-copy="https://impactos.co.il/mapa/me2ae28/">העתקה</button>
+    <small>מי שמשאיר פרטים בדף הבקשה — מגיע אלייך במייל ("בקשה למפת הכאבים"). שולחים לו את הקישור הזה עם ההודעה האישית למטה. התמונות: <b>Downloads\מפת הכאבים - תמונות להפצה</b>.</small>
+  </div>
+
+  <div id="posts"></div>
+
+  <div class="tips">
+    <h2>טיפים</h2>
+    <ul>
+      <li><b>הסיפור כתוב בגוף ראשון שלך</b> — הדוגמאות (שאלות חוזרות, דוחות מאפס, אישורים במייל) הן ניחוש שלי. להחליף ברגע אמיתי מבית הספר שלך — זה מה שיגרום לאנשים להתחבר.</li>
+      <li><b>לשלוח מהר</b> — מי שהשאיר פרטים מקבל את השאלון בתוך שעה-שעתיים, כשהסקרנות עוד חמה.</li>
+      <li><b>באינסטגרם הקישור בכיתוב לא לחיץ</b> — לשים את impactos.co.il/mapa בביו לפני הפרסום. בסטורי: מדבקת קישור.</li>
+      <li>בפייסבוק ובלינקדאין אפשר לנסות גם גרסה עם הקישור בתגובה הראשונה במקום בפוסט — לפעמים זה מגיע ליותר אנשים.</li>
+      <li>לענות לכל מי שמגיב "עשיתי!" או משתף מה יצא לו — שיחה בתגובות מקפיצה את הפוסט.</li>
+      <li>אחרי כמה עשרות ממלאים — פוסט המשך עם מה שגילינו ("רוב המנהלים ענו ש…"), מנתונים אמיתיים בלבד.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+var L = 'https://impactos.co.il/mapa';            // דף הבקשה — ציבורי
+var SECRET = 'https://impactos.co.il/mapa/me2ae28/'; // השאלון עצמו — רק בפרטי
+var GROUPS = [
+  { g: 'פוסטים — בקול שלך, מובילים לדף הבקשה', items: [
+    { t: 'פייסבוק', s: 'פוסט מלא', img: 'posters/feed.png', lbl: 'פיד', dim: '1080×1350', x:
+`כמנהלת בית ספר, הייתי בטוחה שהבעיה שלי היא שאין לי זמן.
+
+עניתי על אותן שאלות שוב ושוב.
+בניתי דוחות מאפס, כל פעם מחדש.
+רדפתי אחרי אישורים שנתקעו במייל.
+והרגשתי שכל הידע של בית הספר יושב אצלי בראש — ושאם אני לא שם, דברים נעצרים.
+
+כשהתחלתי לפרק את זה, תהליך אחרי תהליך, גיליתי ש"אין לי זמן" היה רק קצה הקרחון.
+מתחתיו היו עשרות דברים קטנים שאכלו לי את השבוע — וכמעט את כולם אפשר היה לפתור.
+טופס שמגיע לבד למי שצריך. תזכורת שיוצאת בלי שאזכור. תמונת מצב שאני לא צריכה לבקש.
+
+היום זו השליחות שלי: לעזור למנהלים ומנהלות בחינוך ובעמותות לעבוד פחות קשה, ולהחזיר להם את הזמן לדברים שבשבילם נכנסו לתפקיד.
+
+בניתי מפת כאבים — 12 שאלות על השבוע שלכם, 3 דקות, ובסוף רואים מה מסתתר אצלכם מתחת לפני השטח.
+אני שולחת אותה לכל אחד באופן אישי. רוצים? השאירו פרטים כאן 👇
+${L}` },
+
+    { t: 'אינסטגרם', s: 'כיתוב לפיד · הקישור בביו', img: 'posters/feed.png', lbl: 'פיד', dim: '1080×1350', x:
+`גם אני אמרתי "אין לי זמן" 🙋‍♀️
+
+כמנהלת בית ספר עניתי על אותן שאלות שוב ושוב, בניתי דוחות מאפס, ורדפתי אחרי אישורים.
+כשפירקתי את זה — גיליתי שזה היה רק קצה הקרחון 🧊 ושאת רוב מה שמתחת אפשר לפתור.
+
+היום זו השליחות שלי: לעזור למנהלים בחינוך ובעמותות לעבוד פחות קשה.
+
+בניתי מפת כאבים — 12 שאלות, 3 דקות, ומגלים מה מסתתר אצלכם.
+אני שולחת אותה אישית 💌 הקישור בביו — ${L.replace('https://', '')}
+
+#ניהול #מנהלים #מנהלתביתספר #חינוך #עמותות #מגזר_שלישי #ניהול_זמן #מנהיגות #IMPACTOS` },
+
+    { t: 'לינקדאין', s: 'סיפור אישי-מקצועי', img: 'posters/wide.png', lbl: 'רחב', dim: '1200×630', x:
+`"אין לי זמן."
+כמנהלת בית ספר אמרתי את המשפט הזה כל יום. והוא היה נכון.
+אבל הוא היה רק קצה הקרחון.
+
+כשהתחלתי לשאול את עצמי שאלות קטנות — כמה פעמים השבוע עניתי על אותה שאלה? כמה זמן לקח לי הדוח האחרון? מה קורה כשאני לא שם? — התגלתה תמונה אחרת. הזמן לא נעלם. הוא דלף, בעשרות מקומות קטנים שכבר הפסקתי לראות.
+
+אז התחלתי לפתור. תהליך אחרי תהליך: טפסים שמגיעים לבד, תזכורות שיוצאות לבד, תמונת מצב שלא צריך לבקש. ובית הספר התחיל לעבוד אחרת — ואני איתו.
+
+היום זו השליחות שלי: לעזור למנהלים ומנהלות בחינוך ובעמותות לייעל את העבודה, כדי שהתפקיד יהיה פחות תובעני ופחות בודד.
+
+הצעד הראשון הוא מפת כאבים אישית — 12 שאלות, 3 דקות, ותמונה של איפה הזמן שלכם באמת הולך.
+אני שולחת אותה לכל אחד באופן אישי: ${L}
+
+#ניהול #חינוך #מנהלי_בתי_ספר #עמותות #מגזר_שלישי #ניהול_זמן` },
+
+    { t: 'ווטסאפ', s: 'לקבוצות מנהלים', img: 'posters/square.png', lbl: 'ריבוע', dim: '1080×1080', x:
+`גם אני, כמנהלת בית ספר, אמרתי כל יום "אין לי זמן" 🙂
+כשפירקתי את זה גיליתי שזה רק קצה הקרחון — ושאת רוב מה שמתחת אפשר לפתור.
+בניתי מפת כאבים למנהלים: 12 שאלות, 3 דקות, ומגלים מה מסתתר אצלכם.
+אני שולחת אותה אישית — השאירו פרטים כאן 👇
+${L}` },
+
+    { t: 'ווטסאפ אישי', s: 'למנהל/ת שאת מכירה — מקבל/ת ישר את השאלון', img: 'posters/square.png', lbl: 'ריבוע', dim: '1080×1080', x:
+`היי, חשבתי עליך 🙂
+כמה פעמים שמעת ממני "אין לי זמן" כשניהלתי? 🙂 בניתי משהו קטן מתוך זה — מפת כאבים: 12 שאלות על השבוע שלך, 3 דקות, ובסוף רואים איפה הזמן באמת הולך.
+הנה הקישור, אשמח לשמוע מה יצא לך: ${SECRET}` },
+
+    { t: 'סטורי', s: 'אינסטגרם / פייסבוק / סטטוס ווטסאפ', img: 'posters/story.png', lbl: 'סטורי', dim: '1080×1920', x:
+`הכתובת כבר מופיעה על התמונה.
+באינסטגרם ובפייסבוק: להוסיף מדבקת "קישור" (Link) עם ${L} — ככה אפשר ללחוץ ישר מהסטורי.
+בסטטוס ווטסאפ: להוסיף את הקישור ככיתוב מתחת לתמונה.` }
+  ]},
+  { g: 'למי שהשאיר פרטים — עם הקישור הסודי לשאלון', items: [
+    { t: 'הודעה אישית', s: 'בווטסאפ או במייל, למי שביקש', x:
+`היי [שם], כאן מיטל — תודה שביקשת 🙂
+הנה מפת הכאבים שלך: ${SECRET}
+
+12 שאלות קצרות על השבוע שלך, 3 דקות.
+בסוף תקבל/י מפה אישית — איפה הזמן באמת הולך, ומה מסתתר מתחת לפני השטח.
+אם תרצה/י אחר כך לעבור עליה יחד — אני כאן, בלי עלות.` },
+    { t: 'תזכורת', s: 'אחרי יומיים, למי שעוד לא מילא', x:
+`היי [שם], רק מזכירה — מפת הכאבים שלך מחכה 🧊
+3 דקות: ${SECRET}` }
+  ]}
+];
+
+var box = document.getElementById('posts');
+function copyBtn(b, text){
+  navigator.clipboard.writeText(text).then(function(){
+    var o = b.textContent; b.textContent = 'הועתק'; b.classList.add('done');
+    setTimeout(function(){ b.textContent = o; b.classList.remove('done'); }, 1600);
+  });
+}
+GROUPS.forEach(function(G){
+  var h = document.createElement('h2'); h.className = 'grp'; h.textContent = G.g; box.appendChild(h);
+  G.items.forEach(function(p){
+    var c = document.createElement('div'); c.className = 'card' + (p.img ? '' : ' noimg');
+    c.innerHTML = '<header><h3>' + p.t + ' <span>· ' + p.s + '</span></h3><button type="button">העתקת הטקסט</button></header><div class="body">'
+      + (p.img ? '<div class="pic"><img src="' + p.img + '" alt=""><span class="lbl">התמונה לערוץ הזה · ' + p.lbl + ' <bdi dir="ltr">' + p.dim + '</bdi></span><a href="' + p.img + '" download target="_blank">הורדת התמונה</a></div>' : '')
+      + '<pre></pre></div>';
+    c.querySelector('pre').textContent = p.x;
+    var b = c.querySelector('header button'); b.onclick = function(){ copyBtn(b, p.x); };
+    box.appendChild(c);
+  });
+});
+document.querySelectorAll('[data-copy]').forEach(function(b){ b.onclick = function(){ copyBtn(b, b.dataset.copy); }; });
+</script>
+</body>
+</html>
