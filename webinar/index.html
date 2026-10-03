@@ -7,225 +7,395 @@
 <meta name="description" content="וובינר ללא עלות, ברישום מראש: איך חוסכים זמן ומייעלים את העבודה עם בינה מלאכותית, ואיך מקיימים שינוי והטמעה טובה. יום שלישי 20.10 בשעה 20:30, בזום.">
 <meta property="og:title" content="וובינר: בינה מלאכותית שחוסכת לכם זמן">
 <meta property="og:description" content="יום שלישי 20.10 · 20:30 · בזום · ללא עלות, ברישום מראש">
+<meta name="theme-color" content="#061E4F">
+<link rel="icon" href="/public/brand/impact-fingerprint-official-color.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
-:root{--navy:#061E4F;--navy2:#0B2A66;--fuch:#F00678;--teal:#12C7C7;--yellow:#F4B41B;--green:#7BCB52;--gray:#64748B;--bg:#F6F8FC;--card:#fff;--ink:#0D1B3E;--line:#E2E8F0}
+:root{
+  --navy:#061E4F;--deep:#04153A;--ink:#0D1B3E;--teal:#12C7C7;--fuch:#F00678;--yellow:#F4B41B;
+  --paper:#FBF8F2;--mist:rgba(255,255,255,.66);--faint:rgba(255,255,255,.12);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:Heebo,Arial,sans-serif;background:var(--bg);color:var(--ink);direction:rtl;line-height:1.6}
+body{margin:0;font-family:Heebo,Arial,sans-serif;background:var(--deep);color:#fff;direction:rtl;line-height:1.6;overflow-x:hidden}
 a{color:inherit}
-.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
-/* פתיחה */
-.hero{background:var(--navy);color:#fff;position:relative;overflow:hidden;padding:28px 0 64px}
-.hero::before{content:"";position:absolute;inset:-40% -20% auto auto;width:780px;height:780px;background:radial-gradient(circle,rgba(18,199,199,.28),transparent 62%)}
-.hero::after{content:"";position:absolute;inset:auto auto -45% -20%;width:700px;height:700px;background:radial-gradient(circle,rgba(240,6,120,.22),transparent 62%)}
-.hero .wrap{position:relative;z-index:1}
-.logo{display:inline-block;background:#fff;border-radius:14px;padding:8px 14px}
-.logo img{height:38px;display:block}
-.tag{display:inline-flex;align-items:center;gap:8px;margin:36px 0 14px;background:rgba(18,199,199,.16);color:var(--teal);border:1px solid rgba(18,199,199,.4);border-radius:999px;padding:6px 16px;font-weight:700;font-size:15px}
-.tag .dot{width:9px;height:9px;border-radius:50%;background:var(--teal);animation:pulse 1.6s infinite}
-@keyframes pulse{50%{opacity:.3}}
-h1{font-size:clamp(2.1rem,6vw,3.6rem);line-height:1.12;font-weight:900;margin:0 0 16px}
-h1 em{font-style:normal;color:var(--teal)}
-.lead{font-size:clamp(1.05rem,2.4vw,1.3rem);color:rgba(255,255,255,.88);max-width:640px;margin:0 0 26px}
-.when{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
-.when div{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:10px 16px;display:flex;align-items:center;gap:10px;font-weight:700}
-.when svg{flex:none}
-.free{color:var(--yellow)}
-.cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--fuch);color:#fff;text-decoration:none;font-weight:800;font-size:1.15rem;border-radius:999px;padding:15px 34px;box-shadow:0 14px 34px -12px rgba(240,6,120,.7);border:0;cursor:pointer;min-height:52px;font-family:inherit}
-.cta:hover{filter:brightness(1.08)}
-/* מקטעים */
-section{padding:56px 0}
-h2{font-size:clamp(1.6rem,4vw,2.3rem);font-weight:900;margin:0 0 8px;color:var(--navy)}
-.sub{color:var(--gray);margin:0 0 28px;font-size:1.05rem}
-.learn{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-.lc{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;position:relative;overflow:hidden}
-.lc .ic{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;margin-bottom:14px}
-.lc h3{font-size:1.25rem;margin:0 0 6px;font-weight:800}
-.lc p{margin:0;color:var(--gray)}
-.hosts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-.host{display:flex;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px}
-.host img{width:96px;height:96px;border-radius:50%;object-fit:cover;border:4px solid var(--teal);flex:none}
-.host:nth-child(2) img{border-color:var(--fuch)}
-.host b{font-size:1.2rem;display:block}
-.host span{color:var(--gray);font-size:.95rem}
-.why{background:var(--navy);color:#fff;border-radius:28px;padding:40px 28px}
-.why h2{color:#fff}
-.why .sub{color:rgba(255,255,255,.75)}
-.wg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
-.wi{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:18px;display:flex;gap:12px;align-items:flex-start}
-.wi svg{flex:none;margin-top:2px}
-.wi b{display:block;font-size:1.08rem}
-.wi span{color:rgba(255,255,255,.72);font-size:.95rem}
-/* טופס */
-.form-card{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:30px;max-width:640px;margin:0 auto;box-shadow:0 24px 60px -36px rgba(6,30,79,.45)}
-.form-card h2{text-align:center}
-.form-card .sub{text-align:center}
-label{display:block;font-weight:700;margin:14px 0 6px}
-label small{font-weight:500;color:var(--gray)}
-input,select,textarea{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink)}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(18,199,199,.2)}
-input[type=email],input[type=tel]{direction:ltr;text-align:right}
-textarea{min-height:90px;resize:vertical}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.form-card .cta{width:100%;margin-top:22px}
-.msg{margin-top:16px;border-radius:16px;padding:14px 16px;display:none}
-.msg.err{display:block;background:#FFF1F5;color:#9F0A4D}
-.done{display:none;text-align:center}
-.done.show{display:block}
-.done .big{width:76px;height:76px;border-radius:50%;background:var(--green);display:grid;place-items:center;margin:0 auto 12px}
-.done h2{margin-bottom:6px}
-.zoom{background:var(--bg);border:1.5px dashed var(--teal);border-radius:16px;padding:14px;margin:18px 0;word-break:break-all;direction:ltr}
-.zoom a{font-weight:800;color:var(--navy)}
-.acts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-.acts a{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);border-radius:999px;padding:10px 18px;text-decoration:none;font-weight:700;min-height:44px}
-.acts a.pri{background:var(--navy);color:#fff;border-color:var(--navy)}
-footer{text-align:center;color:#8A97A6;font-size:.8rem;padding:28px 20px 40px}
-footer a{color:#8A97A6}
-.sticky{position:fixed;bottom:14px;left:14px;right:14px;display:none;z-index:20}
-.sticky .cta{width:100%}
-@media (max-width:640px){.row2{grid-template-columns:1fr}.sticky.show{display:block}section{padding:44px 0}.why{padding:30px 18px}.form-card{padding:22px 16px}}
-@media (prefers-reduced-motion:reduce){.tag .dot{animation:none}html{scroll-behavior:auto}}
-/* טביעת אצבע: לוחצים ומחזיקים (אותו אפקט כמו בדף הבית של impactos) */
-.hold{--hold-reveal:0%;--hold-angle:0deg;--hold-scale:0;padding:40px 0 8px}
-.hold-in{position:relative;overflow:hidden;max-width:560px;margin:0 auto;border:1px solid rgba(18,199,199,.22);border-radius:28px;padding:30px 22px 26px;text-align:center;
-  background:radial-gradient(circle at 18% 18%,rgba(18,199,199,.12),transparent 34%),radial-gradient(circle at 78% 78%,rgba(240,6,120,.08),transparent 36%),#fff;box-shadow:0 18px 44px rgba(6,30,79,.08)}
-.hold-in::before{content:"";position:absolute;inset:auto -80px -130px auto;width:260px;aspect-ratio:1/1.23;background:url('/public/brand/impact-fingerprint-official-color.png') center/contain no-repeat;opacity:.035;pointer-events:none;transform:rotate(-8deg)}
-.hold-eye{font-size:13px;font-weight:800;color:#0E9C9C;margin-bottom:18px}
-.hold-fp{position:relative;width:112px;aspect-ratio:1/1.23;margin:0 auto 18px;border:0;border-radius:34px;padding:10px;cursor:pointer;touch-action:none;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;
-  background:conic-gradient(from 180deg,var(--teal) var(--hold-angle),rgba(6,30,79,.08) 0);box-shadow:0 12px 34px rgba(6,30,79,.1)}
-.hold-fp:focus-visible{outline:3px solid rgba(18,199,199,.42);outline-offset:4px}
-.hold-mark{position:relative;display:block;width:100%;height:100%;border-radius:26px;background:#fff;pointer-events:none}
-.hold-mark::before,.hold-mark::after{content:"";position:absolute;inset:15px;-webkit-mask:url('/public/brand/impact-fingerprint-official-color.png') center/contain no-repeat;mask:url('/public/brand/impact-fingerprint-official-color.png') center/contain no-repeat}
-.hold-mark::before{background:rgba(6,30,79,.16)}
-.hold-mark::after{background:linear-gradient(180deg,var(--teal),var(--fuch));clip-path:inset(0 0 calc(100% - var(--hold-reveal)) 0)}
-.hold-hint{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:12px}
-.hold-bar{width:150px;height:3px;margin:0 auto 18px;border-radius:999px;background:rgba(6,30,79,.08);overflow:hidden}
-.hold-bar span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--teal),var(--fuch));transform:scaleX(var(--hold-scale));transform-origin:right center}
-.hold-res{max-height:0;opacity:0;overflow:hidden;transform:translateY(8px);transition:max-height 460ms ease,opacity 320ms ease,transform 320ms ease}
-.hold.done-hold .hold-res{max-height:640px;opacity:1;transform:none}
+.skip{position:absolute;inset-inline-start:-999px;top:8px;background:#fff;color:var(--navy);padding:8px 14px;border-radius:8px;z-index:50}
+.skip:focus{inset-inline-start:8px}
+/* גרעין עדין על כל הדף */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:var(--teal)}
+.eyebrow i{width:26px;height:2px;background:currentColor;display:block}
+
+/* ===== פתיחה ===== */
+.hero{position:relative;min-height:100dvh;display:flex;flex-direction:column;
+  background:radial-gradient(900px 600px at 12% 30%,rgba(18,199,199,.16),transparent 60%),radial-gradient(700px 520px at 90% 90%,rgba(240,6,120,.14),transparent 60%),var(--navy)}
+.top{display:flex;justify-content:space-between;align-items:center;padding:22px 22px}
+.logo{display:inline-flex;background:#fff;border-radius:12px;padding:7px 12px}
+.logo img{height:30px;display:block}
+.top a.mini{font-weight:700;font-size:15px;text-decoration:none;border-bottom:1.5px solid var(--teal);padding-bottom:2px}
+.hero-grid{flex:1;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding:24px 22px 48px}
+h1{font-size:clamp(2.6rem,7vw,5.8rem);line-height:.98;letter-spacing:-.02em;font-weight:900;margin:18px 0 22px;text-wrap:balance}
+h1 .out{color:transparent;-webkit-text-stroke:2px var(--teal);background:linear-gradient(var(--teal),var(--teal)) no-repeat right/0 100%;-webkit-background-clip:text;background-clip:text;animation:fillword 1.1s .9s var(--ease) forwards}
+@keyframes fillword{to{background-size:100% 100%}}
+.lead{font-size:clamp(1.05rem,2.1vw,1.28rem);color:var(--mist);max-width:36ch;margin:0 0 30px;text-wrap:pretty}
+/* פס כרטיס מחורר במקום צ'יפים */
+.ticket{display:inline-grid;grid-auto-flow:column;background:rgba(255,255,255,.06);border:1px solid var(--faint);border-radius:18px;overflow:hidden;margin-bottom:30px}
+.ticket div{padding:12px 22px;display:flex;flex-direction:column;justify-content:center;position:relative}
+.ticket div+div{border-inline-start:2px dashed rgba(255,255,255,.16)}
+.ticket small{font-size:12px;color:var(--mist);font-weight:500}
+.ticket b{font-size:1.25rem;font-weight:800;font-variant-numeric:tabular-nums}
+.ticket .free b{color:var(--yellow)}
+.cta{display:inline-flex;align-items:center;gap:12px;background:var(--fuch);color:#fff;text-decoration:none;font-weight:800;font-size:1.12rem;border-radius:16px;padding:16px 28px;border:0;cursor:pointer;font-family:inherit;min-height:54px;
+  box-shadow:0 18px 40px -16px rgba(240,6,120,.75);transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+.cta:hover{transform:translateY(-2px);box-shadow:0 22px 44px -14px rgba(240,6,120,.85)}
+.cta:active{transform:translateY(1px) scale(.99)}
+.cta svg{transition:transform .2s var(--ease)}
+.cta:hover svg{transform:translateX(-4px)}
+.cta:focus-visible,.hold-fp:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid rgba(18,199,199,.6);outline-offset:3px}
+
+/* הטביעה הגדולה: מצטיירת בכניסה, ומתמלאת בלחיצה ארוכה */
+.hold{--hold-reveal:0%;--hold-scale:0;position:relative;text-align:center}
+.hold-fp{position:relative;display:block;width:min(100%,360px);aspect-ratio:300/340;margin:0 auto;border:0;background:none;padding:0;cursor:pointer;touch-action:none;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;border-radius:38%}
+.hold-fp svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.ring{fill:none;stroke-width:5;stroke-linecap:round}
+.ring.bg{stroke:rgba(255,255,255,.1)}
+.ring.fg{stroke:url(#gr);stroke-dasharray:1 1;stroke-dashoffset:calc(1 - var(--hold-scale))}
+.print path,.print use{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:9}
+.print.base{stroke:rgba(255,255,255,.24)}
+.print.base path{stroke-dasharray:1 1;stroke-dashoffset:1;animation:draw 2.2s var(--ease) forwards}
+.print.base path:nth-child(2n){animation-delay:.12s}.print.base path:nth-child(3n){animation-delay:.24s}.print.base path:nth-child(5n){animation-delay:.36s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.print.color{stroke:url(#gp);clip-path:inset(0 0 calc(100% - var(--hold-reveal)) 0)}
+.print.color .heart{stroke:var(--fuch)}
+.nodes circle{fill:var(--teal);opacity:0;transform-box:fill-box;transform-origin:center;animation:pop .4s var(--ease) forwards}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+.hold-hint{margin-top:16px;font-weight:700;color:var(--mist);font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px}
+.hold-hint::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--teal);animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
 .hold.done-hold .hold-hint{display:none}
-.hold-res p{margin:4px auto 18px;max-width:360px;color:var(--navy);font-size:17px;line-height:1.62;font-weight:800}
-.hold-steps{display:grid;gap:8px;margin:0 auto 18px;max-width:300px}
-.hold-steps span{display:flex;align-items:center;justify-content:center;min-height:40px;border-radius:999px;background:rgba(18,199,199,.09);color:var(--navy);font-size:14px;font-weight:800}
-@media (prefers-reduced-motion:reduce){.hold{--hold-reveal:100%;--hold-angle:360deg;--hold-scale:1}.hold-res{max-height:none;opacity:1;transform:none}}
+.hold-res{max-height:0;opacity:0;overflow:hidden;transform:translateY(10px);transition:max-height .5s var(--ease),opacity .35s var(--ease),transform .35s var(--ease)}
+.hold.done-hold .hold-res{max-height:420px;opacity:1;transform:none}
+.hold-res p{font-size:1.15rem;font-weight:700;line-height:1.55;margin:16px auto 0;max-width:30ch;text-wrap:balance}
+.hold-res p em{font-style:normal;color:var(--teal)}
+
+/* ===== פס המערכות האמיתיות ===== */
+.marq{border-block:1px solid var(--faint);background:var(--deep);overflow:hidden;padding:18px 0;position:relative}
+.marq-label{position:absolute;inset-inline-start:0;top:0;bottom:0;z-index:2;display:flex;align-items:center;padding:0 22px 0 18px;background:var(--deep);box-shadow:-60px 0 40px -10px var(--deep);font-weight:700;color:var(--teal);font-size:14px;white-space:nowrap}
+.track{display:flex;width:max-content;animation:scroll 46s linear infinite}
+.track span{display:inline-flex;align-items:center;gap:18px;padding-inline-start:18px;font-size:1.12rem;font-weight:600;white-space:nowrap;color:rgba(255,255,255,.86)}
+.track span::after{content:"";width:9px;height:9px;border-radius:50%;border:2px solid var(--fuch)}
+@keyframes scroll{to{transform:translateX(50%)}}
+
+/* ===== מה בוובינר: מסלול מתפתל ===== */
+.agenda{padding:110px 0 120px}
+.sec-head{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:end;margin-bottom:56px}
+h2{font-size:clamp(2rem,5vw,3.5rem);line-height:1.04;letter-spacing:-.015em;font-weight:900;margin:12px 0 0;text-wrap:balance}
+.sec-head p{color:var(--mist);margin:0;max-width:40ch;justify-self:start}
+.path{position:relative}
+.path svg.line{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.path svg.line path{fill:none;stroke:rgba(18,199,199,.35);stroke-width:2;stroke-dasharray:6 10;vector-effect:non-scaling-stroke}
+.step{position:relative;display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:start;max-width:640px;padding:24px 0}
+.step:nth-child(3){margin-inline-start:22%}
+.step:nth-child(4){margin-inline-start:44%}
+.num{font-size:7.5rem;line-height:.8;font-weight:900;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.38);font-variant-numeric:tabular-nums;letter-spacing:-.04em}
+.step h3{font-size:1.65rem;font-weight:800;margin:6px 0 8px;line-height:1.15}
+.step p{color:var(--mist);margin:0;max-width:38ch}
+.step .tag{display:inline-block;font-size:13px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:6px}
+
+/* ===== מנחות ===== */
+.hosts{padding:30px 0 120px}
+.hosts-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.duo{position:relative;height:440px}
+.duo figure{position:absolute;margin:0;width:60%;aspect-ratio:1;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.7)}
+.duo figure img{width:100%;height:100%;object-fit:cover;display:block}
+.duo figure:first-child{top:0;inset-inline-start:0;border:6px solid var(--teal);border-radius:36% 36% 36% 10%;transform:rotate(-4deg)}
+.duo figure:last-child{bottom:0;inset-inline-end:0;border:6px solid var(--fuch);border-radius:36% 36% 10% 36%;transform:rotate(5deg)}
+.who{display:grid;gap:26px;margin-top:30px}
+.who b{display:block;font-size:2rem;font-weight:900;line-height:1.1}
+.who span{color:var(--mist)}
+.who .rule{height:3px;width:56px;background:var(--teal);margin-bottom:12px;border-radius:2px}
+.who div:last-child .rule{background:var(--fuch)}
+
+/* ===== למה impactos: מניפסט עם מספרים גדולים ===== */
+.why{padding:120px 0;background:radial-gradient(700px 500px at 85% 20%,rgba(18,199,199,.12),transparent 60%),var(--navy);border-radius:48px 48px 0 0}
+.big{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;margin:50px 0 56px}
+.big div{padding:30px 0 0;border-top:2px solid var(--faint)}
+.big strong{display:block;font-size:clamp(4rem,11vw,8.5rem);line-height:.86;font-weight:900;letter-spacing:-.04em}
+.big div:first-child strong{color:var(--teal)}
+.big div:last-child strong{color:var(--fuch)}
+.big span{display:block;margin-top:14px;font-size:1.3rem;font-weight:700;max-width:24ch}
+.list{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--faint)}
+.list div{padding:28px 0 0;padding-inline-end:28px}
+.list div+div{padding-inline-start:28px;border-inline-start:1px solid var(--faint)}
+.list svg{display:block;margin-bottom:14px}
+.list b{display:block;font-size:1.25rem;font-weight:800;margin-bottom:4px}
+.list span{color:var(--mist)}
+
+/* ===== הרשמה: כרטיס כניסה עם ספח ===== */
+.reg{padding:110px 0 130px;background:var(--navy)}
+.pass{display:grid;grid-template-columns:1fr 250px;max-width:920px;margin:0 auto;filter:drop-shadow(0 40px 60px rgba(0,0,0,.45))}
+.pass-main,.stub{background:var(--paper);color:var(--ink);position:relative}
+.pass-main{border-radius:0 28px 28px 0;padding:40px 44px}
+.stub{border-radius:28px 0 0 28px;border-inline-start:2px dashed #CBD2DC;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:34px 20px;text-align:center}
+/* חריצי הכרטיס בין החלק הראשי לספח */
+.stub::before,.stub::after{content:"";position:absolute;inset-inline-start:-19px;width:36px;height:36px;border-radius:50%;background:var(--navy)}
+.stub::before{top:-18px}.stub::after{bottom:-18px}
+.stub .d{font-size:3rem;font-weight:900;line-height:.9;color:var(--navy);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.stub .t{font-weight:800;color:var(--fuch);font-size:1.3rem}
+.stub small{color:#5B6678;font-weight:600}
+.stamp{width:96px;height:120px}
+.stamp svg{width:100%;height:100%}
+.stamp .print{stroke:#D4DAE3}
+.stamp .ink{stroke:url(#gp);clip-path:inset(0 0 100% 0);transition:clip-path 1.4s var(--ease)}
+.pass.ok .stamp .ink{clip-path:inset(0 0 0 0)}
+.pass h2{color:var(--navy);font-size:clamp(1.8rem,4vw,2.6rem);margin:6px 0 6px}
+.pass .sub{color:#5B6678;margin:0 0 10px;max-width:46ch}
+.pass .eyebrow{color:#0E9C9C}
+label{display:block;font-weight:700;font-size:14px;margin:20px 0 2px;color:#3A4A66}
+label small{font-weight:500;color:#7A8699}
+input,select,textarea{width:100%;font:inherit;font-size:17px;padding:10px 2px;border:0;border-bottom:2px solid #D3DAE4;background:transparent;color:var(--ink);border-radius:0;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-bottom-color:var(--teal)}
+input[type=email],input[type=tel]{direction:ltr;text-align:right}
+select{appearance:none;-webkit-appearance:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235B6678' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") left 4px center no-repeat}
+textarea{min-height:64px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.pass .cta{width:100%;justify-content:center;margin-top:28px}
+.msg{margin-top:14px;border-radius:12px;padding:12px 14px;display:none;font-weight:600}
+.msg.err{display:block;background:#FFE9F2;color:#9F0A4D}
+.done{display:none}
+.done.show{display:block}
+.zoom{background:#fff;border:2px dashed var(--teal);border-radius:14px;padding:14px 16px;margin:18px 0;word-break:break-all}
+.zoom span{display:block;font-weight:700;color:#5B6678;font-size:14px}
+.zoom a{font-weight:800;color:var(--navy);direction:ltr;display:inline-block}
+.acts{display:flex;flex-wrap:wrap;gap:10px}
+.acts a{display:inline-flex;align-items:center;gap:8px;border:2px solid #D3DAE4;border-radius:12px;padding:10px 16px;text-decoration:none;font-weight:700;min-height:46px;color:var(--navy);transition:border-color .2s}
+.acts a:hover{border-color:var(--teal)}
+.acts a.pri{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+footer{background:var(--navy);text-align:center;color:rgba(255,255,255,.5);font-size:.82rem;padding:0 20px 46px}
+footer a{color:rgba(255,255,255,.75)}
+.sticky{position:fixed;bottom:14px;inset-inline:14px;display:none;z-index:30}
+.sticky .cta{width:100%;justify-content:center}
+
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:860px){
+  .hero{min-height:auto}
+  .hero-grid{grid-template-columns:1fr;gap:26px;padding-top:6px}
+  .hold-fp{width:min(68vw,270px)}
+  .ticket{grid-auto-flow:row;grid-template-columns:1fr 1fr;width:100%}
+  .ticket div+div{border-inline-start:0}
+  .ticket div:nth-child(even){border-inline-start:2px dashed rgba(255,255,255,.16)}
+  .ticket div:nth-child(-n+2){border-bottom:2px dashed rgba(255,255,255,.16)}
+  .sec-head{grid-template-columns:1fr}
+  .step,.step:nth-child(3),.step:nth-child(4){margin-inline-start:0;grid-template-columns:84px 1fr;gap:16px}
+  .num{font-size:4.6rem}
+  .path svg.line{display:none}
+  .hosts-grid{grid-template-columns:1fr;gap:20px}
+  .duo{height:320px;max-width:400px;width:100%;margin:0 auto}
+  .big{grid-template-columns:1fr;gap:10px;margin:30px 0 40px}
+  .list{grid-template-columns:1fr}
+  .list div,.list div+div{padding:22px 0;border-inline-start:0;border-bottom:1px solid var(--faint)}
+  .pass{grid-template-columns:1fr}
+  .stub{order:-1;border-radius:24px 24px 0 0;border-inline-start:0;border-bottom:2px dashed #CBD2DC;flex-direction:row;justify-content:space-between;padding:20px 22px;text-align:start}
+  .stub::before,.stub::after{top:auto;bottom:-19px;inset-inline-start:auto}
+  .stub::before{right:-18px}.stub::after{left:-18px}
+  .pass-main{border-radius:0 0 24px 24px;padding:28px 20px}
+  .stamp{width:64px;height:80px}
+  .stub .d{font-size:2.2rem}
+  .row2{grid-template-columns:1fr;gap:0}
+  .sticky.show{display:block}
+  .why{border-radius:32px 32px 0 0;padding:80px 0}
+  .agenda{padding:80px 0}
+  .marq-label{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .print.base path{stroke-dashoffset:0}.nodes circle{opacity:1}
+  h1 .out{background-size:100% 100%}
+  .rv{opacity:1;transform:none}
+  .hold{--hold-reveal:100%;--hold-scale:1}.hold-res{max-height:none;opacity:1;transform:none}
+  .track{width:auto;flex-wrap:wrap}
+}
 </style>
 </head>
 <body>
+<a class="skip" href="#signup">דילוג להרשמה</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gr" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#12C7C7"/><stop offset="1" stop-color="#F00678"/></linearGradient>
+    <linearGradient id="gp" x1="0" y1="20" x2="0" y2="290" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#12C7C7"/><stop offset="1" stop-color="#F00678"/></linearGradient>
+    <g id="fp">
+      <path pathLength="1" d="M72 86c24-37 80-42 113-11 24 22 31 56 20 91"/><path pathLength="1" d="M54 116c13-57 78-88 134-63 42 19 63 66 52 113"/>
+      <path pathLength="1" d="M43 153c-3-74 58-134 131-128 58 5 105 54 104 114"/><path pathLength="1" d="M51 196c-15-88 47-164 132-160"/>
+      <path pathLength="1" d="M78 220c-30-80 3-151 66-165 38-9 76 14 89 42"/><path pathLength="1" d="M111 242c-28-52-15-112 27-137 27-16 61-7 74 22"/>
+      <path pathLength="1" d="M138 264c-28-31-29-77-5-104 17-19 47-17 61 5"/><path pathLength="1" d="M159 282c-16-18-22-42-14-63"/>
+      <path pathLength="1" d="M44 180c37-24 59-55 72-90"/><path pathLength="1" d="M64 231c42-33 63-70 76-112"/><path pathLength="1" d="M96 264c31-24 49-53 58-86"/>
+      <path pathLength="1" d="M188 218c25-36 36-76 26-112"/><path pathLength="1" d="M204 259c19-24 31-52 35-82"/>
+    </g>
+  </defs>
+</svg>
+
 <header class="hero" id="top">
-  <div class="wrap">
-    <a class="logo" href="https://impactos.co.il" aria-label="impactos"><img src="/public/brand/impact-os-logo-official-transparent.png" alt="IMPACT OS"></a>
-    <div class="tag"><span class="dot"></span> וובינר ללא עלות, ברישום מראש</div>
-    <h1>בינה מלאכותית<br>שחוסכת לכם <em>זמן אמיתי</em></h1>
-    <p class="lead">איך חוסכים זמן ומייעלים את העבודה עם AI, ואיך מובילים שינוי נכון והטמעה טובה, כך שהכלים באמת נשארים בשימוש.</p>
-    <div class="when">
-      <div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#12C7C7" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg> יום שלישי, 20.10</div>
-      <div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#12C7C7" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 20:30</div>
-      <div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#12C7C7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="13" height="12" rx="3"/><path d="M15.5 10.5l6-3.5v10l-6-3.5"/></svg> בזום</div>
-      <div class="free"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F4B41B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v8H4v-8M2 7h20v5H2zM12 22V7M12 7c-2-4-6-4-6-1s6 1 6 1zM12 7c2-4 6-4 6-1s-6 1-6 1z"/></svg> ללא עלות</div>
+  <div class="top">
+    <a class="logo" href="https://impactos.co.il" aria-label="impactos, לדף הבית"><img src="/public/brand/impact-os-logo-official-transparent.png" alt="IMPACT OS"></a>
+    <a class="mini" href="#signup">להרשמה</a>
+  </div>
+  <div class="hero-grid" style="max-width:1180px;margin:0 auto;width:100%">
+    <div>
+      <div class="eyebrow"><i></i>וובינר · ללא עלות, ברישום מראש</div>
+      <h1>בינה מלאכותית שחוסכת לכם <span class="out">זמן.</span></h1>
+      <p class="lead">איך חוסכים זמן ומייעלים את העבודה עם AI, ואיך מובילים שינוי נכון והטמעה טובה, כך שהכלים באמת נשארים בשימוש.</p>
+      <div class="ticket" role="list" aria-label="פרטי הוובינר">
+        <div role="listitem"><small>יום שלישי</small><b>20.10</b></div>
+        <div role="listitem"><small>בשעה</small><b>20:30</b></div>
+        <div role="listitem"><small>איפה</small><b>בזום</b></div>
+        <div role="listitem" class="free"><small>עלות</small><b>ללא עלות</b></div>
+      </div>
+      <div><a class="cta" href="#signup">שריינו לי מקום <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a></div>
     </div>
-    <a class="cta" href="#signup">שריינו לי מקום</a>
+
+    <div class="hold" id="hold" aria-label="חוויה עיצובית של טביעת אצבע">
+      <button class="hold-fp" id="holdFp" type="button" aria-label="הניחו אצבע על הטביעה והחזיקו לרגע">
+        <svg viewBox="-30 -20 300 340" aria-hidden="true">
+          <rect class="ring bg" x="-24" y="-14" width="288" height="328" rx="118"/>
+          <rect class="ring fg" x="-24" y="-14" width="288" height="328" rx="118" pathLength="1"/>
+          <g class="print base">
+            <path pathLength="1" d="M72 86c24-37 80-42 113-11 24 22 31 56 20 91"/><path pathLength="1" d="M54 116c13-57 78-88 134-63 42 19 63 66 52 113"/>
+            <path pathLength="1" d="M43 153c-3-74 58-134 131-128 58 5 105 54 104 114"/><path pathLength="1" d="M51 196c-15-88 47-164 132-160"/>
+            <path pathLength="1" d="M78 220c-30-80 3-151 66-165 38-9 76 14 89 42"/><path pathLength="1" d="M111 242c-28-52-15-112 27-137 27-16 61-7 74 22"/>
+            <path pathLength="1" d="M138 264c-28-31-29-77-5-104 17-19 47-17 61 5"/><path pathLength="1" d="M159 282c-16-18-22-42-14-63"/>
+            <path pathLength="1" d="M44 180c37-24 59-55 72-90"/><path pathLength="1" d="M64 231c42-33 63-70 76-112"/><path pathLength="1" d="M96 264c31-24 49-53 58-86"/>
+            <path pathLength="1" d="M188 218c25-36 36-76 26-112"/><path pathLength="1" d="M204 259c19-24 31-52 35-82"/>
+            <path pathLength="1" d="M91 143c13-25 39-24 52 1 14-24 42-24 54 1"/><path pathLength="1" d="M91 143c15 31 38 51 52 66 15-15 39-38 54-64"/>
+          </g>
+          <g class="print color"><use href="#fp"/><path class="heart" d="M91 143c13-25 39-24 52 1 14-24 42-24 54 1"/><path class="heart" d="M91 143c15 31 38 51 52 66 15-15 39-38 54-64"/></g>
+          <g class="nodes">
+            <circle cx="70" cy="86" r="7" style="animation-delay:1.3s"/><circle cx="184" cy="76" r="7" style="animation-delay:1.4s"/><circle cx="42" cy="116" r="7" style="animation-delay:1.5s"/><circle cx="230" cy="166" r="7" style="animation-delay:1.6s"/>
+            <circle cx="68" cy="231" r="7" style="animation-delay:1.7s"/><circle cx="162" cy="282" r="7" style="animation-delay:1.8s"/><circle cx="211" cy="218" r="7" style="animation-delay:1.9s"/><circle cx="103" cy="265" r="7" style="animation-delay:2s"/>
+          </g>
+        </svg>
+      </button>
+      <div class="hold-hint" id="holdHint">הניחו אצבע על הטביעה והחזיקו לרגע</div>
+      <div class="hold-res" aria-live="polite">
+        <p>כל ארגון עובד אחרת.<br>לכן בוובינר לא נראה רק כלים, אלא <em>איך מתאימים אותם אליכם</em>, ואיך דואגים שיישארו בשימוש.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="marq">
+    <div class="marq-label">מערכות שבנינו ועובדות היום</div>
+    <div class="track" aria-label="מערכות שבנינו ועובדות היום">
+      <span>מערכת הדרכות ל-64 בתי ספר</span><span>מי עוד לא מילא, ותזכורת בלחיצה</span><span>עוזר ידע שעונה 24/7</span><span>לוח מצב שמתעדכן לבד</span><span>רישום להשתלמויות</span><span>קליטת בית ספר ב-95 משימות</span><span>ייבוא רשימות בלי כפילויות</span><span>אישור בקישור אישי</span>
+      <span aria-hidden="true">מערכת הדרכות ל-64 בתי ספר</span><span aria-hidden="true">מי עוד לא מילא, ותזכורת בלחיצה</span><span aria-hidden="true">עוזר ידע שעונה 24/7</span><span aria-hidden="true">לוח מצב שמתעדכן לבד</span><span aria-hidden="true">רישום להשתלמויות</span><span aria-hidden="true">קליטת בית ספר ב-95 משימות</span><span aria-hidden="true">ייבוא רשימות בלי כפילויות</span><span aria-hidden="true">אישור בקישור אישי</span>
+    </div>
   </div>
 </header>
 
-<section class="hold" id="hold" aria-label="חוויה עיצובית של טביעת אצבע">
-  <div class="wrap"><div class="hold-in">
-    <div class="hold-eye">טביעת האצבע של הארגון שלכם</div>
-    <button class="hold-fp" id="holdFp" type="button" aria-label="הניחו אצבע והחזיקו לרגע"><span class="hold-mark" aria-hidden="true"></span></button>
-    <div class="hold-hint" id="holdHint">הניחו אצבע והחזיקו לרגע</div>
-    <div class="hold-bar" aria-hidden="true"><span></span></div>
-    <div class="hold-res" aria-live="polite">
-      <p>כל ארגון עובד אחרת.<br>יש לו אנשים, תהליכים ושפה משלו.<br><br>לכן בוובינר לא נראה רק כלים.<br>נראה איך מתאימים אותם לארגון שלכם, ואיך דואגים שהם יישארו בשימוש.</p>
-      <div class="hold-steps"><span>חוסכים זמן עם AI</span><span>מתאימים לארגון שלכם</span><span>מטמיעים כך שזה נשאר</span></div>
-      <a class="cta" href="#signup">שריינו לי מקום</a>
-    </div>
-  </div></div>
-</section>
-
-<section>
+<main>
+<section class="agenda" aria-labelledby="ag">
   <div class="wrap">
-    <h2>מה בוובינר?</h2>
-    <p class="sub">שעה אחת, מעשית, עם דברים שאפשר להתחיל בהם כבר למחרת.</p>
-    <div class="learn">
-      <div class="lc"><div class="ic" style="background:rgba(18,199,199,.14)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0E9C9C" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-        <h3>לחסוך זמן עם AI</h3><p>כלים שתוכלו לעבוד איתם כבר מחר: לסכם, לנסח, לארגן ולענות, בלי לעשות את אותה עבודה שוב ושוב.</p></div>
-      <div class="lc"><div class="ic" style="background:rgba(240,6,120,.1)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F00678" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M6 15l4-4 3 3 5-6"/><path d="M15 8h3v3"/></svg></div>
-        <h3>לעבוד ביעילות</h3><p>איך מחברים את הכלים לעבודה היומיומית של הארגון, כך שהם חוסכים שעות ולא מוסיפים עוד משימה.</p></div>
-      <div class="lc"><div class="ic" style="background:rgba(244,180,27,.16)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C48A00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5M15 15c3 0 6 1.5 6 4.5"/></svg></div>
-        <h3>שינוי נכון והטמעה טובה</h3><p>איך מובילים את הצוות לשימוש בבינה מלאכותית, ואיך דואגים שהשינוי ייקלט ויישאר.</p></div>
+    <div class="sec-head rv">
+      <div><div class="eyebrow"><i></i>מה בוובינר</div><h2 id="ag">שעה אחת.<br>שלוש תחנות.</h2></div>
+      <p>מעשי, בלי תיאוריה מיותרת. יוצאים עם דברים שאפשר להתחיל בהם כבר למחרת.</p>
+    </div>
+    <div class="path">
+      <svg class="line" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true"><path d="M960 90 C760 90 760 280 560 285 C360 290 380 470 180 490"/></svg>
+      <div class="step rv"><div class="num">01</div><div><span class="tag" style="background:rgba(18,199,199,.16);color:var(--teal)">זמן</span><h3>לחסוך זמן עם AI</h3><p>כלים שתוכלו לעבוד איתם כבר מחר: לסכם, לנסח, לארגן ולענות, בלי לעשות את אותה עבודה שוב ושוב.</p></div></div>
+      <div class="step rv"><div class="num">02</div><div><span class="tag" style="background:rgba(240,6,120,.16);color:#FF5BA8">יעילות</span><h3>לעבוד ביעילות</h3><p>איך מחברים את הכלים לעבודה היומיומית של הארגון, כך שהם חוסכים שעות ולא מוסיפים עוד משימה.</p></div></div>
+      <div class="step rv"><div class="num">03</div><div><span class="tag" style="background:rgba(244,180,27,.18);color:var(--yellow)">הטמעה</span><h3>שינוי נכון והטמעה טובה</h3><p>איך מובילים את הצוות לשימוש בבינה מלאכותית, ואיך דואגים שהשינוי ייקלט ויישאר.</p></div></div>
     </div>
   </div>
 </section>
 
-<section style="padding-top:0">
-  <div class="wrap">
-    <h2>מנחות</h2>
-    <p class="sub">שתינו מגיעות מהשטח, ומכירות את הכאבים מקרוב.</p>
-    <div class="hosts">
-      <div class="host"><img src="meital.jpg" alt="מיטל פלג"><div><b>מיטל פלג</b><span>ניהלתי בית ספר, היום עוזרת למנהלים ולארגונים לעבוד חכם יותר</span></div></div>
-      <div class="host"><img src="liron.jpg" alt="לירון גולן"><div><b>לירון גולן</b><span>מוצר, דיגיטל ואימפקט חברתי</span></div></div>
+<section class="hosts" aria-labelledby="ho">
+  <div class="wrap hosts-grid">
+    <div class="duo rv">
+      <figure><img src="meital.jpg" alt="מיטל פלג"></figure>
+      <figure><img src="liron.jpg" alt="לירון גולן"></figure>
     </div>
-  </div>
-</section>
-
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="why">
-      <h2>למה impactos?</h2>
-      <p class="sub">כי אנחנו לא רק מדברות על בינה מלאכותית. אנחנו בונות איתה מערכות שעובדות.</p>
-      <div class="wg">
-        <div class="wi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#12C7C7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><div><b>מגיעות מהשטח</b><span>מכירות את הכאבים מקרוב, כי היינו שם.</span></div></div>
-        <div class="wi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F4B41B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v9H4v-9zM7 11l4-8c1.5 0 2.5 1 2.5 2.5V9h5a2 2 0 0 1 2 2.3l-1.2 7A2 2 0 0 1 17.3 20H7"/></svg><div><b>מאות לקוחות וארגונים מרוצים</b><span>בחינוך, בעמותות ובארגונים.</span></div></div>
-        <div class="wi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7BCB52" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 12l3-3 2 2 4-4"/></svg><div><b>עשרות מערכות שעובדות</b><span>מערכות שפתרו כאבים אמיתיים ופעילות כל יום.</span></div></div>
-        <div class="wi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F00678" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><div><b>גמישות וזמינות</b><span>חברה קטנה וזריזה שמתאימה את עצמה אליכם.</span></div></div>
-        <div class="wi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#12C7C7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.5" y="13" width="4" height="6" rx="1.5"/><rect x="17.5" y="13" width="4" height="6" rx="1.5"/><path d="M19.5 19c0 1.5-2 2.5-5 2.5"/></svg><div><b>ליווי צמוד ותמיכה</b><span>לא משאירות אתכם לבד אחרי שהמערכת עולה.</span></div></div>
+    <div class="rv">
+      <div class="eyebrow"><i></i>מנחות</div>
+      <h2 id="ho">שתינו מגיעות מהשטח.</h2>
+      <div class="who">
+        <div><div class="rule"></div><b>מיטל פלג</b><span>ניהלתי בית ספר. היום עוזרת למנהלים ולארגונים לעבוד חכם יותר.</span></div>
+        <div><div class="rule"></div><b>לירון גולן</b><span>מוצר, דיגיטל ואימפקט חברתי.</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="signup" style="padding-top:0">
+<section class="why" aria-labelledby="wh">
   <div class="wrap">
-    <div class="form-card">
-      <form id="f" novalidate>
-        <h2>שריינו מקום</h2>
-        <p class="sub">ללא עלות, ברישום מראש. אחרי ההרשמה תקבלו כאן את קישור הזום ואפשרות להוסיף ליומן.</p>
-        <label for="n">שם מלא</label><input id="n" autocomplete="name" required>
-        <div class="row2">
-          <div><label for="em">מייל</label><input id="em" type="email" autocomplete="email" inputmode="email" required></div>
-          <div><label for="ph">נייד</label><input id="ph" type="tel" autocomplete="tel" inputmode="tel" required></div>
-        </div>
-        <div class="row2">
-          <div><label for="o">ארגון</label><input id="o" autocomplete="organization" required></div>
-          <div><label for="r">תפקיד</label>
-            <select id="r" required>
-              <option value="">בחירה</option>
-              <option>מנהל/ת בית ספר</option><option>הנהלה או צוות בבית ספר</option>
-              <option>מנהל/ת עמותה או ארגון</option><option>צוות בעמותה או בארגון</option>
-              <option>רשות מקומית</option><option>עסק</option><option>אחר</option>
-            </select></div>
-        </div>
-        <label for="m">מה הכי גוזל לכם זמן היום? <small>(לא חובה, יעזור לנו לכוון את הוובינר)</small></label>
-        <textarea id="m"></textarea>
-        <button class="cta" id="go" type="submit">שריינו לי מקום</button>
-        <div class="msg" id="msg" role="alert"></div>
-      </form>
-      <div class="done" id="done" aria-live="polite">
-        <div class="big"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
-        <h2 id="thx">נרשמתם!</h2>
-        <p class="sub" style="margin-bottom:6px">נתראה ביום שלישי, 20.10, בשעה 20:30.</p>
-        <div class="zoom"><span dir="rtl" style="display:block">קישור לזום:</span><a id="zl" href="#" target="_blank" rel="noopener"></a></div>
-        <div class="acts">
-          <a class="pri" id="gcal" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg> הוספה ליומן גוגל</a>
-          <a id="ics" download="webinar-impactos.ics"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg> הוספה ליומן אחר</a>
-        </div>
-        <p class="sub" style="margin-top:18px;font-size:.95rem">כדאי לשמור את הקישור. הוא נמצא גם ביומן אחרי שמוסיפים.</p>
-      </div>
+    <div class="rv"><div class="eyebrow"><i></i>למה impactos</div>
+      <h2 id="wh">אנחנו לא רק מדברות על AI.<br>אנחנו בונות איתו מערכות שעובדות.</h2></div>
+    <div class="big">
+      <div class="rv"><strong>מאות</strong><span>לקוחות וארגונים מרוצים, בחינוך, בעמותות ובארגונים</span></div>
+      <div class="rv"><strong>עשרות</strong><span>מערכות שפתרו כאבים אמיתיים, ופעילות כל יום</span></div>
+    </div>
+    <div class="list">
+      <div class="rv"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#12C7C7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.3-7-11a7 7 0 0 1 14 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><b>מגיעות מהשטח</b><span>מכירות את הכאבים מקרוב, כי היינו שם.</span></div>
+      <div class="rv"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F00678" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg><b>גמישות וזמינות</b><span>חברה קטנה וזריזה, שמתאימה את עצמה אליכם.</span></div>
+      <div class="rv"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F4B41B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="2.5" y="13" width="4" height="6" rx="1.5"/><rect x="17.5" y="13" width="4" height="6" rx="1.5"/><path d="M19.5 19c0 1.5-2 2.5-5 2.5"/></svg><b>ליווי צמוד ותמיכה</b><span>לא משאירות אתכם לבד אחרי שהמערכת עולה.</span></div>
     </div>
   </div>
 </section>
+
+<section class="reg" id="signup" aria-labelledby="rg">
+  <div class="wrap">
+    <div class="pass rv" id="pass">
+      <div class="pass-main">
+        <form id="f" novalidate>
+          <div class="eyebrow"><i></i>כרטיס כניסה</div>
+          <h2 id="rg">שריינו מקום</h2>
+          <p class="sub">ללא עלות, ברישום מראש. מיד אחרי ההרשמה תקבלו כאן את קישור הזום ואפשרות להוסיף ליומן.</p>
+          <label for="n">שם מלא</label><input id="n" autocomplete="name" required>
+          <div class="row2">
+            <div><label for="em">מייל</label><input id="em" type="email" autocomplete="email" inputmode="email" required></div>
+            <div><label for="ph">נייד</label><input id="ph" type="tel" autocomplete="tel" inputmode="tel" required></div>
+          </div>
+          <div class="row2">
+            <div><label for="o">ארגון</label><input id="o" autocomplete="organization" required></div>
+            <div><label for="r">תפקיד</label>
+              <select id="r" required>
+                <option value="">בחירה</option>
+                <option>מנהל/ת בית ספר</option><option>הנהלה או צוות בבית ספר</option>
+                <option>מנהל/ת עמותה או ארגון</option><option>צוות בעמותה או בארגון</option>
+                <option>רשות מקומית</option><option>עסק</option><option>אחר</option>
+              </select></div>
+          </div>
+          <label for="m">מה הכי גוזל לכם זמן היום? <small>(לא חובה, יעזור לנו לכוון את הוובינר)</small></label>
+          <textarea id="m"></textarea>
+          <button class="cta" id="go" type="submit">שריינו לי מקום</button>
+          <div class="msg" id="msg" role="alert"></div>
+        </form>
+        <div class="done" id="done" aria-live="polite">
+          <div class="eyebrow"><i></i>הכרטיס שלכם</div>
+          <h2 id="thx">נרשמתם.</h2>
+          <p class="sub">נתראה ביום שלישי, 20.10, בשעה 20:30.</p>
+          <div class="zoom"><span>קישור לזום</span><a id="zl" href="https://edu-il.zoom.us/my/meytalp" target="_blank" rel="noopener"></a></div>
+          <div class="acts">
+            <a class="pri" id="gcal" href="https://calendar.google.com" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg> הוספה ליומן גוגל</a>
+            <a id="ics" href="#" download="webinar-impactos.ics"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg> הוספה ליומן אחר</a>
+          </div>
+          <p class="sub" style="margin-top:16px;font-size:.95rem">כדאי לשמור את הקישור. הוא נמצא גם ביומן אחרי שמוסיפים.</p>
+        </div>
+      </div>
+      <aside class="stub" aria-hidden="true">
+        <div class="stamp"><svg viewBox="20 10 230 290" style="overflow:visible"><g class="print"><use href="#fp"/></g><g class="print ink"><use href="#fp"/></g></svg></div>
+        <div><div class="d">20.10</div><div class="t">20:30</div><small>וובינר בזום · ללא עלות</small></div>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
 
 <div class="sticky" id="sticky"><a class="cta" href="#signup">שריינו לי מקום · ללא עלות</a></div>
 <footer>impactos · <a href="https://impactos.co.il">impactos.co.il</a></footer>
@@ -250,7 +420,8 @@ footer a{color:#8A97A6}
   function showDone(name){
     form.style.display = 'none';
     document.getElementById('done').classList.add('show');
-    document.getElementById('thx').textContent = 'נרשמת, ' + name.split(' ')[0] + '!';
+    document.getElementById('pass').classList.add('ok');   /* הטביעה בספח נחתמת */
+    document.getElementById('thx').textContent = 'נרשמת, ' + name.split(' ')[0] + '.';
     var zl = document.getElementById('zl'); zl.href = ZOOM; zl.textContent = ZOOM;
     document.getElementById('gcal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(TITLE)
       + '&dates=' + START + '/' + END + '&details=' + encodeURIComponent(DETAILS) + '&location=' + encodeURIComponent(ZOOM);
@@ -277,10 +448,9 @@ footer a{color:#8A97A6}
     }).catch(function(){
       go.disabled = false; go.textContent = 'שריינו לי מקום';
       var wa = WA + '?text=' + encodeURIComponent('היי, אשמח להירשם לוובינר ב-20.10.\nשם: ' + name + '\nארגון ותפקיד: ' + org + ', ' + role + '\nמייל: ' + email + '\nנייד: ' + phone);
-      err('משהו השתבש בשליחה. אפשר לנסות שוב, או <a href="' + esc(wa) + '" target="_blank" rel="noopener">להירשם בוואטסאפ</a>.');
+      err('השליחה לא הצליחה. אפשר לנסות שוב, או <a href="' + esc(wa) + '" target="_blank" rel="noopener">להירשם בוואטסאפ</a>.');
     });
   });
-
 
   /* לוחצים ומחזיקים: 1.5 שניות למילוי, ובשחרור מוקדם הטביעה מתרוקנת */
   (function(){
@@ -291,7 +461,6 @@ footer a{color:#8A97A6}
     function set(v){
       p = Math.min(1, Math.max(0, v));
       box.style.setProperty('--hold-reveal', Math.round(p * 100) + '%');
-      box.style.setProperty('--hold-angle', Math.round(p * 360) + 'deg');
       box.style.setProperty('--hold-scale', p.toFixed(3));
       box.classList.toggle('done-hold', p >= 1);
       btn.setAttribute('aria-pressed', p >= 1 ? 'true' : 'false');
@@ -317,11 +486,18 @@ footer a{color:#8A97A6}
     set(0);
   })();
 
-  /* כפתור צף בנייד, נעלם ליד הטופס */
+  /* כניסה מדורגת בגלילה */
+  var els = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .12 });
+    els.forEach(function(el, i){ el.style.transitionDelay = (i % 3) * 90 + 'ms'; io.observe(el); });
+  } else els.forEach(function(el){ el.classList.add('in'); });
+
+  /* כפתור צף בנייד, נעלם ליד ההרשמה */
   var st = document.getElementById('sticky'), su = document.getElementById('signup'), hero = document.getElementById('top');
   addEventListener('scroll', function(){
     var b = su.getBoundingClientRect();
-    st.classList.toggle('show', scrollY > hero.offsetHeight * .7 && !(b.top < innerHeight && b.bottom > 0));
+    st.classList.toggle('show', scrollY > hero.offsetHeight * .6 && !(b.top < innerHeight && b.bottom > 0));
   }, { passive: true });
 })();
 </script>
