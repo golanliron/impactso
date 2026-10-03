@@ -65,15 +65,14 @@ h1 .out{color:transparent;-webkit-text-stroke:2px var(--teal);background:linear-
 .ring{fill:none;stroke-width:5;stroke-linecap:round}
 .ring.bg{stroke:rgba(255,255,255,.1)}
 .ring.fg{stroke:url(#gr);stroke-dasharray:1 1;stroke-dashoffset:calc(1 - var(--hold-scale))}
-.print path,.print use{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:9}
-.print.base{stroke:rgba(255,255,255,.24)}
-.print.base path{stroke-dasharray:1 1;stroke-dashoffset:1;animation:draw 2.2s var(--ease) forwards}
-.print.base path:nth-child(2n){animation-delay:.12s}.print.base path:nth-child(3n){animation-delay:.24s}.print.base path:nth-child(5n){animation-delay:.36s}
-@keyframes draw{to{stroke-dashoffset:0}}
-.print.color{stroke:url(#gp);clip-path:inset(0 0 calc(100% - var(--hold-reveal)) 0)}
-.print.color .heart{stroke:var(--fuch)}
-.nodes circle{fill:var(--teal);opacity:0;transform-box:fill-box;transform-origin:center;animation:pop .4s var(--ease) forwards}
-@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+/* הטביעה האמיתית מהלוגו, כמסכה: שכבת בסיס שקופה ושכבת צבע שמתמלאת מלמעלה */
+.fp{position:absolute;-webkit-mask:url('/public/brand/impact-fingerprint-official-watermark-sharp-soft.png') center/contain no-repeat;mask:url('/public/brand/impact-fingerprint-official-watermark-sharp-soft.png') center/contain no-repeat;pointer-events:none}
+.hold-fp .fp{inset:17% 19%}
+.fp.base{background:rgba(255,255,255,.26);clip-path:inset(0 0 100% 0);animation:scanin 1.6s .2s var(--ease) forwards}
+@keyframes scanin{to{clip-path:inset(0 0 0 0)}}
+.fp.color{background:linear-gradient(180deg,var(--teal),var(--fuch));clip-path:inset(0 0 calc(100% - var(--hold-reveal)) 0)}
+.scan{position:absolute;inset-inline:14%;top:17%;height:3px;border-radius:3px;background:linear-gradient(90deg,transparent,var(--teal),transparent);box-shadow:0 0 18px var(--teal);opacity:0;animation:scanline 1.6s .2s var(--ease) forwards}
+@keyframes scanline{0%{opacity:0;top:17%}15%{opacity:1}85%{opacity:1}100%{opacity:0;top:83%}}
 .hold-hint{margin-top:16px;font-weight:700;color:var(--mist);font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px}
 .hold-hint::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--teal);animation:blink 1.6s infinite}
 @keyframes blink{50%{opacity:.25}}
@@ -91,24 +90,54 @@ h1 .out{color:transparent;-webkit-text-stroke:2px var(--teal);background:linear-
 .track span::after{content:"";width:9px;height:9px;border-radius:50%;border:2px solid var(--fuch)}
 @keyframes scroll{to{transform:translateX(50%)}}
 
-/* ===== מה בוובינר: מסלול מתפתל ===== */
-.agenda{padding:110px 0 120px}
-.sec-head{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:end;margin-bottom:56px}
+/* ===== מה בוובינר: רקע לבן, שלוש תחנות עם הדגמה חיה בכל אחת ===== */
+.agenda{background:#fff;color:var(--ink);padding:110px 0 60px}
+.agenda .eyebrow{color:#0E9C9C}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:46px;flex-wrap:wrap}
 h2{font-size:clamp(2rem,5vw,3.5rem);line-height:1.04;letter-spacing:-.015em;font-weight:900;margin:12px 0 0;text-wrap:balance}
-.sec-head p{color:var(--mist);margin:0;max-width:40ch;justify-self:start}
-.path{position:relative}
-.path svg.line{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.path svg.line path{fill:none;stroke:rgba(18,199,199,.35);stroke-width:2;stroke-dasharray:6 10;vector-effect:non-scaling-stroke}
-.step{position:relative;display:grid;grid-template-columns:150px 1fr;gap:28px;align-items:start;max-width:640px;padding:24px 0}
-.step:nth-child(3){margin-inline-start:22%}
-.step:nth-child(4){margin-inline-start:44%}
-.num{font-size:7.5rem;line-height:.8;font-weight:900;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.38);font-variant-numeric:tabular-nums;letter-spacing:-.04em}
-.step h3{font-size:1.65rem;font-weight:800;margin:6px 0 8px;line-height:1.15}
-.step p{color:var(--mist);margin:0;max-width:38ch}
-.step .tag{display:inline-block;font-size:13px;font-weight:700;padding:3px 10px;border-radius:6px;margin-bottom:6px}
+.agenda h2{color:var(--navy)}
+.sec-head p{color:#5B6678;margin:0;max-width:34ch;font-size:1.08rem}
+.bento{display:grid;grid-template-columns:1.25fr 1fr;gap:18px}
+.tile{position:relative;border-radius:28px;padding:30px;overflow:hidden;display:flex;flex-direction:column;gap:16px;min-height:300px;transition:transform .3s var(--ease)}
+.tile:hover{transform:translateY(-4px)}
+.tile.t1{grid-row:span 2;background:#EAFBFB}
+.tile.t2{background:#FFEFF6}
+.tile.t3{background:#FFF6DF}
+.tile .k{font-size:13px;font-weight:800;display:inline-flex;align-items:center;gap:8px}
+.tile .k b{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:9px;color:#fff;font-size:13px}
+.t1 .k{color:#0A8C8C}.t1 .k b{background:var(--teal)}
+.t2 .k{color:#C2045F}.t2 .k b{background:var(--fuch)}
+.t3 .k{color:#A87500}.t3 .k b{background:var(--yellow)}
+.tile h3{font-size:1.7rem;font-weight:900;line-height:1.12;margin:0;color:var(--navy);letter-spacing:-.01em}
+.tile p{margin:0;color:#4A5873;max-width:36ch}
+.demo{margin-top:auto;background:#fff;border-radius:18px;padding:16px;box-shadow:0 18px 40px -26px rgba(6,30,79,.35)}
+.ask{display:flex;align-items:center;gap:10px;border:1.5px solid #E2E8F0;border-radius:12px;padding:10px 12px;font-size:15px;color:#3A4A66}
+.ask i{flex:none;width:26px;height:26px;border-radius:8px;background:var(--navy);display:grid;place-items:center}
+.out{display:grid;gap:8px;margin-top:12px}
+.out div{display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:600;color:var(--ink);background:#F6F8FC;border-radius:10px;padding:9px 12px;opacity:0;transform:translateY(6px)}
+.out div::before{content:"";flex:none;width:16px;height:16px;border-radius:50%;background:var(--teal) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/11px no-repeat}
+.saved{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:14px;color:#5B6678}
+.saved b{font-size:1.4rem;color:#0A8C8C;font-weight:900}
+.in .out div{animation:rise .5s var(--ease) forwards}
+.in .out div:nth-child(2){animation-delay:.25s}.in .out div:nth-child(3){animation-delay:.5s}.in .out div:nth-child(4){animation-delay:.75s}
+@keyframes rise{to{opacity:1;transform:none}}
+.flow{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.node{flex:1;text-align:center;font-size:13px;font-weight:700;color:var(--ink)}
+.node i{display:grid;place-items:center;width:46px;height:46px;margin:0 auto 6px;border-radius:14px;background:#FFEFF6}
+.wire{flex:0 0 26px;height:2px;background:repeating-linear-gradient(90deg,var(--fuch) 0 6px,transparent 6px 11px);background-size:22px 2px;animation:wire 1s linear infinite}
+@keyframes wire{to{background-position:-22px 0}}
+.bars{display:flex;align-items:flex-end;gap:10px;height:96px;padding-top:6px}
+.bars span{flex:1;border-radius:8px 8px 4px 4px;background:linear-gradient(180deg,var(--yellow),#F8D27A);transform-origin:bottom;transform:scaleY(.05);transition:transform 1s var(--ease)}
+.in .bars span{transform:scaleY(1)}
+.in .bars span:nth-child(2){transition-delay:.12s}.in .bars span:nth-child(3){transition-delay:.24s}.in .bars span:nth-child(4){transition-delay:.36s}.in .bars span:nth-child(5){transition-delay:.48s}
+.wk{display:flex;gap:10px;margin-top:6px}
+.wk small{flex:1;text-align:center;font-size:12px;color:#7A8699;font-weight:600}
 
 /* ===== מנחות ===== */
-.hosts{padding:30px 0 120px}
+.hosts{padding:70px 0 120px;background:#fff;color:var(--ink)}
+.hosts .eyebrow{color:#0E9C9C}
+.hosts h2{color:var(--navy)}
+.hosts .who span{color:#5B6678}
 .hosts-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
 .duo{position:relative;height:440px}
 .duo figure{position:absolute;margin:0;width:60%;aspect-ratio:1;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.7)}
@@ -149,9 +178,10 @@ h2{font-size:clamp(2rem,5vw,3.5rem);line-height:1.04;letter-spacing:-.015em;font
 .stub .t{font-weight:800;color:var(--fuch);font-size:1.3rem}
 .stub small{color:#5B6678;font-weight:600}
 .stamp{width:96px;height:120px}
-.stamp svg{width:100%;height:100%}
-.stamp .print{stroke:#D4DAE3}
-.stamp .ink{stroke:url(#gp);clip-path:inset(0 0 100% 0);transition:clip-path 1.4s var(--ease)}
+.stamp{position:relative}
+.stamp .fp{inset:0}
+.stamp .gray{background:#CDD4DF}
+.stamp .ink{background:linear-gradient(180deg,var(--teal),var(--fuch));clip-path:inset(0 0 100% 0);transition:clip-path 1.4s var(--ease)}
 .pass.ok .stamp .ink{clip-path:inset(0 0 0 0)}
 .pass h2{color:var(--navy);font-size:clamp(1.8rem,4vw,2.6rem);margin:6px 0 6px}
 .pass .sub{color:#5B6678;margin:0 0 10px;max-width:46ch}
@@ -193,10 +223,9 @@ footer a{color:rgba(255,255,255,.75)}
   .ticket div+div{border-inline-start:0}
   .ticket div:nth-child(even){border-inline-start:2px dashed rgba(255,255,255,.16)}
   .ticket div:nth-child(-n+2){border-bottom:2px dashed rgba(255,255,255,.16)}
-  .sec-head{grid-template-columns:1fr}
-  .step,.step:nth-child(3),.step:nth-child(4){margin-inline-start:0;grid-template-columns:84px 1fr;gap:16px}
-  .num{font-size:4.6rem}
-  .path svg.line{display:none}
+  .bento{grid-template-columns:1fr}
+  .tile.t1{grid-row:auto}
+  .tile{padding:24px 20px;min-height:0}
   .hosts-grid{grid-template-columns:1fr;gap:20px}
   .duo{height:320px;max-width:400px;width:100%;margin:0 auto}
   .big{grid-template-columns:1fr;gap:10px;margin:30px 0 40px}
@@ -218,9 +247,10 @@ footer a{color:rgba(255,255,255,.75)}
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
-  .print.base path{stroke-dashoffset:0}.nodes circle{opacity:1}
+  .fp.base{clip-path:none}.scan{display:none}
   h1 .out{background-size:100% 100%}
   .rv{opacity:1;transform:none}
+  .out div{opacity:1;transform:none}.bars span{transform:none}
   .hold{--hold-reveal:100%;--hold-scale:1}.hold-res{max-height:none;opacity:1;transform:none}
   .track{width:auto;flex-wrap:wrap}
 }
@@ -232,14 +262,6 @@ footer a{color:rgba(255,255,255,.75)}
   <defs>
     <linearGradient id="gr" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#12C7C7"/><stop offset="1" stop-color="#F00678"/></linearGradient>
     <linearGradient id="gp" x1="0" y1="20" x2="0" y2="290" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#12C7C7"/><stop offset="1" stop-color="#F00678"/></linearGradient>
-    <g id="fp">
-      <path pathLength="1" d="M72 86c24-37 80-42 113-11 24 22 31 56 20 91"/><path pathLength="1" d="M54 116c13-57 78-88 134-63 42 19 63 66 52 113"/>
-      <path pathLength="1" d="M43 153c-3-74 58-134 131-128 58 5 105 54 104 114"/><path pathLength="1" d="M51 196c-15-88 47-164 132-160"/>
-      <path pathLength="1" d="M78 220c-30-80 3-151 66-165 38-9 76 14 89 42"/><path pathLength="1" d="M111 242c-28-52-15-112 27-137 27-16 61-7 74 22"/>
-      <path pathLength="1" d="M138 264c-28-31-29-77-5-104 17-19 47-17 61 5"/><path pathLength="1" d="M159 282c-16-18-22-42-14-63"/>
-      <path pathLength="1" d="M44 180c37-24 59-55 72-90"/><path pathLength="1" d="M64 231c42-33 63-70 76-112"/><path pathLength="1" d="M96 264c31-24 49-53 58-86"/>
-      <path pathLength="1" d="M188 218c25-36 36-76 26-112"/><path pathLength="1" d="M204 259c19-24 31-52 35-82"/>
-    </g>
   </defs>
 </svg>
 
@@ -267,21 +289,10 @@ footer a{color:rgba(255,255,255,.75)}
         <svg viewBox="-30 -20 300 340" aria-hidden="true">
           <rect class="ring bg" x="-24" y="-14" width="288" height="328" rx="118"/>
           <rect class="ring fg" x="-24" y="-14" width="288" height="328" rx="118" pathLength="1"/>
-          <g class="print base">
-            <path pathLength="1" d="M72 86c24-37 80-42 113-11 24 22 31 56 20 91"/><path pathLength="1" d="M54 116c13-57 78-88 134-63 42 19 63 66 52 113"/>
-            <path pathLength="1" d="M43 153c-3-74 58-134 131-128 58 5 105 54 104 114"/><path pathLength="1" d="M51 196c-15-88 47-164 132-160"/>
-            <path pathLength="1" d="M78 220c-30-80 3-151 66-165 38-9 76 14 89 42"/><path pathLength="1" d="M111 242c-28-52-15-112 27-137 27-16 61-7 74 22"/>
-            <path pathLength="1" d="M138 264c-28-31-29-77-5-104 17-19 47-17 61 5"/><path pathLength="1" d="M159 282c-16-18-22-42-14-63"/>
-            <path pathLength="1" d="M44 180c37-24 59-55 72-90"/><path pathLength="1" d="M64 231c42-33 63-70 76-112"/><path pathLength="1" d="M96 264c31-24 49-53 58-86"/>
-            <path pathLength="1" d="M188 218c25-36 36-76 26-112"/><path pathLength="1" d="M204 259c19-24 31-52 35-82"/>
-            <path pathLength="1" d="M91 143c13-25 39-24 52 1 14-24 42-24 54 1"/><path pathLength="1" d="M91 143c15 31 38 51 52 66 15-15 39-38 54-64"/>
-          </g>
-          <g class="print color"><use href="#fp"/><path class="heart" d="M91 143c13-25 39-24 52 1 14-24 42-24 54 1"/><path class="heart" d="M91 143c15 31 38 51 52 66 15-15 39-38 54-64"/></g>
-          <g class="nodes">
-            <circle cx="70" cy="86" r="7" style="animation-delay:1.3s"/><circle cx="184" cy="76" r="7" style="animation-delay:1.4s"/><circle cx="42" cy="116" r="7" style="animation-delay:1.5s"/><circle cx="230" cy="166" r="7" style="animation-delay:1.6s"/>
-            <circle cx="68" cy="231" r="7" style="animation-delay:1.7s"/><circle cx="162" cy="282" r="7" style="animation-delay:1.8s"/><circle cx="211" cy="218" r="7" style="animation-delay:1.9s"/><circle cx="103" cy="265" r="7" style="animation-delay:2s"/>
-          </g>
         </svg>
+        <span class="fp base" aria-hidden="true"></span>
+        <span class="fp color" aria-hidden="true"></span>
+        <span class="scan" aria-hidden="true"></span>
       </button>
       <div class="hold-hint" id="holdHint">הניחו אצבע על הטביעה והחזיקו לרגע</div>
       <div class="hold-res" aria-live="polite">
@@ -291,11 +302,8 @@ footer a{color:rgba(255,255,255,.75)}
   </div>
 
   <div class="marq">
-    <div class="marq-label">מערכות שבנינו ועובדות היום</div>
-    <div class="track" aria-label="מערכות שבנינו ועובדות היום">
-      <span>מערכת הדרכות ל-64 בתי ספר</span><span>מי עוד לא מילא, ותזכורת בלחיצה</span><span>עוזר ידע שעונה 24/7</span><span>לוח מצב שמתעדכן לבד</span><span>רישום להשתלמויות</span><span>קליטת בית ספר ב-95 משימות</span><span>ייבוא רשימות בלי כפילויות</span><span>אישור בקישור אישי</span>
-      <span aria-hidden="true">מערכת הדרכות ל-64 בתי ספר</span><span aria-hidden="true">מי עוד לא מילא, ותזכורת בלחיצה</span><span aria-hidden="true">עוזר ידע שעונה 24/7</span><span aria-hidden="true">לוח מצב שמתעדכן לבד</span><span aria-hidden="true">רישום להשתלמויות</span><span aria-hidden="true">קליטת בית ספר ב-95 משימות</span><span aria-hidden="true">ייבוא רשימות בלי כפילויות</span><span aria-hidden="true">אישור בקישור אישי</span>
-    </div>
+    <div class="marq-label">מחוות האפליקציות שלנו</div>
+    <div class="track" aria-label="מערכות מחוות האפליקציות שלנו"><span>ניהול משימות למנהלת</span><span>נוכחות בזמן אמת</span><span>תוכנית עבודה שנתית</span><span>לוח גאנט ארגוני</span><span>ניהול תקציב ושעות</span><span>דוחות חודשיים בלחיצה</span><span>שיחות משוב לצוות</span><span>לוח אירועים ומועדים</span><span>מרכז שליטה בוואטסאפ</span><span>גיוס משאבים ושותפויות</span><span>מתנדבים ובנות שירות</span><span>פולס, מדד אקלים</span><span>תיק חפיפה למנהל</span><span>מחולל הודעות לקהילה</span><span aria-hidden="true">ניהול משימות למנהלת</span><span aria-hidden="true">נוכחות בזמן אמת</span><span aria-hidden="true">תוכנית עבודה שנתית</span><span aria-hidden="true">לוח גאנט ארגוני</span><span aria-hidden="true">ניהול תקציב ושעות</span><span aria-hidden="true">דוחות חודשיים בלחיצה</span><span aria-hidden="true">שיחות משוב לצוות</span><span aria-hidden="true">לוח אירועים ומועדים</span><span aria-hidden="true">מרכז שליטה בוואטסאפ</span><span aria-hidden="true">גיוס משאבים ושותפויות</span><span aria-hidden="true">מתנדבים ובנות שירות</span><span aria-hidden="true">פולס, מדד אקלים</span><span aria-hidden="true">תיק חפיפה למנהל</span><span aria-hidden="true">מחולל הודעות לקהילה</span></div>
   </div>
 </header>
 
@@ -303,14 +311,43 @@ footer a{color:rgba(255,255,255,.75)}
 <section class="agenda" aria-labelledby="ag">
   <div class="wrap">
     <div class="sec-head rv">
-      <div><div class="eyebrow"><i></i>מה בוובינר</div><h2 id="ag">שעה אחת.<br>שלוש תחנות.</h2></div>
+      <div><div class="eyebrow"><i></i>מה בוובינר</div><h2 id="ag">שעה אחת. שלוש תחנות.</h2></div>
       <p>מעשי, בלי תיאוריה מיותרת. יוצאים עם דברים שאפשר להתחיל בהם כבר למחרת.</p>
     </div>
-    <div class="path">
-      <svg class="line" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true"><path d="M960 90 C760 90 760 280 560 285 C360 290 380 470 180 490"/></svg>
-      <div class="step rv"><div class="num">01</div><div><span class="tag" style="background:rgba(18,199,199,.16);color:var(--teal)">זמן</span><h3>לחסוך זמן עם AI</h3><p>כלים שתוכלו לעבוד איתם כבר מחר: לסכם, לנסח, לארגן ולענות, בלי לעשות את אותה עבודה שוב ושוב.</p></div></div>
-      <div class="step rv"><div class="num">02</div><div><span class="tag" style="background:rgba(240,6,120,.16);color:#FF5BA8">יעילות</span><h3>לעבוד ביעילות</h3><p>איך מחברים את הכלים לעבודה היומיומית של הארגון, כך שהם חוסכים שעות ולא מוסיפים עוד משימה.</p></div></div>
-      <div class="step rv"><div class="num">03</div><div><span class="tag" style="background:rgba(244,180,27,.18);color:var(--yellow)">הטמעה</span><h3>שינוי נכון והטמעה טובה</h3><p>איך מובילים את הצוות לשימוש בבינה מלאכותית, ואיך דואגים שהשינוי ייקלט ויישאר.</p></div></div>
+    <div class="bento">
+      <article class="tile t1 rv">
+        <div class="k"><b>1</b>זמן</div>
+        <h3>לחסוך זמן עם AI</h3>
+        <p>כלים שתוכלו לעבוד איתם כבר מחר: לסכם, לנסח, לארגן ולענות, בלי לעשות את אותה עבודה שוב ושוב.</p>
+        <div class="demo" aria-hidden="true">
+          <div class="ask"><i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#12C7C7" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg></i><span>סכם לי את הישיבה ותן רשימת משימות</span></div>
+          <div class="out"><div>מי אחראי על כל משימה</div><div>מה צריך לעשות, בשורה אחת</div><div>עד מתי</div><div>טיוטת מייל לצוות, מוכנה לשליחה</div></div>
+          <div class="saved"><span>במקום שעה של הקלדה</span><b>כמה דקות</b></div>
+        </div>
+      </article>
+      <article class="tile t2 rv">
+        <div class="k"><b>2</b>יעילות</div>
+        <h3>לעבוד ביעילות</h3>
+        <p>איך מחברים את הכלים לעבודה היומיומית, כך שהם חוסכים שעות ולא מוסיפים עוד משימה.</p>
+        <div class="demo" aria-hidden="true">
+          <div class="flow">
+            <div class="node"><i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F00678" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></i>טופס</div>
+            <span class="wire"></span>
+            <div class="node"><i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F00678" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg></i>טבלה</div>
+            <span class="wire"></span>
+            <div class="node"><i><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F00678" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/></svg></i>תזכורת</div>
+          </div>
+        </div>
+      </article>
+      <article class="tile t3 rv">
+        <div class="k"><b>3</b>הטמעה</div>
+        <h3>שינוי נכון והטמעה טובה</h3>
+        <p>איך מובילים את הצוות לשימוש בבינה מלאכותית, ואיך דואגים שהשינוי ייקלט ויישאר.</p>
+        <div class="demo" aria-hidden="true">
+          <div class="bars"><span style="height:22%"></span><span style="height:38%"></span><span style="height:55%"></span><span style="height:74%"></span><span style="height:96%"></span></div>
+          <div class="wk"><small>שבוע 1</small><small>2</small><small>3</small><small>4</small><small>5</small></div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -389,7 +426,7 @@ footer a{color:rgba(255,255,255,.75)}
         </div>
       </div>
       <aside class="stub" aria-hidden="true">
-        <div class="stamp"><svg viewBox="20 10 230 290" style="overflow:visible"><g class="print"><use href="#fp"/></g><g class="print ink"><use href="#fp"/></g></svg></div>
+        <div class="stamp"><span class="fp gray"></span><span class="fp ink"></span></div>
         <div><div class="d">20.10</div><div class="t">20:30</div><small>וובינר בזום · ללא עלות</small></div>
       </aside>
     </div>
