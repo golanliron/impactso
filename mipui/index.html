@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>מיפוי צוות · impactos</title>
-<meta name="description" content="שאלון מוכן לצוות ודשבורד שמראה איפה הארגון עומד בשימוש ב-AI: מי משתמש, מה מעכב, ומי מוכן להוביל. ללא עלות.">
-<meta property="og:title" content="מיפוי הצוות שלכם בשימוש ב-AI · impactos">
+<meta name="description" content="שאלון מוכן לצוות ודשבורד שמראה איפה הארגון עומד בשימוש ב‑AI: מי משתמש, מה מעכב, ומי מוכן להוביל. ללא עלות.">
+<meta property="og:title" content="מיפוי הצוות שלכם בשימוש ב‑AI · impactos">
 <meta property="og:description" content="שאלון מוכן לצוות ודשבורד לארגון. ללא עלות.">
 <meta name="theme-color" content="#061E4F">
 <!--
@@ -102,7 +102,7 @@
         '<div class="top"><a class="brand" href="https://impactos.co.il/?utm_source=mipui&utm_medium=tool" target="_blank" rel="noopener"><img src="logo.png" alt="impactos"></a></div>' +
         '<div class="grid"><div>' +
           '<div class="eyebrow">כלי מיפוי צוות · ללא עלות</div>' +
-          '<h1>איפה הצוות שלכם עומד בשימוש ב-AI?</h1>' +
+          '<h1>איפה הצוות שלכם עומד בשימוש ב‑AI?</h1>' +
           '<p class="lead">לפני שבוחרים כלים או מתכננים הדרכה, כדאי לדעת מי כבר משתמש, מה מעכב את השאר, ומי מוכן להוביל. מיפוי אחד, כמה דקות לכל איש צוות.</p>' +
           '<ol class="steps">' +
             '<li><b>1</b><span>נרשמים ומקבלים שאלון מוכן לצוות, לבית ספר או לעמותה</span></li>' +
@@ -185,7 +185,7 @@
     var main = shell('מיפוי צוות', TYPE_HE[me.type], mEsc(me.org) + (asAdmin ? ' · מבט ניהול' : ''));
     var qUrl = MIPUI_BASE + 'q.html?s=' + me.s;
     var place = me.type === 'n' ? 'בארגון' : 'בבית הספר';
-    var msg = 'שלום לכולם, אנחנו ממפים איך הצוות שלנו משתמש ב-AI, כדי לבנות יחד ליווי שמתאים לנו באמת. ' +
+    var msg = 'שלום לכולם, אנחנו ממפים איך הצוות שלנו משתמש ב‑AI, כדי לבנות יחד ליווי שמתאים לנו באמת. ' +
       'זה לוקח כ-4 דקות. נשמח שכל אחד ואחת ימלאו עד סוף השבוע:\n' + qUrl;
     main.innerHTML =
       (asAdmin ? '<button class="btn sm" id="bk" style="margin-bottom:12px"><svg class="i"><use href="#i-back"/></svg>כל הארגונים</button>' : '') +
@@ -276,7 +276,7 @@
       var v = c[id] || 0;
       h += '<div class="bar"><span>' + mEsc(label(qid, id)) + '</span><div class="tr"><div class="fl' + (id === 'never' ? ' o' : '') + '" style="width:' + pct(v, base) + '%"></div></div><span class="v">' + v + '</span></div>';
     });
-    if (qid === 'tools' || qid === 'use') h += '<p class="note">מתוך ' + base + ' שמשתמשים ב-AI לפחות לפעמים.</p>';
+    if (qid === 'tools' || qid === 'use') h += '<p class="note">מתוך ' + base + ' שמשתמשים ב‑AI לפחות לפעמים.</p>';
     return h + '</div>';
   }
   function scaleCard(rows, qid) {
@@ -544,7 +544,7 @@
     var aiB = document.getElementById('aiB');
     if (aiB) aiB.onclick = function () {
       var topBs = Object.keys(bc).sort(function (a, b) { return bc[b] - bc[a]; }).slice(0, 3).map(function (id) { return label('block', id) + ' (' + bc[id] + ')'; }).join(', ');
-      var p = 'לפניך תשובות של ' + n + ' אנשי צוות ב' + (me.type === 'n' ? 'עמותה או ארגון' : 'בית ספר') + ', לשאלון על שימוש ב-AI בעבודה. אין בהן שמות.\n' +
+      var p = 'לפניך תשובות של ' + n + ' אנשי צוות ב' + (me.type === 'n' ? 'עמותה או ארגון' : 'בית ספר') + ', לשאלון על שימוש ב‑AI בעבודה. אין בהן שמות.\n' +
         'נתונים: ' + pct(weekly, n) + '% משתמשים לפחות פעם בשבוע; ' + never + ' עוד לא השתמשו אף פעם; ממוצע ביטחון ' + (conf || 0).toFixed(1) + ' מתוך 5; ממוצע מוכנות לנסות ' + (ready || 0).toFixed(1) + ' מתוך 5. המעכבים הנפוצים: ' + topBs + '.\n' +
         'שימוש נכון (ממוצע 1-5): ' + Q.right.items.map(function (it) { var a = avg(rows, it.id); return it.t + ' ' + (a == null ? '-' : a.toFixed(1)); }).join('; ') + '.\n' +
         'ב' + who + ' (ממוצע 1-5): ' + Q.place.items.map(function (it) { var a = avg(rows, it.id); return it.t + ' ' + (a == null ? '-' : a.toFixed(1)); }).join('; ') + '.\n\n' +
