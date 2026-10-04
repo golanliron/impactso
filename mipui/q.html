@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>שאלון לצוות · impactos</title>
+<!--
+  השאלון לאנשי הצוות. נטען מהאתר ולא משרת Apps Script, ולכן נפתח מיד.
+  השליחה יוצאת ברקע: העונה/ה רואה "תודה" מיד, והתשובה נשמרת בתור מקומי עד שהשרת מאשר.
+  ?s=<קוד הארגון>  ·  &test=1 (מילוי ניסיון של המנהל/ת, לא נספר)
+-->
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="mipui.css">
+</head>
+<body>
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+</svg>
+
+<div class="qwrap">
+  <div class="qtop">
+    <div class="sch"><b id="orgName"></b><span>שאלון לצוות</span></div>
+  </div>
+  <div id="app" style="flex:1;display:flex;flex-direction:column"><div class="loading">טוען…</div></div>
+</div>
+
+<footer class="mf">
+  <a href="https://impactos.co.il/?utm_source=mipui&utm_medium=survey" target="_blank" rel="noopener"><img src="logo.png" alt="impactos"></a>
+  <div>נבנה על ידי <bdi>impactos</bdi> · <a href="https://impactos.co.il/?utm_source=mipui&utm_medium=survey" target="_blank" rel="noopener"><bdi>impactos.co.il</bdi></a></div>
+</footer>
+
+<script src="survey.js"></script>
+<script src="common.js"></script>
+<script>
+(function () {
+  var P = new URLSearchParams(location.search);
+  var S = P.get('s') || '';
+  var TEST = P.get('test') === '1';
+  var QKEY = 'mipui_queue';
+  var app = document.getElementById('app');
+  var answers = {};
+  var idx = -1; // -1 = מסך פתיחה
+  var ORG = mStore('mipui_org_' + S); // { org, type, qs } מהביקור הקודם, כדי שייפתח מיד
+  var SV = null, EXTRA = [];
+  var DONE_KEY = 'mipui_done_' + S + '_' + MIPUI_SURVEY.id;
+
+  // מקף לא נשבר לפני AI, שלא יישאר "ב-" לבד בסוף שורה
+  function L(s) { return String(s || '').replace(/-AI/g, '‑AI'); }
+
+  function setOrg(o) {
+    ORG = o;
+    SV = mSurvey(o.type);
+    EXTRA = normExtra(o.qs);
+    document.getElementById('orgName').textContent = o.org;
+    document.title = SV.title + ' · ' + o.org;
+  }
+  /* שאלות שהארגון הוסיף: נכנסות לפני השאלה האחרונה */
+  function normExtra(list) {
+    return (list || []).map(function (x) {
+      return { id: x.id, type: x.type, max: x.max, extra: true, optional: x.type === 'text', q: x.q, ends: ['בכלל לא', 'מאוד'],
+        opts: (x.opts || []).map(function (o) { return { id: o.id, t: o.t }; }),
+        hint: x.type === 'many' ? 'עד ' + x.max : (x.type === 'text' ? 'לא חובה' : '') };
+    });
+  }
+  function allQ() {
+    var core = SV.questions.slice(), at = core.length - 1; // לפני "צוות ראשון"
+    return core.slice(0, at).concat(EXTRA, core.slice(at));
+  }
+  function visible() {
+    return allQ().filter(function (q) {
+      if (!q.skipIf) return true;
+      return !Object.keys(q.skipIf).some(function (k) { return answers[k] === q.skipIf[k]; });
+    });
+  }
+
+  function render() {
+    if (!SV) return;
+    if (idx === -1) return renderStart();
+    var qs = visible();
+    if (idx >= qs.length) return renderDone();
+    renderQ(qs[idx], qs);
+  }
+
+  function renderStart() {
+    if (!TEST && mStore(DONE_KEY)) {
+      app.innerHTML = '<div class="qstart" style="text-align:center"><div class="done-ic"><svg class="i"><use href="#i-check"/></svg></div>' +
+        '<p>כבר מילאת את השאלון מהמכשיר הזה. תודה!</p><div><button class="btn sm" id="againB">מילוי נוסף (מכשיר משותף)</button></div></div>';
+      document.getElementById('againB').onclick = function () { mStore(DONE_KEY, null); render(); };
+      return;
+    }
+    app.innerHTML = '<div class="qstart"><h1>' + mEsc(L(SV.title)) + '</h1><p>' + mEsc(L(SV.intro)) + '</p>' +
+      '<div class="meta"><span><svg class="i"><use href="#i-clock"/></svg>כ-4 דקות</span></div>' +
+      (TEST ? '<div class="testbar">מילוי ניסיון: התשובה לא תיספר בתוצאות של הצוות.</div>' : '') +
+      '<div><button class="btn pri" id="go" style="min-width:180px">מתחילים</button></div></div>';
+    document.getElementById('go').onclick = function () { idx = 0; render(); };
+  }
+
+  function stories(qs) {
+    return '<div class="stories">' + qs.map(function (_, i) { return '<i class="' + (i <= idx ? 'f' : '') + '"></i>'; }).join('') + '</div>' +
+      '<div class="qcount">שאלה ' + (idx + 1) + ' מתוך ' + qs.length + '</div>';
+  }
+
+  function canNext(q) {
+    var v = answers[q.id];
+    if (q.optional) return true;
+    if (q.type === 'many') return Array.isArray(v) && v.length > 0;
+    if (q.type === 'text' || q.type === 'name') return !!(v && v.trim().length >= 2);
+    if (q.type === 'grid') return q.items.every(function (it) { return answers[it.id] != null; });
+    return v != null && v !== '';
+  }
+
+  function go(d) {
+    idx += d;
+    if (idx < -1) idx = -1;
+    render();
+    window.scrollTo(0, 0);
+  }
+
+  function renderQ(q, qs) {
+    var h = stories(qs) + '<div class="qbody"><div class="qq" id="qh">' + mEsc(L(q.q)) + '</div>';
+    if (q.hint) h += '<div class="qhint">' + mEsc(q.hint) + '</div>';
+    var v = answers[q.id];
+    if (q.type === 'one' || q.type === 'many') {
+      var multi = q.type === 'many';
+      var sel = multi ? (v || []) : v;
+      h += '<div role="' + (multi ? 'group' : 'radiogroup') + '" aria-labelledby="qh" style="display:flex;flex-direction:column;gap:8px">';
+      q.opts.forEach(function (o) {
+        var on = multi ? sel.indexOf(o.id) > -1 : sel === o.id;
+        var dim = multi && !on && sel.length >= q.max;
+        h += '<button type="button" class="opt' + (multi ? ' multi' : '') + (on ? ' on' : '') + (dim ? ' dim' : '') + '" data-o="' + o.id + '" role="' + (multi ? 'checkbox' : 'radio') + '" aria-checked="' + on + '"><span class="mk"></span><span>' + mEsc(L(o.t)) + '</span></button>';
+      });
+      h += '</div>';
+    } else if (q.type === 'scale') {
+      h += '<div class="scale" role="radiogroup" aria-labelledby="qh">' + [1, 2, 3, 4, 5].map(function (n) {
+        return '<button type="button" data-n="' + n + '" class="' + (v === n ? 'on' : '') + '" role="radio" aria-checked="' + (v === n) + '">' + n + '</button>';
+      }).join('') + '</div><div class="scale-ends"><span>1 · ' + mEsc(q.ends[0]) + '</span><span>5 · ' + mEsc(q.ends[1]) + '</span></div>';
+    } else if (q.type === 'grid') {
+      q.items.forEach(function (it) {
+        var gv = answers[it.id];
+        h += '<div class="gitem"><div class="gq" id="g_' + it.id + '">' + mEsc(L(it.t)) + '</div><div class="scale sm" role="radiogroup" aria-labelledby="g_' + it.id + '">' +
+          [1, 2, 3, 4, 5].map(function (n) { return '<button type="button" data-g="' + it.id + '" data-n="' + n + '" class="' + (gv === n ? 'on' : '') + '" role="radio" aria-checked="' + (gv === n) + '">' + n + '</button>'; }).join('') + '</div></div>';
+      });
+      h += '<div class="scale-ends"><span>1 · ' + mEsc(q.ends[0]) + '</span><span>5 · ' + mEsc(q.ends[1]) + '</span></div>';
+    } else if (q.type === 'text') {
+      h += '<textarea class="qt" id="tx" maxlength="1500" placeholder="כתבו כאן…" aria-labelledby="qh">' + mEsc(v || '') + '</textarea>';
+    } else if (q.type === 'name') {
+      h += '<input class="qt" id="tx" maxlength="80" autocomplete="name" placeholder="שם פרטי ושם משפחה" aria-labelledby="qh" value="' + mEsc(v || '') + '">';
+    }
+    h += '</div>';
+    var last = idx === qs.length - 1;
+    h += '<div class="qnav"><button type="button" class="btn" id="bk"><svg class="i"><use href="#i-back"/></svg>חזרה</button>' +
+      '<button type="button" class="btn pri" id="nx">' + (last ? 'שליחה' : (q.optional && !answers[q.id] ? 'דילוג' : 'הבא')) + '</button></div>';
+    app.innerHTML = h;
+
+    var nx = document.getElementById('nx');
+    nx.disabled = !canNext(q);
+    document.getElementById('bk').onclick = function () { go(-1); };
+    nx.onclick = function () { if (canNext(q)) go(1); };
+
+    app.querySelectorAll('.opt').forEach(function (b) {
+      b.onclick = function () {
+        var id = b.getAttribute('data-o');
+        if (q.type === 'one') {
+          answers[q.id] = id;
+          render();
+          setTimeout(function () { if (visible()[idx] === q) go(1); }, 260);
+        } else {
+          var cur = (answers[q.id] || []).slice();
+          var opt = q.opts.filter(function (o) { return o.id === id; })[0];
+          var i = cur.indexOf(id);
+          if (i > -1) cur.splice(i, 1);
+          else if (opt.solo) cur = [id];
+          else {
+            cur = cur.filter(function (x) { return !q.opts.some(function (o) { return o.id === x && o.solo; }); });
+            if (cur.length < q.max) cur.push(id);
+          }
+          answers[q.id] = cur;
+          render();
+        }
+      };
+    });
+    app.querySelectorAll('.scale button[data-g]').forEach(function (b) {
+      b.onclick = function () {
+        answers[b.getAttribute('data-g')] = Number(b.getAttribute('data-n'));
+        var y = window.scrollY;
+        render();
+        window.scrollTo(0, y);
+      };
+    });
+    app.querySelectorAll('.scale button:not([data-g])').forEach(function (b) {
+      b.onclick = function () {
+        answers[q.id] = Number(b.getAttribute('data-n'));
+        render();
+        setTimeout(function () { if (visible()[idx] === q) go(1); }, 260);
+      };
+    });
+    var tx = document.getElementById('tx');
+    if (tx) {
+      tx.oninput = function () {
+        answers[q.id] = tx.value;
+        nx.disabled = !canNext(q);
+        if (q.optional && !last) nx.textContent = tx.value.trim() ? 'הבא' : 'דילוג';
+      };
+    }
+  }
+
+  /* ---------- שליחה ברקע ---------- */
+  function queue() { return mStore(QKEY) || []; }
+  function flush() {
+    var q = queue();
+    if (!q.length) return;
+    var item = q[0];
+    mPost(item).then(function (r) {
+      if (r && r.ok) { mStore(QKEY, queue().filter(function (x) { return x.rid !== item.rid; })); flush(); }
+      else if (r && (r.error === 'org' || r.error === 'rid')) { mStore(QKEY, queue().filter(function (x) { return x.rid !== item.rid; })); }
+      else setTimeout(flush, 4000);
+    }).catch(function () { setTimeout(flush, 6000); });
+  }
+
+  function renderDone() {
+    if (!answers.__sent) {
+      var a = {}, ex = {};
+      visible().forEach(function (q) {
+        if (q.type === 'grid') { q.items.forEach(function (it) { if (answers[it.id] != null) a[it.id] = answers[it.id]; }); return; }
+        var v = answers[q.id];
+        if (q.extra) { if (v != null && v !== '' && !(Array.isArray(v) && !v.length)) ex[q.id] = typeof v === 'string' ? v.trim() : v; return; }
+        if (v != null && v !== '') a[q.id] = typeof v === 'string' ? v.trim() : v;
+      });
+      if (Object.keys(ex).length) a.extra = ex;
+      var item = { action: 'answer', s: S, rid: mRid(), a: a };
+      if (TEST) item.test = 1;
+      mStore(QKEY, queue().concat([item]));
+      if (!TEST) mStore(DONE_KEY, 1);
+      answers.__sent = 1;
+      flush();
+    }
+    var first = (answers.name || '').trim().split(/\s+/)[0];
+    app.innerHTML = '<div class="qstart" style="text-align:center"><div class="done-ic"><svg class="i"><use href="#i-check"/></svg></div>' +
+      '<h1>תודה' + (first ? ' ' + mEsc(first) : '') + '!</h1><p>התשובות שלך יעזרו לבנות לצוות שלנו ליווי שמתאים לו באמת.</p>' +
+      (TEST ? '<div class="testbar">מילוי ניסיון: התשובה לא תיספר בתוצאות של הצוות.</div>' : '') + '<div id="peek"></div>' +
+      '<div class="spread"><b>רוצים מיפוי כזה גם בארגון שלכם?</b><p>שאלון מוכן לצוות ודשבורד שמראה איפה הארגון עומד בשימוש ב-AI. ללא עלות.</p>' +
+      '<a class="btn tl sm" href="./?utm_source=mipui&utm_medium=thanks" target="_blank" rel="noopener">לפתוח מיפוי לארגון שלי<svg class="i" style="width:18px;height:18px"><use href="#i-arrow"/></svg></a></div></div>';
+    mGet({ action: 'peek', s: S }, 15000).then(function (r) {
+      if (!r || !r.ok || r.n < 3) return;
+      document.getElementById('peek').innerHTML = '<div class="peek"><b>מה ענה הצוות עד עכשיו</b>' + r.n + ' אנשי צוות כבר ענו.<br>' +
+        Math.round(r.weekly / r.n * 100) + '% משתמשים ב-AI לפחות פעם בשבוע.</div>';
+    }).catch(function () {});
+  }
+
+  function bad() {
+    app.innerHTML = '<div class="qstart"><p class="err">הקישור לא שלם. בקשו מההנהלה את הקישור לשאלון.</p></div>';
+  }
+
+  flush();
+  if (!S) { bad(); return; }
+  if (ORG) { setOrg(ORG); render(); }
+  mGet({ action: 'org', s: S }, 20000).then(function (r) {
+    if (!r || !r.ok) { if (!ORG) bad(); return; }
+    var o = { org: r.org, type: r.type, qs: r.qs };
+    mStore('mipui_org_' + S, o);
+    var firstLoad = !ORG;
+    var lastCore = ORG ? visible().length - 1 : 0;
+    if (firstLoad) { setOrg(o); render(); return; }
+    // שאלות שהתעדכנו: לא מזיזים שאלות מתחת לעונה/ה באמצע
+    if (answers.__sent || idx >= lastCore) return;
+    setOrg(o);
+    if (idx >= 0) render();
+  }).catch(function () { if (!ORG) app.innerHTML = '<div class="qstart"><p class="err">השרת לא ענה. רעננו את הדף בעוד רגע.</p></div>'; });
+})();
+</script>
+</body>
+</html>

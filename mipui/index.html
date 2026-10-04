@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>מיפוי צוות · impactos</title>
+<meta name="description" content="שאלון מוכן לצוות ודשבורד שמראה איפה הארגון עומד בשימוש ב-AI: מי משתמש, מה מעכב, ומי מוכן להוביל. ללא עלות.">
+<meta property="og:title" content="מיפוי הצוות שלכם בשימוש ב-AI · impactos">
+<meta property="og:description" content="שאלון מוכן לצוות ודשבורד לארגון. ללא עלות.">
+<meta name="theme-color" content="#061E4F">
+<!--
+  דף אחד לכל מה שהמנהל/ת צריך/ה:
+  בלי מפתח           → פתיחה קצרה והרשמה. אחרי ההרשמה: הקישורים על המסך (וגם במייל).
+  ?k=<מפתח הארגון>   → הקישור לשאלון, הפצה, והדשבורד של הארגון.
+  ?k=<ADMIN_KEY>     → מבט ניהול: כל הארגונים שנרשמו. &s=<קוד> פותח ארגון מסוים.
+  בקובץ הזה אין שמות, מיילים או מפתחות. הכול מגיע מהשרת אחרי בדיקת המפתח.
+-->
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="mipui.css">
+</head>
+<body>
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1 1 21 11.5z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+  <symbol id="i-text" viewBox="0 0 24 24"><path d="M4 7V5h16v2M9 19h6M12 5v14"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 22V4"/><path d="M4 4h12l-2 4 2 4H4"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></symbol>
+</svg>
+
+<div id="root"><div class="loading">טוען…</div></div>
+
+<footer class="mf">
+  <a href="https://impactos.co.il/?utm_source=mipui&utm_medium=tool" target="_blank" rel="noopener"><img src="logo.png" alt="impactos"></a>
+  <div>נבנה על ידי <bdi>impactos</bdi> · טכנולוגיה יוצרת אימפקט · <a href="https://impactos.co.il/?utm_source=mipui&utm_medium=tool" target="_blank" rel="noopener"><bdi>impactos.co.il</bdi></a></div>
+</footer>
+<div class="toast" id="toast"></div>
+
+<script src="survey.js"></script>
+<script src="common.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+(function () {
+  // המפתח נשמר בדפדפן, כדי שאפשר יהיה לחזור לדף גם בלי הקישור
+  var URLK = new URLSearchParams(location.search).get('k') || '';
+  var K = URLK || mStore('mipui_k') || '';
+  if (URLK) mStore('mipui_k', URLK);
+  var root = document.getElementById('root');
+  var WA = 'https://wa.me/972536256653';
+  var TYPE_HE = { s: 'בית ספר', n: 'עמותה או ארגון' };
+  var SV = null, Q = {};
+
+  function useType(type) {
+    SV = mSurvey(type);
+    Q = {}; SV.questions.forEach(function (q) { Q[q.id] = q; });
+  }
+  function toast(msg) {
+    var t = document.getElementById('toast'); t.textContent = msg; t.style.display = 'block';
+    clearTimeout(toast._t); toast._t = setTimeout(function () { t.style.display = 'none'; }, 2200);
+  }
+  function copy(txt, msg) {
+    (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(function () { toast(msg || 'הועתק'); }, function () {
+      var ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); toast(msg || 'הועתק'); } catch (e) {} ta.remove();
+    });
+  }
+  function label(qid, oid) {
+    var o = ((Q[qid] && Q[qid].opts) || []).filter(function (x) { return x.id === oid; })[0];
+    return o ? o.t : oid;
+  }
+  function shell(title, sub, who) {
+    root.innerHTML = '<header class="ctop"><div class="ctop-in"><span class="brand"><img src="logo.png" alt="impactos"></span>' +
+      '<div class="t"><b>' + title + '</b><span>' + sub + '</span></div><div class="who">' + (who || '') + '</div></div></header>' +
+      '<main class="cm" id="main"></main>';
+    return document.getElementById('main');
+  }
+
+  /* ---------- בלי מפתח: פתיחה והרשמה ---------- */
+  function renderIntro() {
+    var sample = '<div class="sample" aria-hidden="true"><span class="tag">דשבורד לדוגמה</span>' +
+      '<div class="g3"><div class="kpi"><div class="v">24<small> /31</small></div><div class="l">ענו</div></div>' +
+      '<div class="kpi"><div class="v">38%</div><div class="l">משתמשים כל שבוע</div></div>' +
+      '<div class="kpi"><div class="v">3.9<small> /5</small></div><div class="l">מוכנות לנסות</div></div></div>' +
+      '<div class="profile" style="height:30px;margin-bottom:10px"><div style="width:25%;background:#061E4F">מובילים</div><div style="width:46%;background:#0A7A7B">מתנסים</div><div style="width:29%;background:#F00678">טרם התחילו</div></div>' +
+      '<div class="bar"><span>אין לי זמן ללמוד</span><div class="tr"><div class="fl" style="width:62%"></div></div><span class="v">15</span></div>' +
+      '<div class="bar"><span>לא יודע/ת מאיפה להתחיל</span><div class="tr"><div class="fl" style="width:41%"></div></div><span class="v">10</span></div>' +
+      '<div class="bar"><span>רוצים בצוות הראשון</span><div class="tr"><div class="fl o" style="width:29%"></div></div><span class="v">7</span></div></div>';
+    root.innerHTML =
+      '<section class="intro"><div class="intro-in">' +
+        '<div class="top"><a class="brand" href="https://impactos.co.il/?utm_source=mipui&utm_medium=tool" target="_blank" rel="noopener"><img src="logo.png" alt="impactos"></a></div>' +
+        '<div class="grid"><div>' +
+          '<div class="eyebrow">כלי מיפוי צוות · ללא עלות</div>' +
+          '<h1>איפה הצוות שלכם עומד בשימוש ב-AI?</h1>' +
+          '<p class="lead">לפני שבוחרים כלים או מתכננים הדרכה, כדאי לדעת מי כבר משתמש, מה מעכב את השאר, ומי מוכן להוביל. מיפוי אחד, כמה דקות לכל איש צוות.</p>' +
+          '<ol class="steps">' +
+            '<li><b>1</b><span>נרשמים ומקבלים שאלון מוכן לצוות, לבית ספר או לעמותה</span></li>' +
+            '<li><b>2</b><span>שולחים לצוות בוואטסאפ או במייל. כל אחד ממלא כ-4 דקות מהטלפון</span></li>' +
+            '<li><b>3</b><span>רואים דשבורד שמתמלא: מי משתמש, מה מעכב, ומי רוצה להיות בצוות הראשון</span></li>' +
+          '</ol>' +
+          '<span class="proof"><svg class="i" style="width:18px;height:18px"><use href="#i-check"/></svg>כבר עובד בעשרות בתי ספר ועמותות</span>' +
+        '</div><div>' + sample + '</div></div>' +
+      '</div></section>' +
+      '<section class="reg"><div class="card" id="regCard"><div class="h2">פתיחת מיפוי לארגון</div>' +
+        '<p class="note" style="margin-bottom:6px">מיד אחרי ההרשמה הקישורים יופיעו כאן, וגם יישלחו אליך במייל.</p>' +
+        '<label>סוג הארגון</label><div class="seg" role="radiogroup" aria-label="סוג הארגון">' +
+          '<button type="button" data-t="s" role="radio" aria-checked="false">בית ספר</button><button type="button" data-t="n" role="radio" aria-checked="false">עמותה או ארגון</button></div>' +
+        '<label for="rOrg">שם הארגון</label><input class="qt" id="rOrg" maxlength="80" autocomplete="organization">' +
+        '<div class="two"><div><label for="rName">השם שלך</label><input class="qt" id="rName" maxlength="60" autocomplete="name"></div>' +
+          '<div><label for="rPhone">נייד</label><input class="qt ltr" id="rPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" style="text-align:right"></div></div>' +
+        '<label for="rMail">מייל</label><input class="qt ltr" id="rMail" type="email" inputmode="email" autocomplete="email" maxlength="120" style="text-align:right">' +
+        '<label class="agree"><input type="checkbox" id="rAgree"><span>אני מוסמך/ת למפות את הצוות בארגון. ידוע לי שאנשי הצוות כותבים את שמם בשאלון, שהתשובות נשמרות אצל impactos ומוצגות רק למי שמחזיק בקישור הדשבורד של הארגון, ושהן לא מועברות לאף גורם אחר. פרטי הקשר שלי ישמשו לשליחת הקישורים ולחזרה אליי אם אבקש.</span></label>' +
+        '<button class="btn tl" id="rGo" style="width:100%">פתיחת המיפוי</button><p class="err" id="rMsg" role="alert" style="margin-top:8px"></p>' +
+      '</div></section>';
+
+    var type = '';
+    root.querySelectorAll('.seg button').forEach(function (b) {
+      b.onclick = function () {
+        type = b.getAttribute('data-t');
+        root.querySelectorAll('.seg button').forEach(function (x) { var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-checked', on); });
+      };
+    });
+    document.getElementById('rGo').onclick = function () {
+      var v = function (id) { return document.getElementById(id).value.trim(); };
+      var org = v('rOrg'), name = v('rName'), mail = v('rMail'), phone = v('rPhone'), m = document.getElementById('rMsg');
+      if (!type) { m.textContent = 'בחרו את סוג הארגון.'; return; }
+      if (org.length < 2 || name.length < 2) { m.textContent = 'חסרים שם הארגון או השם שלך.'; return; }
+      if (phone.replace(/\D/g, '').length < 9) { m.textContent = 'מספר הנייד לא נראה תקין.'; return; }
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)) { m.textContent = 'כתובת המייל לא נראית תקינה.'; return; }
+      if (!document.getElementById('rAgree').checked) { m.textContent = 'צריך לאשר את תנאי הפרטיות.'; return; }
+      var btn = this; btn.disabled = true; btn.textContent = 'פותחים את המיפוי…'; m.textContent = '';
+      mPost({ action: 'register', org: org, type: type, name: name, mail: mail, phone: phone, agree: 1 }).then(function (r) {
+        if (r.ok && r.exists) {
+          document.getElementById('regCard').innerHTML = '<div class="h2">המיפוי של ' + mEsc(org) + ' כבר קיים</div>' +
+            '<p class="sub" style="margin:6px 0 0">שלחנו שוב את הקישורים למייל <span class="ltr">' + mEsc(mail) + '</span>. כדאי לבדוק גם בתיקיית הספאם.</p>';
+          return;
+        }
+        if (!r.ok) throw new Error(r.error || 'x');
+        // ליד לטבלת האתר. אם נכשל, ההרשמה עצמה כבר שמורה בגיליון, אז לא עוצרים בגלל זה
+        mLead({ product: 'mipui-tzevet', full_name: name, org_name: org, phone: phone, email: mail,
+                message: 'נרשם/ה לכלי מיפוי הצוות · ' + TYPE_HE[r.type], source_page: location.href.slice(0, 300) }).catch(function () {});
+        mStore('mipui_k', r.k);
+        renderRegistered(r, name, mail);
+      }).catch(function (e) {
+        btn.disabled = false; btn.textContent = 'פתיחת המיפוי';
+        var wa = WA + '?text=' + encodeURIComponent('היי, אשמח לפתוח מיפוי צוות.\nארגון: ' + org + '\nשם: ' + name + '\nמייל: ' + mail + '\nנייד: ' + phone);
+        m.innerHTML = String(e && e.message) === 'busy' ? 'יש עומס רגעי. נסו שוב בעוד דקה.' :
+          'משהו השתבש. אפשר לנסות שוב, או <a href="' + mEsc(wa) + '" target="_blank" rel="noopener">לכתוב לנו בוואטסאפ</a>.';
+      });
+    };
+  }
+
+  /* ---------- מיד אחרי ההרשמה: שני הקישורים על המסך ---------- */
+  function renderRegistered(r, name, mail) {
+    var qUrl = MIPUI_BASE + 'q.html?s=' + r.s, dUrl = MIPUI_BASE + '?k=' + r.k;
+    var main = shell('מיפוי צוות', mEsc(r.org), '');
+    main.innerHTML = '<div style="max-width:680px;margin:0 auto">' +
+      '<div class="h2">המיפוי של ' + mEsc(r.org) + ' מוכן</div>' +
+      '<p class="sub">שני הקישורים נשלחו גם למייל <span class="ltr">' + mEsc(mail) + '</span>. אם המייל לא מגיע, כדאי לבדוק בספאם.</p>' +
+      '<div class="card stack" style="margin-bottom:14px"><h3 style="margin:0"><svg class="i"><use href="#i-send"/></svg>1. השאלון לצוות</h3>' +
+        '<p class="note">את הקישור הזה שולחים לצוות.</p>' +
+        '<div class="linkbox"><span class="ltr">' + mEsc(qUrl) + '</span><button class="btn sm" data-cp="' + mEsc(qUrl) + '"><svg class="i"><use href="#i-copy"/></svg>העתקה</button></div></div>' +
+      '<div class="card stack" style="margin-bottom:14px"><h3 style="margin:0"><svg class="i"><use href="#i-bookmark"/></svg>2. הדשבורד שלכם</h3>' +
+        '<p class="note"><b>שמרו את הקישור הזה.</b> הוא אישי: מי שמחזיק בו רואה את תשובות הצוות. לא להעביר הלאה.</p>' +
+        '<div class="linkbox dk"><span class="ltr">' + mEsc(dUrl) + '</span><button class="btn sm" data-cp="' + mEsc(dUrl) + '"><svg class="i"><use href="#i-copy"/></svg>העתקה</button></div></div>' +
+      '<a class="btn pri" href="' + mEsc(dUrl) + '" style="width:100%">לדשבורד ולהפצה לצוות</a></div>';
+    main.querySelectorAll('[data-cp]').forEach(function (b) { b.onclick = function () { copy(b.getAttribute('data-cp'), 'הקישור הועתק'); }; });
+    window.scrollTo(0, 0);
+  }
+
+  /* ---------- המנהל/ת: הפצה ודשבורד ---------- */
+  function renderMgr(me, asAdmin) {
+    useType(me.type);
+    var main = shell('מיפוי צוות', TYPE_HE[me.type], mEsc(me.org) + (asAdmin ? ' · מבט ניהול' : ''));
+    var qUrl = MIPUI_BASE + 'q.html?s=' + me.s;
+    var place = me.type === 'n' ? 'בארגון' : 'בבית הספר';
+    var msg = 'שלום לכולם, אנחנו ממפים איך הצוות שלנו משתמש ב-AI, כדי לבנות יחד ליווי שמתאים לנו באמת. ' +
+      'זה לוקח כ-4 דקות. נשמח שכל אחד ואחת ימלאו עד סוף השבוע:\n' + qUrl;
+    main.innerHTML =
+      (asAdmin ? '<button class="btn sm" id="bk" style="margin-bottom:12px"><svg class="i"><use href="#i-back"/></svg>כל הארגונים</button>' : '') +
+      '<div class="h2">' + mEsc(me.org) + '</div><p class="sub">השאלון לצוות מוכן. שלחו אותו לצוות, וכאן תראו את התשובות מצטברות.</p>' +
+      '<div class="g2" style="margin-bottom:16px">' +
+        '<div class="card"><h3><svg class="i"><use href="#i-send"/></svg>השאלון לצוות</h3>' +
+          '<div class="linkbox"><span class="ltr">' + mEsc(qUrl) + '</span><button class="btn sm" id="cpLink"><svg class="i"><use href="#i-copy"/></svg>העתקה</button></div>' +
+          '<label class="note" for="msg" style="display:block;margin:12px 0 4px;font-weight:700">ההודעה לצוות (אפשר לערוך)</label>' +
+          '<textarea class="qt" id="msg" style="min-height:120px;font-size:.92rem">' + mEsc(msg) + '</textarea>' +
+          '<div class="row" style="margin-top:10px">' +
+            '<a class="btn tl sm" id="waB" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>שליחה בוואטסאפ</a>' +
+            '<a class="btn sm" id="mailB"><svg class="i"><use href="#i-mail"/></svg>מייל</a>' +
+            '<button class="btn sm" id="cpMsg"><svg class="i"><use href="#i-copy"/></svg>העתקת ההודעה</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="card"><h3><svg class="i"><use href="#i-eye"/></svg>לפני ששולחים</h3>' +
+          '<div class="row" style="align-items:flex-start;gap:16px"><div id="qr"></div><div style="flex:1;min-width:180px">' +
+            '<p class="note" style="margin-bottom:10px">QR לישיבת צוות: מקרינים, וכולם ממלאים מהטלפון.</p>' +
+            '<a class="btn sm" target="_blank" rel="noopener" href="' + qUrl + '&test=1"><svg class="i"><use href="#i-eye"/></svg>מילוי ניסיון שלי</a>' +
+            '<p class="note" style="margin-top:6px">מילוי הניסיון מסומן ולא נספר בתוצאות.</p>' +
+          '</div></div>' +
+          '<div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--line)"><label class="note" for="staffN" style="font-weight:700">כמה אנשי צוות יש ' + place + '? (לחישוב אחוז ההיענות)</label>' +
+          '<div class="row" style="margin-top:6px"><input class="qt" id="staffN" type="number" min="1" max="2000" inputmode="numeric" style="width:110px"><button class="btn sm" id="staffB">שמירה</button><span class="note" id="staffMsg"></span></div></div>' +
+        '</div>' +
+      '</div>' +
+      '<div id="exEd" style="margin-top:16px"></div>' +
+      '<div class="row" style="justify-content:space-between;margin:26px 0 12px"><div class="h2" style="margin:0">הדשבורד</div>' +
+        '<div class="row"><span class="note" id="upd"></span><button class="btn sm" id="refB"><svg class="i"><use href="#i-refresh"/></svg>רענון</button></div></div>' +
+      '<div id="dash"><div class="loading">טוען את התשובות…</div></div>';
+
+    if (asAdmin) document.getElementById('bk').onclick = renderAdmin;
+    document.getElementById('cpLink').onclick = function () { copy(qUrl, 'הקישור הועתק'); };
+    var ta = document.getElementById('msg');
+    function upd() {
+      var v = ta.value;
+      document.getElementById('waB').href = 'https://wa.me/?text=' + encodeURIComponent(v);
+      document.getElementById('mailB').href = 'mailto:?subject=' + encodeURIComponent('שאלון קצר לצוות: AI בעבודה') + '&body=' + encodeURIComponent(v);
+    }
+    ta.oninput = upd; upd();
+    document.getElementById('cpMsg').onclick = function () { copy(ta.value, 'ההודעה הועתקה'); };
+    try { new QRCode(document.getElementById('qr'), { text: qUrl, width: 132, height: 132, correctLevel: QRCode.CorrectLevel.M }); } catch (e) {}
+    document.getElementById('staffB').onclick = function () {
+      var n = Number(document.getElementById('staffN').value);
+      if (!(n >= 1 && n <= 2000)) { document.getElementById('staffMsg').textContent = 'מספר בין 1 ל-2000'; return; }
+      document.getElementById('staffMsg').textContent = 'שומר…';
+      mPost({ action: 'staff', s: me.s, k: K, n: n }).then(function (r) {
+        document.getElementById('staffMsg').textContent = r.ok ? 'נשמר' : 'לא נשמר';
+        if (r.ok) load(me);
+      }).catch(function () { document.getElementById('staffMsg').textContent = 'לא נשמר, נסו שוב'; });
+    };
+    document.getElementById('refB').onclick = function () { load(me); };
+    load(me);
+  }
+
+  /* ---------- טעינת התוצאות: קודם מהזיכרון המקומי, ואז מהשרת ---------- */
+  function load(me) {
+    var box = document.getElementById('dash');
+    var cached = mStore('mipui_res_' + me.s);
+    if (cached) draw(box, cached, me);
+    var u = document.getElementById('upd'); if (u) u.textContent = 'מתעדכן…';
+    mGet({ action: 'results', s: me.s, k: K }).then(function (r) {
+      if (!r.ok) { box.innerHTML = '<div class="empty">אין הרשאה לארגון הזה.</div>'; return; }
+      mStore('mipui_res_' + me.s, r);
+      draw(box, r, me);
+      editor(me.s, r);
+      if (u) u.textContent = 'עודכן ב-' + r.updated;
+      var sn = document.getElementById('staffN'); if (sn && r.staff && !sn.value) sn.value = r.staff;
+    }).catch(function () { if (u) u.textContent = 'השרת איטי כרגע. מוצגים הנתונים האחרונים.'; if (!cached) box.innerHTML = '<div class="empty">השרת לא ענה. לחצו רענון בעוד רגע.</div>'; });
+  }
+
+  /* ---------- הדשבורד ---------- */
+  function pct(a, b) { return b ? Math.round(a / b * 100) : 0; }
+  function avg(rows, k) { var v = rows.map(function (r) { return r[k]; }).filter(function (x) { return typeof x === 'number'; }); return v.length ? v.reduce(function (a, b) { return a + b; }, 0) / v.length : null; }
+  function counts(rows, qid) {
+    var c = {};
+    rows.forEach(function (r) { var v = r[qid]; (Array.isArray(v) ? v : (v ? [v] : [])).forEach(function (x) { c[x] = (c[x] || 0) + 1; }); });
+    return c;
+  }
+  function bars(rows, qid, title, order) {
+    var q = Q[qid];
+    if (!q) return '';
+    var c = counts(rows, qid), n = rows.length;
+    var ids = order === 'fixed' ? q.opts.map(function (o) { return o.id; }) : Object.keys(c).sort(function (a, b) { return c[b] - c[a]; });
+    var h = '<div class="card"><h3>' + mEsc(title || q.q) + (q.type === 'many' ? ' <span class="chip g">עד ' + q.max + '</span>' : '') + '</h3>';
+    var base = qid === 'tools' || qid === 'use' ? rows.filter(function (r) { return r.freq !== 'never'; }).length : n;
+    if (!base) return h + '<p class="note">עוד אין תשובות.</p></div>';
+    ids.forEach(function (id) {
+      var v = c[id] || 0;
+      h += '<div class="bar"><span>' + mEsc(label(qid, id)) + '</span><div class="tr"><div class="fl' + (id === 'never' ? ' o' : '') + '" style="width:' + pct(v, base) + '%"></div></div><span class="v">' + v + '</span></div>';
+    });
+    if (qid === 'tools' || qid === 'use') h += '<p class="note">מתוך ' + base + ' שמשתמשים ב-AI לפחות לפעמים.</p>';
+    return h + '</div>';
+  }
+  function scaleCard(rows, qid) {
+    var q = Q[qid], c = counts(rows, qid), a = avg(rows, qid);
+    var h = '<div class="card"><h3>' + mEsc(q.q) + '</h3><div class="kpi" style="border:0;padding:0 0 6px"><div class="v">' + (a == null ? '–' : a.toFixed(1)) + '<small> /5</small></div><div class="l">ממוצע</div></div>';
+    [5, 4, 3, 2, 1].forEach(function (n) {
+      var v = c[n] || 0;
+      h += '<div class="bar"><span>' + n + (n === 5 ? ' · ' + q.ends[1] : n === 1 ? ' · ' + q.ends[0] : '') + '</span><div class="tr"><div class="fl" style="width:' + pct(v, rows.length) + '%"></div></div><span class="v">' + v + '</span></div>';
+    });
+    return h + '</div>';
+  }
+  function gridCard(rows, qid, title) {
+    var q = Q[qid];
+    var h = '<div class="card"><h3>' + title + ' <span class="chip g">ממוצע מתוך 5</span></h3>';
+    var all = [];
+    q.items.forEach(function (it) {
+      var a = avg(rows, it.id);
+      if (a != null) all.push(a);
+      h += '<div class="bar"><span>' + mEsc(it.t) + '</span><div class="tr"><div class="fl" style="width:' + (a == null ? 0 : a / 5 * 100) + '%"></div></div><span class="v">' + (a == null ? '–' : a.toFixed(1)) + '</span></div>';
+    });
+    if (all.length) h += '<p class="note">מדד כולל: <b>' + (all.reduce(function (x, y) { return x + y; }, 0) / all.length).toFixed(1) + '</b> מתוך 5.</p>';
+    return h + '</div>';
+  }
+  var STOP = 'של את על עם זה זו לא כן אני אנחנו הם הן יש אין גם רק כל מה מי כי אם או אבל עוד יותר מאוד היה הייתה להיות שלי שלנו לי לנו אותי אותו אותה איך כמו כדי עד בין אחד אחת שאני שזה שהוא שהם אז הרבה קצת פעם פעמים דבר דברים בזה לזה שלא';
+  STOP = STOP.split(' ').reduce(function (o, w) { o[w] = 1; return o; }, {});
+  function topWords(texts) {
+    var c = {};
+    texts.forEach(function (t) {
+      (t.replace(/[^֐-׿a-zA-Z\s]/g, ' ').split(/\s+/)).forEach(function (w) {
+        w = w.replace(/^[והבלמש](?=[֐-׿]{3,})/, '');
+        if (w.length < 3 || STOP[w]) return;
+        c[w] = (c[w] || 0) + 1;
+      });
+    });
+    return Object.keys(c).filter(function (w) { return c[w] >= 2; }).sort(function (a, b) { return c[b] - c[a]; }).slice(0, 14).map(function (w) { return [w, c[w]]; });
+  }
+  function extraCards(rows, qs) {
+    if (!qs.length) return '';
+    var h = '<div class="h2" style="font-size:1.15rem;margin:8px 0 10px">השאלות שהוספתם</div><div class="g2" style="margin-bottom:16px">';
+    qs.forEach(function (q) {
+      var vals = rows.map(function (x) { return (x.extra || {})[q.id]; }).filter(function (v) { return v != null && v !== '' && !(Array.isArray(v) && !v.length); });
+      h += '<div class="card"><h3>' + mEsc(q.q) + '</h3>';
+      if (!vals.length) { h += '<p class="note">עוד אין תשובות.</p></div>'; return; }
+      if (q.type === 'text') { h += vals.slice(0, 20).map(function (t) { return '<div class="quote">' + mEsc(t) + '</div>'; }).join('') + '</div>'; return; }
+      var c = {};
+      vals.forEach(function (v) { (Array.isArray(v) ? v : [v]).forEach(function (x) { c[x] = (c[x] || 0) + 1; }); });
+      var keys = q.type === 'scale' ? ['5', '4', '3', '2', '1'] : q.opts.map(function (o) { return o.id; });
+      keys.forEach(function (k) {
+        var lab = q.type === 'scale' ? k : (q.opts.filter(function (o) { return o.id === k; })[0] || {}).t;
+        var v = c[k] || 0;
+        h += '<div class="bar"><span>' + mEsc(lab) + '</span><div class="tr"><div class="fl" style="width:' + pct(v, vals.length) + '%"></div></div><span class="v">' + v + '</span></div>';
+      });
+      h += '</div>';
+    });
+    return h + '</div>';
+  }
+
+  /* ---------- שאלות משלכם: עד 5, שאלה שנענתה ננעלת ---------- */
+  var XTYPE = { one: 'בחירה אחת', many: 'בחירה מרובה', scale: 'סולם 1–5', text: 'שאלה פתוחה' };
+  function editor(s, r) {
+    var box = document.getElementById('exEd');
+    if (!box || box.getAttribute('data-on')) return; // לא מציירים מחדש מתחת למי שעורך/ת
+    box.setAttribute('data-on', '1');
+    var qs = (r.extra || []).slice();
+    var locked = {};
+    (r.rows || []).forEach(function (x) { Object.keys(x.extra || {}).forEach(function (k) { locked[k] = true; }); });
+    var editing = null;
+    function freeId() { for (var i = 1; i <= 9; i++) if (!qs.some(function (q) { return q.id === 'x' + i; })) return 'x' + i; return null; }
+    function paint(msg) {
+      var h = '<div class="card"><h3><svg class="i"><use href="#i-text"/></svg>שאלות משלכם · ' + qs.length + ' מתוך 5</h3>' +
+        '<p class="note" style="margin-bottom:10px">שאלות המיפוי קבועות, כדי שאפשר יהיה להשוות לאורך זמן. כאן מוסיפים עד 5 שאלות משלכם. הן מופיעות בסוף השאלון, לפני השאלה האחרונה. שאלה שכבר ענו עליה ננעלת.</p>';
+      qs.forEach(function (q, i) {
+        h += '<div class="row" style="border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:8px;justify-content:space-between">' +
+          '<div style="flex:1;min-width:200px"><b>' + mEsc(q.q) + '</b><div class="note">' + XTYPE[q.type] + (q.opts ? ' · ' + q.opts.map(function (o) { return mEsc(o.t); }).join(' · ') : '') + '</div></div>' +
+          (locked[q.id] ? '<span class="chip g">נענתה, נעולה</span>' :
+            '<span class="row" style="gap:6px"><button class="btn sm" data-ed="' + i + '">עריכה</button><button class="btn sm" data-del="' + i + '">מחיקה</button></span>') + '</div>';
+      });
+      if (qs.length < 5 || editing != null) {
+        var e = editing != null ? qs[editing] : { type: 'one', q: '', opts: [] };
+        h += '<div style="background:var(--soft);border-radius:12px;padding:12px;margin-top:8px">' +
+          '<div class="note" style="font-weight:700;margin-bottom:6px">' + (editing != null ? 'עריכת שאלה' : 'שאלה חדשה') + '</div>' +
+          '<input class="qt" id="exQ" maxlength="200" placeholder="נוסח השאלה" value="' + mEsc(e.q) + '" style="margin-bottom:8px">' +
+          '<div class="row" style="margin-bottom:8px"><select class="qt" id="exT" style="width:auto">' + Object.keys(XTYPE).map(function (t) { return '<option value="' + t + '"' + (t === e.type ? ' selected' : '') + '>' + XTYPE[t] + '</option>'; }).join('') + '</select>' +
+          '<label class="note" id="exMaxL">כמה אפשר לסמן <input class="qt" id="exMax" type="number" min="1" max="8" value="' + (e.max || 2) + '" style="width:70px;display:inline-block"></label></div>' +
+          '<textarea class="qt" id="exO" placeholder="אפשרויות התשובה, אחת בכל שורה (2 עד 8)" style="min-height:100px">' + mEsc((e.opts || []).map(function (o) { return o.t; }).join(String.fromCharCode(10))) + '</textarea>' +
+          '<div class="row" style="margin-top:8px"><button class="btn pri sm" id="exSave">' + (editing != null ? 'שמירת השינוי' : 'הוספה לשאלון') + '</button>' +
+          (editing != null ? '<button class="btn sm" id="exCancel">ביטול</button>' : '') + '<span class="note" id="exMsg">' + (msg || '') + '</span></div></div>';
+      }
+      box.innerHTML = h + '</div>';
+      var tSel = document.getElementById('exT');
+      function syncType() {
+        if (!tSel) return;
+        var t = tSel.value;
+        document.getElementById('exO').style.display = t === 'one' || t === 'many' ? '' : 'none';
+        document.getElementById('exMaxL').style.display = t === 'many' ? '' : 'none';
+      }
+      if (tSel) { tSel.onchange = syncType; syncType(); }
+      box.querySelectorAll('[data-ed]').forEach(function (b) { b.onclick = function () { editing = +b.getAttribute('data-ed'); paint(); }; });
+      box.querySelectorAll('[data-del]').forEach(function (b) { b.onclick = function () { var i = +b.getAttribute('data-del'); var nq = qs.slice(); nq.splice(i, 1); save(nq, 'נמחקה'); }; });
+      var cc = document.getElementById('exCancel'); if (cc) cc.onclick = function () { editing = null; paint(); };
+      var sv = document.getElementById('exSave');
+      if (sv) sv.onclick = function () {
+        var t = tSel.value, text = document.getElementById('exQ').value.trim();
+        var opts = document.getElementById('exO').value.split(String.fromCharCode(10)).map(function (x) { return x.trim(); }).filter(Boolean);
+        if (text.length < 3) { document.getElementById('exMsg').textContent = 'חסר נוסח לשאלה.'; return; }
+        if ((t === 'one' || t === 'many') && (opts.length < 2 || opts.length > 8)) { document.getElementById('exMsg').textContent = 'צריך בין 2 ל-8 אפשרויות.'; return; }
+        var q = { id: editing != null ? qs[editing].id : freeId(), type: t, q: text };
+        if (t === 'one' || t === 'many') q.opts = opts.map(function (o) { return { t: o }; });
+        if (t === 'many') q.max = Number(document.getElementById('exMax').value) || 2;
+        var nq = qs.slice();
+        if (editing != null) nq[editing] = q; else nq.push(q);
+        save(nq, 'נשמר. השאלה כבר בשאלון.');
+      };
+    }
+    function save(nq, okMsg) {
+      var m = document.getElementById('exMsg'); if (m) m.textContent = 'שומר…';
+      box.querySelectorAll('button').forEach(function (b) { b.disabled = true; });
+      mPost({ action: 'saveExtra', s: s, k: K, qs: nq }).then(function (res) {
+        if (res.ok) { qs = res.qs; editing = null; paint(okMsg); toast('נשמר'); }
+        else paint(res.error === 'locked' ? 'אי אפשר: כבר ענו על השאלה הזו.' : 'לא נשמר (' + res.error + ').');
+      }).catch(function () { paint('לא נשמר. נסו שוב בעוד רגע.'); });
+    }
+    paint();
+  }
+
+  function quotes(title, list, st) {
+    if (!list.length) return '';
+    var h = '<div class="note" style="font-weight:700;' + st + '">' + title + '</div>';
+    list.forEach(function (t, i) { h += '<div class="quote"' + (i >= 6 ? ' data-more hidden' : '') + '>' + mEsc(t) + '</div>'; });
+    if (list.length > 6) h += '<button class="btn sm more-b" type="button">להציג את כולן (' + list.length + ')</button>';
+    return '<div>' + h + '</div>';
+  }
+  function ansList(qid, v) {
+    if (Array.isArray(v)) return v.map(function (x) { return label(qid, x); }).join(', ');
+    if (Q[qid] && Q[qid].opts) return label(qid, v);
+    return v == null ? '' : String(v);
+  }
+  function whoTable(rows) {
+    var named = rows.filter(function (x) { return x.name; });
+    if (!named.length) return '';
+    var h = '<div class="card" style="margin-bottom:16px"><div class="row" style="justify-content:space-between;margin-bottom:8px">' +
+      '<h3 style="margin:0"><svg class="i"><use href="#i-users"/></svg>מי ענה · ' + named.length + '</h3>' +
+      '<button class="btn sm" id="cpNames"><svg class="i"><use href="#i-copy"/></svg>העתקת השמות</button></div>' +
+      '<p class="note" style="margin-bottom:8px">השוו לרשימת הצוות כדי לדעת למי לשלוח תזכורת. לחיצה על שורה מציגה את כל התשובות.</p>' +
+      '<div class="scroll-x"><table class="t"><tr><th>שם</th><th>תפקיד</th><th>תדירות</th><th>ביטחון</th><th>מוכנות</th><th>צוות ראשון</th><th>תאריך</th></tr>';
+    named.forEach(function (x, i) {
+      h += '<tr class="clk" data-w="' + i + '"><td><b>' + mEsc(x.name) + '</b></td><td>' + mEsc(label('role', x.role)) + '</td><td>' + mEsc(label('freq', x.freq)) + '</td><td>' + (x.conf || '–') + '</td><td>' + (x.ready || '–') + '</td><td>' +
+        (x.first === 'yes' ? '<span class="chip">כן</span>' : x.first === 'maybe' ? '<span class="chip g">אולי</span>' : '') + '</td><td class="note">' + mEsc(x.date || '') + '</td></tr>' +
+        '<tr data-wd="' + i + '" hidden><td colspan="7" style="background:#F5FBFB">' +
+        SV.questions.filter(function (q) { return q.id !== 'name' && q.type !== 'grid' && x[q.id] != null && x[q.id] !== '' && !(Array.isArray(x[q.id]) && !x[q.id].length); }).map(function (q) {
+          return '<div style="margin:4px 0"><span class="note">' + mEsc(q.q) + '</span><br>' + mEsc(ansList(q.id, x[q.id])) + '</div>';
+        }).join('') + '</td></tr>';
+    });
+    return h + '</table></div></div>';
+  }
+
+  /* ---------- ההנעה לשיחה: ליד לטבלת האתר, עם תמונת מצב קצרה ---------- */
+  function callBlock(me, sum) {
+    var done = mStore('mipui_call_' + me.s);
+    return '<div class="call" id="call"><div class="tx"><b>רוצים לדעת מה עושים עם התוצאות?</b>' +
+      '<span>נעבור יחד על הדשבורד בשיחת מיפוי של 20 דקות, ללא עלות, ונציע צעד ראשון שמתאים לצוות שלכם. מספר המקומות מוגבל.</span></div>' +
+      (done ? '<div class="done" id="callDone">קיבלנו. נחזור אליכם בימים הקרובים.</div>' :
+        '<button class="btn fx" id="callB" data-sum="' + mEsc(sum) + '"><svg class="i"><use href="#i-phone"/></svg>אני רוצה שיחת מיפוי</button>') + '</div>';
+  }
+  function bindCall(me) {
+    var b = document.getElementById('callB');
+    if (!b) return;
+    b.onclick = function () {
+      b.disabled = true; b.textContent = 'שולח…';
+      var sum = b.getAttribute('data-sum');
+      mLead({ product: 'mipui-call', full_name: me.name || '', org_name: me.org, phone: me.phone || '', email: me.mail || '',
+              message: 'מבקש/ת שיחת מיפוי מתוך הדשבורד · ' + TYPE_HE[me.type] + '\n' + sum, source_page: MIPUI_BASE + 'q.html?s=' + me.s }).then(function () {
+        mStore('mipui_call_' + me.s, 1);
+        b.outerHTML = '<div class="done">קיבלנו. נחזור אליכם בימים הקרובים.</div>';
+      }).catch(function () {
+        var wa = WA + '?text=' + encodeURIComponent('היי, אשמח לשיחת מיפוי על הדשבורד של ' + me.org + '.\n' + sum);
+        b.outerHTML = '<a class="btn fx" href="' + mEsc(wa) + '" target="_blank" rel="noopener"><svg class="i"><use href="#i-chat"/></svg>לקבוע בוואטסאפ</a>';
+      });
+    };
+  }
+
+  function draw(box, r, me) {
+    var all = r.rows || [];
+    var rows = all.filter(function (x) { return !x.test; });
+    var tests = all.length - rows.length;
+    var n = rows.length;
+    var who = me.type === 'n' ? 'הארגון' : 'בית הספר';
+    var testNote = tests ? '<p class="note" style="margin-bottom:10px">מילויי ניסיון שלכם: ' + tests + ' (לא נספרים).</p>' : '';
+    if (!n) {
+      box.innerHTML = testNote + '<div class="empty"><b>עוד אין תשובות מהצוות.</b><br>ברגע שאנשי הצוות יתחילו לענות, הדשבורד יתמלא כאן.</div>';
+      return;
+    }
+    var weekly = rows.filter(function (x) { return x.freq === 'week' || x.freq === 'day'; }).length;
+    var lead = rows.filter(function (x) { return (x.freq === 'week' || x.freq === 'day') && x.conf >= 4; }).length;
+    var never = rows.filter(function (x) { return x.freq === 'never'; }).length;
+    var mid = n - lead - never;
+    var conf = avg(rows, 'conf'), ready = avg(rows, 'ready');
+    var firsts = rows.filter(function (x) { return x.first === 'yes' && x.name; }).map(function (x) { return x.name; });
+    var bc = counts(rows, 'block');
+    var topB = Object.keys(bc).filter(function (k) { return k !== 'none'; }).sort(function (a, b) { return bc[b] - bc[a]; })[0];
+
+    var h = testNote + '<div class="g4" style="margin-bottom:16px">' +
+      '<div class="kpi"><div class="v">' + n + (r.staff ? '<small> /' + r.staff + '</small>' : '') + '</div><div class="l">' + (r.staff ? 'ענו · ' + pct(n, r.staff) + '% מהצוות' : 'ענו') + '</div></div>' +
+      '<div class="kpi"><div class="v">' + pct(weekly, n) + '%</div><div class="l">משתמשים לפחות פעם בשבוע</div></div>' +
+      '<div class="kpi"><div class="v">' + (conf == null ? '–' : conf.toFixed(1)) + '<small> /5</small></div><div class="l">תחושת ביטחון</div></div>' +
+      '<div class="kpi"><div class="v">' + (ready == null ? '–' : ready.toFixed(1)) + '<small> /5</small></div><div class="l">מוכנות לנסות השנה</div></div></div>';
+
+    h += '<div class="card" style="margin-bottom:16px"><h3><svg class="i"><use href="#i-users"/></svg>פרופיל הצוות</h3><div class="profile">' +
+      (lead ? '<div style="width:' + pct(lead, n) + '%;background:#061E4F">מובילים · ' + lead + '</div>' : '') +
+      (mid ? '<div style="width:' + pct(mid, n) + '%;background:#0A7A7B">מתנסים · ' + mid + '</div>' : '') +
+      (never ? '<div style="width:' + pct(never, n) + '%;background:#F00678">טרם התחילו · ' + never + '</div>' : '') +
+      '</div><div class="legend"><span><i style="background:#061E4F"></i>מובילים: משתמשים כל שבוע ומעלה, וביטחון 4 ומעלה</span><span><i style="background:#0A7A7B"></i>מתנסים: ניסו או משתמשים לפעמים</span><span><i style="background:#F00678"></i>טרם התחילו: אף פעם</span></div>' +
+      '<p class="note" style="margin-top:10px">המובילים הם שותפים טבעיים להדרכת עמיתים. למי שטרם התחיל/ה מתאימה יותר התנסות קצרה בתוך ישיבת צוות.</p></div>';
+
+    var sum = n + ' ענו · ' + pct(weekly, n) + '% משתמשים כל שבוע · ' + never + ' טרם התחילו · ביטחון ' + (conf || 0).toFixed(1) + '/5 · מוכנות ' + (ready || 0).toFixed(1) + '/5' +
+      (topB ? ' · המעכב הנפוץ: ' + label('block', topB) : '');
+    if (!me.admin) h += callBlock(me, sum);
+
+    h += '<div class="g2" style="margin-bottom:16px">' + bars(rows, 'freq', null, 'fixed') + bars(rows, 'block') + '</div>';
+    h += '<div class="g2" style="margin-bottom:16px">' + scaleCard(rows, 'conf') + scaleCard(rows, 'ready') + '</div>';
+    h += '<div class="g2" style="margin-bottom:16px">' + bars(rows, 'tools') + bars(rows, 'use') + '</div>';
+    h += '<div class="g2" style="margin-bottom:16px">' + gridCard(rows, 'right', 'שימוש נכון') + gridCard(rows, 'place', me.type === 'n' ? 'בארגון שלנו' : 'בבית הספר שלנו') + '</div>';
+    h += '<div class="g2" style="margin-bottom:16px">' + bars(rows, 'learn') + (Q['class'] ? bars(rows, 'class', null, 'fixed') : bars(rows, 'sen', null, 'fixed')) + '</div>';
+    h += extraCards(rows, r.extra || []);
+
+    // פילוח לפי תפקיד
+    var byRole = {};
+    rows.forEach(function (x) { (byRole[x.role] = byRole[x.role] || []).push(x); });
+    h += '<div class="card" style="margin-bottom:16px"><h3>לפי תפקיד</h3><div class="scroll-x"><table class="t"><tr><th>תפקיד</th><th>ענו</th><th>כל שבוע ומעלה</th><th>ביטחון</th><th>מוכנות</th></tr>';
+    Q.role.opts.forEach(function (o) {
+      var g = byRole[o.id] || [];
+      if (!g.length) return;
+      var w = g.filter(function (x) { return x.freq === 'week' || x.freq === 'day'; }).length;
+      h += '<tr><td>' + mEsc(o.t) + '</td><td>' + g.length + '</td><td>' + pct(w, g.length) + '%</td><td>' + (avg(g, 'conf') || 0).toFixed(1) + '</td><td>' + (avg(g, 'ready') || 0).toFixed(1) + '</td></tr>';
+    });
+    h += '</table></div></div>';
+
+    if (firsts.length) {
+      h += '<div class="card" style="margin-bottom:16px"><h3><svg class="i"><use href="#i-flag"/></svg>רוצים להיות בצוות הראשון · ' + firsts.length + '</h3>' +
+        '<div class="words">' + firsts.map(function (x) { return '<span>' + mEsc(x) + '</span>'; }).join('') + '</div></div>';
+    }
+
+    h += whoTable(rows);
+
+    var help = rows.map(function (x) { return x.help; }).filter(Boolean);
+    var story = rows.map(function (x) { return x.story; }).filter(Boolean);
+    var words = topWords(help.concat(story));
+    h += '<div class="card"><div class="row" style="justify-content:space-between;margin-bottom:8px"><h3 style="margin:0"><svg class="i"><use href="#i-text"/></svg>התשובות הפתוחות · ' + (help.length + story.length) + '</h3>' +
+      '<button class="btn pri sm" id="aiB"><svg class="i"><use href="#i-spark"/></svg>הכנה לניתוח AI</button></div>' +
+      (words.length ? '<div class="note" style="font-weight:700;margin-bottom:6px">מילים שחוזרות</div><div class="words" style="margin-bottom:12px">' + words.map(function (w) { return '<span>' + mEsc(w[0]) + ' ×' + w[1] + '</span>'; }).join('') + '</div>' : '') +
+      '<div id="aiBox" style="display:none;margin-bottom:12px"></div>' +
+      quotes('מה הכי היה עוזר', help, '') + quotes('סיפורים והתלבטויות', story, 'margin-top:12px;') +
+      '</div>';
+
+    box.innerHTML = h;
+    bindCall(me);
+    box.querySelectorAll('tr[data-w]').forEach(function (tr) {
+      tr.onclick = function () { var d = box.querySelector('tr[data-wd="' + tr.getAttribute('data-w') + '"]'); if (d) d.hidden = !d.hidden; };
+    });
+    var cpN = document.getElementById('cpNames');
+    if (cpN) cpN.onclick = function () { copy(rows.filter(function (x) { return x.name; }).map(function (x) { return x.name; }).join(String.fromCharCode(10)), 'השמות הועתקו'); };
+    box.querySelectorAll('.more-b').forEach(function (btn) {
+      btn.onclick = function () { btn.parentNode.querySelectorAll('[data-more]').forEach(function (e) { e.hidden = false; }); btn.remove(); };
+    });
+    var aiB = document.getElementById('aiB');
+    if (aiB) aiB.onclick = function () {
+      var topBs = Object.keys(bc).sort(function (a, b) { return bc[b] - bc[a]; }).slice(0, 3).map(function (id) { return label('block', id) + ' (' + bc[id] + ')'; }).join(', ');
+      var p = 'לפניך תשובות של ' + n + ' אנשי צוות ב' + (me.type === 'n' ? 'עמותה או ארגון' : 'בית ספר') + ', לשאלון על שימוש ב-AI בעבודה. אין בהן שמות.\n' +
+        'נתונים: ' + pct(weekly, n) + '% משתמשים לפחות פעם בשבוע; ' + never + ' עוד לא השתמשו אף פעם; ממוצע ביטחון ' + (conf || 0).toFixed(1) + ' מתוך 5; ממוצע מוכנות לנסות ' + (ready || 0).toFixed(1) + ' מתוך 5. המעכבים הנפוצים: ' + topBs + '.\n' +
+        'שימוש נכון (ממוצע 1-5): ' + Q.right.items.map(function (it) { var a = avg(rows, it.id); return it.t + ' ' + (a == null ? '-' : a.toFixed(1)); }).join('; ') + '.\n' +
+        'ב' + who + ' (ממוצע 1-5): ' + Q.place.items.map(function (it) { var a = avg(rows, it.id); return it.t + ' ' + (a == null ? '-' : a.toFixed(1)); }).join('; ') + '.\n\n' +
+        'המשימה:\n1. זהה 3 עד 5 נושאים חוזרים בתשובות הפתוחות. לכל נושא: כמה תשובות, וציטוט אחד.\n' +
+        '2. מה הצרכים שעולים, ומה זה אומר לתוכנית הטמעת AI ב' + who + ' השנה?\n3. הצע 3 צעדים ראשונים להנהלה, לפי שלוש קבוצות: מובילים, מתנסים וטרם התחילו.\n4. מה מפתיע או חריג?\nכתוב בעברית, בקצרה ובשפה פשוטה.\n\n' +
+        '--- מה הכי היה עוזר ---\n' + help.map(function (t, i) { return (i + 1) + '. ' + t; }).join('\n') +
+        (story.length ? '\n\n--- סיפורים והתלבטויות ---\n' + story.map(function (t, i) { return (i + 1) + '. ' + t; }).join('\n') : '');
+      var b = document.getElementById('aiBox');
+      b.style.display = 'block';
+      b.innerHTML = '<div class="note" style="font-weight:700;margin-bottom:4px">זה מה שיועתק. מדביקים ב-ChatGPT, ב-Gemini או ב-Claude:</div><div class="aibox">' + mEsc(p) + '</div>' +
+        '<div class="row" style="margin-top:8px"><button class="btn pri sm" id="aiCp"><svg class="i"><use href="#i-copy"/></svg>העתקה</button></div>';
+      document.getElementById('aiCp').onclick = function () { copy(p, 'הועתק. עכשיו מדביקים בצ\'אט'); };
+    };
+  }
+
+  /* ---------- מבט ניהול: כל הארגונים ---------- */
+  function renderAdmin() {
+    var main = shell('מיפוי צוות', 'מבט ניהול · כל הארגונים', '');
+    main.innerHTML = '<div class="h2">כל הארגונים שנרשמו</div><p class="sub">החדשים למעלה. לחיצה על שורה פותחת את הדשבורד של הארגון.</p><div id="adm"><div class="loading">טוען…</div></div>';
+    mGet({ action: 'admin', k: K }).then(function (r) {
+      if (!r.ok) { mStore('mipui_k', null); renderIntro(); return; }
+      var list = r.orgs;
+      var tot = list.reduce(function (a, s) { return a + s.n; }, 0);
+      var act = list.filter(function (s) { return s.n > 0; }).length;
+      var h = '<div class="g4" style="margin-bottom:16px"><div class="kpi"><div class="v">' + list.length + '</div><div class="l">ארגונים נרשמו</div></div>' +
+        '<div class="kpi"><div class="v">' + act + '</div><div class="l">כבר קיבלו תשובות</div></div>' +
+        '<div class="kpi"><div class="v">' + tot + '</div><div class="l">תשובות בסך הכול</div></div></div>' +
+        '<div class="card scroll-x"><table class="t"><tr><th>ארגון</th><th>סוג</th><th>איש/אשת קשר</th><th>נייד</th><th>מייל</th><th>ענו</th><th>נרשם</th></tr>';
+      list.forEach(function (s, i) {
+        h += '<tr class="clk" data-i="' + i + '"><td><b>' + mEsc(s.org) + '</b></td><td>' + (s.type === 'n' ? '<span class="chip f">עמותה</span>' : '<span class="chip">בית ספר</span>') + '</td>' +
+          '<td>' + mEsc(s.name) + '</td><td class="ltr">' + mEsc(s.phone) + '</td><td class="ltr">' + mEsc(s.mail) + '</td><td><b>' + s.n + '</b>' + (s.staff ? ' /' + s.staff : '') + '</td><td class="note">' + mEsc(s.date) + '</td></tr>';
+      });
+      if (!list.length) h += '<tr><td colspan="7" class="note">עוד אין הרשמות.</td></tr>';
+      h += '</table></div>';
+      document.getElementById('adm').innerHTML = h;
+      document.querySelectorAll('tr[data-i]').forEach(function (tr) {
+        tr.onclick = function () { var s = list[+tr.getAttribute('data-i')]; renderMgr({ s: s.s, org: s.org, type: s.type, name: s.name, mail: s.mail, phone: s.phone, admin: true }, true); window.scrollTo(0, 0); };
+      });
+    }).catch(function () { document.getElementById('adm').innerHTML = '<div class="empty">השרת לא ענה. רעננו בעוד רגע.</div>'; });
+  }
+
+  if (!K) { renderIntro(); return; }
+  var meC = mStore('mipui_me_' + K);
+  if (meC && meC.s) renderMgr(meC);
+  mGet({ action: 'me', k: K }).then(function (r) {
+    if (!r.ok) { mStore('mipui_me_' + K, null); mStore('mipui_k', null); if (!meC) renderIntro(); return; }
+    if (r.admin) { renderAdmin(); return; }
+    mStore('mipui_me_' + K, r);
+    if (!meC || meC.s !== r.s) renderMgr(r);
+  }).catch(function () { if (!meC) root.innerHTML = '<div class="empty" style="margin:40px 16px">השרת לא ענה. רעננו את הדף בעוד רגע.</div>'; });
+})();
+</script>
+</body>
+</html>

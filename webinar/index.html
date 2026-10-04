@@ -47,6 +47,9 @@ h1 .out{color:transparent;-webkit-text-stroke:2px var(--teal);background:linear-
 .ticket{display:inline-grid;grid-auto-flow:column;background:rgba(255,255,255,.06);border:1px solid var(--faint);border-radius:18px;overflow:hidden;margin-bottom:30px}
 .ticket div{padding:12px 22px;display:flex;flex-direction:column;justify-content:center;position:relative}
 .ticket div+div{border-inline-start:2px dashed rgba(255,255,255,.16)}
+.gift{display:flex;align-items:center;gap:10px;margin:-14px 0 28px;color:var(--yellow);font-size:17px}
+.gift b{font-weight:800}
+.gift svg{flex:none}
 .ticket small{font-size:12px;color:var(--mist);font-weight:500}
 .ticket b{font-size:1.25rem;font-weight:800;font-variant-numeric:tabular-nums}
 .ticket .free b{color:var(--yellow)}
@@ -281,6 +284,7 @@ footer a{color:rgba(255,255,255,.75)}
         <div role="listitem"><small>איפה</small><b>בזום</b></div>
         <div role="listitem" class="free"><small>עלות</small><b>ללא עלות</b></div>
       </div>
+      <p class="gift"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-4-6-1.5S10 8 12 8zm0 0c2-4 6-4 6-1.5S14 8 12 8z"/></svg><span><b>מתנה לכל משתתף.ת:</b> כלי למיפוי השימוש ב-AI בצוות</span></p>
       <div><a class="cta" href="#signup">שריינו לי מקום <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a></div>
     </div>
 
@@ -362,7 +366,7 @@ footer a{color:rgba(255,255,255,.75)}
       <div class="eyebrow"><i></i>מנחות</div>
       <h2 id="ho">שתינו מגיעות מהשטח.</h2>
       <div class="who">
-        <div><div class="rule"></div><b>מיטל פלג</b><span>ניהלתי בית ספר. היום עוזרת למנהלים ולארגונים לעבוד חכם יותר.</span></div>
+        <div><div class="rule"></div><b>מיטל פלג</b><span>ניהלה בית ספר. היום מלווה מנהלים וארגונים לעבוד חכם יותר.</span></div>
         <div><div class="rule"></div><b>לירון גולן</b><span>מוצר, דיגיטל ואימפקט חברתי.</span></div>
       </div>
     </div>
@@ -392,7 +396,7 @@ footer a{color:rgba(255,255,255,.75)}
         <form id="f" novalidate>
           <div class="eyebrow"><i></i>כרטיס כניסה</div>
           <h2 id="rg">שריינו מקום</h2>
-          <p class="sub">ללא עלות, ברישום מראש. מיד אחרי ההרשמה תקבלו כאן את קישור הזום ואפשרות להוסיף ליומן.</p>
+          <p class="sub">ללא עלות, ברישום מראש. מיד אחרי ההרשמה תקבלו כאן את קישור הזום ואפשרות להוסיף ליומן. בוובינר כל משתתף.ת יקבל.ת מתנה: כלי למיפוי השימוש ב-AI בצוות.</p>
           <label for="n">שם מלא</label><input id="n" autocomplete="name" required>
           <div class="row2">
             <div><label for="em">מייל</label><input id="em" type="email" autocomplete="email" inputmode="email" required></div>
